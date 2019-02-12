@@ -44,10 +44,10 @@ sudo ovs-vswitchd unix:$DB_SOCK --pidfile --detach --log-file=/var/log/openvswit
 #Create OVS-DPDK Bridge and Ports
 sudo ovs-vsctl --if-exists del-br br0
 sudo ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
-sudo ovs-vsctl add-port br0 enp4s0f0_dpdk -- set Interface enp4s0f0_dpdk type=dpdk options:dpdk-devargs=0000:04:00.0 ofport_request=1
-sudo ovs-vsctl add-port br0 enp4s0f1_dpdk -- set Interface enp4s0f1_dpdk type=dpdk options:dpdk-devargs=0000:04:00.1 ofport_request=2
-sudo ovs-vsctl add-port br0 enp5s0f0_dpdk -- set Interface enp5s0f0_dpdk type=dpdk options:dpdk-devargs=0000:05:00.0 ofport_request=3
-sudo ovs-vsctl add-port br0 enp5s0f1_dpdk -- set Interface enp5s0f1_dpdk type=dpdk options:dpdk-devargs=0000:05:00.1 ofport_request=4
+sudo ovs-vsctl add-port br0 enp4s0f0 -- set Interface enp4s0f0 type=dpdk options:dpdk-devargs=0000:04:00.0 ofport_request=1
+sudo ovs-vsctl add-port br0 enp4s0f1 -- set Interface enp4s0f1 type=dpdk options:dpdk-devargs=0000:04:00.1 ofport_request=2
+sudo ovs-vsctl add-port br0 enp5s0f0 -- set Interface enp5s0f0 type=dpdk options:dpdk-devargs=0000:05:00.0 ofport_request=3
+sudo ovs-vsctl add-port br0 enp5s0f1 -- set Interface enp5s0f1 type=dpdk options:dpdk-devargs=0000:05:00.1 ofport_request=4
 
 #Setup test flows to forward packets between DPDK ports
 sudo ovs-ofctl del-flows br0
