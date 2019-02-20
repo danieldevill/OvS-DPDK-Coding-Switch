@@ -49,12 +49,17 @@ sudo ovs-vsctl add-port br0 enp4s0f1 -- set Interface enp4s0f1 type=dpdk options
 sudo ovs-vsctl add-port br0 enp5s0f0 -- set Interface enp5s0f0 type=dpdk options:dpdk-devargs=0000:05:00.0 ofport_request=3
 sudo ovs-vsctl add-port br0 enp5s0f1 -- set Interface enp5s0f1 type=dpdk options:dpdk-devargs=0000:05:00.1 ofport_request=4
 
-#Setup test flows to forward packets between DPDK ports
-sudo ovs-ofctl del-flows br0
-sudo ovs-ofctl add-flow br0 in_port=1,action=output:2
-sudo ovs-ofctl add-flow br0 in_port=2,action=output:1
-sudo ovs-ofctl add-flow br0 in_port=3,action=output:4
-sudo ovs-ofctl add-flow br0 in_port=4,action=output:3
+#Set Controller to Ryu
+#sudo ovs-vsctl set-controller br0 tcp:10.10.11.48:6633
+#Set fail mode to secure, so that only the Ryu controller can control the switch, even when connection is lost.
+#sudo ovs-vsctl set-fail-mode br0 secure
+
+# #Setup test flows to forward packets between DPDK ports
+# sudo ovs-ofctl del-flows br0
+# sudo ovs-ofctl add-flow br0 in_port=1,action=output:2
+# sudo ovs-ofctl add-flow br0 in_port=2,action=output:1
+# sudo ovs-ofctl add-flow br0 in_port=3,action=output:4
+# sudo ovs-ofctl add-flow br0 in_port=4,action=output:3
 
 #Print outputs of dpdk drivers and ovs-vsctl/ovs-ofctl to confirm.
 sudo $DPDK_DIR/usertools/dpdk-devbind.py -s
