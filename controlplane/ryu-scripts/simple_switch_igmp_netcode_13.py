@@ -70,8 +70,8 @@ class SimpleSwitchIGMPNetcode13(app_manager.RyuApp):
         # If you hit this you might want to increase
         # the "miss_send_length" of your switch
         if ev.msg.msg_len < ev.msg.total_len:
-            self.logger.debug("packet truncated: only %s of %s bytes",
-                              ev.msg.msg_len, ev.msg.total_len)
+            self.logger.debug("packet truncated: only %s of %s bytes",ev.msg.msg_len, ev.msg.total_len)
+        
         msg = ev.msg
         datapath = msg.datapath
         ofproto = datapath.ofproto
@@ -98,44 +98,40 @@ class SimpleSwitchIGMPNetcode13(app_manager.RyuApp):
         self.logger.info("packet in %s %s %s %s", dpid, src, dst, in_port)
 
         if(igmp_in):    #Check if pkt is IGMP control
-        	grp_addr = igmp_in.address
-        	if(igmp_in.msgtype==0x16):
-        		print("IGMPv2 Report")
-        		#Add in_port to grp_to_mac table
+            grp_addr = igmp_in.address
+            match = parser.OFPMatch(eth_dst=dst, eth_type=0x0800,ip_proto=17)
+            actions = []
+            if(igmp_in.msgtype==0x16):
+                print("IGMPv2 Report")
+                #Add in_port to grp_to_mac table
                 if in_port not in self.grp_to_mac[grp_addr]:
                     self.grp_to_mac[grp_addr].append(in_port)
-                    match = parser.OFPMatch(eth_dst=dst, eth_type=0x0800,ip_proto=17)
-                    actions = []
                     for port in self.grp_to_mac[grp_addr]:
                         actions.append(parser.OFPActionOutput(port))
                     self.add_flow(datapath, 1, match, actions, msg.buffer_id)
-                    print("FLow added")
+                    print("Flow added")
                     print(self.grp_to_mac)
-        	elif(igmp_in.msgtype==0x17):
-        		print("IGMPv2 Leave Group")
-        		if in_port in self.grp_to_mac[grp_addr]:
-        			self.grp_to_mac[grp_addr].remove(in_port)
-                    actions = []
+            elif(igmp_in.msgtype==0x17): #Need to fix port leaving, not removing flow.
+                print("IGMPv2 Leave Group")
+                if in_port in self.grp_to_mac[grp_addr]:
+                    self.grp_to_mac[grp_addr].remove(in_port)
                     for port in self.grp_to_mac[grp_addr]:
                         actions.append(parser.OFPActionOutput(port))
                     self.add_flow(datapath, 1, match, actions, msg.buffer_id)
-        			print(self.grp_to_mac)
-        			#self.add_flow()
+                    print("Flow updated")
+                    print(self.grp_to_mac)
+                    #self.add_flow()
         elif(not igmp_in and dst[:8] == '01:00:5e'):    #Check if pkt is IGMP data
             print("IGMP DATA!")
         else: #Normal l2 switching
             #learn a mac address to avoid FLOOD next time.
             self.mac_to_port[dpid][src] = in_port
-
             print(self.mac_to_port)
-
             if dst in self.mac_to_port[dpid]:
                 out_port = self.mac_to_port[dpid][dst]
             else:
                 out_port = ofproto.OFPP_FLOOD
-
             actions = [parser.OFPActionOutput(out_port)]
-
             # install a flow to avoid packet_in next time
             if out_port != ofproto.OFPP_FLOOD:
                 match = parser.OFPMatch(in_port=in_port, eth_dst=dst, eth_src=src)
@@ -149,7 +145,6 @@ class SimpleSwitchIGMPNetcode13(app_manager.RyuApp):
             data = None
             if msg.buffer_id == ofproto.OFP_NO_BUFFER:
                 data = msg.data
-
             out = parser.OFPPacketOut(datapath=datapath, buffer_id=msg.buffer_id,
                                       in_port=in_port, actions=actions, data=data)
             datapath.send_msg(out)
