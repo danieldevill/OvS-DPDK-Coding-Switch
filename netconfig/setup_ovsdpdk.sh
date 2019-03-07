@@ -37,11 +37,15 @@ export DB_SOCK=/usr/local/var/run/openvswitch/db.sock
 sudo ovsdb-server --remote=punix:$DB_SOCK --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach
 
 #Start OVS with dpdk config enabled
+echo Starting OVS with dpdk config enabled..
 sudo ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+sudo ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=512,0
+sudo ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x4 #Set non-datapath OVS-DPDK threads such as handler and revalidator to core 2
 sudo /usr/local/share/openvswitch/scripts/ovs-ctl --no-ovsdb-server --db-sock="$DB_SOCK" start
 sudo ovs-vswitchd unix:$DB_SOCK --pidfile --detach --log-file=/var/log/openvswitch/ovs-vswitchd.log
 
 #Create OVS-DPDK Bridge and Ports
+echo Adding bridge br0..
 sudo ovs-vsctl --if-exists del-br br0
 sudo ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
 sudo ovs-vsctl add-port br0 enp4s0f0 -- set Interface enp4s0f0 type=dpdk options:dpdk-devargs=0000:04:00.0 ofport_request=1
@@ -50,11 +54,11 @@ sudo ovs-vsctl add-port br0 enp5s0f0 -- set Interface enp5s0f0 type=dpdk options
 sudo ovs-vsctl add-port br0 enp5s0f1 -- set Interface enp5s0f1 type=dpdk options:dpdk-devargs=0000:05:00.1 ofport_request=4
 
 #Set Controller to Ryu
-#sudo ovs-vsctl set-controller br0 tcp:10.10.11.48:6633
+sudo ovs-vsctl set-controller br0 tcp:10.10.11.48:6633
 #Set fail mode to secure, so that only the Ryu controller can control the switch, even when connection is lost.
-#sudo ovs-vsctl set-fail-mode br0 secure
+sudo ovs-vsctl set-fail-mode br0 secure
 
-# #Setup test flows to forward packets between DPDK ports
+#Setup test flows to forward packets between DPDK ports
 # sudo ovs-ofctl del-flows br0
 # sudo ovs-ofctl add-flow br0 in_port=1,action=output:2
 # sudo ovs-ofctl add-flow br0 in_port=2,action=output:1
@@ -64,7 +68,7 @@ sudo ovs-vsctl add-port br0 enp5s0f1 -- set Interface enp5s0f1 type=dpdk options
 #Print outputs of dpdk drivers and ovs-vsctl/ovs-ofctl to confirm.
 sudo $DPDK_DIR/usertools/dpdk-devbind.py -s
 sudo ovs-vsctl show
-sudo ovs-ofctl dump-flows br0
+sudo ovs-ofctl -O OpenFlow13 dump-flows br0
 
 #Validate OVS-DPDK
 sudo ovs-vswitchd --version
