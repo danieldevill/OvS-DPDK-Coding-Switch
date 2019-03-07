@@ -2,7 +2,7 @@
 
 #Bash script to setup OvS coding ports.
 
-coders='0 1 2' #Port IDs for encoder, decoder and recoder respectively.
+coders='1 2 3' #Port IDs for encoder, decoder and recoder respectively.
 for coder in $coders
 do 
 	#Add each port to OvS bridge.
