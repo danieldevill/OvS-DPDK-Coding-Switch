@@ -36,7 +36,27 @@
 
 #include <getopt.h>
 
-#include <config.h>
+//Includes for Kodo-c library
+#include <time.h>
+//#include <kodoc/kodoc.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+#include <inttypes.h>
+#include <sys/types.h>
+#include <sys/queue.h>
+#include <netinet/in.h>
+#include <setjmp.h>
+#include <stdarg.h>
+#include <ctype.h>
+#include <errno.h>
+#include <getopt.h>
+#include <signal.h>
+#include <stdbool.h>
+
+//#include <config.h>
 #include <rte_config.h>
 #include <rte_mbuf.h>
 #include <rte_ether.h>
@@ -44,7 +64,8 @@
 #include <rte_ip.h>
 #include <rte_byteorder.h>
 
-#include "util.h"
+// #include "util.h"
+
 
 /* Number of packets to attempt to read from queue. */
 #define PKT_READ_SIZE  ((uint16_t)32)
@@ -58,7 +79,7 @@
 /* Our client id number - tells us which rx queue to read, and tx
  * queue to write to.
  */
-static unsigned int client_id;
+static unsigned int client_id = 21;
 
 /*
  * Given the rx queue name template above, get the queue name.
@@ -87,60 +108,6 @@ get_tx_queue_name(unsigned int id)
 }
 
 /*
- * Print a usage message.
- */
-static void
-usage(const char *progname)
-{
-    printf("\nUsage: %s [EAL args] -- -n <client_id>\n", progname);
-}
-
-/*
- * Convert the client id number from a string to an usigned int.
- */
-static int
-parse_client_num(const char *client)
-{
-    if (str_to_uint(client, 10, &client_id)) {
-        return 0;
-    } else {
-        return -1;
-    }
-}
-
-/*
- * Parse the application arguments to the client app.
- */
-static int
-parse_app_args(int argc, char *argv[])
-{
-    int option_index = 0, opt = 0;
-    char **argvopt = argv;
-    const char *progname = NULL;
-    static struct option lgopts[] = {
-        {NULL, 0, NULL, 0 }
-    };
-    progname = argv[0];
-
-    while ((opt = getopt_long(argc, argvopt, "n:", lgopts,
-        &option_index)) != EOF) {
-        switch (opt) {
-            case 'n':
-                if (parse_client_num(optarg) != 0) {
-                    usage(progname);
-                    return -1;
-                }
-                break;
-            default:
-                usage(progname);
-                return -1;
-        }
-    }
-
-    return 0;
-}
-
-/*
  * Application main function - loops through
  * receiving and processing packets. Never returns
  */
@@ -157,12 +124,16 @@ main(int argc, char *argv[])
         return -1;
     }
 
+    /* Declare rte_rings for Encode, Decode and Recode */
+    struct rte_ring *encoding_rx_ring = rte_ring_lookup(get_rx_queue_name(10));
+    struct rte_ring *encoding_tx_ring = rte_ring_lookup(get_tx_queue_name(11));
+    struct rte_ring *decoding_rx_ring = rte_ring_lookup(get_rx_queue_name(20));
+    struct rte_ring *decoding_tx_ring = rte_ring_lookup(get_tx_queue_name(21));
+    struct rte_ring *recoding_rx_ring = rte_ring_lookup(get_rx_queue_name(30));
+    struct rte_ring *recoding_tx_ring = rte_ring_lookup(get_tx_queue_name(31));
+
     argc -= retval;
     argv += retval;
-
-    if (parse_app_args(argc, argv) < 0) {
-        rte_exit(EXIT_FAILURE, "Invalid command-line arguments\n");
-    }
 
     rx_ring = rte_ring_lookup(get_rx_queue_name(client_id));
     if (rx_ring == NULL) {
@@ -190,7 +161,10 @@ main(int argc, char *argv[])
         while (unlikely(rte_ring_dequeue_bulk(rx_ring, pkts,
                         rx_pkts, NULL) != 0) && rx_pkts > 0) {
             rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(rx_ring), PKT_READ_SIZE);
+
         }
+
+        rte_ring_list_dump(stdout);
 
         if (rx_pkts > 0) {
             /* blocking enqueue */
