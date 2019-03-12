@@ -38,7 +38,7 @@
 
 //Includes for Kodo-c library
 #include <time.h>
-//#include <kodoc/kodoc.h>
+#include </home/switch/dataplane/kodo-c/shared_kodoc/include/kodoc/kodoc.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -68,7 +68,7 @@
 
 
 /* Number of packets to attempt to read from queue. */
-#define PKT_READ_SIZE  ((uint16_t)32)
+#define PKT_READ_SIZE  ((uint16_t)10)
 
 /* Define common names for structures shared between ovs_dpdk and client. */
 #define MP_CLIENT_RXQ_NAME "dpdkr%u_tx"
@@ -79,7 +79,9 @@
 /* Our client id number - tells us which rx queue to read, and tx
  * queue to write to.
  */
-static unsigned int client_id = 21;
+static unsigned int client_id = 10;
+
+static volatile bool force_quit;
 
 /*
  * Given the rx queue name template above, get the queue name.
@@ -105,6 +107,16 @@ get_tx_queue_name(unsigned int id)
 
     snprintf(buffer, sizeof(buffer), MP_CLIENT_TXQ_NAME, id);
     return buffer;
+}
+
+static void
+signal_handler(int signum)
+{
+    if (signum == SIGINT || signum == SIGTERM) {
+        force_quit = true;
+        rte_eal_cleanup();
+        printf("Quiting..\n");
+    }
 }
 
 /*
@@ -137,12 +149,14 @@ main(int argc, char *argv[])
 
     rx_ring = rte_ring_lookup(get_rx_queue_name(client_id));
     if (rx_ring == NULL) {
+        rte_eal_cleanup();
         rte_exit(EXIT_FAILURE,
             "Cannot get RX ring - is server process running?\n");
     }
 
     tx_ring = rte_ring_lookup(get_tx_queue_name(client_id));
     if (tx_ring == NULL) {
+        rte_eal_cleanup();
         rte_exit(EXIT_FAILURE,
             "Cannot get TX ring - is server process running?\n");
     }
@@ -152,25 +166,70 @@ main(int argc, char *argv[])
     printf("\nClient process %u handling packets\n", client_id);
     printf("[Press Ctrl-C to quit ...]\n");
 
-    for (;;) {
+    force_quit = false;
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+
+    while (!force_quit)
+    {
         unsigned rx_pkts = PKT_READ_SIZE;
 
         /* Try dequeuing max possible packets first, if that fails, get the
          * most we can. Loop body should only execute once, maximum.
          */
-        while (unlikely(rte_ring_dequeue_bulk(rx_ring, pkts,
-                        rx_pkts, NULL) != 0) && rx_pkts > 0) {
-            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(rx_ring), PKT_READ_SIZE);
+        while (rte_ring_dequeue_bulk(encoding_rx_ring, pkts,
+                        rx_pkts, NULL) != 0 && rx_pkts > 0) {
+            printf("encode rx pkts %d\n",rx_pkts);
+            for(int i=0;i<rx_pkts;i++)
+            {
+                struct rte_mbuf *m = pkts[i];
+                rte_pktmbuf_dump(stdout,m,100);
+            }
+            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(encoding_rx_ring), PKT_READ_SIZE);
+        }
+        while (rte_ring_dequeue_bulk(encoding_tx_ring, pkts,
+                        rx_pkts, NULL) != 0 && rx_pkts > 0) {
+            printf("encode tx pkts %d\n",rx_pkts);
+            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(encoding_tx_ring), PKT_READ_SIZE);
+
+        }
+        while (rte_ring_dequeue_bulk(decoding_rx_ring, pkts,
+                        rx_pkts, NULL) != 0 && rx_pkts > 0) {
+            printf("decode rx pkts %d\n",rx_pkts);
+            for(int i=0;i<rx_pkts;i++)
+            {
+                struct rte_mbuf *m = pkts[i];
+                rte_pktmbuf_dump(stdout,m,100);
+            }
+            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(decoding_rx_ring), PKT_READ_SIZE);
+
+        }
+        while (rte_ring_dequeue_bulk(decoding_tx_ring, pkts,
+                        rx_pkts, NULL) != 0 && rx_pkts > 0) {
+            printf("decode tx pkts %d\n",rx_pkts);
+            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(decoding_tx_ring), PKT_READ_SIZE);
+
+        }
+        while (rte_ring_dequeue_bulk(recoding_rx_ring, pkts,
+                        rx_pkts, NULL) != 0 && rx_pkts > 0) {
+            printf("recode rx pkts %d\n",rx_pkts);
+            for(int i=0;i<rx_pkts;i++)
+            {
+                struct rte_mbuf *m = pkts[i];
+                rte_pktmbuf_dump(stdout,m,100);
+            }
+            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(recoding_rx_ring), PKT_READ_SIZE);
+
+        }
+        while (rte_ring_dequeue_bulk(recoding_tx_ring, pkts,
+                        rx_pkts, NULL) != 0 && rx_pkts > 0) {
+            printf("recode tx pkts %d\n",rx_pkts);
+            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(recoding_tx_ring), PKT_READ_SIZE);
 
         }
 
-        rte_ring_list_dump(stdout);
+        //rte_ring_list_dump(stdout);
+        //printf("Reading\n");
 
-        if (rx_pkts > 0) {
-            /* blocking enqueue */
-            do {
-                rslt = rte_ring_enqueue_bulk(tx_ring, pkts, rx_pkts, NULL);
-            } while (rslt == -ENOBUFS);
-        }
     }
 }
