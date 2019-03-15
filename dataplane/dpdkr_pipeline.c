@@ -86,7 +86,7 @@
 #include "dpdkr_pipeline.h"
 
 /* Number of packets to attempt to read from queue. */
-#define PKT_READ_SIZE  ((uint16_t)12)
+#define PKT_READ_SIZE  ((uint16_t)1)
 
 /* Define common names for structures shared between ovs_dpdk and client. */
 #define MP_CLIENT_RXQ_NAME "dpdkr%u_tx"
@@ -96,7 +96,7 @@
 
 static volatile bool force_quit;
 
-#define ENCODING_RINGS 32
+#define ENCODING_RINGS 128
 #define GENID_LEN 8
 #define ETHER_TYPE_LEN 2
 
@@ -302,10 +302,10 @@ net_encode(kodoc_factory_t *encoder_factory)
                         //l2fwd_learning_forward(encoded_mbuf, &status);
 
                         /* Enqueue coded packet */
-                        rte_ring_enqueue(encoding_tx_ring,(void*)encoded_mbuf);
+                        rte_ring_enqueue(decoding_rx_ring,(void*)encoded_mbuf);
 
                         rte_pktmbuf_free(rte_mbuf_payload);
-                        rte_pktmbuf_free(encoded_mbuf);
+                        //rte_pktmbuf_free(encoded_mbuf);
                         //rte_pktmbuf_free();
 
                         //Temp print encoded packet
@@ -614,13 +614,12 @@ main(int argc, char *argv[])
         }
 
         /* Get packets for Decoding */
-        while (rte_ring_dequeue_bulk(decoding_rx_ring, pkts, rx_pkts, NULL) != 0 && rx_pkts > 0) 
+        if(rte_ring_dequeue_bulk(decoding_rx_ring, pkts, PKT_READ_SIZE, NULL) != 0) 
         {
             printf("decode rx pkts %d\n",rx_pkts);
             for(uint i=0;i<rx_pkts;i++)
             {
                 struct rte_mbuf *m = pkts[i];
-                //rte_pktmbuf_dump(stdout,m,100);
 
                 /* Get recieved packet */
                 const unsigned char* data = rte_pktmbuf_mtod(m, void *);
@@ -629,43 +628,38 @@ main(int argc, char *argv[])
                 rte_memcpy(d_addr.addr_bytes,data,ETHER_ADDR_LEN);
                 struct ether_addr s_addr;
                 rte_memcpy(s_addr.addr_bytes,data+ETHER_ADDR_LEN,ETHER_ADDR_LEN);
-                /* Get ethernet type */
-                uint16_t ether_type = (data[13] | (data[12] << 8));
 
-                //Check if packet is encoded (NC type).
-                if(ether_type == 0x2020) //Go to decode(2).
+                printf("Decode\n");
+
+                //Get genID from encoded packet.
+                char genID[GENID_LEN];
+                rte_memcpy(genID,&data[14],GENID_LEN);
+
+                //Check if GENID is valid
+                for(uint genchar=0;genchar<GENID_LEN;genchar++)
                 {
-                    printf("Decode\n");
-                    //Get genID from encoded packet.
-                    char genID[GENID_LEN];
-                    rte_memcpy(genID,&data[14],GENID_LEN);
-
-                    //Check if GENID is valid
-                    for(uint genchar=0;genchar<GENID_LEN;genchar++)
+                    if(genID[genchar]==0) //Drop packet.
                     {
-                        if(genID[genchar]==0) //Drop packet.
-                        {
-                            printf("Invalid Encoded Packet.\n");
-                            break;
-                        }
-                    }
-
-                    //Check if genID is in genTable
-                    struct rte_ring* decode_ring_ptr = genID_in_genTable(genID);
-                    if(decode_ring_ptr!=NULL)
-                    {
-                        //Add packet to decoding ring
-                        rte_ring_enqueue(decode_ring_ptr,(void *)m);
-                        //Call decoder
-                        net_decode(&decoder_factory);
-                    }
-                    else
-                    {
-                        printf("Decoding Ring does not exist.\n");
+                        printf("Invalid Encoded Packet.\n");
+                        break;
                     }
                 }
+
+                //Check if genID is in genTable
+                struct rte_ring* decode_ring_ptr = genID_in_genTable(genID);
+                if(decode_ring_ptr!=NULL)
+                {
+                    //Add packet to decoding ring
+                    rte_ring_enqueue(decode_ring_ptr,(void *)m);
+                    //Call decoder
+                    net_decode(&decoder_factory);
+                }
+                else
+                {
+                    printf("Decoding Ring does not exist.\n");
+                }
+                
             }
-            rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(decoding_rx_ring), PKT_READ_SIZE);
         }
         /* Get packets for Recoding */
         while (rte_ring_dequeue_bulk(recoding_rx_ring, pkts, rx_pkts, NULL) != 0 && rx_pkts > 0) 
