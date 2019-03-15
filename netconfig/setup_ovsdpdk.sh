@@ -2,8 +2,8 @@
 
 #Start OVS with DPDK setup.
 
-#Export $DPDK_DIR
-export DPDK_DIR=/usr/src/dpdk-18.11
+#Export $RTE_SDK
+export RTE_SDK=/usr/src/dpdk-18.11
 
 #Add hugepages. Specifically 4GB of 2mb page files
 #sudo  bash -c "echo 2048 > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages"
@@ -26,10 +26,10 @@ sudo ip link set enp5s0f1 down
 sudo modprobe vfio-pci
 
 #Bind NICs to DPDK
-sudo $DPDK_DIR/usertools/dpdk-devbind.py --bind=vfio-pci enp4s0f0
-sudo $DPDK_DIR/usertools/dpdk-devbind.py --bind=vfio-pci enp4s0f1
-sudo $DPDK_DIR/usertools/dpdk-devbind.py --bind=vfio-pci enp5s0f0
-sudo $DPDK_DIR/usertools/dpdk-devbind.py --bind=vfio-pci enp5s0f1
+sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp4s0f0
+sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp4s0f1
+sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp5s0f0
+sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp5s0f1
 
 
 #Start ovsdb
@@ -66,7 +66,7 @@ sudo ovs-vsctl set-fail-mode br0 secure
 # sudo ovs-ofctl add-flow br0 in_port=4,action=output:3
 
 #Print outputs of dpdk drivers and ovs-vsctl/ovs-ofctl to confirm.
-sudo $DPDK_DIR/usertools/dpdk-devbind.py -s
+sudo $RTE_SDK/usertools/dpdk-devbind.py -s
 sudo ovs-vsctl show
 sudo ovs-ofctl -O OpenFlow13 dump-flows br0
 
