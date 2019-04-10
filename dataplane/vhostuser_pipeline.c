@@ -124,6 +124,15 @@ static const struct rte_eth_conf port_conf = {
     .txmode = {
         .mq_mode = ETH_MQ_TX_NONE,
     },
+    .rx_adv_conf = {
+        .vmdq_rx_conf = {
+            .nb_queue_pools = ETH_8_POOLS,
+            .enable_default_pool = 0,
+            .default_pool = 0,
+            .nb_pool_maps = 0,
+            .pool_map = {{0, 0},},
+        },
+    },
 };
 
 uint32_t gentable_size = 0;
@@ -170,12 +179,16 @@ struct rte_mempool * codingmbuf_pool = NULL;
 
 struct rte_mempool * l2fwd_pktmbuf_pool = NULL;
 
+/* Tail queue to hold vhost_dev_list */
+static struct vhost_dev_tailq_list vhost_dev_list =
+    TAILQ_HEAD_INITIALIZER(vhost_dev_list);
+
 static void
 signal_handler(int signum)
 {
     if (signum == SIGINT || signum == SIGTERM) {
         force_quit = true;
-        rte_eal_cleanup();
+        //rte_eal_cleanup();
         printf("Quiting..\n");
     }
 }
@@ -493,6 +506,39 @@ net_decode(kodoc_factory_t *decoder_factory)
     }
 }
 
+static int
+new_device(int vid)
+{
+    struct vhost_dev *dev;
+    
+    /* Allocate memory for vhost dev */
+    dev = rte_zmalloc("vhost device", sizeof(*vdev), RTE_CACHE_LINE_SIZE);
+    if (vdev == NULL) {
+        RTE_LOG(INFO,VHOST_DATA,
+        "(%d) couldn't allocate memory for vhost dev\n",
+        vid);
+        return -1;
+    }
+    dev->vid = vid;
+
+    //vs_vhost_net_setup(vdev);
+
+    /* Insert dev at the end of the tail queue */
+    TAILQ_INSERT_TAIL(&vhost_dev_list, dev, global_vdev_entry);
+
+}
+
+static void
+destroy_device(int vid)
+{
+
+}
+
+static struct vhost_device_ops vhost_ops = {
+    .new_device          = new_device,
+    .destroy_device      = destroy_device,
+};
+
 /*
  * Application main function - loops through
  * receiving and processing packets. Never returns
@@ -500,10 +546,12 @@ net_decode(kodoc_factory_t *decoder_factory)
 int
 main(int argc, char *argv[])
 {
-    unsigned retval = 0;
-    struct rte_mbuf *pkts_burst[MAX_PKT_BURST];
-    struct rte_mbuf *m;
-    struct rte_eth_link link;
+    int retval = 0;
+    //struct rte_mbuf *pkts_burst[MAX_PKT_BURST];
+    //struct rte_mbuf *m;
+    //struct rte_eth_link link;
+
+    rte_log_set_level(RTE_LOGTYPE_APP,RTE_LOG_DEBUG);
 
     mac_fwd_table = calloc(MAC_ENTRIES,MAC_ENTRIES * sizeof(struct mac_table_entry));
     genID_table = (struct generationID*)calloc(MAC_ENTRIES,MAC_ENTRIES * sizeof(struct generationID));
@@ -513,7 +561,7 @@ main(int argc, char *argv[])
     }
 
     /* create the mbuf pool for packets going out. */
-    l2fwd_pktmbuf_pool = rte_pktmbuf_pool_create("mbuf_pool", NB_MBUF,MEMPOOL_CACHE_SIZE, 0, RTE_MBUF_DEFAULT_BUF_SIZE,rte_socket_id());
+    l2fwd_pktmbuf_pool = rte_pktmbuf_pool_create("mbuf_pool", NB_MBUF,MEMPOOL_CACHE_SIZE, 0, RTE_MBUF_DEFAULT_BUF_SIZE,SOCKET_ID_ANY);
 
     /* create the mbuf pool for data_in and payload for encoder. And for decoder. */
     codingmbuf_pool = rte_pktmbuf_pool_create("coding_pool",NB_MBUF,MEMPOOL_CACHE_SIZE,0,MAX_SYMBOLS*MAX_SYMBOL_SIZE,SOCKET_ID_ANY);
@@ -521,98 +569,6 @@ main(int argc, char *argv[])
     /* Network coding factories */
     kodoc_factory_t encoder_factory = kodoc_new_encoder_factory(codec,finite_field,MAX_SYMBOLS-1,MAX_SYMBOL_SIZE);
     kodoc_factory_t decoder_factory = kodoc_new_decoder_factory(codec,finite_field,MAX_SYMBOLS-1,MAX_SYMBOL_SIZE);
-
-    /* Configure coding ports */
-    uint16_t nb_ports, portid, nb_sockets, sockid; 
-    nb_ports = rte_eth_dev_count();
-    for(portid = 0; portid < nb_ports; portid++)
-    {
-        /* init port */
-        printf("Initializing port %u... ", portid);
-        uint16_t retval= rte_eth_dev_configure(portid, 1, 1, &port_conf);
-        if (retval< 0)
-            rte_exit(EXIT_FAILURE, "Cannot configure device: err=%d, port=%u\n",
-                  retval, portid);
-        retval= rte_eth_dev_adjust_nb_rx_tx_desc(portid, &nb_rxd,
-                               &nb_tx_totald);
-        if (retval< 0)
-            rte_exit(EXIT_FAILURE,
-                 "Cannot adjust number of descriptors: err=%d, port=%u\n",
-                 retval, portid);
-        
-        /* init one RX queue on each port */
-        retval= rte_eth_rx_queue_setup(portid, 0, nb_rxd,
-                         rte_eth_dev_socket_id(portid),
-                         NULL,
-                         l2fwd_pktmbuf_pool);
-        if (retval< 0)
-            rte_exit(EXIT_FAILURE, "rte_eth_rx_queue_setup:err=%d, port=%u\n",
-                  retval, portid);
-        
-        /* init one TX queue on each port */
-        fflush(stdout);
-        retval= rte_eth_tx_queue_setup(portid, 0, nb_tx_totald,
-                rte_eth_dev_socket_id(portid),
-                NULL);
-        if (retval< 0)
-            rte_exit(EXIT_FAILURE, "rte_eth_tx_queue_setup:err=%d, port=%u\n",
-                retval, portid);
-        
-        /* Initialize TX buffers */
-        tx_buffer[portid] = rte_zmalloc_socket("tx_buffer",
-                RTE_ETH_TX_BUFFER_SIZE(MAX_PKT_BURST), 0,
-                rte_eth_dev_socket_id(portid));
-        if (tx_buffer[portid] == NULL)
-            rte_exit(EXIT_FAILURE, "Cannot allocate buffer for tx on port %u\n",
-                    portid);
-        rte_eth_tx_buffer_init(tx_buffer[portid], MAX_PKT_BURST);
-        
-        /* Start device */
-        retval = rte_eth_dev_start(portid);
-        if (retval < 0)
-            rte_exit(EXIT_FAILURE, "rte_eth_dev_start:err=%d, port=%u\n",
-                  retval, portid);
-        
-        /* Enable promiscuous mode */
-        rte_eth_promiscuous_enable(portid);
-        retval = rte_eth_promiscuous_get(portid);
-        if (retval < 0)
-            rte_exit(EXIT_FAILURE, "rte_eth_promiscuous_enable:err=%d, port=%u\n",
-                  retval, portid);
-
-        printf("done: \n");
-
-        /* Check link status */
-        memset(&link, 0, sizeof(link));
-        rte_eth_link_get_nowait(portid, &link);
-        printf("Port%d Link Up. Speed %u Mbps - %s\n",portid, link.link_speed,(link.link_duplex == ETH_LINK_FULL_DUPLEX) ? ("full-duplex") : ("half-duplex\n"));
-    }
-
-    printf("Ports: %d\n", nb_ports);
-
-    /* Register and start vhost user drivers */
-    nb_sockets = nb_ports;
-    for(sockid = 0; sockid < nb_sockets; sockid++)
-    {
-        char file[22];
-        sprintf(file,"/tmp/dpdkvhostclient2%d",sockid);
-        printf("%s\n", file);
-        retval = rte_vhost_driver_register(file, RTE_VHOST_USER_CLIENT);
-        if (retval != 0) {
-               //unregister_drivers(sockid);
-                rte_exit(EXIT_FAILURE,
-                        "vhost driver register failure.\n");
-        }
-
-        /* Enable RX ctrl on vhost driver */
-        rte_vhost_driver_enable_features(file,1ULL << VIRTIO_NET_F_CTRL_RX);
-
-        /* Start the driver */
-        if (rte_vhost_driver_start(file) < 0) {
-                rte_exit(EXIT_FAILURE,
-                        "failed to start vhost driver.\n");
-        }
-    }
 
     argc -= retval;
     argv += retval;
@@ -625,32 +581,56 @@ main(int argc, char *argv[])
     signal(SIGINT, signal_handler);
     signal(SIGTERM, signal_handler);
 
-    uint16_t count;
+    /* Enable promiscuous mode on vhost drivers */
+    int nb_sockets = 3;
+    for(int sockid = 0; sockid < nb_sockets; sockid++) {
+        char file[27];
+        sprintf(file,"/tmp/dpdkvhostclient2%d",sockid);
 
-    while (!force_quit)
-    {
-        RTE_ETH_FOREACH_DEV(portid)
-        {
-            unsigned rx_pkts = rte_eth_rx_burst(portid, 0,
-                             pkts_burst, MAX_PKT_BURST);
-            
-            if(rx_pkts>0)
-            {
-                printf("%d\n", rx_pkts);
-            }
-
-            /* Encoder Packets */
-            if(portid==0)
-            {
-                for(unsigned pkt = 0; pkt < rx_pkts; pkt++) 
-                {
-                    m = pkts_burst[pkt];
-                    rte_prefetch0(rte_pktmbuf_mtod(m, void *));
-
-                    rte_pktmbuf_dump(stdout,m,100);
-                }
-            }   
+        /* Register vhost driver */
+        printf("\nRegistering driver: %s\n", file);
+        retval = rte_vhost_driver_register(file, 0);
+        if (retval != 0) {
+                rte_exit(EXIT_FAILURE,
+                        "vhost driver register failure.\n");
         }
+
+        /* Implement non-extra virtio net features */
+        printf("Setting non-extra virtio net features..\n");
+        retval = rte_vhost_driver_set_features(file, 0);
+        if (retval != 0) {
+                rte_exit(EXIT_FAILURE,
+                        "vhost driver set features failure.\n");
+        }
+        
+        /* Control channel promiscuous support */
+        printf("Enabling RX ctrl..\n");
+        retval = rte_vhost_driver_enable_features(file, 1ULL << VIRTIO_NET_F_CTRL_RX);
+        if (retval != 0) {
+                rte_exit(EXIT_FAILURE,
+                        "vhost driver enable features failure.\n");
+        }
+
+        /* Register vhost driver callback */
+        retval = rte_vhost_driver_callback_register(file, &vhost_ops);
+        if (retval != 0) {
+                rte_exit(EXIT_FAILURE,
+                    "failed to register vhost driver callbacks.\n");
+        }
+
+        /* Start the driver */
+        printf("Starting driver..\n");
+        retval = rte_vhost_driver_start(file);
+        if (retval != 0){
+                rte_exit(EXIT_FAILURE,
+                        "failed to start vhost driver.\n");
+        }
+        
+        printf("Done..\n");
+    }
+
+    while (!force_quit) {
+
     }
 
     /* Cleanup after network coding */
