@@ -32,6 +32,7 @@ sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp5s0f0
 sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp5s0f1
 
 
+
 #Start ovsdb
 export DB_SOCK=/usr/local/var/run/openvswitch/db.sock
 sudo ovsdb-server --remote=punix:$DB_SOCK --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach
@@ -54,9 +55,9 @@ sudo ovs-vsctl add-port br0 enp5s0f0 -- set Interface enp5s0f0 type=dpdk options
 sudo ovs-vsctl add-port br0 enp5s0f1 -- set Interface enp5s0f1 type=dpdk options:dpdk-devargs=0000:05:00.1 ofport_request=4
 
 #Set Controller to Ryu
-sudo ovs-vsctl set-controller br0 tcp:10.10.11.48:6633
+sudo ovs-vsctl set-controller br0 tcp:10.10.11.117:6633
 #Set fail mode to secure, so that only the Ryu controller can control the switch, even when connection is lost.
-sudo ovs-vsctl set-fail-mode br0 secure
+#sudo ovs-vsctl set-fail-mode br0 secure
 
 #Setup test flows to forward packets between DPDK ports
 # sudo ovs-ofctl del-flows br0
