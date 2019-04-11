@@ -87,7 +87,6 @@ class SimpleSwitchIGMPNetcode13(app_manager.RyuApp):
 
         print(pkt)
 
-
         print(igmp_in)
 
         eth_type = eth.ethertype

@@ -15,16 +15,20 @@ hosts='debA debB debC debD'
 mlcst_addrs='67 68 69 70'
 hostport=10020
 
-duration=100
-bw=8
+duration=10
+bw=0.1
 interval=1
+
+#Force IGMPv2 on hosts
+
+
 
 #Start servers (multicast receving end)
 for host in $hosts
 do
 	for mlcst_addr in $mlcst_addrs
 	do
-		sshpass -v -p 'debian' ssh debian@10.10.11.188 -p $hostport 'iperf -s -u -B 224.0.67.'$mlcst_addr' -i '$interval' -y C > '$host'_mcst4_'$mlcst_addr &
+		sshpass -v -p 'debian' ssh debian@10.10.11.119 -p $hostport 'iperf -s -u -B 224.0.67.'$mlcst_addr' -i '$interval' -y C > '$host'_mcst4_'$mlcst_addr &
 		sleep 1
 	done
 	hostport=$((hostport + 1))
@@ -34,19 +38,19 @@ hostport=10020
 
 #Start Clients (Multicast transmitting end) on hosts A-D
 #Host: debA
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10020 'iperf -c 224.0.67.67 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10020 'iperf -c 224.0.67.67 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &
 #Host: debB
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10021 'iperf -c 224.0.67.68 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10021 'iperf -c 224.0.67.68 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &
 #Host: debC
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10022 'iperf -c 224.0.67.69 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10022 'iperf -c 224.0.67.69 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &
 #Host: debD
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10023 'iperf -c 224.0.67.70 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &&
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10023 'iperf -c 224.0.67.70 -u --ttl 5 -t '$duration' -l 64 -b '$bw'M' &&
 
 #Kill all iperf servers. For some reason I need to run pkill iperf twice
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10020 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10021 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10022 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
-sshpass -v -p 'debian' ssh debian@10.10.11.188 -p 10023 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10020 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10021 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10022 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
+sshpass -v -p 'debian' ssh debian@10.10.11.119 -p 10023 'for pid in $(pidof iperf); do kill -9 $pid && sleep 0.5; done && pidof iperf' ;
 
 sleep 5
 
@@ -56,7 +60,7 @@ do
 	for mlcst_addr in $mlcst_addrs
 	do
 		#Copy test results to testdata
-		sshpass -v -p 'debian' scp -P $hostport -r debian@10.10.11.188:~/"$host"_mcst4_"$mlcst_addr" ~/Working/OvS-DPDK-Coding-Switch/tests/testdata
+		sshpass -v -p 'debian' scp -P $hostport -r debian@10.10.11.119:~/"$host"_mcst4_"$mlcst_addr" ~/Working/OvS-DPDK-Coding-Switch/tests/testdata
 	done
 	hostport=$((hostport + 1))
 done
