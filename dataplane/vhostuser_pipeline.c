@@ -115,9 +115,9 @@ static uint16_t nb_tx_totald;
 
 static struct rte_eth_dev_tx_buffer *tx_buffer[RTE_MAX_ETHPORTS];
 
-static const struct rte_eth_conf port_conf = {
+static const struct rte_eth_conf vdev_conf = {
     .rxmode = {
-        .mq_mode = ETH_MQ_RX_NONE,
+        .mq_mode = ETH_MQ_RX_VMDQ_ONLY,
         .max_rx_pkt_len = ETHER_MAX_LEN,
         .split_hdr_size = 0,
     },
@@ -131,6 +131,7 @@ static const struct rte_eth_conf port_conf = {
             .default_pool = 0,
             .nb_pool_maps = 0,
             .pool_map = {{0, 0},},
+            .rx_mode = ETH_VMDQ_ACCEPT_BROADCAST | ETH_VMDQ_ACCEPT_MULTICAST,
         },
     },
 };
@@ -139,6 +140,7 @@ uint32_t gentable_size = 0;
 
 static unsigned genIDcounter = 0;
 
+/* Define generationID */
 struct generationID {
     char ID[GENID_LEN];
 };
@@ -512,9 +514,9 @@ new_device(int vid)
     struct vhost_dev *dev;
     
     /* Allocate memory for vhost dev */
-    dev = rte_zmalloc("vhost device", sizeof(*vdev), RTE_CACHE_LINE_SIZE);
-    if (vdev == NULL) {
-        RTE_LOG(INFO,VHOST_DATA,
+    dev = rte_zmalloc("vhost device", sizeof(*dev), RTE_CACHE_LINE_SIZE);
+    if (dev == NULL) {
+        printf(
         "(%d) couldn't allocate memory for vhost dev\n",
         vid);
         return -1;
@@ -526,12 +528,29 @@ new_device(int vid)
     /* Insert dev at the end of the tail queue */
     TAILQ_INSERT_TAIL(&vhost_dev_list, dev, global_vdev_entry);
 
+    /* Set device RX VMDQ queue number to vid */
+    dev->vmdq_rx_q = vid;
+
+    /* Set device to ready */
+    dev->ready = 1;
+    dev->remove = 0;
+
+    /* Add device to lcore */
+    dev->coreid = rte_lcore_id();
+
+    /* Disable notifications */
+    rte_vhost_enable_guest_notification(vid, VIRTIO_RXQ, 0);
+    rte_vhost_enable_guest_notification(vid, VIRTIO_TXQ, 0);
+
+    return 0;
+
 }
 
 static void
 destroy_device(int vid)
 {
-
+    struct vhost_dev *dev;
+    
 }
 
 static struct vhost_device_ops vhost_ops = {

@@ -36,13 +36,18 @@ endif
 # Default target, can be overridden by command line or environment
 RTE_TARGET ?= x86_64-native-linuxapp-gcc
 
+CONFIG_RTE_LIBRTE_ETHDEV_DEBUG=y
+
+RTE_LOG_LEVEL=RTE_LOG_NOTICE
+RTE_LIBRTE_ETHDEV_DEBUG=y
+
 include $(RTE_SDK)/mk/rte.vars.mk
 
 # binary name
-APP = dpdkr_pipeline
+APP = vhostuser_pipeline
 
 # all source are stored in SRCS-y
-SRCS-y := dpdkr_pipeline.c
+SRCS-y := vhostuser_pipeline.c
 
 # Add kodo headers and link to shared library. Also included libconfig library. DD.
 CFLAGS += -I/home/switch/kodo-c/shared_kodoc/include
