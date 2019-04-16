@@ -13,6 +13,17 @@ struct vhost_queue {
 	uint16_t		last_used_idx;
 };
 
+static struct ether_addr base_eth_addr = {
+	.addr_bytes = {
+		0x56 /* V */,
+		0x48 /* H */,
+		0x4F /* O */,
+		0x53 /* S */,
+		0x54 /* T */,
+		0x00
+	}
+};
+
 struct vhost_dev {
 	/**< Number of memory regions for gpa to hpa translation. */
 	uint32_t nregions_hpa;

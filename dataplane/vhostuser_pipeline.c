@@ -84,6 +84,9 @@
 #include <rte_hash.h>
 #include <rte_jhash.h>
 #include <rte_vhost.h>
+#include </usr/src/dpdk-18.11/lib/librte_vhost/vhost_user.h>
+#include </usr/src/dpdk-18.11/lib/librte_vhost/fd_man.h>
+
 
 // #include "util.h"
 
@@ -512,8 +515,10 @@ static int
 new_device(int vid)
 {
     struct vhost_dev *dev;
+    struct vhost_queue *queue;
     
     /* Allocate memory for vhost dev */
+    printf("vdev %d created.\n", vid);
     dev = rte_zmalloc("vhost device", sizeof(*dev), RTE_CACHE_LINE_SIZE);
     if (dev == NULL) {
         printf(
@@ -523,7 +528,20 @@ new_device(int vid)
     }
     dev->vid = vid;
 
-    //vs_vhost_net_setup(vdev);
+    /* Vhost net setup */
+    rte_vhost_get_negotiated_features(vid,&dev->features);
+    if (dev->features & (1 << VIRTIO_NET_F_MRG_RXBUF))
+            dev->hdr_len = sizeof(struct virtio_net_hdr_mrg_rxbuf);
+    else
+            dev->hdr_len = sizeof(struct virtio_net_hdr);
+    rte_vhost_get_mem_table(vid, &dev->mem);
+    dev->nr_vrings = rte_vhost_get_vring_num(vid);
+    for (uint16_t i = 0;dev->nr_vrings;i++) {
+        queue = &dev->queues[i];
+        queue->last_used_idx = 0;
+        queue->last_avail_idx = 0;
+        rte_vhost_get_vhost_vring(vid,i,&queue->vr);
+    }
 
     /* Insert dev at the end of the tail queue */
     TAILQ_INSERT_TAIL(&vhost_dev_list, dev, global_vdev_entry);
@@ -542,6 +560,14 @@ new_device(int vid)
     rte_vhost_enable_guest_notification(vid, VIRTIO_RXQ, 0);
     rte_vhost_enable_guest_notification(vid, VIRTIO_TXQ, 0);
 
+    /* Link vmdq */
+    /*    struct ether_hdr *eth_hdr;
+    eth_hdr = base_eth_addr;
+    eth_hdr[5] = dev->vid;
+    vdev->mac_address = eth_hdr;    */ 
+    //rte_eth_dev_mac_addr_add(ports,);
+
+
     return 0;
 
 }
@@ -557,6 +583,16 @@ static struct vhost_device_ops vhost_ops = {
     .new_device          = new_device,
     .destroy_device      = destroy_device,
 };
+
+static int
+send_vhost_message(int sockfd, struct VhostUserMsg *msg)
+{
+    if (!msg)
+        return 0;
+
+    return send_fd_message(sockfd, (char *)msg,
+        VHOST_USER_HDR_SIZE + msg->size, msg->fds, msg->fd_num);
+}
 
 /*
  * Application main function - loops through
@@ -622,13 +658,21 @@ main(int argc, char *argv[])
                         "vhost driver set features failure.\n");
         }
         
+        /* VQ control support */
+/*        printf("Enabling VQ ctrl..\n");
+        retval = rte_vhost_driver_enable_features(file, 1ULL << VIRTIO_NET_F_CTRL_VQ);
+        if (retval != 0) {
+                rte_exit(EXIT_FAILURE,
+                        "vhost driver enable VQ ctrl features failure.\n");
+        }*/
+
         /* Control channel promiscuous support */
-        printf("Enabling RX ctrl..\n");
+/*        printf("Enabling RX ctrl..\n");
         retval = rte_vhost_driver_enable_features(file, 1ULL << VIRTIO_NET_F_CTRL_RX);
         if (retval != 0) {
                 rte_exit(EXIT_FAILURE,
-                        "vhost driver enable features failure.\n");
-        }
+                        "vhost driver enable RX ctrl features failure.\n");
+        }*/
 
         /* Register vhost driver callback */
         retval = rte_vhost_driver_callback_register(file, &vhost_ops);
@@ -648,7 +692,41 @@ main(int argc, char *argv[])
         printf("Done..\n");
     }
 
+/*    struct ether_addr *eth_hdr;
+    eth_hdr = &base_eth_addr;
+    eth_hdr->addr_bytes[5] = 0;
+    retval = rte_eth_dev_mac_addr_add(0,eth_hdr,(uint32_t)0);
+    if (retval != 0) {
+            rte_exit(EXIT_FAILURE,
+                "failed to add mac_addr.\n");
+    }*/
+
+    //printf("%s\n", );
+    //dev->vq_index + 
+    char file[27];
+    sprintf(file,"/tmp/dpdkvhostclient2%d",0);
+
+/*    struct vhost_user_socket *vsocket;
+    vsocket = find_vhost_user_socket(file);
+    int fd = vsocket->socket_fd;
+    printf("FD: %d\n",fd);*/
+
+    struct vhost_vring_state state = {
+        .index = 0,
+        .num = 1,
+    };
+
+    struct VhostUserMsg msg = {
+        .request.master = VHOST_USER_SET_VRING_ENABLE,
+        .flags = VHOST_USER_VERSION,
+        .size = sizeof(msg.payload.state),
+        .payload.state = state,
+    };
+
     while (!force_quit) {
+
+        send_vhost_message(271,&msg);
+
 
     }
 
