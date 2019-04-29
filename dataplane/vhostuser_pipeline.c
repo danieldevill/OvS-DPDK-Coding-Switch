@@ -35,9 +35,9 @@
 /*extended by DBB de Villiers*/
 
 #include <getopt.h>
-
-//Includes for Kodo-c library
 #include <time.h>
+
+/* Kodo-c library */
 #include </home/switch/dataplane/kodo-c/shared_kodoc/include/kodoc/kodoc.h>
 
 #include <stdio.h>
@@ -59,8 +59,16 @@
 #include <linux/if_vlan.h>
 #include <linux/virtio_net.h>
 #include <linux/virtio_ring.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/syscall.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <assert.h>
 
-//#include <config.h>
+// #include <config.h>
 #include <rte_common.h>
 #include <rte_log.h>
 #include <rte_malloc.h>
@@ -84,6 +92,7 @@
 #include <rte_hash.h>
 #include <rte_jhash.h>
 #include <rte_vhost.h>
+#include </usr/src/dpdk-18.11/lib/librte_vhost/vhost.h>
 #include </usr/src/dpdk-18.11/lib/librte_vhost/vhost_user.h>
 #include </usr/src/dpdk-18.11/lib/librte_vhost/fd_man.h>
 
@@ -584,6 +593,53 @@ static struct vhost_device_ops vhost_ops = {
     .destroy_device      = destroy_device,
 };
 
+/*static struct vhost_device_ops vhost_ops = {
+    .vhost_get_features = vhost_user_get_features,
+    .vhost_set_features = vhost_user_set_features,
+    vhost_user_get_protocol_features,
+    vhost_user_set_protocol_features,
+    vhost_user_get_queue_num,
+    vhost_user_set_slave_req_fd,
+    vhost_user_set_owner,
+    vhost_user_set_mem_table,
+    vhost_user_set_vring_num,
+    vhost_user_set_vring_base,
+    vhost_user_set_vring_addr,
+    vhost_user_set_vring_kick,
+    vhost_user_set_vring_call,
+};*/
+
+/* read_vhost_message and send_vhost_message taken from lib/livrte_vhost/vhost_user.c source. */
+/* return bytes# of read on success or negative val on failure. */
+static int
+read_vhost_message(int sockfd, struct VhostUserMsg *msg)
+{
+    int ret;
+
+    ret = read_fd_message(sockfd, (char *)msg, VHOST_USER_HDR_SIZE,
+        msg->fds, VHOST_MEMORY_MAX_NREGIONS, &msg->fd_num);
+    if (ret <= 0)
+        return ret;
+
+    if (msg->size) {
+        if (msg->size > sizeof(msg->payload)) {
+            RTE_LOG(ERR, VHOST_CONFIG,
+                "invalid msg size: %d\n", msg->size);
+            return -1;
+        }
+        ret = read(sockfd, &msg->payload, msg->size);
+        if (ret <= 0)
+            return ret;
+        if (ret != (int)msg->size) {
+            RTE_LOG(ERR, VHOST_CONFIG,
+                "read control message failed\n");
+            return -1;
+        }
+    }
+
+    return ret;
+}
+
 static int
 send_vhost_message(int sockfd, struct VhostUserMsg *msg)
 {
@@ -594,6 +650,170 @@ send_vhost_message(int sockfd, struct VhostUserMsg *msg)
         VHOST_USER_HDR_SIZE + msg->size, msg->fds, msg->fd_num);
 }
 
+static int
+vhost_user_get_features(int vid, uint64_t *features)
+{
+    int retval = 0;
+    char file[27];
+    sprintf(file,"/tmp/dpdkvhostclient2%d",vid);
+
+    struct VhostUserMsg msg = {
+        .request.master = VHOST_USER_GET_FEATURES,
+        .flags = VHOST_USER_VERSION,
+        .size = 0,
+        .payload = NULL,
+    };
+
+    retval = send_vhost_message(17,&msg);
+    if (retval == 0) {
+            rte_exit(EXIT_FAILURE,
+                    "vhost user get features error.\n");
+    }
+
+    struct VhostUserMsg msg_rply = {
+        .request.master = VHOST_USER_GET_FEATURES,
+        .flags = VHOST_USER_VERSION,
+        .size = NULL,
+        .payload = NULL,
+    };
+
+    retval = read_vhost_message(17,&msg_rply);
+    if (retval <= 0) {
+        printf("Read msg error\n");
+    }
+    *features = msg_rply.payload.u64;
+    printf("Features: %X\n",msg_rply.payload.u64);
+}
+
+static int
+vhost_user_get_protocol_features(int vid, uint64_t* features)
+{
+    int retval = 0;
+    char file[27];
+    sprintf(file,"/tmp/dpdkvhostclient2%d",vid);
+
+    struct VhostUserMsg msg = {
+        .request.master = VHOST_USER_GET_PROTOCOL_FEATURES,
+        .flags = VHOST_USER_VERSION,
+        .size = 0,
+        .payload = NULL,
+    };
+
+    retval = send_vhost_message(17,&msg);
+    if (retval == 0) {
+            rte_exit(EXIT_FAILURE,
+                    "vhost user get features error.\n");
+    }
+
+    struct VhostUserMsg msg_rply = {
+        .request.master = VHOST_USER_GET_PROTOCOL_FEATURES,
+        .flags = VHOST_USER_VERSION,
+        .size = NULL,
+        .payload = NULL,
+    };
+
+    retval = read_vhost_message(17,&msg_rply);
+    if (retval <= 0) {
+        printf("Read msg error\n");
+    }
+    *features = msg_rply.payload.u64;
+    printf("Protocol Features: %X\n",msg_rply.payload.u64);
+}
+
+static int 
+vhost_user_set_protocol_features(int vid, uint64_t features)
+{
+    int retval = 0;
+
+    struct VhostUserMsg msg = {
+        .request.master = VHOST_USER_SET_PROTOCOL_FEATURES,
+        .flags = VHOST_USER_VERSION,
+        .size = sizeof(msg.payload.u64),
+        .payload.u64 = features,
+    };
+
+    retval = send_vhost_message(17,&msg);
+    if (retval == 0) {
+            rte_exit(EXIT_FAILURE,
+                    "vhost user get features error.\n");
+    }
+}
+
+static int 
+vhost_user_get_queue_num(int vid, int* qn)
+{
+    int retval = 0;
+    char file[27];
+    sprintf(file,"/tmp/dpdkvhostclient2%d",vid);
+
+    struct VhostUserMsg msg = {
+        .request.master = VHOST_USER_GET_QUEUE_NUM,
+        .flags = VHOST_USER_VERSION,
+        .size = 0,
+        .payload = NULL,
+    };
+
+    retval = send_vhost_message(17,&msg);
+    if (retval == 0) {
+            rte_exit(EXIT_FAILURE,
+                    "vhost user get queue number error.\n");
+    }
+
+    struct VhostUserMsg msg_rply = {
+        .request.master = VHOST_USER_GET_QUEUE_NUM,
+        .flags = VHOST_USER_VERSION,
+        .size = NULL,
+        .payload = NULL,
+    };
+
+    retval = read_vhost_message(17,&msg_rply);
+    if (retval <= 0) {
+        printf("Read msg error\n");
+    }
+    *qn = msg_rply.payload.u64;
+    printf("Queue Num: %X\n",msg_rply.payload.u64);
+}
+
+static int 
+vhost_user_set_owner()
+{
+    int retval = 0;
+
+    struct VhostUserMsg msg = {
+        .request.master = VHOST_USER_SET_OWNER,
+        .flags = VHOST_USER_VERSION,
+        .size = 0,
+        .payload = NULL,
+    };
+
+    retval = send_vhost_message(17,&msg);
+    if (retval == 0) {
+            rte_exit(EXIT_FAILURE,
+                    "vhost user set owner error.\n");
+    }
+}
+
+static int
+vhost_user_set_slave_req_fd(int vid)
+{
+    printf("vhost_user_set_slave_req_fd:\n");
+
+    int retval = 0;
+
+    struct VhostUserMsg msg = {
+        .request.master = VHOST_USER_SET_SLAVE_REQ_FD,
+        .flags = VHOST_USER_VERSION,
+        .size = 0,
+        .payload = NULL,
+    };
+
+    retval = send_vhost_message(17,&msg);
+    if (retval == 0) {
+            rte_exit(EXIT_FAILURE,
+                    "vhost user set slave req fd error.\n");
+    }
+}
+
 /*
  * Application main function - loops through
  * receiving and processing packets. Never returns
@@ -601,10 +821,9 @@ send_vhost_message(int sockfd, struct VhostUserMsg *msg)
 int
 main(int argc, char *argv[])
 {
+    uint64_t features = 0;
+
     int retval = 0;
-    //struct rte_mbuf *pkts_burst[MAX_PKT_BURST];
-    //struct rte_mbuf *m;
-    //struct rte_eth_link link;
 
     rte_log_set_level(RTE_LOGTYPE_APP,RTE_LOG_DEBUG);
 
@@ -630,88 +849,30 @@ main(int argc, char *argv[])
 
     RTE_LOG(INFO, APP, "Finished Process Init.\n");
 
-    printf("[Press Ctrl-C to quit ...]\n");
+    printf("[Press Ctrl-C to quit ...]\n\n");
 
     force_quit = false;
     signal(SIGINT, signal_handler);
     signal(SIGTERM, signal_handler);
 
-    /* Enable promiscuous mode on vhost drivers */
-    int nb_sockets = 3;
-    for(int sockid = 0; sockid < nb_sockets; sockid++) {
-        char file[27];
-        sprintf(file,"/tmp/dpdkvhostclient2%d",sockid);
+    features = 1ULL << VIRTIO_NET_F_CSUM | 1ULL << VIRTIO_NET_F_GUEST_CSUM | 1ULL << VIRTIO_NET_F_CTRL_VQ |
+               1ULL << VIRTIO_NET_F_CTRL_RX | 1ULL << VIRTIO_NET_F_CTRL_VLAN | 1ULL << VIRTIO_NET_F_CTRL_RX_EXTRA |
+               1ULL << VIRTIO_NET_F_GUEST_ANNOUNCE;
 
-        /* Register vhost driver */
-        printf("\nRegistering driver: %s\n", file);
-        retval = rte_vhost_driver_register(file, 0);
-        if (retval != 0) {
-                rte_exit(EXIT_FAILURE,
-                        "vhost driver register failure.\n");
-        }
+    /* Create sockets */
 
-        /* Implement non-extra virtio net features */
-        printf("Setting non-extra virtio net features..\n");
-        retval = rte_vhost_driver_set_features(file, 0);
-        if (retval != 0) {
-                rte_exit(EXIT_FAILURE,
-                        "vhost driver set features failure.\n");
-        }
-        
-        /* VQ control support */
-/*        printf("Enabling VQ ctrl..\n");
-        retval = rte_vhost_driver_enable_features(file, 1ULL << VIRTIO_NET_F_CTRL_VQ);
-        if (retval != 0) {
-                rte_exit(EXIT_FAILURE,
-                        "vhost driver enable VQ ctrl features failure.\n");
-        }*/
-
-        /* Control channel promiscuous support */
-/*        printf("Enabling RX ctrl..\n");
-        retval = rte_vhost_driver_enable_features(file, 1ULL << VIRTIO_NET_F_CTRL_RX);
-        if (retval != 0) {
-                rte_exit(EXIT_FAILURE,
-                        "vhost driver enable RX ctrl features failure.\n");
-        }*/
-
-        /* Register vhost driver callback */
-        retval = rte_vhost_driver_callback_register(file, &vhost_ops);
-        if (retval != 0) {
-                rte_exit(EXIT_FAILURE,
-                    "failed to register vhost driver callbacks.\n");
-        }
-
-        /* Start the driver */
-        printf("Starting driver..\n");
-        retval = rte_vhost_driver_start(file);
-        if (retval != 0){
-                rte_exit(EXIT_FAILURE,
-                        "failed to start vhost driver.\n");
-        }
-        
-        printf("Done..\n");
-    }
-
-/*    struct ether_addr *eth_hdr;
-    eth_hdr = &base_eth_addr;
-    eth_hdr->addr_bytes[5] = 0;
-    retval = rte_eth_dev_mac_addr_add(0,eth_hdr,(uint32_t)0);
-    if (retval != 0) {
-            rte_exit(EXIT_FAILURE,
-                "failed to add mac_addr.\n");
-    }*/
 
     //printf("%s\n", );
     //dev->vq_index + 
-    char file[27];
-    sprintf(file,"/tmp/dpdkvhostclient2%d",0);
+/*    char file[27];
+    sprintf(file,"/tmp/dpdkvhostclient2%d",0);*/
 
 /*    struct vhost_user_socket *vsocket;
     vsocket = find_vhost_user_socket(file);
     int fd = vsocket->socket_fd;
     printf("FD: %d\n",fd);*/
 
-    struct vhost_vring_state state = {
+/*    struct vhost_vring_state state = {
         .index = 0,
         .num = 1,
     };
@@ -721,12 +882,42 @@ main(int argc, char *argv[])
         .flags = VHOST_USER_VERSION,
         .size = sizeof(msg.payload.state),
         .payload.state = state,
-    };
+    };*/
 
+
+    int pause =0;
+    scanf("\nPaused %d",&pause);
+
+    /*Get features*/
+    vhost_user_get_features(0,&features);
+
+    /* Get protocol features */
+    vhost_user_get_protocol_features(0,&features);
+
+    /* Set protocol features */
+    vhost_user_set_protocol_features(0,55);
+
+    /* Get queue number */
+    int qn = 0;
+    vhost_user_get_queue_num(0,&qn);
+
+    /* Set slave req fd */
+    //vhost_user_set_slave_req_fd(0);
+
+    /* Set owner */
+    vhost_user_set_owner();
+
+    /*Get features*/
+    vhost_user_get_features(0,&features);
+
+    int count  = 0;
     while (!force_quit) {
 
-        send_vhost_message(271,&msg);
+        count++;
+        if(count==10000000)
+        {   
 
+        }
 
     }
 

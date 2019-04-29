@@ -44,10 +44,10 @@ RTE_LIBRTE_ETHDEV_DEBUG=y
 include $(RTE_SDK)/mk/rte.vars.mk
 
 # binary name
-APP = vhostuser_pipeline
+APP = dpdkr_pipeline
 
 # all source are stored in SRCS-y
-SRCS-y := vhostuser_pipeline.c
+SRCS-y := dpdkr_pipeline.c
 
 # Add kodo headers and link to shared library. Also included libconfig library. DD.
 CFLAGS += -I/home/switch/kodo-c/shared_kodoc/include
