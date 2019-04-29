@@ -44,5 +44,7 @@ then
 	done
 fi
 
+#sudo ovs-vsctl add-port br0 vhp0 -- set Interface vhp0 type=dpdkvhostuserclient options:vhost-server-path=/tmp/dpdkvhostclient0
+
 
 
