@@ -120,12 +120,12 @@ struct generationID *genID_table;
 struct rte_ring encoding_rings[ENCODING_RINGS];
 
 /* Declare rte_rings for Encode, Decode and Recode */
-struct rte_ring *encoding_rx_ring;
-struct rte_ring *encoding_tx_ring;
-struct rte_ring *decoding_rx_ring;
-struct rte_ring *decoding_tx_ring;
-struct rte_ring *recoding_rx_ring;
-struct rte_ring *recoding_tx_ring;
+struct rte_ring *encoding_rx_ring = NULL;
+struct rte_ring *encoding_tx_ring = NULL;
+struct rte_ring *decoding_rx_ring = NULL;
+struct rte_ring *decoding_tx_ring = NULL;
+struct rte_ring *recoding_rx_ring = NULL;
+struct rte_ring *recoding_tx_ring = NULL;
 
 static unsigned mac_counter = 0;
 
@@ -254,10 +254,17 @@ net_encode(kodoc_factory_t *encoder_factory)
                     //Assign data buffer to encoder
                     kodoc_set_const_symbols(encoder, data_in, block_size);
 
+                    //Create generationID 
                     char genID[GENID_LEN];
+                    int genChar;
+                    for(genChar=0;genChar<GENID_LEN;genChar++)
+                    {
+                        genID[genChar] = 'A' + (random() % 26);
+                    }
+                
                     //Loop through each packet in the queue.
                     for(uint pkt=0;pkt<MAX_SYMBOLS-1;pkt++)
-                    {
+                    {                        
                         //Get recieved packet
                         struct rte_mbuf *m = dequeued_data[pkt];
                         const unsigned char* data = rte_pktmbuf_mtod(m, void *); //Convert data to char.
@@ -274,18 +281,6 @@ net_encode(kodoc_factory_t *encoder_factory)
                         int bytes_used = kodoc_write_payload(encoder, payload);
                         printf("EncodedPkt Generated: rank:%d bytes_used:%d\n", kodoc_rank(encoder), bytes_used);
 
-                        //Use first symbol payload "random data" for generationID
-                        //Instead generate random array of characters. 
-                        //Create generationID 
-                        if(pkt == 0) //Create genID only during first pkt. use this genID for all other pkts in generation.
-                        {
-                            int genChar;
-                            for(genChar=0;genChar<GENID_LEN;genChar++)
-                            {
-                                genID[genChar] = 'A' + (random() % 26);
-                            }
-                        }
-
                         //Create mbuf for encoded reply
                         struct rte_mbuf* encoded_mbuf = rte_pktmbuf_alloc(l2fwd_pktmbuf_pool);
                         char* encoded_data = rte_pktmbuf_append(encoded_mbuf,rte_pktmbuf_data_len(m)+GENID_LEN+10);
@@ -299,12 +294,11 @@ net_encode(kodoc_factory_t *encoder_factory)
                         encoded_data = rte_memcpy(encoded_data+sizeof(genID),payload,kodoc_payload_size(encoder)); //Add payload
 
                         /* Enqueue coded packet */
-                        printf("%d %d",rte_ring_full(encoding_tx_ring),rte_ring_empty(encoding_tx_ring));
-                        rte_ring_enqueue_bulk(encoding_tx_ring,(void*)encoded_mbuf,1,NULL);
+                        printf("%d Item added to encoding_tx_ring\n",rte_ring_enqueue_bulk(encoding_tx_ring,(void*)encoded_mbuf,1,NULL));
 
                         //Temp print encoded packet
                         //rte_mempool_dump(stdout,l2fwd_pktmbuf_pool);
-                        rte_pktmbuf_dump(stdout,encoded_mbuf,100);
+                        rte_pktmbuf_dump(stdout,encoded_mbuf,250);
 
                         rte_pktmbuf_free(rte_mbuf_payload);
                         rte_pktmbuf_free(encoded_mbuf);
@@ -313,6 +307,7 @@ net_encode(kodoc_factory_t *encoder_factory)
 
                     rte_pktmbuf_free(rte_mbuf_data_in);
                     kodoc_delete_coder(encoder);
+
                 }
                 else
                 {
@@ -522,9 +517,10 @@ main(int argc, char *argv[])
         unsigned rx_pkts = PKT_READ_SIZE;
 
         /* Get packets for Encoding */
-        if(rte_ring_dequeue_bulk(encoding_rx_ring, pkts, PKT_READ_SIZE, NULL) != 0) 
+        uint encoding_rx_dequeue_no = rte_ring_dequeue_bulk(encoding_rx_ring, pkts, PKT_READ_SIZE, NULL);
+        if(encoding_rx_dequeue_no != 0) 
         {
-            printf("encode rx pkts %d\n",PKT_READ_SIZE);
+            printf("\nencode rx pkts %d\n",encoding_rx_dequeue_no);
             for(uint pkt=0;pkt<PKT_READ_SIZE;pkt++)
             {
                 int index = 0;
@@ -597,13 +593,13 @@ main(int argc, char *argv[])
                 printf("Pkt added to encoder.\n");
 
                 /* If rst_encode set: reset encoding ring */
-                if(unlikely(rst_encode == 1))
+/*                if(unlikely(rst_encode == 1))
                 {
                     printf("Ring reset\n");
                     rte_ring_free(rte_ring_lookup(ring_name));
                     encoding_rings[mac_counter-1] = *rte_ring_create((const char *)ring_name,MAX_SYMBOLS,-1,0);
                     printf("Ring reset done.\n");
-                }
+                }*/
 
             }
             //rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(encoding_rx_ring), PKT_READ_SIZE);
@@ -612,16 +608,16 @@ main(int argc, char *argv[])
 
         /* Get packets for Decoding */
         //if(rte_ring_dequeue_bulk(decoding_rx_ring, pkts, PKT_READ_SIZE, NULL) != 0) 
-        if(0 != 0)     
+/*        if(0 != 0)     
         {
             printf("decode rx pkts %d\n",rx_pkts);
             for(uint i=0;i<rx_pkts;i++)
             {
                 struct rte_mbuf *m = pkts[i];
 
-                /* Get recieved packet */
+                // Get recieved packet
                 const unsigned char* data = rte_pktmbuf_mtod(m, void *);
-                /* Get ethernet dst and src */
+                // Get ethernet dst and src 
                 struct ether_addr d_addr;
                 rte_memcpy(d_addr.addr_bytes,data,ETHER_ADDR_LEN);
                 struct ether_addr s_addr;
@@ -660,9 +656,10 @@ main(int argc, char *argv[])
                 }
                 
             }
-        }
+        }*/
+
         /* Get packets for Recoding */
-        while (rte_ring_dequeue_bulk(recoding_rx_ring, pkts, rx_pkts, NULL) != 0 && rx_pkts > 0) 
+/*        while (rte_ring_dequeue_bulk(recoding_rx_ring, pkts, rx_pkts, NULL) != 0 && rx_pkts > 0) 
         {
             printf("recode rx pkts %d\n",rx_pkts);
             for(uint i=0;i<rx_pkts;i++)
@@ -671,7 +668,7 @@ main(int argc, char *argv[])
                 rte_pktmbuf_dump(stdout,m,100);
             }
             rx_pkts = (uint16_t)RTE_MIN(rte_ring_count(recoding_rx_ring), PKT_READ_SIZE);
-        }
+        }*/
     }
 
     //Cleanup after network coding
