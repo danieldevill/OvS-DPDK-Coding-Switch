@@ -1,0 +1,13 @@
+vendor_name = ModelSim
+source_file = 1, /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/netcoder.vhd
+source_file = 1, /home/daniel/Software/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, /home/daniel/Software/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, /home/daniel/Software/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, /home/daniel/Software/intelFPGA_lite/18.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+source_file = 1, /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/db/netcoder.cbx.xml
+design_name = netcoder
+instance = comp, \O~output\, O~output, netcoder, 1
+instance = comp, \A~input\, A~input, netcoder, 1
+instance = comp, \B~input\, B~input, netcoder, 1
+instance = comp, \O~0\, O~0, netcoder, 1
+instance = comp, \~QUARTUS_CREATED_GND~I\, ~QUARTUS_CREATED_GND~I, netcoder, 1
