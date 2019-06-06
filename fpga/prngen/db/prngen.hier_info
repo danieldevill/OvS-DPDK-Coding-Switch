@@ -1,0 +1,27 @@
+|prngen
+clk => rslt_lfsr[0].CLK
+clk => rslt_lfsr[1].CLK
+clk => rslt_lfsr[2].CLK
+clk => rslt_lfsr[3].CLK
+clk => rslt_lfsr[4].CLK
+clk => rslt_lfsr[5].CLK
+clk => rslt_lfsr[6].CLK
+clk => rslt_lfsr[7].CLK
+rst => rslt_lfsr[0].PRESET
+rst => rslt_lfsr[1].PRESET
+rst => rslt_lfsr[2].PRESET
+rst => rslt_lfsr[3].PRESET
+rst => rslt_lfsr[4].PRESET
+rst => rslt_lfsr[5].ACLR
+rst => rslt_lfsr[6].ACLR
+rst => rslt_lfsr[7].ACLR
+rslt[0] << rslt_lfsr[0].DB_MAX_OUTPUT_PORT_TYPE
+rslt[1] << rslt_lfsr[1].DB_MAX_OUTPUT_PORT_TYPE
+rslt[2] << rslt_lfsr[2].DB_MAX_OUTPUT_PORT_TYPE
+rslt[3] << rslt_lfsr[3].DB_MAX_OUTPUT_PORT_TYPE
+rslt[4] << rslt_lfsr[4].DB_MAX_OUTPUT_PORT_TYPE
+rslt[5] << rslt_lfsr[5].DB_MAX_OUTPUT_PORT_TYPE
+rslt[6] << rslt_lfsr[6].DB_MAX_OUTPUT_PORT_TYPE
+rslt[7] << rslt_lfsr[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
