@@ -1,0 +1,145 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity net_encoder is
+generic(m : integer := 8; -- Galois Field Size, default 8 bits.
+		h : integer := 7; -- Generation Size, default 7 bytes.
+		N : integer := 64; -- Packet Size, default 64 bytes.
+		seed : integer := 31); -- Seed for Encoder Pseudo-Random Generator
+port(
+	-- Inputs
+	 clk : in std_logic;
+	 rst : in std_logic;
+	 src_pkt64_0 : in std_logic_vector(63 downto 0); -- This is not a 64 byte packet .....
+
+	 -- Outputs
+	 coded_byte_0 : out std_logic_vector(7 downto 0));
+
+end entity net_encoder;
+
+architecture rtl of net_encoder is
+
+	component fifo64 is
+		port (
+			-- Inputs
+			data : in std_logic_vector(7 downto 0); 
+			rdclk, rdreq, wrclk, wrreq : in std_logic;
+
+			-- Outputs
+			q : out std_logic_vector(7 downto 0); 
+			rdempty, wrfull : out std_logic);
+	end component fifo64;
+
+	component prngen is
+		generic(seed : integer := 31;
+				m : integer := 8);
+		port (
+			-- Inputs 
+			clk,rst : in std_logic;
+
+			-- Outputs
+			rslt : out std_logic_vector(m-1 downto 0));
+	end component prngen;
+
+	component gfmul is
+		generic(m : integer := 8);
+		port (
+			-- Inputs
+			clk,rst : in std_logic;
+			operand_1,operand_2 : in std_logic_vector(m-1 downto 0);
+			
+			-- Outputs
+			rslt : out std_logic_vector(m-1 downto 0));
+	end component gfmul;
+
+	component gfadd is
+		generic(m : integer := 8);
+		port (
+			-- Inputs
+			clk,rst : in std_logic;
+			operand_1,operand_2 : in std_logic_vector(m-1 downto 0);
+			
+			-- Outputs
+			rslt : out std_logic_vector(m-1 downto 0));
+	end component gfadd;
+
+	--signal rslt_m : std_logic_vector(m-1 downto 0);	
+	--signal rslt_a : std_logic_vector(m-1 downto 0);	
+
+	type std_logic_vector_array is array (499 downto 0) of std_logic_vector(m-1 downto 0);
+
+	type std_logic_vector_array_coefficients is array ((h-1) downto 0) of std_logic_vector(m-1 downto 0);
+
+
+	-- Pseudo-Random Coefficients
+	signal rcoeffs :  std_logic_vector_array_coefficients;
+
+	-- Multiplier Results
+	signal rslt_m : std_logic_vector_array;	
+
+	-- Adder Results
+	signal rslt_a : std_logic_vector_array;	
+
+	-- Multiplier and Adder operands
+	signal add1, add2, mul1, mul2 : std_logic_vector_array;
+
+begin
+
+	generate_coeffs: for i in 0 to (h-1) generate --h coeffs, Per single packet
+		prngen_1 : prngen
+		generic map(seed => seed, m => m)
+		port map(clk=>clk,
+			rst=>rst,
+			rslt=>rcoeffs(i));
+		end generate generate_coeffs;
+
+
+	generate_muls: for i in 0 to (h*N) generate --h*N multipliers, Per single packet
+		gfmul_1 : gfmul 
+		generic map(m => m)
+		port map(clk=>clk, 
+			rst=>rst, 
+			operand_1=>mul1(i), 
+			operand_2=>mul2(i), 
+			rslt =>rslt_m(i));
+	end generate generate_muls;
+
+	generate_adds: for i in 0 to ((h-1)*N) generate --(h-1)*N adders, Per single packet
+		gfadd_1 : gfadd 
+		generic map(m => m)
+		port map(clk=>clk, 
+			rst=>rst, 
+			operand_1=>add1(i), 
+			operand_2=>add2(i), 
+			rslt =>rslt_a(i));
+	end generate generate_adds;
+
+	--Generate h-length random coefficients.
+	get_rcoeffs: process(clk, rst) is
+	begin
+		if rst = '0' then
+			coded_byte_0 <= (others=>'0');
+		elsif clk'event and clk = '1' then
+			for i in 0 to h-1 loop
+				mul2(i) <= rcoeffs(i);-- Generate Coeff into FIFO
+			end loop;
+		end if;
+	end process;
+
+
+	--multiply: process(clk, rst) is
+	--begin
+	--	if rst = '0' then
+	--		coded_byte_0 <= (others=>'0')
+	--	elsif clk'event and clk = '1' then
+	--		for i in 0 to 384 loop 
+	--			mul1(i) <= -- Packet in
+	--			mul2(i) <= -- Random Coeff
+	--		end loop;
+	--	end if;
+	--end process;
+
+	--coded_byte_0 <= 
+
+end architecture ; -- rtl
