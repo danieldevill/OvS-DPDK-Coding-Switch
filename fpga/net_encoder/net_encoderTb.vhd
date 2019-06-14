@@ -73,7 +73,8 @@ begin
 		file_close(file_pkt32bseg_i);
 		file_close(file_pkt32bseg_o);
 		
-		assert FALSE Report "SImulation Finished" severity FAILURE;
+		wait;
+		--assert FALSE Report "SImulation Finished" severity FAILURE;
 
 	end process;
 

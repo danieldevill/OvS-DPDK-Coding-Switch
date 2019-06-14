@@ -1,4 +1,5 @@
 vendor_name = ModelSim
+source_file = 1, /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/coefs_ram/coefs_ram.vhd
 source_file = 1, /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/fifo56x16/fifo56x16.vhd
 source_file = 1, /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/fifo32x1024/fifo32x1024.vhd
 source_file = 1, /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/prngen/prngen.vhd

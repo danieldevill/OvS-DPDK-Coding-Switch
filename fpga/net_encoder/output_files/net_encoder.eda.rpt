@@ -1,5 +1,5 @@
 EDA Netlist Writer report for net_encoder
-Thu Jun  6 17:15:16 2019
+Fri Jun 14 19:45:37 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -36,7 +36,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Thu Jun  6 17:15:16 2019 ;
+; EDA Netlist Writer Status ; Successful - Fri Jun 14 19:45:37 2019 ;
 ; Revision Name             ; net_encoder                           ;
 ; Top-level Entity Name     ; net_encoder                           ;
 ; Family                    ; Cyclone V                             ;
@@ -81,14 +81,14 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Jun  6 17:15:14 2019
+    Info: Processing started: Fri Jun 14 19:45:35 2019
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off net_encoder -c net_encoder
 Warning (10905): Generated the EDA functional simulation netlist because it is the only supported netlist type for this device.
 Info (204019): Generated file net_encoder.vho in folder "/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_encoder/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 1127 megabytes
-    Info: Processing ended: Thu Jun  6 17:15:16 2019
+    Info: Peak virtual memory: 1126 megabytes
+    Info: Processing ended: Fri Jun 14 19:45:37 2019
     Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
 
 
