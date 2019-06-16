@@ -11,11 +11,12 @@ port(
 	-- Inputs
 	 clk : in std_logic;
 	 rst : in std_logic;
-	 pkt32bseg_i : in std_logic_vector(31 downto 0); -- This is not a 64 byte packet .....
+	 pkt32bseg_i : in std_logic_vector(31 downto 0); -- 4 byte packet segment input
 
 	 -- Outputs
-	 pkt32bseg_o : out std_logic_vector(31 downto 0));
-
+	 pkt32bseg_o : out std_logic_vector(31 downto 0); -- 4 byte packet segment output
+	 coeffs_out : out std_logic_vector(31 downto 0));
+	
 end entity net_encoder;
 
 architecture rtl of net_encoder is
@@ -112,12 +113,17 @@ type read_state_Type is (idle, rd);
 	signal read_state_mulrslts : read_state_mulrslt;
 
 	--Packet counter
-	signal packetCount : integer := 0;
+	signal packetCount,outPacketCount : integer := 0;
 	signal rowCount : integer := -1;
 
 	--Sum Signals
-	signal sumready : std_logic := '0';
 	signal sum_vectors : std_logic_vector_array_sumops;
+	signal sumCount : integer := 0;
+
+	--Output Counter
+	signal outCount,outVectorCount : integer := 0;
+	signal en_output : std_logic := '0';
+
 
 begin
 
@@ -174,6 +180,11 @@ begin
 					mulcount <= 0;
 					muldone <= '0';
 					rowCount  <= (rowCount + 1);
+					if rowCount = 2 then
+						sumCount <= 0;
+					else
+						sumCount  <= sumCount + 1;
+					end if;
 				elsif mulcount=0 then
 					muldone <= '1';
 					mulready <= '0';
@@ -187,13 +198,33 @@ begin
 					packetCount <= packetCount + 1;
 				end if;
 
-				if packetCount = h then
-					sumready <= '1';
-					packetCount <= 0;
-				else
-					sumready <= '0';
+				if rowCount = 3 and mulcount = 0 then
+					outPacketCount <= outPacketCount + 1;
 				end if;
 
+				if outPacketCount = h then
+					outPacketCount <= 0;
+					en_output <= '1';
+				elsif outPacketCount = 0 and (outCount < 7) and (en_output = '1') then
+					pkt32bseg_o(7 downto 0)   <= sum_vectors(outCount)((outVectorCount*4) + 3);
+					pkt32bseg_o(15 downto 8)  <= sum_vectors(outCount)((outVectorCount*4) + 2);
+					pkt32bseg_o(23 downto 16) <= sum_vectors(outCount)((outVectorCount*4) + 1);
+					pkt32bseg_o(31 downto 24) <= sum_vectors(outCount)(outVectorCount*4);
+				end if;
+
+				if mulcount = 1 then
+					outCount <= 0;
+				else
+					outCount  <= outCount + 1;
+				end if;
+
+				if mulready = '1' then
+					outVectorCount <= sumCount;
+				end if;
+
+				if packetCount = h then
+					packetCount <= 0;
+				end if;
 
 				if mulready = '1' then 
 					mulsrst <= '1';
@@ -214,6 +245,25 @@ begin
 						mul2(i) <= q_pseudoin_bytes(i-(h*3));-- Random Coeff
 					end loop;
 				end if;
+
+				--Output Coding Coeffs
+				if mulcount = 2 and rowCount = 0 then
+					coeffs_out(7 downto 0) <= q_pseudoin_bytes(0);
+					coeffs_out(15 downto 8) <= q_pseudoin_bytes(1);
+					coeffs_out(23 downto 16) <= q_pseudoin_bytes(2);
+					coeffs_out(31 downto 24) <= q_pseudoin_bytes(3);
+				elsif mulcount = 3 and rowCount = 0 then
+					coeffs_out(7 downto 0) <= q_pseudoin_bytes(4);
+					coeffs_out(15 downto 8) <= q_pseudoin_bytes(5);
+					coeffs_out(23 downto 16) <= q_pseudoin_bytes(6);
+					coeffs_out(31 downto 24) <= (others=>'0');
+				else
+					coeffs_out(7 downto 0) <= (others=>'0');
+					coeffs_out(15 downto 8) <= (others=>'0');
+					coeffs_out(23 downto 16) <= (others=>'0');
+					coeffs_out(31 downto 24) <= (others=>'0');
+				end if;
+
 		end if;
 	end process;
 
@@ -455,15 +505,7 @@ begin
 		q_pseudoin_bytes(i) <= q_pseudoin(((i*(h+1))+h) downto ((i*h)+i));
 	end generate;
 
-	--Divide q_mulfifos into sum_vectors
-	--generate_mulfifos_divide: for i in 0 to (h-1) generate
-	--	sum_vectors(i)(packetCount*4)       <= q_mulfifos(i)(7 downto 0);
-	--	sum_vectors(i)((packetCount*4) + 1) <= q_mulfifos(i)(15 downto 8);
-	--	sum_vectors(i)((packetCount*4) + 2) <= q_mulfifos(i)(23 downto 16);
-	--	sum_vectors(i)((packetCount*4) + 3) <= q_mulfifos(i)(31 downto 24);	
-	--end generate;
-
-	--Add
+	--Add 
 	process(clk,rst)
 	begin
 		if rst = '0' then
@@ -472,12 +514,12 @@ begin
 					sum_vectors(i)(j) <= (others=>'0');
 				end loop;
 			end loop;
-		elsif (clk'event and clk = '1') and rowCount > 2 and mulready = '1' then
+		elsif (clk'event and clk = '1')  and muldone = '1' then --and rowCount > 2
 			for i in 0 to (h-1) loop
-					sum_vectors(i)((rowCount-3)*4)       <= sum_vectors(i)((rowCount-3)*4)  xor q_mulfifos(i)(7 downto 0);
-					sum_vectors(i)(((rowCount-3)*4) + 1) <= sum_vectors(i)(((rowCount-3)*4) + 1) xor q_mulfifos(i)(15 downto 8);
-					sum_vectors(i)(((rowCount-3)*4) + 2) <= sum_vectors(i)(((rowCount-3)*4) + 2) xor q_mulfifos(i)(23 downto 16);
-					sum_vectors(i)(((rowCount-3)*4) + 3) <= sum_vectors(i)(((rowCount-3)*4) + 3) xor q_mulfifos(i)(31 downto 24);	
+					sum_vectors(i)((sumCount)*4)       <= sum_vectors(i)((sumCount)*4)  xor q_mulfifos(i)(31 downto 24);
+					sum_vectors(i)(((sumCount)*4) + 1) <= sum_vectors(i)(((sumCount)*4) + 1) xor q_mulfifos(i)(23 downto 16);
+					sum_vectors(i)(((sumCount)*4) + 2) <= sum_vectors(i)(((sumCount)*4) + 2) xor q_mulfifos(i)(15 downto 8);
+					sum_vectors(i)(((sumCount)*4) + 3) <= sum_vectors(i)(((sumCount)*4) + 3) xor q_mulfifos(i)(7 downto 0);	
 			end loop;
 		end if;
 	end process;

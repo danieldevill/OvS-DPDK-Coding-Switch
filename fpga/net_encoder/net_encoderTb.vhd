@@ -23,8 +23,9 @@ architecture sim of net_encoderTb is
 	file file_pkt32bseg_i : text;
 
 	-- Outputs
-	file file_pkt32bseg_o : text;
+	file file_pkt32bseg_o, file_coeffs_o : text;
 	signal pkt32bseg_o : std_logic_vector(31 downto 0);
+	signal coeffs_out : std_logic_vector(31 downto 0);
 
 begin
 	-- The Device Under Test (DUT)
@@ -38,7 +39,8 @@ begin
 		clk => clk,
 		rst => rst,
 		pkt32bseg_i => pkt32bseg_i,
-		pkt32bseg_o => pkt32bseg_o);
+		pkt32bseg_o => pkt32bseg_o,
+		coeffs_out => coeffs_out);
 
 	-- Process for generating clock
 	clk <= not clk after ClockPeriod / 2;
@@ -56,25 +58,33 @@ begin
 
 		file_open(file_pkt32bseg_i,"./../../packets_in.txt",read_mode);
 		file_open(file_pkt32bseg_o,"./../../packets_out.txt",write_mode);
+		file_open(file_coeffs_o,"./../../coeffs_out.txt",write_mode);
 
 		while not (endfile(file_pkt32bseg_i)) loop
 			readline(file_pkt32bseg_i, v_ILINE);
-			read(v_ILINE,v_pkt32bseg_i);
+			hread(v_ILINE,v_pkt32bseg_i);
 
 			pkt32bseg_i <= v_pkt32bseg_i;
 
-			wait for 10 ns;
+			hwrite(v_OLINE,coeffs_out);
+			writeline(file_coeffs_o,v_OLINE);
 
-			write(v_OLINE,pkt32bseg_o, right, 32);
-			writeline(file_pkt32bseg_o,v_OLINE);
+			wait for 10 ns;
 
 		end loop;
 
+		while 1 = 1 loop
+			--write(v_OLINE,unsigned(pkt32bseg_o), right, 32);
+			hwrite(v_OLINE, pkt32bseg_o);
+			writeline(file_pkt32bseg_o,v_OLINE);
+			hwrite(v_OLINE,coeffs_out);
+			writeline(file_coeffs_o,v_OLINE);
+			wait for 10 ns;
+		end loop;
+		--assert FALSE Report "SImulation Finished" severity FAILURE;
+
 		file_close(file_pkt32bseg_i);
 		file_close(file_pkt32bseg_o);
-		
-		wait;
-		--assert FALSE Report "SImulation Finished" severity FAILURE;
 
 	end process;
 
