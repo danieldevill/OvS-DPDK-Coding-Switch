@@ -1,0 +1,20 @@
+Fitter Status : Failed - Tue Jun 25 15:52:00 2019
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Revision Name : gj_mulsubRow
+Top-level Entity Name : gj_mulsubRow
+Family : Cyclone V
+Device : 5CGXFC9D6F27C7
+Timing Models : Final
+Logic utilization (in ALMs) : 1,180 / 113,560 ( 1 % )
+Total registers : 2336
+Total pins : 1,714 / 378 ( 453 % )
+Total virtual pins : 0
+Total block memory bits : 0 / 12,492,800 ( 0 % )
+Total RAM Blocks : 0 / 1,220 ( 0 % )
+Total DSP Blocks : 0 / 342 ( 0 % )
+Total HSSI RX PCSs : 0 / 9 ( 0 % )
+Total HSSI PMA RX Deserializers : 0 / 9 ( 0 % )
+Total HSSI TX PCSs : 0 / 9 ( 0 % )
+Total HSSI PMA TX Serializers : 0 / 9 ( 0 % )
+Total PLLs : 0 / 17 ( 0 % )
+Total DLLs : 0 / 4 ( 0 % )
