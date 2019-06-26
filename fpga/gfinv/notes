@@ -1,0 +1,13 @@
+			r <= std_logic_vector(shift_left(unsigned(b), 2));
+
+			r0 <= a and r(8);
+			r1 <= std_logic_vector(shift_left(unsigned(a and r(7)), 1));
+			r2 <= std_logic_vector(shift_left(unsigned(a and r(6)), 2));
+			r3 <= std_logic_vector(shift_left(unsigned(a and r(5)), 3));
+			r4 <= std_logic_vector(shift_left(unsigned(a and r(4)), 4));
+			r5 <= std_logic_vector(shift_left(unsigned(a and r(3)), 5));
+			r6 <= std_logic_vector(shift_left(unsigned(a and r(2)), 6));
+			r7 <= std_logic_vector(shift_left(unsigned(a and r(1)), 7));
+			r8 <= std_logic_vector(shift_left(unsigned(a and r(0)), 8));
+
+			r_prev <= r0 xor r1 xor r2 xor r3 xor r4 xor r5 xor r6 xor r7;
