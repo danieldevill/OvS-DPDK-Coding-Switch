@@ -29,6 +29,7 @@ architecture sim of net_decoderTb is
 
 begin
 	-- The Device Under Test (DUT)
+	i_net_decoder1: entity work.net_decoder(rtl)
 	generic map(
 		m => m,
 		h => h,
@@ -47,7 +48,7 @@ begin
 		variable v_ILINE : line;
 		variable v_OLINE : line;
 		variable v_pkt32bseg_i : std_logic_vector(31 downto 0);
-		variable coeffs_in : std_logic_vector(31 downto 0);		
+		variable v_coeffs_in : std_logic_vector(31 downto 0);		
 	begin
 		wait until rising_edge(clk);
 		wait until rising_edge(clk);
@@ -61,11 +62,16 @@ begin
 		file_open(file_pkt32bseg_o,"./../../decoded_packets_out.txt",write_mode);
 
 		while not (endfile(file_pkt32bseg_i)) loop
+			if not endfile(file_coeffs_i) then
+				readline(file_coeffs_i, v_ILINE);
+				hread(v_ILINE,v_coeffs_in);
+				coeffs_in <= v_coeffs_in;
+			end if;
+
 			readline(file_pkt32bseg_i, v_ILINE);
 			hread(v_ILINE,v_pkt32bseg_i);
 
-			readline(file_coeffs_i, v_ILINE);
-			hread(v_ILINE,coeffs_in);
+			pkt32bseg_i <= v_pkt32bseg_i;
 
 			wait for 10 ns;
 

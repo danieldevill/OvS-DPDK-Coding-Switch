@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Mon Jun 17 16:27:00 2019
+Analysis & Synthesis Status : Successful - Wed Jul 24 15:20:01 2019
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : net_decoder
 Top-level Entity Name : net_decoder
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 0
+Total registers : 36002
 Total pins : 98
 Total virtual pins : 0
 Total block memory bits : 0

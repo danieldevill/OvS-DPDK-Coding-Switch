@@ -7,11 +7,12 @@
 # vmap work rtl_work
 # Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
 # vmap work rtl_work 
-# Modifying /home/daniel/Software/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/../modelsim.ini
+# Copying /home/daniel/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
 # 
 # vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:29:10 on Jun 17,2019
+# Start time: 14:22:31 on Jul 24,2019
 # vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -19,21 +20,421 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity net_decoder
 # -- Compiling architecture rtl of net_decoder
-# End time: 16:29:11 on Jun 17,2019, Elapsed time: 0:00:01
+# End time: 14:22:31 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:22:31 on Jul 24,2019
+# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfmul
+# -- Compiling architecture rtl of gfmul
+# End time: 14:22:31 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfdiv/gfdiv.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:22:31 on Jul 24,2019
+# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfdiv/gfdiv.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfdiv
+# -- Compiling architecture rtl of gfdiv
+# End time: 14:22:31 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfinv/gfinv.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:22:31 on Jul 24,2019
+# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfinv/gfinv.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfinv
+# -- Compiling architecture rtl of gfinv
+# End time: 14:22:31 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gj_divRow/gj_divRow.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:22:32 on Jul 24,2019
+# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gj_divRow/gj_divRow.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gj_divRow
+# -- Compiling architecture rtl of gj_divRow
+# End time: 14:22:32 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gj_mulsubRow/gj_mulsubRow.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:22:32 on Jul 24,2019
+# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gj_mulsubRow/gj_mulsubRow.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gj_mulsubRow
+# -- Compiling architecture rtl of gj_mulsubRow
+# End time: 14:22:32 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gj_elimination/gj_elimination.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:22:32 on Jul 24,2019
+# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gj_elimination/gj_elimination.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gj_elimination
+# -- Compiling architecture rtl of gj_elimination
+# End time: 14:22:32 on Jul 24,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/../../../../Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd}
+# vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:29:11 on Jun 17,2019
-# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/../../../../Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
-# ** Error: (vcom-7) Failed to open design unit file "/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/../../../../Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd" in read mode.
-# No such file or directory. (errno = ENOENT)
-# End time: 16:29:11 on Jun 17,2019, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# ** Error: /home/daniel/Software/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vcom failed.
-# Error in macro ./net_decoder_run_msim_rtl_vhdl.do line 10
-# /home/daniel/Software/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/vcom failed.
-#     while executing
-# "vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/../../../../Dropbox/Academics/MEng/Working/Ov..."
+# Start time: 14:22:32 on Jul 24,2019
+# vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 14:22:32 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 # 
-# stdin: <EOF>
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  net_decoderTb
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" net_decoderTb 
+# Start time: 14:22:32 on Jul 24,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.std_logic_textio(body)
+# Loading work.net_decodertb(sim)
+# Loading work.net_decoder(rtl)
+# Loading work.gj_elimination(rtl)
+# Loading work.gj_mulsubrow(rtl)
+# Loading work.gfmul(rtl)
+# Loading work.gj_divrow(rtl)
+# Loading work.gfdiv(rtl)
+# Loading work.gfinv(rtl)
+# ** Warning: Design size of 25776 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+add wave -position end sim:/net_decodertb/i_net_decoder1/*
+restart
+# ** Warning: Design size of 24569 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:24:56 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity net_decoder
+# -- Compiling architecture rtl of net_decoder
+# End time: 14:24:56 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:24:56 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 14:24:56 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# Loading work.net_decodertb(sim)
+# Loading work.net_decoder(rtl)
+# ** Warning: Design size of 25148 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:32:44 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity net_decoder
+# -- Compiling architecture rtl of net_decoder
+# End time: 14:32:44 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:32:44 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 14:32:44 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:54:50 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity net_decoder
+# -- Compiling architecture rtl of net_decoder
+# End time: 14:54:50 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:54:50 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 14:54:50 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# Loading work.net_decodertb(sim)
+# Loading work.net_decoder(rtl)
+# ** Warning: Design size of 25148 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:55:26 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity net_decoder
+# -- Compiling architecture rtl of net_decoder
+# End time: 14:55:26 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:55:26 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 14:55:26 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# Loading work.net_decodertb(sim)
+# Loading work.net_decoder(rtl)
+# ** Warning: Design size of 25148 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:56:49 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity net_decoder
+# -- Compiling architecture rtl of net_decoder
+# End time: 14:56:49 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:56:49 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 14:56:49 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# Loading work.net_decodertb(sim)
+# Loading work.net_decoder(rtl)
+# ** Warning: Design size of 25149 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+restart
+# ** Warning: Design size of 24569 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:58:52 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity net_decoder
+# -- Compiling architecture rtl of net_decoder
+# End time: 14:58:52 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:58:52 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 14:58:52 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# Loading work.net_decodertb(sim)
+# Loading work.net_decoder(rtl)
+# ** Warning: Design size of 25150 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Error: (vsim-3953) STD_LOGIC_1164.HREAD End of string encountered
+#    Time: 1140 ns  Iteration: 0  Instance: /net_decodertb
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:12:06 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoder.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity net_decoder
+# -- Compiling architecture rtl of net_decoder
+# End time: 15:12:06 on Jul 24,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:12:06 on Jul 24,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_decoder/net_decoderTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity net_decoderTb
+# -- Compiling architecture sim of net_decoderTb
+# -- Loading entity net_decoder
+# End time: 15:12:07 on Jul 24,2019, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# End time: 15:12:10 on Jul 24,2019, Elapsed time: 0:49:38
+# Errors: 8, Warnings: 72
