@@ -18,6 +18,7 @@ architecture sim of gj_eliminationTb is
 	constant ClockPeriod : time := 1000 ms / ClockFrequencyHz;
 	signal clk : std_logic := '1';
 	signal rst : std_logic:= '0';
+	signal en : std_logic:='1';
 
 	signal pkt32bseg_coef_in : std_logic_vector(55 downto 0);
 	signal pkt32bseg_data_in : std_logic_vector(511 downto 0); 
@@ -41,6 +42,7 @@ begin
 	port map(
 		clk => clk,
 		rst => rst,
+		en => en,
 		pkt32bseg_coef_in => pkt32bseg_coef_in,
 		pkt32bseg_data_in => pkt32bseg_data_in,
 		pkt32bseg_data_out => pkt32bseg_data_out,

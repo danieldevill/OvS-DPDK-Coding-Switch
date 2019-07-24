@@ -1,5 +1,5 @@
 Analysis & Synthesis report for gj_elimination
-Fri Jun 28 15:26:47 2019
+Fri Jun 28 21:04:23 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -700,7 +700,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Jun 28 15:26:46 2019       ;
+; Analysis & Synthesis Status     ; Successful - Fri Jun 28 21:04:21 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gj_elimination                              ;
 ; Top-level Entity Name           ; gj_elimination                              ;
@@ -815,12 +815,12 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 4           ;
 ; Maximum allowed            ; 2           ;
 ;                            ;             ;
-; Average used               ; 1.37        ;
+; Average used               ; 1.29        ;
 ; Maximum used               ; 2           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  36.9%      ;
+;     Processor 2            ;  28.5%      ;
 +----------------------------+-------------+
 
 
@@ -13287,7 +13287,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:01:47     ;
+; Top            ; 00:01:51     ;
 +----------------+--------------+
 
 
@@ -13297,7 +13297,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Jun 28 15:24:29 2019
+    Info: Processing started: Fri Jun 28 21:01:59 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off gj_elimination -c gj_elimination
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -13351,9 +13351,9 @@ Info (21057): Implemented 43639 device resources after synthesis - the final res
     Info (21059): Implemented 569 output pins
     Info (21061): Implemented 42500 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
-    Info: Peak virtual memory: 1632 megabytes
-    Info: Processing ended: Fri Jun 28 15:26:47 2019
-    Info: Elapsed time: 00:02:18
-    Info: Total CPU time (on all processors): 00:03:01
+    Info: Peak virtual memory: 1629 megabytes
+    Info: Processing ended: Fri Jun 28 21:04:23 2019
+    Info: Elapsed time: 00:02:24
+    Info: Total CPU time (on all processors): 00:03:08
 
 

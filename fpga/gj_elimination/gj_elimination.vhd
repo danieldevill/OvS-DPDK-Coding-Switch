@@ -10,6 +10,7 @@ port (
 	-- Inputs
 	 clk : in std_logic;
 	 rst : in std_logic;
+	 en : in std_logic;
 	 pkt32bseg_coef_in : in std_logic_vector(55 downto 0); 
 	 pkt32bseg_data_in : in std_logic_vector(511 downto 0); 
 
@@ -147,11 +148,11 @@ begin
 		done_o => done_o_rowDiv);
 
 	--FSM
-	process(clk,rst) is
+	process(clk,rst,en) is
 	begin
 		if rst = '0' then
 			gj_elimination_state <= load;
-		elsif clk'event and clk = '1' then
+		elsif clk'event and clk = '1' and en = '1' then
 
 			--Lower/Upper Triangle Counts
 			if lower_triangle_count = 6 then
@@ -200,7 +201,7 @@ begin
 	end process;
 
 	--Load Coeff and Data Matrices.
-	process(clk,rst) is
+	process(clk,rst,en) is
 	begin
 		if rst = '0' then
 			for j in 0 to (h-1) loop 
@@ -213,7 +214,7 @@ begin
 			end loop;
 			load_count <= 0;
 			complete_count <= 0;
-		elsif clk'event and clk = '1' then
+		elsif clk'event and clk = '1' and en = '1' then
 			if gj_elimination_state = load then
 				if(load_count = h) then
 					load_done <= '1';
@@ -366,6 +367,7 @@ begin
 				if(complete_count = h) then
 					complete_done <= '1';
 				else
+					done_o <= '1';
 					complete_count <= complete_count + 1;
 					for i in 0 to (h-1) loop
 						pkt32bseg_coef_out( ((i*m)+(m-1)) downto ((i*(m-1))+i) ) <= coeff_matrix(complete_count)(i);
@@ -381,11 +383,11 @@ begin
 	end process;
 
 	--DivRow State
-	process(clk,rst) is
+	process(clk,rst,en) is
 	begin
 		if rst = '0' then
 			a_rowDiv <= "00000001";
-		elsif clk'event and clk = '1' then
+		elsif clk'event and clk = '1' and en = '1' then
 			if gj_elimination_state = divRow then
 
 				rst_rowDiv <= '1';
@@ -417,13 +419,13 @@ begin
 
 
 	--MulsubState
-	process(clk,rst) is
+	process(clk,rst,en) is
 	begin
 		if rst = '0' then
 			for i in 0 to (h-1) loop
 				a_mulsub(i) <= "00000001";
 			end loop;
-		elsif clk'event and clk = '1' then
+		elsif clk'event and clk = '1' and en = '1' then
 			if gj_elimination_state = mulsubRow then
 
 				rst_mulsub <= '1';
