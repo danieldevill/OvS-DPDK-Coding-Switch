@@ -87,7 +87,7 @@ VCCIO7A                      : A10       : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : A11       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : A12       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : A13       :        :                   :         : 7A        :                
-pkt32bseg_o[18]              : A14       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : A14       :        :                   :         : 7A        :                
 GND                          : A15       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : A16       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : A17       :        :                   :         : 7A        :                
@@ -122,9 +122,9 @@ VCCIO4A                      : AA20      : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : AA21      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AA22      :        :                   :         : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AA23      :        :                   :         : 5A        :                
-pkt32bseg_i[28]              : AA24      : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[9]                : AA24      : output : 2.5 V             :         : 5B        : N              
 GND                          : AA25      : gnd    :                   :         :           :                
-pkt32bseg_i[18]              : AA26      : input  : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[27]              : AA26      : input  : 2.5 V             :         : 5B        : N              
 GND                          : AB1       :        :                   :         : B0L       :                
 GND                          : AB2       :        :                   :         : B0L       :                
 GND                          : AB3       : gnd    :                   :         :           :                
@@ -141,7 +141,7 @@ VCCIO4A                      : AB13      : power  :                   : 2.5V    
 VCC_AUX                      : AB14      : power  :                   : 2.5V    :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB15      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB16      :        :                   :         : 4A        :                
-coeffs_out[8]                : AB17      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AB17      :        :                   :         : 4A        :                
 GND                          : AB18      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB19      :        :                   :         : 4A        :                
 VCC_AUX                      : AB20      : power  :                   : 2.5V    :           :                
@@ -149,8 +149,8 @@ VCCPD3B4A                    : AB21      : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB22      :        :                   :         : 4A        :                
 VCCIO5A                      : AB23      : power  :                   : 2.5V    : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AB24      :        :                   :         : 5A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB25      :        :                   :         : 5B        :                
-pkt32bseg_i[17]              : AB26      : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[21]               : AB25      : output : 2.5 V             :         : 5B        : N              
+coeffs_out[16]               : AB26      : output : 2.5 V             :         : 5B        : N              
 GND                          : AC1       : gnd    :                   :         :           :                
 GND                          : AC2       : gnd    :                   :         :           :                
 GXB_NC                       : AC3       :        :                   :         : B0L       :                
@@ -168,14 +168,14 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AC14      :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC15      :        :                   :         : 4A        :                
 VCCIO4A                      : AC16      : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC17      :        :                   :         : 4A        :                
-coeffs_out[15]               : AC18      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AC18      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC19      :        :                   :         : 4A        :                
-pkt32bseg_i[10]              : AC20      : input  : 2.5 V             :         : 4A        : N              
+coeffs_out[11]               : AC20      : output : 2.5 V             :         : 4A        : N              
 GND                          : AC21      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC22      :        :                   :         : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC23      :        :                   :         : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AC24      :        :                   :         : 5A        :                
-pkt32bseg_i[29]              : AC25      : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[3]                : AC25      : output : 2.5 V             :         : 5B        : N              
 GND                          : AC26      : gnd    :                   :         :           :                
 GND                          : AD1       :        :                   :         : B0L       :                
 GND                          : AD2       :        :                   :         : B0L       :                
@@ -192,16 +192,16 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AD12      :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD13      :        :                   :         : 4A        :                
 GND                          : AD14      : gnd    :                   :         :           :                
 VREFB4AN0                    : AD15      : power  :                   :         : 4A        :                
-coeffs_out[31]               : AD16      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AD16      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD17      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD18      :        :                   :         : 4A        :                
 VCCIO4A                      : AD19      : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD20      :        :                   :         : 4A        :                
-pkt32bseg_o[1]               : AD21      : output : 2.5 V             :         : 4A        : N              
-coeffs_out[3]                : AD22      : output : 2.5 V             :         : 4A        : N              
+coeffs_out[12]               : AD21      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AD22      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD23      :        :                   :         : 4A        :                
 GND                          : AD24      : gnd    :                   :         :           :                
-pkt32bseg_i[6]               : AD25      : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[31]               : AD25      : output : 2.5 V             :         : 5B        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AD26      :        :                   :         : 4A        :                
 GND                          : AE1       : gnd    :                   :         :           :                
 GND                          : AE2       : gnd    :                   :         :           :                
@@ -217,17 +217,17 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AE11      :        :                   :      
 VCCIO4A                      : AE12      : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE13      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE14      :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE15      :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AE16      :        :                   :         : 4A        :                
+coeffs_out[6]                : AE15      : output : 2.5 V             :         : 4A        : N              
+coeffs_out[15]               : AE16      : output : 2.5 V             :         : 4A        : N              
 GND                          : AE17      : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE18      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE19      :        :                   :         : 4A        :                
-coeffs_out[22]               : AE20      : output : 2.5 V             :         : 4A        : N              
-coeffs_out[1]                : AE21      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AE20      :        :                   :         : 4A        :                
+coeffs_out[22]               : AE21      : output : 2.5 V             :         : 4A        : N              
 VCCIO4A                      : AE22      : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE23      :        :                   :         : 4A        :                
-pkt32bseg_i[16]              : AE24      : input  : 2.5 V             :         : 4A        : N              
-pkt32bseg_i[30]              : AE25      : input  : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AE24      :        :                   :         : 4A        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : AE25      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE26      :        :                   :         : 4A        :                
 GND                          : AF2       : gnd    :                   :         :           :                
 GND                          : AF3       : gnd    :                   :         :           :                
@@ -243,15 +243,15 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AF12      :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF13      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF14      :        :                   :         : 4A        :                
 VCCIO4A                      : AF15      : power  :                   : 2.5V    : 4A        :                
-coeffs_out[12]               : AF16      : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AF16      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF17      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF18      :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF19      :        :                   :         : 4A        :                
 GND                          : AF20      : gnd    :                   :         :           :                
-coeffs_out[16]               : AF21      : output : 2.5 V             :         : 4A        : N              
-coeffs_out[10]               : AF22      : output : 2.5 V             :         : 4A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF23      :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF24      :        :                   :         : 4A        :                
+coeffs_out[26]               : AF21      : output : 2.5 V             :         : 4A        : N              
+coeffs_out[14]               : AF22      : output : 2.5 V             :         : 4A        : N              
+coeffs_out[25]               : AF23      : output : 2.5 V             :         : 4A        : N              
+coeffs_out[18]               : AF24      : output : 2.5 V             :         : 4A        : N              
 GND                          : AF25      : gnd    :                   :         :           :                
 RREF                         : B1        :        :                   :         :           :                
 GND                          : B2        : gnd    :                   :         :           :                
@@ -272,13 +272,13 @@ VREFB7AN0                    : B16       : power  :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : B17       :        :                   :         : 7A        :                
 GND                          : B18       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : B19       :        :                   :         : 7A        :                
-pkt32bseg_o[27]              : B20       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : B20       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : B21       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : B22       :        :                   :         : 7A        :                
 VCCIO7A                      : B23       : power  :                   : 2.5V    : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : B24       :        :                   :         : 7A        :                
-pkt32bseg_o[9]               : B25       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[17]              : B26       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[1]               : B25       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[30]              : B26       : output : 2.5 V             :         : 6A        : N              
 GND                          : C1        : gnd    :                   :         :           :                
 GND                          : C2        : gnd    :                   :         :           :                
 GXB_NC                       : C3        :        :                   :         : B2L       :                
@@ -295,7 +295,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : C13       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : C14       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C15       :        :                   :         : 7A        :                
 VCCIO7A                      : C16       : power  :                   : 2.5V    : 7A        :                
-pkt32bseg_i[9]               : C17       : input  : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : C17       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C18       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C19       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C20       :        :                   :         : 7A        :                
@@ -303,7 +303,7 @@ GND                          : C21       : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : C22       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : C23       :        :                   :         : 7A        :                
 DNU                          : C24       :        :                   :         :           :                
-pkt32bseg_o[13]              : C25       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[16]              : C25       : output : 2.5 V             :         : 6A        : N              
 VCCIO6A                      : C26       : power  :                   : 2.5V    : 6A        :                
 GND                          : D1        :        :                   :         : B2L       :                
 GND                          : D2        :        :                   :         : B2L       :                
@@ -320,17 +320,17 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : D12       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : D13       :        :                   :         : 7A        :                
 GND                          : D14       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D15       :        :                   :         : 7A        :                
-pkt32bseg_i[7]               : D16       : input  : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : D16       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D17       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D18       :        :                   :         : 7A        :                
 VCCIO7A                      : D19       : power  :                   : 2.5V    : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D20       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : D21       :        :                   :         : 7A        :                
-pkt32bseg_o[11]              : D22       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[13]              : D22       : output : 2.5 V             :         : 6A        : N              
 GND                          : D23       :        :                   :         : 7A        :                
 GND                          : D24       : gnd    :                   :         :           :                
-pkt32bseg_o[8]               : D25       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[7]               : D26       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[28]              : D25       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[28]              : D26       : input  : 2.5 V             :         : 6A        : N              
 GND                          : E1        : gnd    :                   :         :           :                
 GND                          : E2        : gnd    :                   :         :           :                
 GXB_NC                       : E3        :        :                   :         : B2L       :                
@@ -349,14 +349,14 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : E15       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : E16       :        :                   :         : 7A        :                
 GND                          : E17       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : E18       :        :                   :         : 7A        :                
-pkt32bseg_o[5]               : E19       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : E19       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : E20       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : E21       :        :                   :         : 6A        :                
 VCCIO6A                      : E22       : power  :                   : 2.5V    : 6A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : E23       :        :                   :         : 6A        :                
-pkt32bseg_i[3]               : E24       : input  : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[0]               : E25       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[28]              : E26       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[24]              : E23       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[9]               : E24       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[18]              : E25       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[1]               : E26       : input  : 2.5 V             :         : 6A        : N              
 GND                          : F1        :        :                   :         : B2L       :                
 GND                          : F2        :        :                   :         : B2L       :                
 GND                          : F3        : gnd    :                   :         :           :                
@@ -377,12 +377,12 @@ VCCPD7A8A                    : F17       : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : F18       :        :                   :         : 7A        :                
 VCCPD7A8A                    : F19       : power  :                   : 2.5V    : 7A, 8A    :                
 GND                          : F20       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : F21       :        :                   :         : 6A        :                
+pkt32bseg_o[4]               : F21       : output : 2.5 V             :         : 6A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : F22       :        :                   :         : 6A        :                
-pkt32bseg_o[19]              : F23       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[20]              : F24       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[27]              : F23       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[20]              : F24       : input  : 2.5 V             :         : 6A        : N              
 VCCIO6A                      : F25       : power  :                   : 2.5V    : 6A        :                
-coeffs_out[9]                : F26       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[7]               : F26       : input  : 2.5 V             :         : 6A        : N              
 GND                          : G1        : gnd    :                   :         :           :                
 GND                          : G2        : gnd    :                   :         :           :                
 GXB_NC                       : G3        :        :                   :         : B2L       :                
@@ -399,16 +399,16 @@ GND                          : G13       : gnd    :                   :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : G14       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G15       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : G16       :        :                   :         : 7A        :                
-pkt32bseg_o[26]              : G17       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : G17       :        :                   :         : 7A        :                
 VCCIO7A                      : G18       : power  :                   : 2.5V    : 7A        :                
 VCC_AUX                      : G19       : power  :                   : 2.5V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : G20       :        :                   :         : 6A        :                
+pkt32bseg_o[10]              : G20       : output : 2.5 V             :         : 6A        : N              
 VCCA_FPLL                    : G21       : power  :                   : 2.5V    :           :                
-pkt32bseg_o[10]              : G22       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[17]              : G22       : output : 2.5 V             :         : 6A        : N              
 GND                          : G23       : gnd    :                   :         :           :                
-pkt32bseg_o[6]               : G24       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[16]              : G25       : output : 2.5 V             :         : 6A        : N              
-coeffs_out[20]               : G26       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[3]               : G24       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[11]              : G25       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[5]               : G26       : input  : 2.5 V             :         : 6A        : N              
 GND                          : H1        :        :                   :         : B2L       :                
 GND                          : H2        :        :                   :         : B2L       :                
 GND                          : H3        : gnd    :                   :         :           :                
@@ -425,15 +425,15 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : H13       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : H14       :        :                   :         : 7A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : H15       :        :                   :         : 7A        :                
 GND                          : H16       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H17       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H18       :        :                   :         : 7A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H19       :        :                   :         : 6A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H20       :        :                   :         : 6A        :                
+pkt32bseg_o[29]              : H17       : output : 2.5 V             :         : 7A        : N              
+pkt32bseg_o[7]               : H18       : output : 2.5 V             :         : 7A        : N              
+pkt32bseg_o[11]              : H19       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[25]              : H20       : output : 2.5 V             :         : 6A        : N              
 VCCIO6A                      : H21       : power  :                   : 2.5V    : 6A        :                
-pkt32bseg_o[22]              : H22       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[26]              : H22       : output : 2.5 V             :         : 6A        : N              
 pkt32bseg_o[14]              : H23       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[15]              : H24       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_i[22]              : H25       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[19]              : H24       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[25]              : H25       : input  : 2.5 V             :         : 6A        : N              
 GND                          : H26       : gnd    :                   :         :           :                
 GND                          : J1        : gnd    :                   :         :           :                
 GND                          : J2        : gnd    :                   :         :           :                
@@ -445,22 +445,22 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : J7        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : J8        :        :                   :         : 8A        :                
 GND                          : J9        : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : J10       :        :                   :         : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : J11       :        :                   :         : 7A        :                
+pkt32bseg_o[31]              : J11       : output : 2.5 V             :         : 7A        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : J12       :        :                   :         : 7A        :                
 VCC                          : J13       : power  :                   : 1.1V    :           :                
 GND                          : J14       : gnd    :                   :         :           :                
 VCC                          : J15       : power  :                   : 1.1V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : J16       :        :                   :         : 7A        :                
+pkt32bseg_o[12]              : J16       : output : 2.5 V             :         : 7A        : N              
 VCC                          : J17       : power  :                   : 1.1V    :           :                
 GND                          : J18       : gnd    :                   :         :           :                
 VCC                          : J19       : power  :                   : 1.1V    :           :                
-pkt32bseg_o[25]              : J20       : output : 2.5 V             :         : 6A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : J21       :        :                   :         : 6A        :                
+pkt32bseg_o[6]               : J20       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[20]              : J21       : output : 2.5 V             :         : 6A        : N              
 VCCPD6A                      : J22       : power  :                   : 2.5V    : 6A        :                
-pkt32bseg_o[23]              : J23       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[0]               : J23       : output : 2.5 V             :         : 6A        : N              
 VCCIO6A                      : J24       : power  :                   : 2.5V    : 6A        :                
-pkt32bseg_i[2]               : J25       : input  : 2.5 V             :         : 6A        : N              
-pkt32bseg_i[1]               : J26       : input  : 2.5 V             :         : 6A        : N              
+coeffs_out[29]               : J25       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[15]              : J26       : input  : 2.5 V             :         : 6A        : N              
 GXB_NC                       : K1        :        :                   :         : B1L       :                
 GXB_NC                       : K2        :        :                   :         : B1L       :                
 GND                          : K3        : gnd    :                   :         :           :                
@@ -471,7 +471,7 @@ VCCIO8A                      : K7        : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : K8        :        :                   :         : 8A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K9        :        :                   :         : 8A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K10       :        :                   :         : 8A        :                
-coeffs_out[19]               : K11       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : K11       :        :                   :         : 7A        :                
 GND                          : K12       : gnd    :                   :         :           :                
 GND                          : K13       : gnd    :                   :         :           :                
 VCC                          : K14       : power  :                   : 1.1V    :           :                
@@ -481,12 +481,12 @@ GND                          : K17       : gnd    :                   :         
 VCC                          : K18       : power  :                   : 1.1V    :           :                
 GND                          : K19       : gnd    :                   :         :           :                
 VCC                          : K20       : power  :                   : 1.1V    :           :                
-pkt32bseg_o[21]              : K21       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[15]              : K21       : output : 2.5 V             :         : 6A        : N              
 GND                          : K22       : gnd    :                   :         :           :                
-pkt32bseg_o[2]               : K23       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_i[23]              : K24       : input  : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[31]              : K25       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[30]              : K26       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[23]              : K23       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[2]               : K24       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[8]               : K25       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[5]               : K26       : output : 2.5 V             :         : 6A        : N              
 GND                          : L1        : gnd    :                   :         :           :                
 GND                          : L2        : gnd    :                   :         :           :                
 VCCH_GXBL                    : L3        : power  :                   : 2.5V    :           :                
@@ -498,7 +498,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : L8        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : L9        :        :                   :         : 8A        :                
 GND                          : L10       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : L11       :        :                   :         : 7A        :                
-coeffs_out[18]               : L12       : output : 2.5 V             :         : 7A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : L12       :        :                   :         : 7A        :                
 VCC                          : L13       : power  :                   : 1.1V    :           :                
 GND                          : L14       : gnd    :                   :         :           :                
 VCC                          : L15       : power  :                   : 1.1V    :           :                
@@ -508,9 +508,9 @@ GND                          : L18       : gnd    :                   :         
 VCC                          : L19       : power  :                   : 1.1V    :           :                
 GND                          : L20       : gnd    :                   :         :           :                
 VCCPD6A                      : L21       : power  :                   : 2.5V    : 6A        :                
-pkt32bseg_o[29]              : L22       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_i[25]              : L23       : input  : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[3]               : L24       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[21]              : L22       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[19]              : L23       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[22]              : L24       : output : 2.5 V             :         : 6A        : N              
 GND                          : L25       : gnd    :                   :         :           :                
 VREFB6AN0                    : L26       : power  :                   :         : 6A        :                
 GND                          : M1        :        :                   :         : B1L       :                
@@ -533,12 +533,12 @@ GND                          : M17       : gnd    :                   :         
 VCC                          : M18       : power  :                   : 1.1V    :           :                
 GND                          : M19       : gnd    :                   :         :           :                
 VCC                          : M20       : power  :                   : 1.1V    :           :                
-pkt32bseg_i[4]               : M21       : input  : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[4]               : M22       : output : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[26]              : M21       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[3]               : M22       : input  : 2.5 V             :         : 6A        : N              
 VCCIO6A                      : M23       : power  :                   : 2.5V    : 6A        :                
-coeffs_out[23]               : M24       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_o[24]              : M25       : output : 2.5 V             :         : 6A        : N              
-pkt32bseg_i[20]              : M26       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[14]              : M24       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[30]              : M25       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_o[18]              : M26       : output : 2.5 V             :         : 6A        : N              
 GND                          : N1        : gnd    :                   :         :           :                
 GND                          : N2        : gnd    :                   :         :           :                
 VCCL_GXBL                    : N3        : power  :                   : 1.1V    :           :                
@@ -558,12 +558,12 @@ GND                          : N16       : gnd    :                   :         
 VCC                          : N17       : power  :                   : 1.1V    :           :                
 GND                          : N18       : gnd    :                   :         :           :                
 VCC                          : N19       : power  :                   : 1.1V    :           :                
-pkt32bseg_i[12]              : N20       : input  : 2.5 V             :         : 6A        : N              
+coeffs_out[30]               : N20       : output : 2.5 V             :         : 6A        : N              
 GND                          : N21       : gnd    :                   :         :           :                
 VCCPD5B                      : N22       : power  :                   : 2.5V    : 5B        :                
-pkt32bseg_i[14]              : N23       : input  : 2.5 V             :         : 6A        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : N24       :        :                   :         : 6A        :                
-coeffs_out[6]                : N25       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[4]               : N23       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[12]              : N24       : input  : 2.5 V             :         : 6A        : N              
+pkt32bseg_i[9]               : N25       : input  : 2.5 V             :         : 5B        : N              
 VCCIO5B                      : N26       : power  :                   : 2.5V    : 5B        :                
 GXB_NC                       : P1        :        :                   :         : B1L       :                
 GXB_NC                       : P2        :        :                   :         : B1L       :                
@@ -584,13 +584,13 @@ VCC                          : P16       : power  :                   : 1.1V    
 GND                          : P17       : gnd    :                   :         :           :                
 VCC                          : P18       : power  :                   : 1.1V    :           :                
 GND                          : P19       : gnd    :                   :         :           :                
-pkt32bseg_i[24]              : P20       : input  : 2.5 V             :         : 5B        : N              
-pkt32bseg_i[21]              : P21       : input  : 2.5 V             :         : 5B        : N              
-pkt32bseg_i[19]              : P22       : input  : 2.5 V             :         : 5B        : N              
-pkt32bseg_i[31]              : P23       : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[0]                : P20       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[31]              : P21       : input  : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[22]              : P22       : input  : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[10]              : P23       : input  : 2.5 V             :         : 5B        : N              
 GND                          : P24       : gnd    :                   :         :           :                
 VREFB5BN0                    : P25       : power  :                   :         : 5B        :                
-coeffs_out[5]                : P26       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[17]              : P26       : input  : 2.5 V             :         : 5B        : N              
 GND                          : R1        : gnd    :                   :         :           :                
 GND                          : R2        : gnd    :                   :         :           :                
 VCCH_GXBL                    : R3        : power  :                   : 2.5V    :           :                
@@ -610,13 +610,13 @@ GND                          : R16       : gnd    :                   :         
 VCC                          : R17       : power  :                   : 1.1V    :           :                
 GND                          : R18       : gnd    :                   :         :           :                
 VCC                          : R19       : power  :                   : 1.1V    :           :                
-pkt32bseg_i[26]              : R20       : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[5]                : R20       : output : 2.5 V             :         : 5B        : N              
 VCCPD5B                      : R21       : power  :                   : 2.5V    : 5B        :                
 VCCIO5B                      : R22       : power  :                   : 2.5V    : 5B        :                
-coeffs_out[28]               : R23       : output : 2.5 V             :         : 5B        : N              
-pkt32bseg_i[0]               : R24       : input  : 2.5 V             :         : 5B        : N              
-coeffs_out[17]               : R25       : output : 2.5 V             :         : 5B        : N              
-coeffs_out[21]               : R26       : output : 2.5 V             :         : 5B        : N              
+coeffs_out[7]                : R23       : output : 2.5 V             :         : 5B        : N              
+coeffs_out[13]               : R24       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[24]              : R25       : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[23]               : R26       : output : 2.5 V             :         : 5B        : N              
 GND                          : T1        :        :                   :         : B1L       :                
 GND                          : T2        :        :                   :         : B1L       :                
 GND                          : T3        : gnd    :                   :         :           :                
@@ -633,16 +633,16 @@ clk                          : T13       : input  : 2.5 V             :         
 VCC                          : T14       : power  :                   : 1.1V    :           :                
 GND                          : T15       : gnd    :                   :         :           :                
 VCC                          : T16       : power  :                   : 1.1V    :           :                
-pkt32bseg_i[13]              : T17       : input  : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : T17       :        :                   :         : 4A        :                
 VCC                          : T18       : power  :                   : 1.1V    :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : T19       :        :                   :         : 5A        :                
+coeffs_out[1]                : T19       : output : 2.5 V             :         : 5A        : N              
 GND                          : T20       : gnd    :                   :         :           :                
 rst                          : T21       : input  : 2.5 V             :         : 5B        : N              
-coeffs_out[0]                : T22       : output : 2.5 V             :         : 5B        : N              
-coeffs_out[13]               : T23       : output : 2.5 V             :         : 5B        : N              
-coeffs_out[2]                : T24       : output : 2.5 V             :         : 5B        : N              
+coeffs_out[19]               : T22       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[2]               : T23       : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[17]               : T24       : output : 2.5 V             :         : 5B        : N              
 VCCIO5B                      : T25       : power  :                   : 2.5V    : 5B        :                
-coeffs_out[14]               : T26       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[8]               : T26       : input  : 2.5 V             :         : 5B        : N              
 GND                          : U1        : gnd    :                   :         :           :                
 GND                          : U2        : gnd    :                   :         :           :                
 VCCL_GXBL                    : U3        : power  :                   : 1.1V    :           :                
@@ -658,17 +658,17 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : U12       :        :                   :      
 GND                          : U13       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U14       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U15       :        :                   :         : 4A        :                
-pkt32bseg_i[27]              : U16       : input  : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : U16       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U17       :        :                   :         : 4A        :                
 VCCIO4A                      : U18       : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U19       :        :                   :         : 5A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : U20       :        :                   :         : 5A        :                
+coeffs_out[2]                : U20       : output : 2.5 V             :         : 5A        : N              
 VCCPD5A                      : U21       : power  :                   : 2.5V    : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : U22       :        :                   :         : 5A        :                
 GND                          : U23       : gnd    :                   :         :           :                
-pkt32bseg_i[5]               : U24       : input  : 2.5 V             :         : 5B        : N              
-coeffs_out[7]                : U25       : output : 2.5 V             :         : 5B        : N              
-coeffs_out[4]                : U26       : output : 2.5 V             :         : 5B        : N              
+coeffs_out[20]               : U24       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[23]              : U25       : input  : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[0]               : U26       : input  : 2.5 V             :         : 5B        : N              
 GND                          : V1        :        :                   :         : B1L       :                
 GND                          : V2        :        :                   :         : B1L       :                
 GND                          : V3        : gnd    :                   :         :           :                
@@ -683,7 +683,7 @@ VCCIO3B                      : V11       : power  :                   : 2.5V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : V12       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : V13       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : V14       :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : V15       :        :                   :         : 4A        :                
+coeffs_out[4]                : V15       : output : 2.5 V             :         : 4A        : N              
 GND                          : V16       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : V17       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : V18       :        :                   :         : 4A        :                
@@ -691,9 +691,9 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : V19       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : V20       :        :                   :         : 5A        :                
 VCCIO5A                      : V21       : power  :                   : 2.5V    : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : V22       :        :                   :         : 5A        :                
-coeffs_out[11]               : V23       : output : 2.5 V             :         : 5B        : N              
-RESERVED_INPUT_WITH_WEAK_PULLUP : V24       :        :                   :         : 5B        :                
-pkt32bseg_i[8]               : V25       : input  : 2.5 V             :         : 5B        : N              
+coeffs_out[27]               : V23       : output : 2.5 V             :         : 5B        : N              
+coeffs_out[8]                : V24       : output : 2.5 V             :         : 5B        : N              
+coeffs_out[28]               : V25       : output : 2.5 V             :         : 5B        : N              
 GND                          : V26       : gnd    :                   :         :           :                
 GND                          : W1        : gnd    :                   :         :           :                
 GND                          : W2        : gnd    :                   :         :           :                
@@ -711,16 +711,16 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : W13       :        :                   :      
 VCCIO4A                      : W14       : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W15       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W16       :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : W17       :        :                   :         : 4A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : W18       :        :                   :         : 4A        :                
+coeffs_out[24]               : W17       : output : 2.5 V             :         : 4A        : N              
+pkt32bseg_i[6]               : W18       : input  : 2.5 V             :         : 4A        : N              
 GND                          : W19       : gnd    :                   :         :           :                
-pkt32bseg_i[15]              : W20       : input  : 2.5 V             :         : 5A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : W20       :        :                   :         : 5A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : W21       :        :                   :         : 5A        :                
 VCCPGM                       : W22       : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
 VREFB5AN0                    : W23       : power  :                   :         : 5A        :                
 VCCIO5B                      : W24       : power  :                   : 2.5V    : 5B        :                
-pkt32bseg_o[12]              : W25       : output : 2.5 V             :         : 5B        : N              
-coeffs_out[29]               : W26       : output : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[29]              : W25       : input  : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[21]              : W26       : input  : 2.5 V             :         : 5B        : N              
 GND                          : Y1        :        :                   :         : B0L       :                
 GND                          : Y2        :        :                   :         : B0L       :                
 GND                          : Y3        : gnd    :                   :         :           :                
@@ -735,15 +735,15 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : Y11       :        :                   :      
 GND                          : Y12       : gnd    :                   :         :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y13       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y14       :        :                   :         : 4A        :                
-coeffs_out[24]               : Y15       : output : 2.5 V             :         : 4A        : N              
-coeffs_out[27]               : Y16       : output : 2.5 V             :         : 4A        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : Y15       :        :                   :         : 4A        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : Y16       :        :                   :         : 4A        :                
 VCCIO4A                      : Y17       : power  :                   : 2.5V    : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y18       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y19       :        :                   :         : 4A        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : Y20       :        :                   :         : 4A        :                
 VCCA_FPLL                    : Y21       : power  :                   : 2.5V    :           :                
 GND                          : Y22       : gnd    :                   :         :           :                
-coeffs_out[30]               : Y23       : output : 2.5 V             :         : 5A        : N              
-coeffs_out[26]               : Y24       : output : 2.5 V             :         : 5A        : N              
-pkt32bseg_i[11]              : Y25       : input  : 2.5 V             :         : 5B        : N              
-coeffs_out[25]               : Y26       : output : 2.5 V             :         : 5B        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : Y23       :        :                   :         : 5A        :                
+coeffs_out[10]               : Y24       : output : 2.5 V             :         : 5A        : N              
+pkt32bseg_i[16]              : Y25       : input  : 2.5 V             :         : 5B        : N              
+pkt32bseg_i[13]              : Y26       : input  : 2.5 V             :         : 5B        : N              

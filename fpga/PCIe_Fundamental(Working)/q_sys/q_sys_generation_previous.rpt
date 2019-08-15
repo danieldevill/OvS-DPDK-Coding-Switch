@@ -1,0 +1,629 @@
+Info: Starting: Create simulation model
+Info: qsys-generate "/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys.qsys" --simulation=VERILOG --allow-mixed-language-simulation --output-directory="/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation" --family="Cyclone V" --part=5CGXFC9D6F27C7
+Progress: Loading PCIe_Fundamental/q_sys.qsys
+Progress: Reading input file
+Progress: Adding alt_xcvr_reconfig_0 [alt_xcvr_reconfig 18.1]
+Progress: Parameterizing module alt_xcvr_reconfig_0
+Progress: Adding clk_0 [clock_source 18.1]
+Progress: Parameterizing module clk_0
+Progress: Adding ctl_0 [msgdma_ctl 1.0]
+Progress: Parameterizing module ctl_0
+Progress: Adding onchip_memory2_0 [altera_avalon_onchip_memory2 18.1]
+Progress: Parameterizing module onchip_memory2_0
+Progress: Adding pcie_cv_hip_avmm_0 [altera_pcie_cv_hip_avmm 18.1]
+Progress: Parameterizing module pcie_cv_hip_avmm_0
+Progress: Adding pio_key [altera_avalon_pio 18.1]
+Progress: Parameterizing module pio_key
+Progress: Adding pio_led [altera_avalon_pio 18.1]
+Progress: Parameterizing module pio_led
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: q_sys.alt_xcvr_reconfig_0: reconfig_from_xcvr port width is 5*46 bits
+Info: q_sys.alt_xcvr_reconfig_0: reconfig_to_xcvr port width is 5*70 bits
+Warning: q_sys.ctl_0.dma_read_master_0: If you connect the read master to a burst wrapping slave like SDRAM your system may experience data corruption without the Forced Burst Alignment setting enabled.
+Warning: q_sys.ctl_0.dma_write_master_0: If you connect the read master to a burst wrapping slave like SDRAM your system may experience data corruption without the Forced Burst Alignment setting enabled.
+Info: q_sys.pcie_cv_hip_avmm_0: The application clock frequency (pld_clk) is 125 Mhz
+Info: q_sys.pcie_cv_hip_avmm_0: 5 reconfiguration interfaces are required for connection to the external reconfiguration controller
+Info: q_sys.pcie_cv_hip_avmm_0: Family: Cyclone V
+Info: q_sys.pcie_cv_hip_avmm_0: Credit allocation in the 6K bytes receive buffer:
+Info: q_sys.pcie_cv_hip_avmm_0: Posted    : header=1  data=16
+Info: q_sys.pcie_cv_hip_avmm_0: Non posted: header=1  data=0
+Info: q_sys.pcie_cv_hip_avmm_0: Completion: header=73 data=293
+Info: q_sys.pcie_cv_hip_avmm_0: TXS ADDRESS WIDTH is 32
+Info: q_sys.pio_key: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Warning: q_sys.ctl_0: Interrupt sender ctl_0.modular_sgdma_dispatcher_0_csr_irq is not connected to an interrupt receiver
+Warning: q_sys.pcie_cv_hip_avmm_0: Interrupt sender pcie_cv_hip_avmm_0.CraIrq is not connected to an interrupt receiver
+Info: q_sys: Generating q_sys "q_sys" for SIM_VERILOG
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_xcvr_functions.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/altera_xcvr_functions.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/altera_xcvr_functions.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/altera_xcvr_functions.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_h.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xcvr_h.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/av/av_xcvr_h.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_resync.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_resync.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_resync.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/ctrl/alt_xcvr_resync.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_h.sv SYSTEM_VERILOG PATH .//alt_xcvr_reconfig_h.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_h.sv SYSTEM_VERILOG_ENCRYPT PATH ./mentor/alt_xcvr_reconfig_h.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig.sv SYSTEM_VERILOG PATH .//alt_xcvr_reconfig.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig.sv SYSTEM_VERILOG_ENCRYPT PATH ./mentor/alt_xcvr_reconfig.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cal_seq.sv SYSTEM_VERILOG PATH .//alt_xcvr_reconfig_cal_seq.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_cal_seq.sv SYSTEM_VERILOG_ENCRYPT PATH ./mentor/alt_xcvr_reconfig_cal_seq.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_cif.sv SYSTEM_VERILOG PATH .//alt_xreconf_cif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xreconf_cif.sv SYSTEM_VERILOG_ENCRYPT PATH ./mentor/alt_xreconf_cif.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_uif.sv SYSTEM_VERILOG PATH .//alt_xreconf_uif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xreconf_uif.sv SYSTEM_VERILOG_ENCRYPT PATH ./mentor/alt_xreconf_uif.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_basic_acq.sv SYSTEM_VERILOG PATH .//alt_xreconf_basic_acq.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xreconf_basic_acq.sv SYSTEM_VERILOG_ENCRYPT PATH ./mentor/alt_xreconf_basic_acq.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_analog.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xcvr_reconfig_analog.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_analog.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_analog/mentor/alt_xcvr_reconfig_analog.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_analog_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xcvr_reconfig_analog_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_analog_av.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_analog/mentor/alt_xcvr_reconfig_analog_av.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_analog_datactrl_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xreconf_analog_datactrl_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xreconf_analog_datactrl_av.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_analog/mentor/alt_xreconf_analog_datactrl_av.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_analog_rmw_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xreconf_analog_rmw_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xreconf_analog_rmw_av.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_analog/mentor/alt_xreconf_analog_rmw_av.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_analog_ctrlsm.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xreconf_analog_ctrlsm.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xreconf_analog_ctrlsm.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_analog/mentor/alt_xreconf_analog_ctrlsm.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_offset_cancellation.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_offset_cancellation/alt_xcvr_reconfig_offset_cancellation.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_offset_cancellation.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_offset_cancellation/mentor/alt_xcvr_reconfig_offset_cancellation.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_offset_cancellation_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_offset_cancellation/alt_xcvr_reconfig_offset_cancellation_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_offset_cancellation_av.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_offset_cancellation/mentor/alt_xcvr_reconfig_offset_cancellation_av.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_eyemon.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_eyemon/alt_xcvr_reconfig_eyemon.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_eyemon.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_eyemon/mentor/alt_xcvr_reconfig_eyemon.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dfe.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dfe/alt_xcvr_reconfig_dfe.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_dfe.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_dfe/mentor/alt_xcvr_reconfig_dfe.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_adce.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_adce/alt_xcvr_reconfig_adce.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_adce.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_adce/mentor/alt_xcvr_reconfig_adce.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_dcd.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_dcd/mentor/alt_xcvr_reconfig_dcd.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd_cal_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd_cal_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd_control_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd_control_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_dcd_av.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_dcd/mentor/alt_xcvr_reconfig_dcd_av.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_dcd_cal_av.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_dcd/mentor/alt_xcvr_reconfig_dcd_cal_av.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_dcd_control_av.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_dcd/mentor/alt_xcvr_reconfig_dcd_control_av.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_mif.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/alt_xcvr_reconfig_mif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_mif.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_mif/mentor/alt_xcvr_reconfig_mif.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_mif.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/av_xcvr_reconfig_mif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_mif_ctrl.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/av_xcvr_reconfig_mif_ctrl.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_mif_avmm.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/av_xcvr_reconfig_mif_avmm.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xcvr_reconfig_mif.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_mif/mentor/av_xcvr_reconfig_mif.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xcvr_reconfig_mif_ctrl.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_mif/mentor/av_xcvr_reconfig_mif_ctrl.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xcvr_reconfig_mif_avmm.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_mif/mentor/av_xcvr_reconfig_mif_avmm.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_pll.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_pll/alt_xcvr_reconfig_pll.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_pll.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_pll/mentor/alt_xcvr_reconfig_pll.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_pll.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_pll/av_xcvr_reconfig_pll.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_pll_ctrl.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_pll/av_xcvr_reconfig_pll_ctrl.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xcvr_reconfig_pll.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_pll/mentor/av_xcvr_reconfig_pll.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xcvr_reconfig_pll_ctrl.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_pll/mentor/av_xcvr_reconfig_pll_ctrl.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_soc.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_soc/alt_xcvr_reconfig_soc.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_ram.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_soc/alt_xcvr_reconfig_cpu_ram.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_ram.hex OTHER PATH ../alt_xcvr_reconfig_soc/software/alt_xcvr_reconfig_av/mem_init/alt_xcvr_reconfig_cpu_ram.hex
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_direct.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_direct/alt_xcvr_reconfig_direct.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_arbiter_acq.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/alt_arbiter_acq.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_basic.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/alt_xcvr_reconfig_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_arbiter_acq.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/alt_arbiter_acq.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_reconfig_basic.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/alt_xcvr_reconfig_basic.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_l2p_addr.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_l2p_addr.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_l2p_ch.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_l2p_ch.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_l2p_rom.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_l2p_rom.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_lif_csr.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_lif_csr.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_lif.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_lif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_basic.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xcvr_reconfig_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xrbasic_l2p_addr.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/av_xrbasic_l2p_addr.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xrbasic_l2p_ch.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/av_xrbasic_l2p_ch.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xrbasic_l2p_rom.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/av_xrbasic_l2p_rom.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xrbasic_lif_csr.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/av_xrbasic_lif_csr.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xrbasic_lif.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/av_xrbasic_lif.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_xcvr_reconfig_basic.sv SYSTEM_VERILOG_ENCRYPT PATH ../alt_xcvr_reconfig_basic/mentor/av_xcvr_reconfig_basic.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_arbiter.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_arbiter.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_m2s.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_m2s.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_wait_generate.v VERILOG PATH ../../altera_xcvr_generic/ctrl/altera_wait_generate.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_csr_selector.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_selector.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_arbiter.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/ctrl/alt_xcvr_arbiter.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_m2s.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/ctrl/alt_xcvr_m2s.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/altera_wait_generate.v VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/ctrl/altera_wait_generate.v MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/alt_xcvr_csr_selector.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/ctrl/alt_xcvr_csr_selector.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./sv_reconfig_bundle_to_basic.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_to_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/sv_reconfig_bundle_to_basic.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/sv/sv_reconfig_bundle_to_basic.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_reconfig_bundle_to_basic.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_reconfig_bundle_to_xcvr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_xcvr.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_reconfig_bundle_to_basic.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/av/av_reconfig_bundle_to_basic.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./mentor/av_reconfig_bundle_to_xcvr.sv SYSTEM_VERILOG_ENCRYPT PATH ../../altera_xcvr_generic/mentor/av/av_reconfig_bundle_to_xcvr.sv MENTOR_SPECIFIC
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/alt_xcvr_reconfig_cpu.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_test_bench.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_test_bench.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_nios2_waves.do OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_nios2_waves.do
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.hex OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.hex
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.dat OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.dat
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.mif OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.mif
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.hex OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.hex
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.dat OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.dat
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.mif OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.mif
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_irq_mapper.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_irq_mapper.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_reset_controller.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_reset_controller.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_reset_synchronizer.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_reset_synchronizer.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_reset_controller.sdc OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_reset_controller.sdc
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_master_translator.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_merlin_master_translator.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_slave_translator.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_merlin_slave_translator.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_master_agent.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_merlin_master_agent.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_slave_agent.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_merlin_slave_agent.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_burst_uncompressor.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_merlin_burst_uncompressor.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_avalon_sc_fifo.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_avalon_sc_fifo.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router_002.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router_002.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router_003.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router_003.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_arbitrator.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/altera_merlin_arbitrator.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0004_alt_xcvr_reconfig_0_gen/SIM_VERILOG/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
+Info: alt_xcvr_reconfig_0: "q_sys" instantiated alt_xcvr_reconfig "alt_xcvr_reconfig_0"
+Info: ctl_0: "q_sys" instantiated msgdma_ctl "ctl_0"
+Info: onchip_memory2_0: Starting RTL generation for module 'q_sys_onchip_memory2_0'
+Info: onchip_memory2_0:   Generation command is [exec /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/bin/perl -I /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/europa -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/perl_lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=q_sys_onchip_memory2_0 --dir=/tmp/alt8123_5214709751103173295.dir/0005_onchip_memory2_0_gen/ --quartus_dir=/home/daniel/intelFPGA_lite/18.1/quartus --verilog --config=/tmp/alt8123_5214709751103173295.dir/0005_onchip_memory2_0_gen//q_sys_onchip_memory2_0_component_configuration.pl  --do_build_sim=1    --sim_dir=/tmp/alt8123_5214709751103173295.dir/0005_onchip_memory2_0_gen/  ]
+Info: onchip_memory2_0: Done RTL generation for module 'q_sys_onchip_memory2_0'
+Info: onchip_memory2_0: "q_sys" instantiated altera_avalon_onchip_memory2 "onchip_memory2_0"
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./altera_xcvr_functions.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/altera_xcvr_functions.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./sv_reconfig_bundle_to_xcvr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_to_xcvr.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./sv_reconfig_bundle_to_ip.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_to_ip.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./sv_reconfig_bundle_merger.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_merger.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_h.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_avmm_csr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_avmm_csr.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_tx_pma_ch.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_tx_pma_ch.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_tx_pma.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_tx_pma.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_rx_pma.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_rx_pma.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_pma.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_pma.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_pcs_ch.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_pcs_ch.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_pcs.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_pcs.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_avmm.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_avmm.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_native.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_native.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_plls.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_plls.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_data_adapter.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_data_adapter.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_reconfig_bundle_to_basic.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_basic.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_reconfig_bundle_to_xcvr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_xcvr.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_8g_rx_pcs_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_8g_rx_pcs_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_8g_tx_pcs_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_8g_tx_pcs_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_common_pcs_pma_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_common_pcs_pma_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_common_pld_pcs_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_common_pld_pcs_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_pipe_gen1_2_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_pipe_gen1_2_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_rx_pcs_pma_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_rx_pcs_pma_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_rx_pld_pcs_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_rx_pld_pcs_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_tx_pcs_pma_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_tx_pcs_pma_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_tx_pld_pcs_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_tx_pld_pcs_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_reset_ctrl_lego.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_reset_ctrl_lego.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_reset_ctrl_tgx_cdrauto.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_reset_ctrl_tgx_cdrauto.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_resync.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_resync.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_common_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_common_h.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_common.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_common.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_pcs8g_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_pcs8g_h.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_pcs8g.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_pcs8g.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_selector.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_selector.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_mgmt2dec.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_mgmt2dec.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./altera_wait_generate.v VERILOG PATH ../../altera_xcvr_generic/ctrl/altera_wait_generate.v
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_emsip_adapter.sv SYSTEM_VERILOG PATH ../../altera_pcie_pipe/av/av_xcvr_emsip_adapter.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_pipe_native_hip.sv SYSTEM_VERILOG PATH ../../altera_pcie_pipe/av/av_xcvr_pipe_native_hip.sv
+Info: pcie_cv_hip_avmm_0: "q_sys" instantiated altera_pcie_cv_hip_avmm "pcie_cv_hip_avmm_0"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_xcvr_functions.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/av_xcvr_h.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/av_reconfig_bundle_to_basic.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/av_reconfig_bundle_to_xcvr.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/alt_xcvr_resync.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/alt_xcvr_csr_selector.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_wait_generate.v
+Warning: Overwriting different file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/plain_files.txt
+Info: pio_key: Starting RTL generation for module 'q_sys_pio_key'
+Info: pio_key:   Generation command is [exec /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/bin/perl -I /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/europa -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/perl_lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=q_sys_pio_key --dir=/tmp/alt8123_5214709751103173295.dir/0007_pio_key_gen/ --quartus_dir=/home/daniel/intelFPGA_lite/18.1/quartus --verilog --config=/tmp/alt8123_5214709751103173295.dir/0007_pio_key_gen//q_sys_pio_key_component_configuration.pl  --do_build_sim=1    --sim_dir=/tmp/alt8123_5214709751103173295.dir/0007_pio_key_gen/  ]
+Info: pio_key: Done RTL generation for module 'q_sys_pio_key'
+Info: pio_key: "q_sys" instantiated altera_avalon_pio "pio_key"
+Info: pio_led: Starting RTL generation for module 'q_sys_pio_led'
+Info: pio_led:   Generation command is [exec /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/bin/perl -I /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/europa -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/perl_lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=q_sys_pio_led --dir=/tmp/alt8123_5214709751103173295.dir/0008_pio_led_gen/ --quartus_dir=/home/daniel/intelFPGA_lite/18.1/quartus --verilog --config=/tmp/alt8123_5214709751103173295.dir/0008_pio_led_gen//q_sys_pio_led_component_configuration.pl  --do_build_sim=1    --sim_dir=/tmp/alt8123_5214709751103173295.dir/0008_pio_led_gen/  ]
+Info: pio_led: Done RTL generation for module 'q_sys_pio_led'
+Info: pio_led: "q_sys" instantiated altera_avalon_pio "pio_led"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_0: "q_sys" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_1: "q_sys" instantiated altera_mm_interconnect "mm_interconnect_1"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_2: "q_sys" instantiated altera_mm_interconnect "mm_interconnect_2"
+Info: irq_mapper: "q_sys" instantiated altera_irq_mapper "irq_mapper"
+Info: rst_controller: "q_sys" instantiated altera_reset_controller "rst_controller"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_reset_controller.v
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_reset_synchronizer.v
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_reset_controller.sdc
+Info: modular_sgdma_dispatcher_0: "ctl_0" instantiated modular_sgdma_dispatcher "modular_sgdma_dispatcher_0"
+Info: dma_read_master_0: "ctl_0" instantiated dma_read_master "dma_read_master_0"
+Info: dma_write_master_0: "ctl_0" instantiated dma_write_master "dma_write_master_0"
+Info: pcie_cv_hip_avmm_0_Rxm_BAR0_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "pcie_cv_hip_avmm_0_Rxm_BAR0_translator"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_master_translator.sv
+Info: onchip_memory2_0_s1_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "onchip_memory2_0_s1_translator"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_slave_translator.sv
+Info: pcie_cv_hip_avmm_0_Rxm_BAR0_agent: "mm_interconnect_0" instantiated altera_merlin_master_agent "pcie_cv_hip_avmm_0_Rxm_BAR0_agent"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_master_agent.sv
+Info: onchip_memory2_0_s1_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "onchip_memory2_0_s1_agent"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_slave_agent.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_burst_uncompressor.sv
+Info: onchip_memory2_0_s1_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "onchip_memory2_0_s1_agent_rsp_fifo"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_avalon_sc_fifo.v
+Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_0" instantiated altera_merlin_router "router_001"
+Info: router_003: "mm_interconnect_0" instantiated altera_merlin_router "router_003"
+Info: router_004: "mm_interconnect_0" instantiated altera_merlin_router "router_004"
+Info: ctl_0_dma_read_master_0_data_read_master_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "ctl_0_dma_read_master_0_data_read_master_limiter"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_avalon_sc_fifo.v
+Info: onchip_memory2_0_s1_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "onchip_memory2_0_s1_burst_adapter"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_avalon_st_pipeline_base.v
+Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux_001"
+Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: cmd_mux_001: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux_001"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux_001"
+Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: rsp_mux_001: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux_001"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter: "mm_interconnect_0" instantiated altera_merlin_width_adapter "pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_burst_uncompressor.sv
+Info: limiter_pipeline: "mm_interconnect_0" instantiated altera_avalon_st_pipeline_stage "limiter_pipeline"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_avalon_st_pipeline_stage.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_avalon_st_pipeline_base.v
+Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: avalon_st_adapter_001: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter_001"
+Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_1" instantiated altera_merlin_router "router_001"
+Info: router_003: "mm_interconnect_1" instantiated altera_merlin_router "router_003"
+Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: avalon_st_adapter: "mm_interconnect_1" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: router: "mm_interconnect_2" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_2" instantiated altera_merlin_router "router_001"
+Info: cmd_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/submodules/altera_merlin_arbitrator.sv
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: error_adapter_0: "avalon_st_adapter_001" instantiated error_adapter "error_adapter_0"
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: q_sys: Done "q_sys" with 55 modules, 284 files
+Info: qsys-generate succeeded.
+Info: Finished: Create simulation model
+Info: Starting: Create Modelsim Project.
+Info: sim-script-gen --spd="/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/q_sys.spd" --output-directory="/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/" --use-relative-paths=true
+Info: Doing: ip-make-simscript --spd=/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/q_sys.spd --output-directory=/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/ --use-relative-paths=true
+Info: Generating the following file(s) for MODELSIM simulator in /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/ directory:
+Info: 	mentor/msim_setup.tcl
+Info: Generating the following file(s) for VCS simulator in /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/ directory:
+Info: 	synopsys/vcs/vcs_setup.sh
+Info: Generating the following file(s) for VCSMX simulator in /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/ directory:
+Info: 	synopsys/vcsmx/synopsys_sim.setup
+Info: 	synopsys/vcsmx/vcsmx_setup.sh
+Info: Generating the following file(s) for NCSIM simulator in /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/ directory:
+Info: 	cadence/cds.lib
+Info: 	cadence/hdl.var
+Info: 	cadence/ncsim_setup.sh
+Info: 	38 .cds.lib files in cadence/cds_libs/ directory
+Info: Generating the following file(s) for RIVIERA simulator in /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/ directory:
+Info: 	aldec/rivierapro_setup.tcl
+Info: For information on how to simulate your IP, see the explanatory comments in the simulator-specific subdirectories under /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/simulation/.
+Info: Regenerate these scripts whenever you make any change to any Quartus-generated IP in your project.
+Info: Finished: Create Modelsim Project.
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate "/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys.qsys" --block-symbol-file --output-directory="/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys" --family="Cyclone V" --part=5CGXFC9D6F27C7
+Progress: Loading PCIe_Fundamental/q_sys.qsys
+Progress: Reading input file
+Progress: Adding alt_xcvr_reconfig_0 [alt_xcvr_reconfig 18.1]
+Progress: Parameterizing module alt_xcvr_reconfig_0
+Progress: Adding clk_0 [clock_source 18.1]
+Progress: Parameterizing module clk_0
+Progress: Adding ctl_0 [msgdma_ctl 1.0]
+Progress: Parameterizing module ctl_0
+Progress: Adding onchip_memory2_0 [altera_avalon_onchip_memory2 18.1]
+Progress: Parameterizing module onchip_memory2_0
+Progress: Adding pcie_cv_hip_avmm_0 [altera_pcie_cv_hip_avmm 18.1]
+Progress: Parameterizing module pcie_cv_hip_avmm_0
+Progress: Adding pio_key [altera_avalon_pio 18.1]
+Progress: Parameterizing module pio_key
+Progress: Adding pio_led [altera_avalon_pio 18.1]
+Progress: Parameterizing module pio_led
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: q_sys.alt_xcvr_reconfig_0: reconfig_from_xcvr port width is 5*46 bits
+Info: q_sys.alt_xcvr_reconfig_0: reconfig_to_xcvr port width is 5*70 bits
+Warning: q_sys.ctl_0.dma_read_master_0: If you connect the read master to a burst wrapping slave like SDRAM your system may experience data corruption without the Forced Burst Alignment setting enabled.
+Warning: q_sys.ctl_0.dma_write_master_0: If you connect the read master to a burst wrapping slave like SDRAM your system may experience data corruption without the Forced Burst Alignment setting enabled.
+Info: q_sys.pcie_cv_hip_avmm_0: The application clock frequency (pld_clk) is 125 Mhz
+Info: q_sys.pcie_cv_hip_avmm_0: 5 reconfiguration interfaces are required for connection to the external reconfiguration controller
+Info: q_sys.pcie_cv_hip_avmm_0: Family: Cyclone V
+Info: q_sys.pcie_cv_hip_avmm_0: Credit allocation in the 6K bytes receive buffer:
+Info: q_sys.pcie_cv_hip_avmm_0: Posted    : header=1  data=16
+Info: q_sys.pcie_cv_hip_avmm_0: Non posted: header=1  data=0
+Info: q_sys.pcie_cv_hip_avmm_0: Completion: header=73 data=293
+Info: q_sys.pcie_cv_hip_avmm_0: TXS ADDRESS WIDTH is 32
+Info: q_sys.pio_key: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Warning: q_sys.ctl_0: Interrupt sender ctl_0.modular_sgdma_dispatcher_0_csr_irq is not connected to an interrupt receiver
+Warning: q_sys.pcie_cv_hip_avmm_0: Interrupt sender pcie_cv_hip_avmm_0.CraIrq is not connected to an interrupt receiver
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate "/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys.qsys" --synthesis=VERILOG --output-directory="/home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis" --family="Cyclone V" --part=5CGXFC9D6F27C7
+Progress: Loading PCIe_Fundamental/q_sys.qsys
+Progress: Reading input file
+Progress: Adding alt_xcvr_reconfig_0 [alt_xcvr_reconfig 18.1]
+Progress: Parameterizing module alt_xcvr_reconfig_0
+Progress: Adding clk_0 [clock_source 18.1]
+Progress: Parameterizing module clk_0
+Progress: Adding ctl_0 [msgdma_ctl 1.0]
+Progress: Parameterizing module ctl_0
+Progress: Adding onchip_memory2_0 [altera_avalon_onchip_memory2 18.1]
+Progress: Parameterizing module onchip_memory2_0
+Progress: Adding pcie_cv_hip_avmm_0 [altera_pcie_cv_hip_avmm 18.1]
+Progress: Parameterizing module pcie_cv_hip_avmm_0
+Progress: Adding pio_key [altera_avalon_pio 18.1]
+Progress: Parameterizing module pio_key
+Progress: Adding pio_led [altera_avalon_pio 18.1]
+Progress: Parameterizing module pio_led
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: q_sys.alt_xcvr_reconfig_0: reconfig_from_xcvr port width is 5*46 bits
+Info: q_sys.alt_xcvr_reconfig_0: reconfig_to_xcvr port width is 5*70 bits
+Warning: q_sys.ctl_0.dma_read_master_0: If you connect the read master to a burst wrapping slave like SDRAM your system may experience data corruption without the Forced Burst Alignment setting enabled.
+Warning: q_sys.ctl_0.dma_write_master_0: If you connect the read master to a burst wrapping slave like SDRAM your system may experience data corruption without the Forced Burst Alignment setting enabled.
+Info: q_sys.pcie_cv_hip_avmm_0: The application clock frequency (pld_clk) is 125 Mhz
+Info: q_sys.pcie_cv_hip_avmm_0: 5 reconfiguration interfaces are required for connection to the external reconfiguration controller
+Info: q_sys.pcie_cv_hip_avmm_0: Family: Cyclone V
+Info: q_sys.pcie_cv_hip_avmm_0: Credit allocation in the 6K bytes receive buffer:
+Info: q_sys.pcie_cv_hip_avmm_0: Posted    : header=1  data=16
+Info: q_sys.pcie_cv_hip_avmm_0: Non posted: header=1  data=0
+Info: q_sys.pcie_cv_hip_avmm_0: Completion: header=73 data=293
+Info: q_sys.pcie_cv_hip_avmm_0: TXS ADDRESS WIDTH is 32
+Info: q_sys.pio_key: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
+Warning: q_sys.ctl_0: Interrupt sender ctl_0.modular_sgdma_dispatcher_0_csr_irq is not connected to an interrupt receiver
+Warning: q_sys.pcie_cv_hip_avmm_0: Interrupt sender pcie_cv_hip_avmm_0.CraIrq is not connected to an interrupt receiver
+Info: q_sys: Generating q_sys "q_sys" for QUARTUS_SYNTH
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_xcvr_functions.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/altera_xcvr_functions.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_h.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_resync.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_resync.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_h.sv SYSTEM_VERILOG PATH .//alt_xcvr_reconfig_h.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig.sv SYSTEM_VERILOG PATH .//alt_xcvr_reconfig.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cal_seq.sv SYSTEM_VERILOG PATH .//alt_xcvr_reconfig_cal_seq.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_cif.sv SYSTEM_VERILOG PATH .//alt_xreconf_cif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_uif.sv SYSTEM_VERILOG PATH .//alt_xreconf_uif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_basic_acq.sv SYSTEM_VERILOG PATH .//alt_xreconf_basic_acq.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_analog.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xcvr_reconfig_analog.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_analog_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xcvr_reconfig_analog_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_analog_datactrl_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xreconf_analog_datactrl_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_analog_rmw_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xreconf_analog_rmw_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xreconf_analog_ctrlsm.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_analog/alt_xreconf_analog_ctrlsm.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_offset_cancellation.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_offset_cancellation/alt_xcvr_reconfig_offset_cancellation.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_offset_cancellation_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_offset_cancellation/alt_xcvr_reconfig_offset_cancellation_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_eyemon.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_eyemon/alt_xcvr_reconfig_eyemon.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dfe.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dfe/alt_xcvr_reconfig_dfe.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_adce.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_adce/alt_xcvr_reconfig_adce.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd_cal_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd_cal_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_dcd_control_av.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_dcd/alt_xcvr_reconfig_dcd_control_av.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_mif.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/alt_xcvr_reconfig_mif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_mif.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/av_xcvr_reconfig_mif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_mif_ctrl.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/av_xcvr_reconfig_mif_ctrl.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_mif_avmm.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_mif/av_xcvr_reconfig_mif_avmm.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_pll.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_pll/alt_xcvr_reconfig_pll.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_pll.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_pll/av_xcvr_reconfig_pll.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_pll_ctrl.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_pll/av_xcvr_reconfig_pll_ctrl.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_soc.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_soc/alt_xcvr_reconfig_soc.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_ram.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_soc/alt_xcvr_reconfig_cpu_ram.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_ram.hex OTHER PATH ../alt_xcvr_reconfig_soc/software/alt_xcvr_reconfig_av/mem_init/alt_xcvr_reconfig_cpu_ram.hex
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_direct.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_direct/alt_xcvr_reconfig_direct.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_arbiter_acq.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/alt_arbiter_acq.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_basic.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/alt_xcvr_reconfig_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_l2p_addr.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_l2p_addr.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_l2p_ch.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_l2p_ch.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_l2p_rom.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_l2p_rom.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_lif_csr.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_lif_csr.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xrbasic_lif.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xrbasic_lif.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig_basic.sv SYSTEM_VERILOG PATH ../alt_xcvr_reconfig_basic/av_xcvr_reconfig_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_xcvr_reconfig.sdc OTHER PATH .//av_xcvr_reconfig.sdc
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_arbiter.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_arbiter.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_m2s.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_m2s.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_wait_generate.v VERILOG PATH ../../altera_xcvr_generic/ctrl/altera_wait_generate.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_csr_selector.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_selector.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./sv_reconfig_bundle_to_basic.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_to_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_reconfig_bundle_to_basic.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_basic.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./av_reconfig_bundle_to_xcvr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_xcvr.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/alt_xcvr_reconfig_cpu.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_test_bench.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_test_bench.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.mif OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_b.mif
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.mif OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_reconfig_cpu_rf_ram_a.mif
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_irq_mapper.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_irq_mapper.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_reset_controller.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_reset_controller.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_reset_synchronizer.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_reset_synchronizer.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_reset_controller.sdc OTHER PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_reset_controller.sdc
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_master_translator.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_merlin_master_translator.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_slave_translator.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_merlin_slave_translator.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_master_agent.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_merlin_master_agent.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_slave_agent.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_merlin_slave_agent.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_burst_uncompressor.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_merlin_burst_uncompressor.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_avalon_sc_fifo.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_avalon_sc_fifo.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router_002.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router_002.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_router_003.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_router_003.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_demux_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./altera_merlin_arbitrator.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/altera_merlin_arbitrator.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_cmd_mux_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux_001.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_rsp_mux_001.sv
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter.v VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter.v
+Info: alt_xcvr_reconfig_0: add_fileset_file ./alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv SYSTEM_VERILOG PATH ../../../../../../../../tmp/alt8123_5214709751103173295.dir/0054_alt_xcvr_reconfig_0_gen/QUARTUS_SYNTH/submodules/alt_xcvr_reconfig_cpu_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
+Info: alt_xcvr_reconfig_0: "q_sys" instantiated alt_xcvr_reconfig "alt_xcvr_reconfig_0"
+Info: ctl_0: "q_sys" instantiated msgdma_ctl "ctl_0"
+Info: onchip_memory2_0: Starting RTL generation for module 'q_sys_onchip_memory2_0'
+Info: onchip_memory2_0:   Generation command is [exec /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/bin/perl -I /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/europa -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/perl_lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=q_sys_onchip_memory2_0 --dir=/tmp/alt8123_5214709751103173295.dir/0055_onchip_memory2_0_gen/ --quartus_dir=/home/daniel/intelFPGA_lite/18.1/quartus --verilog --config=/tmp/alt8123_5214709751103173295.dir/0055_onchip_memory2_0_gen//q_sys_onchip_memory2_0_component_configuration.pl  --do_build_sim=0  ]
+Info: onchip_memory2_0: Done RTL generation for module 'q_sys_onchip_memory2_0'
+Info: onchip_memory2_0: "q_sys" instantiated altera_avalon_onchip_memory2 "onchip_memory2_0"
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./altera_xcvr_functions.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/altera_xcvr_functions.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./sv_reconfig_bundle_to_xcvr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_to_xcvr.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./sv_reconfig_bundle_to_ip.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_to_ip.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./sv_reconfig_bundle_merger.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/sv/sv_reconfig_bundle_merger.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_h.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_avmm_csr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_avmm_csr.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_tx_pma_ch.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_tx_pma_ch.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_tx_pma.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_tx_pma.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_rx_pma.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_rx_pma.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_pma.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_pma.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_pcs_ch.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_pcs_ch.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_pcs.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_pcs.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_avmm.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_avmm.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_native.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_native.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_plls.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_plls.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_data_adapter.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_xcvr_data_adapter.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_reconfig_bundle_to_basic.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_basic.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_reconfig_bundle_to_xcvr.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/av_reconfig_bundle_to_xcvr.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_8g_rx_pcs_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_8g_rx_pcs_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_8g_tx_pcs_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_8g_tx_pcs_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_common_pcs_pma_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_common_pcs_pma_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_common_pld_pcs_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_common_pld_pcs_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_pipe_gen1_2_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_pipe_gen1_2_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_rx_pcs_pma_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_rx_pcs_pma_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_rx_pld_pcs_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_rx_pld_pcs_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_tx_pcs_pma_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_tx_pcs_pma_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_hssi_tx_pld_pcs_interface_rbc.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/av/rbc/av_hssi_tx_pld_pcs_interface_rbc.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_reset_ctrl_lego.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_reset_ctrl_lego.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_reset_ctrl_tgx_cdrauto.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_reset_ctrl_tgx_cdrauto.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_resync.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_resync.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_common_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_common_h.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_common.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_common.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_pcs8g_h.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_pcs8g_h.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_pcs8g.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_pcs8g.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_csr_selector.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_csr_selector.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./alt_xcvr_mgmt2dec.sv SYSTEM_VERILOG PATH ../../altera_xcvr_generic/ctrl/alt_xcvr_mgmt2dec.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./altera_wait_generate.v VERILOG PATH ../../altera_xcvr_generic/ctrl/altera_wait_generate.v
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_emsip_adapter.sv SYSTEM_VERILOG PATH ../../altera_pcie_pipe/av/av_xcvr_emsip_adapter.sv
+Info: pcie_cv_hip_avmm_0: add_fileset_file ./av_xcvr_pipe_native_hip.sv SYSTEM_VERILOG PATH ../../altera_pcie_pipe/av/av_xcvr_pipe_native_hip.sv
+Info: pcie_cv_hip_avmm_0: "q_sys" instantiated altera_pcie_cv_hip_avmm "pcie_cv_hip_avmm_0"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_xcvr_functions.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/av_xcvr_h.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/av_reconfig_bundle_to_basic.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/av_reconfig_bundle_to_xcvr.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/alt_xcvr_resync.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/alt_xcvr_csr_selector.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_wait_generate.v
+Warning: Overwriting different file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/plain_files.txt
+Info: pio_key: Starting RTL generation for module 'q_sys_pio_key'
+Info: pio_key:   Generation command is [exec /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/bin/perl -I /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/europa -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/perl_lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=q_sys_pio_key --dir=/tmp/alt8123_5214709751103173295.dir/0057_pio_key_gen/ --quartus_dir=/home/daniel/intelFPGA_lite/18.1/quartus --verilog --config=/tmp/alt8123_5214709751103173295.dir/0057_pio_key_gen//q_sys_pio_key_component_configuration.pl  --do_build_sim=0  ]
+Info: pio_key: Done RTL generation for module 'q_sys_pio_key'
+Info: pio_key: "q_sys" instantiated altera_avalon_pio "pio_key"
+Info: pio_led: Starting RTL generation for module 'q_sys_pio_led'
+Info: pio_led:   Generation command is [exec /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/bin/perl -I /home/daniel/intelFPGA_lite/18.1/quartus/linux64/perl/lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/europa -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin/perl_lib -I /home/daniel/intelFPGA_lite/18.1/quartus/sopc_builder/bin -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/common -I /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- /home/daniel/intelFPGA_lite/18.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=q_sys_pio_led --dir=/tmp/alt8123_5214709751103173295.dir/0058_pio_led_gen/ --quartus_dir=/home/daniel/intelFPGA_lite/18.1/quartus --verilog --config=/tmp/alt8123_5214709751103173295.dir/0058_pio_led_gen//q_sys_pio_led_component_configuration.pl  --do_build_sim=0  ]
+Info: pio_led: Done RTL generation for module 'q_sys_pio_led'
+Info: pio_led: "q_sys" instantiated altera_avalon_pio "pio_led"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_0: "q_sys" instantiated altera_mm_interconnect "mm_interconnect_0"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_002: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_1: "q_sys" instantiated altera_mm_interconnect "mm_interconnect_1"
+Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
+Info: avalon_st_adapter_001: Inserting error_adapter: error_adapter_0
+Info: mm_interconnect_2: "q_sys" instantiated altera_mm_interconnect "mm_interconnect_2"
+Info: irq_mapper: "q_sys" instantiated altera_irq_mapper "irq_mapper"
+Info: rst_controller: "q_sys" instantiated altera_reset_controller "rst_controller"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_reset_controller.v
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_reset_synchronizer.v
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_reset_controller.sdc
+Info: modular_sgdma_dispatcher_0: "ctl_0" instantiated modular_sgdma_dispatcher "modular_sgdma_dispatcher_0"
+Info: dma_read_master_0: "ctl_0" instantiated dma_read_master "dma_read_master_0"
+Info: dma_write_master_0: "ctl_0" instantiated dma_write_master "dma_write_master_0"
+Info: pcie_cv_hip_avmm_0_Rxm_BAR0_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "pcie_cv_hip_avmm_0_Rxm_BAR0_translator"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_master_translator.sv
+Info: onchip_memory2_0_s1_translator: "mm_interconnect_0" instantiated altera_merlin_slave_translator "onchip_memory2_0_s1_translator"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_slave_translator.sv
+Info: pcie_cv_hip_avmm_0_Rxm_BAR0_agent: "mm_interconnect_0" instantiated altera_merlin_master_agent "pcie_cv_hip_avmm_0_Rxm_BAR0_agent"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_master_agent.sv
+Info: onchip_memory2_0_s1_agent: "mm_interconnect_0" instantiated altera_merlin_slave_agent "onchip_memory2_0_s1_agent"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_slave_agent.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: onchip_memory2_0_s1_agent_rsp_fifo: "mm_interconnect_0" instantiated altera_avalon_sc_fifo "onchip_memory2_0_s1_agent_rsp_fifo"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_0" instantiated altera_merlin_router "router_001"
+Info: router_003: "mm_interconnect_0" instantiated altera_merlin_router "router_003"
+Info: router_004: "mm_interconnect_0" instantiated altera_merlin_router "router_004"
+Info: ctl_0_dma_read_master_0_data_read_master_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "ctl_0_dma_read_master_0_data_read_master_limiter"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: onchip_memory2_0_s1_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "onchip_memory2_0_s1_burst_adapter"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux_001"
+Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: cmd_mux_001: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux_001"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux_001"
+Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_mux_001: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux_001"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter: "mm_interconnect_0" instantiated altera_merlin_width_adapter "pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+Info: limiter_pipeline: "mm_interconnect_0" instantiated altera_avalon_st_pipeline_stage "limiter_pipeline"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_avalon_st_pipeline_stage.sv
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_avalon_st_pipeline_base.v
+Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: avalon_st_adapter_001: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter_001"
+Info: router: "mm_interconnect_1" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_1" instantiated altera_merlin_router "router_001"
+Info: router_003: "mm_interconnect_1" instantiated altera_merlin_router "router_003"
+Info: cmd_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_1" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_1" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: avalon_st_adapter: "mm_interconnect_1" instantiated altera_avalon_st_adapter "avalon_st_adapter"
+Info: router: "mm_interconnect_2" instantiated altera_merlin_router "router"
+Info: router_001: "mm_interconnect_2" instantiated altera_merlin_router "router_001"
+Info: cmd_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "cmd_demux"
+Info: cmd_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "cmd_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: rsp_demux: "mm_interconnect_2" instantiated altera_merlin_demultiplexer "rsp_demux"
+Info: rsp_mux: "mm_interconnect_2" instantiated altera_merlin_multiplexer "rsp_mux"
+Info: Reusing file /home/daniel/Downloads/OpenVINO Starter Kit/Demonstration/PCIe_Fundamental/q_sys/synthesis/submodules/altera_merlin_arbitrator.sv
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: error_adapter_0: "avalon_st_adapter_001" instantiated error_adapter "error_adapter_0"
+Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
+Info: q_sys: Done "q_sys" with 55 modules, 233 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

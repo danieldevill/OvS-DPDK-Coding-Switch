@@ -35,7 +35,9 @@ begin
 		if rst = '0' then
 			rslt <= (others=>'0');
 		elsif clk'event and clk = '1' then
-			rslt <= std_logic_vector(to_unsigned(inv(to_integer(unsigned(operand))),rslt'length));
+			if to_integer(unsigned(operand)) > 0 then
+				rslt <= std_logic_vector(to_unsigned(inv(to_integer(unsigned(operand))),rslt'length));
+			end if;
 		end if;
 	end process;
 

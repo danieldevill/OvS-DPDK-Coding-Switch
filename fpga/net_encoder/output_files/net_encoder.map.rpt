@@ -1,5 +1,5 @@
 Analysis & Synthesis report for net_encoder
-Sun Jun 16 22:22:44 2019
+Tue Jun 18 20:54:19 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -176,7 +176,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun Jun 16 22:22:44 2019       ;
+; Analysis & Synthesis Status     ; Successful - Tue Jun 18 20:54:19 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; net_encoder                                 ;
 ; Top-level Entity Name           ; net_encoder                                 ;
@@ -297,7 +297,7 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.4%      ;
+;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -349,14 +349,14 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 3941      ;
+; Estimate of Logic utilization (ALMs needed) ; 3943      ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 3601      ;
+; Combinational ALUT usage for logic          ; 3605      ;
 ;     -- 7 input functions                    ; 224       ;
-;     -- 6 input functions                    ; 2531      ;
+;     -- 6 input functions                    ; 2534      ;
 ;     -- 5 input functions                    ; 363       ;
 ;     -- 4 input functions                    ; 84        ;
-;     -- <=3 input functions                  ; 399       ;
+;     -- <=3 input functions                  ; 400       ;
 ;                                             ;           ;
 ; Dedicated logic registers                   ; 5388      ;
 ;                                             ;           ;
@@ -368,7 +368,7 @@ refer to the applicable agreement for further details.
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
 ; Maximum fan-out                             ; 5644      ;
-; Total fan-out                               ; 45773     ;
+; Total fan-out                               ; 45815     ;
 ; Average fan-out                             ; 4.85      ;
 +---------------------------------------------+-----------+
 
@@ -378,7 +378,7 @@ refer to the applicable agreement for further details.
 +------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
 ; Compilation Hierarchy Node                                 ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                    ; Entity Name        ; Library Name ;
 +------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+--------------+
-; |net_encoder                                               ; 3601 (2625)         ; 5388 (4236)               ; 262144            ; 0          ; 98   ; 0            ; |net_encoder                                                                                                                                                           ; net_encoder        ; work         ;
+; |net_encoder                                               ; 3605 (2629)         ; 5388 (4236)               ; 262144            ; 0          ; 98   ; 0            ; |net_encoder                                                                                                                                                           ; net_encoder        ; work         ;
 ;    |fifo32x1024:\generate_mulfifos:0:fifo32x1024_mulfifos| ; 53 (0)              ; 105 (0)                   ; 32768             ; 0          ; 0    ; 0            ; |net_encoder|fifo32x1024:\generate_mulfifos:0:fifo32x1024_mulfifos                                                                                                     ; fifo32x1024        ; work         ;
 ;       |dcfifo:dcfifo_component|                            ; 53 (0)              ; 105 (0)                   ; 32768             ; 0          ; 0    ; 0            ; |net_encoder|fifo32x1024:\generate_mulfifos:0:fifo32x1024_mulfifos|dcfifo:dcfifo_component                                                                             ; dcfifo             ; work         ;
 ;          |dcfifo_aol1:auto_generated|                      ; 53 (6)              ; 105 (33)                  ; 32768             ; 0          ; 0    ; 0            ; |net_encoder|fifo32x1024:\generate_mulfifos:0:fifo32x1024_mulfifos|dcfifo:dcfifo_component|dcfifo_aol1:auto_generated                                                  ; dcfifo_aol1        ; work         ;
@@ -2180,7 +2180,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 5388  ;
-; Number of registers using Synchronous Clear  ; 617   ;
+; Number of registers using Synchronous Clear  ; 641   ;
 ; Number of registers using Synchronous Load   ; 24    ;
 ; Number of registers using Asynchronous Clear ; 3912  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -2194,8 +2194,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 ; Inverted Register                                                                                                                               ; Fan out ;
 +-------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; mulready                                                                                                                                        ; 3       ;
-; rowCount[0]                                                                                                                                     ; 5       ;
+; rowCount[4]                                                                                                                                     ; 8       ;
 ; rowCount[7]                                                                                                                                     ; 2       ;
 ; rowCount[6]                                                                                                                                     ; 2       ;
 ; rowCount[5]                                                                                                                                     ; 2       ;
@@ -2225,24 +2224,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; rowCount[22]                                                                                                                                    ; 2       ;
 ; rowCount[21]                                                                                                                                    ; 2       ;
 ; rowCount[20]                                                                                                                                    ; 2       ;
-; rowCount[4]                                                                                                                                     ; 4       ;
 ; rowCount[1]                                                                                                                                     ; 3       ;
-; prngen:\generate_coeffs:4:prngen_1|rslt_lfsr[0]                                                                                                 ; 2       ;
+; rowCount[0]                                                                                                                                     ; 5       ;
+; mulready                                                                                                                                        ; 2       ;
 ; prngen:\generate_coeffs:0:prngen_1|rslt_lfsr[0]                                                                                                 ; 2       ;
-; prngen:\generate_coeffs:4:prngen_1|rslt_lfsr[1]                                                                                                 ; 2       ;
+; prngen:\generate_coeffs:4:prngen_1|rslt_lfsr[0]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:0:prngen_1|rslt_lfsr[1]                                                                                                 ; 2       ;
+; prngen:\generate_coeffs:4:prngen_1|rslt_lfsr[1]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:0:prngen_1|rslt_lfsr[2]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:0:prngen_1|rslt_lfsr[3]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:0:prngen_1|rslt_lfsr[4]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:4:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:5:prngen_1|rslt_lfsr[2]                                                                                                 ; 2       ;
-; prngen:\generate_coeffs:5:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:1:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
-; prngen:\generate_coeffs:6:prngen_1|rslt_lfsr[0]                                                                                                 ; 2       ;
+; prngen:\generate_coeffs:5:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:2:prngen_1|rslt_lfsr[0]                                                                                                 ; 2       ;
+; prngen:\generate_coeffs:6:prngen_1|rslt_lfsr[0]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:6:prngen_1|rslt_lfsr[2]                                                                                                 ; 2       ;
-; prngen:\generate_coeffs:6:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:2:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
+; prngen:\generate_coeffs:6:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:3:prngen_1|rslt_lfsr[1]                                                                                                 ; 2       ;
 ; prngen:\generate_coeffs:3:prngen_1|rslt_lfsr[5]                                                                                                 ; 2       ;
 ; fifo32x1024:\generate_mulfifos:4:fifo32x1024_mulfifos|dcfifo:dcfifo_component|dcfifo_aol1:auto_generated|a_graycounter_mh6:rdptr_g1p|counter5a0 ; 10      ;
@@ -2289,12 +2289,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
-; 3:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |net_encoder|coeffs_out[18]~reg0                 ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |net_encoder|coeffs_out[31]~reg0                 ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |net_encoder|outPacketCount[28]                  ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |net_encoder|packetCount[14]                     ;
-; 112:1              ; 32 bits   ; 2368 LEs      ; 2368 LEs             ; 0 LEs                  ; Yes        ; |net_encoder|pkt32bseg_o[2]~reg0                 ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |net_encoder|rowCount[13]                        ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |net_encoder|coeffs_out[2]~reg0                  ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |net_encoder|outPacketCount[6]                   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |net_encoder|packetCount[3]                      ;
+; 112:1              ; 32 bits   ; 2368 LEs      ; 2368 LEs             ; 0 LEs                  ; Yes        ; |net_encoder|pkt32bseg_o[17]~reg0                ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |net_encoder|rowCount[12]                        ;
 ; 8:1                ; 7 bits    ; 35 LEs        ; 35 LEs               ; 0 LEs                  ; No         ; |net_encoder|gfmul:\generate_muls:4:gfmul_1|Mux0 ;
 ; 16:1               ; 224 bits  ; 2240 LEs      ; 2240 LEs             ; 0 LEs                  ; No         ; |net_encoder|Mux372                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
@@ -3914,20 +3913,20 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA               ; 484                         ;
 ;     ENA CLR           ; 3584                        ;
 ;     ENA SCLR          ; 365                         ;
-;     ENA SLD           ; 24                          ;
+;     ENA SCLR SLD      ; 24                          ;
 ;     plain             ; 603                         ;
-; arriav_lcell_comb     ; 3601                        ;
+; arriav_lcell_comb     ; 3605                        ;
 ;     arith             ; 196                         ;
 ;         1 data inputs ; 196                         ;
 ;     extend            ; 224                         ;
 ;         7 data inputs ; 224                         ;
-;     normal            ; 3181                        ;
+;     normal            ; 3185                        ;
 ;         1 data inputs ; 77                          ;
-;         2 data inputs ; 87                          ;
-;         3 data inputs ; 39                          ;
+;         2 data inputs ; 90                          ;
+;         3 data inputs ; 37                          ;
 ;         4 data inputs ; 84                          ;
 ;         5 data inputs ; 363                         ;
-;         6 data inputs ; 2531                        ;
+;         6 data inputs ; 2534                        ;
 ; boundary_port         ; 98                          ;
 ; stratixv_ram_block    ; 256                         ;
 ;                       ;                             ;
@@ -3941,7 +3940,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:10     ;
+; Top            ; 00:00:11     ;
 +----------------+--------------+
 
 
@@ -3951,7 +3950,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Jun 16 22:22:12 2019
+    Info: Processing started: Tue Jun 18 20:53:33 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off net_encoder -c net_encoder
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/coefs_ram/coefs_ram.vhd
@@ -3984,7 +3983,7 @@ Info (12021): Found 2 design units, including 1 entities, in source file /home/d
 Info (12127): Elaborating entity "net_encoder" for the top level hierarchy
 Warning (10541): VHDL Signal Declaration warning at net_encoder.vhd(98): used implicit default value for signal "data_pseudoin" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_encoder/net_encoder.vhd Line: 98
 Warning (10036): Verilog HDL or VHDL warning at net_encoder.vhd(98): object "q_pseudoin0" assigned a value but never read File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_encoder/net_encoder.vhd Line: 98
-Warning (10492): VHDL Process Statement warning at net_encoder.vhd(511): signal "muldone" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_encoder/net_encoder.vhd Line: 511
+Warning (10492): VHDL Process Statement warning at net_encoder.vhd(517): signal "muldone" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_encoder/net_encoder.vhd Line: 517
 Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "sum_vectors" into its bus
 Info (12128): Elaborating entity "fifo32x1024" for hierarchy "fifo32x1024:fifo32x1024_datain" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/net_encoder/net_encoder.vhd Line: 130
 Info (12128): Elaborating entity "dcfifo" for hierarchy "fifo32x1024:fifo32x1024_datain|dcfifo:dcfifo_component" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/fifo32x1024/fifo32x1024.vhd Line: 96
@@ -4144,15 +4143,15 @@ Critical Warning (18061): Ignored Power-Up Level option on the following registe
 Info (17049): 77 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 8319 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 8323 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 34 input pins
     Info (21059): Implemented 64 output pins
-    Info (21061): Implemented 7965 logic cells
+    Info (21061): Implemented 7969 logic cells
     Info (21064): Implemented 256 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 65 warnings
-    Info: Peak virtual memory: 1128 megabytes
-    Info: Processing ended: Sun Jun 16 22:22:44 2019
-    Info: Elapsed time: 00:00:32
-    Info: Total CPU time (on all processors): 00:00:50
+    Info: Peak virtual memory: 1122 megabytes
+    Info: Processing ended: Tue Jun 18 20:54:19 2019
+    Info: Elapsed time: 00:00:46
+    Info: Total CPU time (on all processors): 00:01:16
 
 

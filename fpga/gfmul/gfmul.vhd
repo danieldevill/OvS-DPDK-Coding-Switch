@@ -32,9 +32,9 @@ begin
 			rslt_lfsr(7) <= rslt_mulv(6);
 			rslt_lfsr(6) <= rslt_mulv(5);
 			rslt_lfsr(5) <= rslt_mulv(4);
-			rslt_lfsr(4) <= rslt_mulv(3) xor rslt_lfsr(7);
-			rslt_lfsr(3) <= rslt_mulv(2) xor rslt_lfsr(7);
-			rslt_lfsr(2) <= rslt_mulv(1) xor rslt_lfsr(7);
+			rslt_lfsr(4) <= rslt_mulv(3) xor rslt_mulv(7);
+			rslt_lfsr(3) <= rslt_mulv(2) xor rslt_mulv(7);
+			rslt_lfsr(2) <= rslt_mulv(1) xor rslt_mulv(7);
 			rslt_lfsr(1) <= rslt_mulv(0);
 			rslt_lfsr(0) <= rslt_mulv(7);
 

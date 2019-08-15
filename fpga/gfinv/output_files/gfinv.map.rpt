@@ -1,5 +1,5 @@
 Analysis & Synthesis report for gfinv
-Wed Jun 26 16:41:40 2019
+Wed Jun 26 17:07:45 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -42,14 +42,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Jun 26 16:41:40 2019       ;
+; Analysis & Synthesis Status     ; Successful - Wed Jun 26 17:07:45 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gfinv                                       ;
 ; Top-level Entity Name           ; gfinv                                       ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 8                                           ;
-; Total pins                      ; 18                                          ;
+; Total registers                 ; 0                                           ;
+; Total pins                      ; 16                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -188,16 +188,16 @@ refer to the applicable agreement for further details.
 ;     -- 4 input functions                    ; 0                ;
 ;     -- <=3 input functions                  ; 0                ;
 ;                                             ;                  ;
-; Dedicated logic registers                   ; 8                ;
+; Dedicated logic registers                   ; 0                ;
 ;                                             ;                  ;
-; I/O pins                                    ; 18               ;
+; I/O pins                                    ; 16               ;
 ;                                             ;                  ;
 ; Total DSP Blocks                            ; 0                ;
 ;                                             ;                  ;
 ; Maximum fan-out node                        ; operand[0]~input ;
 ; Maximum fan-out                             ; 32               ;
-; Total fan-out                               ; 290              ;
-; Average fan-out                             ; 3.45             ;
+; Total fan-out                               ; 264              ;
+; Average fan-out                             ; 3.67             ;
 +---------------------------------------------+------------------+
 
 
@@ -206,7 +206,7 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |gfinv                     ; 40 (40)             ; 8 (8)                     ; 0                 ; 0          ; 18   ; 0            ; |gfinv              ; gfinv       ; work         ;
+; |gfinv                     ; 40 (40)             ; 0 (0)                     ; 0                 ; 0          ; 16   ; 0            ; |gfinv              ; gfinv       ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -216,10 +216,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 8     ;
+; Total registers                              ; 0     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 8     ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
@@ -231,15 +231,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 8                           ;
-;     CLR               ; 8                           ;
 ; arriav_lcell_comb     ; 40                          ;
 ;     normal            ; 40                          ;
 ;         6 data inputs ; 40                          ;
-; boundary_port         ; 18                          ;
+; boundary_port         ; 16                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 2.00                        ;
-; Average LUT depth     ; 1.66                        ;
+; Average LUT depth     ; 2.00                        ;
 +-----------------------+-----------------------------+
 
 
@@ -258,12 +256,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Jun 26 16:41:18 2019
+    Info: Processing started: Wed Jun 26 17:07:27 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off gfinv -c gfinv
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file gfinv.vhd
-    Info (12022): Found design unit 1: gfinv-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfinv/gfinv.vhd Line: 16
+    Info (12022): Found design unit 1: gfinv-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfinv/gfinv.vhd Line: 14
     Info (12023): Found entity 1: gfinv File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfinv/gfinv.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gfinvTb.vhd
     Info (12022): Found design unit 1: gfinvTb-sim File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfinv/gfinvTb.vhd Line: 10
@@ -272,14 +270,14 @@ Info (12127): Elaborating entity "gfinv" for the top level hierarchy
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 58 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 10 input pins
+Info (21057): Implemented 56 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 8 input pins
     Info (21059): Implemented 8 output pins
     Info (21061): Implemented 40 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 997 megabytes
-    Info: Processing ended: Wed Jun 26 16:41:40 2019
-    Info: Elapsed time: 00:00:22
+    Info: Peak virtual memory: 1000 megabytes
+    Info: Processing ended: Wed Jun 26 17:07:45 2019
+    Info: Elapsed time: 00:00:18
     Info: Total CPU time (on all processors): 00:00:35
 
 

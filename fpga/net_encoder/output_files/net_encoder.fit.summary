@@ -1,12 +1,12 @@
-Fitter Status : Successful - Sun Jun 16 22:27:25 2019
+Fitter Status : Successful - Tue Jun 18 20:57:33 2019
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : net_encoder
 Top-level Entity Name : net_encoder
 Family : Cyclone V
 Device : 5CGXFC9D6F27C7
 Timing Models : Final
-Logic utilization (in ALMs) : 3,251 / 113,560 ( 3 % )
-Total registers : 6147
+Logic utilization (in ALMs) : 3,240 / 113,560 ( 3 % )
+Total registers : 5697
 Total pins : 98 / 378 ( 26 % )
 Total virtual pins : 0
 Total block memory bits : 262,144 / 12,492,800 ( 2 % )

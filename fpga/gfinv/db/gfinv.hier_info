@@ -1,20 +1,4 @@
 |gfinv
-clk => rslt[0]~reg0.CLK
-clk => rslt[1]~reg0.CLK
-clk => rslt[2]~reg0.CLK
-clk => rslt[3]~reg0.CLK
-clk => rslt[4]~reg0.CLK
-clk => rslt[5]~reg0.CLK
-clk => rslt[6]~reg0.CLK
-clk => rslt[7]~reg0.CLK
-rst => rslt[0]~reg0.ACLR
-rst => rslt[1]~reg0.ACLR
-rst => rslt[2]~reg0.ACLR
-rst => rslt[3]~reg0.ACLR
-rst => rslt[4]~reg0.ACLR
-rst => rslt[5]~reg0.ACLR
-rst => rslt[6]~reg0.ACLR
-rst => rslt[7]~reg0.ACLR
 operand[0] => Mux0.IN263
 operand[0] => Mux1.IN263
 operand[0] => Mux2.IN263
@@ -79,13 +63,13 @@ operand[7] => Mux4.IN256
 operand[7] => Mux5.IN256
 operand[7] => Mux6.IN256
 operand[7] => Mux7.IN256
-rslt[0] << rslt[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-rslt[1] << rslt[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-rslt[2] << rslt[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-rslt[3] << rslt[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-rslt[4] << rslt[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-rslt[5] << rslt[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-rslt[6] << rslt[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-rslt[7] << rslt[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+rslt[0] << Mux7.DB_MAX_OUTPUT_PORT_TYPE
+rslt[1] << Mux6.DB_MAX_OUTPUT_PORT_TYPE
+rslt[2] << Mux5.DB_MAX_OUTPUT_PORT_TYPE
+rslt[3] << Mux4.DB_MAX_OUTPUT_PORT_TYPE
+rslt[4] << Mux3.DB_MAX_OUTPUT_PORT_TYPE
+rslt[5] << Mux2.DB_MAX_OUTPUT_PORT_TYPE
+rslt[6] << Mux1.DB_MAX_OUTPUT_PORT_TYPE
+rslt[7] << Mux0.DB_MAX_OUTPUT_PORT_TYPE
 
 

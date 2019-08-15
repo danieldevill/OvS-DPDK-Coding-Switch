@@ -6,12 +6,11 @@
 # vmap work rtl_work
 # Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
 # vmap work rtl_work 
-# Copying /home/daniel/Software/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
-# Modifying modelsim.ini
+# Modifying /home/daniel/Software/intelFPGA_lite/18.1/modelsim_ase/linuxaloem/../modelsim.ini
 # 
 # vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:09:42 on May 29,2019
+# Start time: 19:43:17 on Jun 13,2019
 # vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -19,12 +18,12 @@
 # -- Loading package NUMERIC_STD
 # -- Compiling entity gfmul
 # -- Compiling architecture rtl of gfmul
-# End time: 09:09:42 on May 29,2019, Elapsed time: 0:00:00
+# End time: 19:43:17 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vcom -93 -work work {/home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:09:43 on May 29,2019
+# Start time: 19:43:17 on Jun 13,2019
 # vcom -reportprogress 300 -93 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -34,12 +33,12 @@
 # -- Compiling entity gfmulTb
 # -- Compiling architecture sim of gfmulTb
 # -- Loading entity gfmul
-# End time: 09:09:43 on May 29,2019, Elapsed time: 0:00:00
+# End time: 19:43:17 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  gfmulTb
 # vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" gfmulTb 
-# Start time: 09:09:43 on May 29,2019
+# Start time: 19:43:17 on Jun 13,2019
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -76,16 +75,14 @@
 #    Time: 420 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
 #    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
 # ** Failure: SImulation Finished
-#    Time: 670 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+#    Time: 680 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
 # Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
 # 
 # stdin: <EOF>
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:15:16 on May 29,2019
+# Start time: 20:11:08 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -93,44 +90,11 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package NUMERIC_STD
 # -- Compiling entity gfmul
 # -- Compiling architecture rtl of gfmul
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(31): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(32): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(33): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(34): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(34): Bad right hand side (infix expression) in signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(35): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(35): Bad right hand side (infix expression) in signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(36): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(36): Bad right hand side (infix expression) in signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(37): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(38): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(43): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(43): (vcom-1136) Unknown identifier "temp".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(44): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(56): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(56): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(59): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(59): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(60): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(60): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(61): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(61): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(62): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(62): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(63): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(63): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(64): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(64): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(65): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(65): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(66): Illegal target for signal assignment.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(66): (vcom-1136) Unknown identifier "tempv1".
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(72): VHDL Compiler exiting
-# End time: 09:15:17 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 33, Warnings: 0
+# End time: 20:11:08 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:15:17 on May 29,2019
+# Start time: 20:11:08 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -139,940 +103,26 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package std_logic_textio
 # -- Compiling entity gfmulTb
 # -- Compiling architecture sim of gfmulTb
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(47): (vcom-1136) Unknown identifier "vtemp".
 # -- Loading entity gfmul
-# End time: 09:15:18 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:16:13 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:16:13 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:16:13 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:16:13 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 670 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:17:17 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:17:17 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:17:17 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:17:17 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 670 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:17:48 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:17:48 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:17:48 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:17:48 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 670 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:18:28 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:18:29 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:18:29 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:18:29 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 110 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 200 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 290 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 380 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 470 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 560 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 650 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 750 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:19:57 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:19:58 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:19:58 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:19:58 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 110 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 200 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 290 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 380 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 470 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 560 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 650 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 750 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:21:06 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:21:06 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:21:06 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:21:06 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 110 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 200 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 290 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 380 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 470 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 560 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 650 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 750 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-add wave -position end  sim:/gfmultb/i_gfmul1/rslt_lfsrv
-add wave -position end  sim:/gfmultb/i_gfmul1/rslt_mulv
-restart
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 110 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 200 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 290 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 380 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 470 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 560 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 650 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 750 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:23:40 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:23:40 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:23:40 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:23:40 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-# Warning in wave window restart: (vish-4014) No objects found matching '/gfmultb/i_gfmul1/rslt_lfsrv'. 
-# Warning in wave window restart: (vish-4014) No objects found matching '/gfmultb/i_gfmul1/rslt_mulv'. 
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 110 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 200 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 290 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 380 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 470 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 560 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 650 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 750 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:24:06 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:24:06 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:24:07 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:24:07 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 670 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:24:29 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:24:29 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:24:29 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:24:29 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:27:49 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:27:49 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:27:49 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:27:50 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:28:50 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:28:51 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:28:51 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:28:51 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:29:48 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:29:48 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:29:49 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:29:49 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:31:21 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:31:22 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:31:22 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:31:22 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:32:14 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:32:14 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:32:14 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:32:14 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:37:52 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:37:52 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:37:52 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:37:52 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:38:38 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:38:38 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:38:38 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:38:38 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:39:34 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(69): Physical unit hidden by declaration of 'rslt' at line 15.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(69): near "<=": (vcom-1576) expecting GENERATE or THEN or USE.
-# End time: 09:39:34 on May 29,2019, Elapsed time: 0:00:00
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(120): VHDL Compiler exiting
+# End time: 20:11:08 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 2, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:11:21 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfmul
+# -- Compiling architecture rtl of gfmul
+# End time: 20:11:21 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:39:34 on May 29,2019
+# Start time: 20:11:21 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1081,155 +131,14 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package std_logic_textio
 # -- Compiling entity gfmulTb
 # -- Compiling architecture sim of gfmulTb
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(47): Variable "v_temp" is type ieee.std_logic_1164.STD_LOGIC_VECTOR; expecting type std.STANDARD.STRING.
 # -- Loading entity gfmul
-# End time: 09:39:34 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:06 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(66): Physical unit hidden by declaration of 'rslt' at line 15.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(66): near "<=": (vcom-1576) expecting GENERATE or THEN or USE.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(68): near "if": (vcom-1576) expecting PROCESS.
-# End time: 09:40:06 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:06 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:40:06 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:18 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(66): Physical unit hidden by declaration of 'rslt' at line 15.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(66): near "<=": (vcom-1576) expecting GENERATE or THEN or USE.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(68): near "if": (vcom-1576) expecting PROCESS.
-# End time: 09:40:19 on May 29,2019, Elapsed time: 0:00:01
-# Errors: 3, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:19 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:40:19 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:26 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 09:40:26 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:26 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:40:26 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:51 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(68): Illegal concurrent statement.
-# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd(72): VHDL Compiler exiting
-# End time: 09:40:52 on May 29,2019, Elapsed time: 0:00:01
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(120): VHDL Compiler exiting
+# End time: 20:11:21 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 2, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:40:52 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 09:40:52 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:41:17 on May 29,2019
+# Start time: 20:12:31 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1237,11 +146,11 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package NUMERIC_STD
 # -- Compiling entity gfmul
 # -- Compiling architecture rtl of gfmul
-# End time: 09:41:17 on May 29,2019, Elapsed time: 0:00:00
+# End time: 20:12:31 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:41:17 on May 29,2019
+# Start time: 20:12:31 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1250,12 +159,14 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package std_logic_textio
 # -- Compiling entity gfmulTb
 # -- Compiling architecture sim of gfmulTb
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(47): Variable "v_temp" is type ieee.std_logic_1164.STD_LOGIC_VECTOR; expecting type std.STANDARD.INTEGER.
 # -- Loading entity gfmul
-# End time: 09:41:17 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(120): VHDL Compiler exiting
+# End time: 20:12:31 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:46:19 on May 29,2019
+# Start time: 20:12:50 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1263,11 +174,127 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package NUMERIC_STD
 # -- Compiling entity gfmul
 # -- Compiling architecture rtl of gfmul
-# End time: 09:46:19 on May 29,2019, Elapsed time: 0:00:00
+# End time: 20:12:50 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 09:46:19 on May 29,2019
+# Start time: 20:12:50 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity gfmulTb
+# -- Compiling architecture sim of gfmulTb
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(47): Attribute "image" requires a scalar type mark prefix.
+# -- Loading entity gfmul
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(120): VHDL Compiler exiting
+# End time: 20:12:50 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:12:53 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfmul
+# -- Compiling architecture rtl of gfmul
+# End time: 20:12:53 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:12:53 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity gfmulTb
+# -- Compiling architecture sim of gfmulTb
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(47): Attribute "image" requires a scalar type mark prefix.
+# -- Loading entity gfmul
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(120): VHDL Compiler exiting
+# End time: 20:12:53 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:13:15 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfmul
+# -- Compiling architecture rtl of gfmul
+# End time: 20:13:15 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:13:15 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity gfmulTb
+# -- Compiling architecture sim of gfmulTb
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(47): (vcom-1600) No feasible entries for subprogram "TO_UNSIGNED".
+#    Visible subprograms are:
+#       (explicit) NUMERIC_STD.TO_UNSIGNED[NATURAL, NATURAL return UNRESOLVED_UNSIGNED] at $MODEL_TECH/../vhdl_src/ieee/mti_numeric_std.vhd(1461)
+# -- Loading entity gfmul
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(120): VHDL Compiler exiting
+# End time: 20:13:15 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:13:43 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfmul
+# -- Compiling architecture rtl of gfmul
+# End time: 20:13:43 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:13:43 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_textio
+# -- Compiling entity gfmulTb
+# -- Compiling architecture sim of gfmulTb
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(47): (vcom-1600) No feasible entries for subprogram "TO_UNSIGNED".
+#    Visible subprograms are:
+#       (explicit) NUMERIC_STD.TO_UNSIGNED[NATURAL, NATURAL return UNRESOLVED_UNSIGNED] at $MODEL_TECH/../vhdl_src/ieee/mti_numeric_std.vhd(1461)
+# -- Loading entity gfmul
+# ** Error: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd(120): VHDL Compiler exiting
+# End time: 20:13:43 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:14:18 on Jun 13,2019
+# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity gfmul
+# -- Compiling architecture rtl of gfmul
+# End time: 20:14:18 on Jun 13,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 20:14:18 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1277,7 +304,7 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Compiling entity gfmulTb
 # -- Compiling architecture sim of gfmulTb
 # -- Loading entity gfmul
-# End time: 09:46:19 on May 29,2019, Elapsed time: 0:00:00
+# End time: 20:14:18 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 restart
 # Loading work.gfmultb(sim)
@@ -1291,28 +318,279 @@ run -all
 # ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
+# ** Note: 0
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 39
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 105
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 210
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 185
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 111
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 249
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 200
 #    Time: 20 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 38
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 106
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 212
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 181
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 119
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 200
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 171
 #    Time: 100 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 40
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 120
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 240
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 253
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 231
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 251
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 195
 #    Time: 180 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 183
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 196
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 149
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 55
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 110
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 107
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 97
 #    Time: 260 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 245
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 2
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 4
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 8
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 16
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 213
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 66
 #    Time: 340 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 184
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 213
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 183
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 115
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 230
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 105
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 106
 #    Time: 420 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 143
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 140
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 5
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 10
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 20
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 167
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 220
 #    Time: 500 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
 # ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
+#    Time: 680 ns  Iteration: 0  Process: /gfmultb/line__75 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+# Break in Process line__75 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 117
+add wave -position 6  sim:/gfmultb/i_gfmul1/rslt_lfsr
+add wave -position 7  sim:/gfmultb/i_gfmul1/rslt_mulv
+restart
+run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
+# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
+# ** Note: 0
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 39
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 105
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 210
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 185
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 111
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 249
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 200
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: End of First Multiply after: 64operations
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 38
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 106
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 212
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 181
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 119
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 200
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 171
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: End of First Multiply after: 64operations
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 40
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 120
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 240
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 253
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 231
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 251
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 195
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: End of First Multiply after: 64operations
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 183
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 196
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 149
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 55
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 110
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 107
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 97
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: End of First Multiply after: 64operations
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 245
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 2
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 4
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 8
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 16
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 213
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 66
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: End of First Multiply after: 64operations
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 184
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 213
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 183
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 115
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 230
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 105
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 106
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: End of First Multiply after: 64operations
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 143
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 140
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 5
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 10
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 20
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 167
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 220
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: End of First Multiply after: 64operations
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Failure: SImulation Finished
+#    Time: 680 ns  Iteration: 0  Process: /gfmultb/line__75 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+# Break in Process line__75 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 117
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:29:57 on May 29,2019
+# Start time: 20:59:05 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1320,11 +598,11 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package NUMERIC_STD
 # -- Compiling entity gfmul
 # -- Compiling architecture rtl of gfmul
-# End time: 10:29:57 on May 29,2019, Elapsed time: 0:00:00
+# End time: 20:59:05 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:29:58 on May 29,2019
+# Start time: 20:59:05 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1334,35 +612,7 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Compiling entity gfmulTb
 # -- Compiling architecture sim of gfmulTb
 # -- Loading entity gfmul
-# End time: 10:29:58 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-add wave -position end  sim:/gfmultb/i_gfmul1/rslt_lfsr
-add wave -position end  sim:/gfmultb/i_gfmul1/rslt_mulv
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:25:01 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 11:25:01 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:25:01 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 11:25:01 on May 29,2019, Elapsed time: 0:00:00
+# End time: 20:59:05 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 restart
 # Loading work.gfmultb(sim)
@@ -1376,28 +626,138 @@ run -all
 # ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
+# ** Note: 0
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 39
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 105
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 210
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 185
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 111
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 249
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 200
 #    Time: 20 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 38
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 106
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 212
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 181
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 119
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 200
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 171
 #    Time: 100 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 40
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 120
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 240
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 253
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 231
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 251
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 195
 #    Time: 180 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 183
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 196
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 149
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 55
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 110
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 107
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 97
 #    Time: 260 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 245
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 2
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 4
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 8
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 16
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 213
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 66
 #    Time: 340 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 184
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 213
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 183
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 115
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 230
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 105
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 106
 #    Time: 420 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
+#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 0
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 143
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 140
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 5
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 10
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 20
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 167
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
+# ** Note: 220
 #    Time: 500 ns  Iteration: 0  Instance: /gfmultb
 # ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
+#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
 # ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
+#    Time: 680 ns  Iteration: 0  Process: /gfmultb/line__75 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
+# Break in Process line__75 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 117
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:26:42 on May 29,2019
+# Start time: 20:59:44 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1405,11 +765,11 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Loading package NUMERIC_STD
 # -- Compiling entity gfmul
 # -- Compiling architecture rtl of gfmul
-# End time: 16:26:42 on May 29,2019, Elapsed time: 0:00:00
+# End time: 20:59:44 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:26:42 on May 29,2019
+# Start time: 20:59:44 on Jun 13,2019
 # vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
@@ -1419,95 +779,7 @@ vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/
 # -- Compiling entity gfmulTb
 # -- Compiling architecture sim of gfmulTb
 # -- Loading entity gfmul
-# End time: 16:26:42 on May 29,2019, Elapsed time: 0:00:00
+# End time: 20:59:44 on Jun 13,2019, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:28:15 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmul.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Compiling entity gfmul
-# -- Compiling architecture rtl of gfmul
-# End time: 16:28:15 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:28:15 on May 29,2019
-# vcom -reportprogress 300 -work work /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd 
-# -- Loading package STANDARD
-# -- Loading package TEXTIO
-# -- Loading package std_logic_1164
-# -- Loading package NUMERIC_STD
-# -- Loading package std_logic_textio
-# -- Compiling entity gfmulTb
-# -- Compiling architecture sim of gfmulTb
-# -- Loading entity gfmul
-# End time: 16:28:15 on May 29,2019, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-restart
-# Loading work.gfmultb(sim)
-# Loading work.gfmul(rtl)
-run -all
-# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libpthread.so.0 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libm.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libc.so.6 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /lib/ld-linux.so.2 : module was loaded at an absolute address.
-# ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libnss_files.so.2 : module was loaded at an absolute address.
-# ** Note: End of First Multiply after: 64operations
-#    Time: 20 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 100 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 180 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 260 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 340 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 420 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 500 ns  Iteration: 0  Instance: /gfmultb
-# ** Note: End of First Multiply after: 64operations
-#    Time: 580 ns  Iteration: 0  Instance: /gfmultb
-# ** Failure: SImulation Finished
-#    Time: 760 ns  Iteration: 0  Process: /gfmultb/line__74 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd
-# Break in Process line__74 at /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gfmul/gfmulTb.vhd line 116
-# End time: 17:21:32 on May 29,2019, Elapsed time: 8:11:49
-# Errors: 45, Warnings: 176
+# End time: 20:59:47 on Jun 13,2019, Elapsed time: 1:16:30
+# Errors: 14, Warnings: 32

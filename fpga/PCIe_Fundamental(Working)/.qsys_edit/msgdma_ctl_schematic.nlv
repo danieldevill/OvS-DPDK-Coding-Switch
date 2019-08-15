@@ -1,0 +1,23 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst msgdma_ctl.dma_write_master_0 -pg 1 -lvl 3 -y 270
+preplace inst msgdma_ctl.dma_read_master_0 -pg 1 -lvl 3 -y 130
+preplace inst msgdma_ctl.clk_0 -pg 1 -lvl 1 -y 170
+preplace inst msgdma_ctl.modular_sgdma_dispatcher_0 -pg 1 -lvl 2 -y 30
+preplace inst msgdma_ctl -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>msgdma_ctl</net_container>(SLAVE)clk_0.clk_in,(SLAVE)msgdma_ctl.clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>msgdma_ctl</net_container>(MASTER)dma_read_master_0.Data_Read_Master,(MASTER)msgdma_ctl.dma_read_master_0_data_read_master) 1 3 1 NJ
+preplace netloc POINT_TO_POINT<net_container>msgdma_ctl</net_container>(MASTER)dma_write_master_0.Response_Source,(SLAVE)modular_sgdma_dispatcher_0.Write_Response_Sink) 1 1 3 470 240 NJ 240 1110
+preplace netloc POINT_TO_POINT<net_container>msgdma_ctl</net_container>(SLAVE)modular_sgdma_dispatcher_0.Read_Response_Sink,(MASTER)dma_read_master_0.Response_Source) 1 1 3 450 220 NJ 220 1110
+preplace netloc POINT_TO_POINT<net_container>msgdma_ctl</net_container>(SLAVE)dma_read_master_0.Command_Sink,(MASTER)modular_sgdma_dispatcher_0.Read_Command_Source) 1 2 1 800
+preplace netloc EXPORT<net_container>msgdma_ctl</net_container>(MASTER)msgdma_ctl.dma_write_master_0_data_write_master,(MASTER)dma_write_master_0.Data_Write_Master) 1 3 1 NJ
+preplace netloc EXPORT<net_container>msgdma_ctl</net_container>(SLAVE)modular_sgdma_dispatcher_0.CSR,(SLAVE)msgdma_ctl.modular_sgdma_dispatcher_0_csr) 1 0 2 NJ 40 NJ
+preplace netloc POINT_TO_POINT<net_container>msgdma_ctl</net_container>(MASTER)modular_sgdma_dispatcher_0.Write_Command_Source,(SLAVE)dma_write_master_0.Command_Sink) 1 2 1 780
+preplace netloc EXPORT<net_container>msgdma_ctl</net_container>(SLAVE)msgdma_ctl.modular_sgdma_dispatcher_0_csr_irq,(SLAVE)modular_sgdma_dispatcher_0.csr_irq) 1 0 2 NJ 160 NJ
+preplace netloc POINT_TO_POINT<net_container>msgdma_ctl</net_container>(SLAVE)dma_write_master_0.Data_Sink,(MASTER)dma_read_master_0.Data_Source) 1 2 2 860 260 1130
+preplace netloc FAN_OUT<net_container>msgdma_ctl</net_container>(SLAVE)dma_read_master_0.Clock_reset,(SLAVE)modular_sgdma_dispatcher_0.clock_reset,(MASTER)clk_0.clk_reset,(SLAVE)dma_write_master_0.Clock_reset) 1 1 2 410 260 840
+preplace netloc EXPORT<net_container>msgdma_ctl</net_container>(SLAVE)msgdma_ctl.modular_sgdma_dispatcher_0_descriptor_slave,(SLAVE)modular_sgdma_dispatcher_0.Descriptor_Slave) 1 0 2 NJ 60 NJ
+preplace netloc EXPORT<net_container>msgdma_ctl</net_container>(SLAVE)msgdma_ctl.reset,(SLAVE)clk_0.clk_in_reset) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>msgdma_ctl</net_container>(SLAVE)dma_read_master_0.Clock,(SLAVE)dma_write_master_0.Clock,(SLAVE)modular_sgdma_dispatcher_0.clock,(MASTER)clk_0.clk) 1 1 2 430 200 820
+levelinfo -pg 1 0 200 1370
+levelinfo -hier msgdma_ctl 210 240 500 890 1150

@@ -44,6 +44,7 @@ architecture sim of gfmulTb is
 	    v_temp(2 ) := v_temp(1 ) xor dummy;
 	    v_temp(1 ) := v_temp(0 );
 	    v_temp(0 ) := dummy;
+	    report integer'image(to_integer(unsigned(v_temp)));
 	    for j in 0 to m-1 loop
 	      v_temp(j) := v_temp(j) xor (v1(j) and v2(m-i-1));
 	      count := count + 1;
