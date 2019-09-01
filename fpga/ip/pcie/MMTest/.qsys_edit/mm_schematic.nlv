@@ -1,0 +1,18 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst mm -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst mm.onchip_memory2_0 -pg 1 -lvl 3 -y 30
+preplace inst mm.clk_0 -pg 1 -lvl 1 -y 40
+preplace inst mm.master_read -pg 1 -lvl 2 -y 70
+preplace inst mm.master_write -pg 1 -lvl 2 -y 170
+preplace netloc FAN_OUT<net_container>mm</net_container>(SLAVE)onchip_memory2_0.reset1,(MASTER)clk_0.clk_reset,(SLAVE)master_read.clock_reset_reset,(SLAVE)master_write.clock_reset_reset) 1 1 2 370 60 N
+preplace netloc EXPORT<net_container>mm</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)mm.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>mm</net_container>(SLAVE)mm.master_read_control,(SLAVE)master_read.control) 1 0 2 NJ 120 NJ
+preplace netloc EXPORT<net_container>mm</net_container>(SLAVE)mm.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
+preplace netloc FAN_OUT<net_container>mm</net_container>(SLAVE)master_read.clock_reset,(SLAVE)onchip_memory2_0.clk1,(MASTER)clk_0.clk,(SLAVE)master_write.clock_reset) 1 1 2 350 40 N
+preplace netloc EXPORT<net_container>mm</net_container>(SLAVE)mm.master_read_user,(SLAVE)master_read.user) 1 0 2 NJ 140 NJ
+preplace netloc EXPORT<net_container>mm</net_container>(SLAVE)master_write.control,(SLAVE)mm.master_write_control) 1 0 2 NJ 220 NJ
+preplace netloc EXPORT<net_container>mm</net_container>(SLAVE)mm.master_write_user,(SLAVE)master_write.user) 1 0 2 NJ 240 NJ
+preplace netloc FAN_IN<net_container>mm</net_container>(MASTER)master_read.avalon_master,(SLAVE)onchip_memory2_0.s1,(MASTER)master_write.avalon_master) 1 2 1 630
+levelinfo -pg 1 0 140 800
+levelinfo -hier mm 150 180 400 680 790

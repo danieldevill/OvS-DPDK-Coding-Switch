@@ -1,0 +1,10 @@
+
+State Machine - |MMTest|write_state
+Name write_state.write 
+write_state.idle 0 
+write_state.write 1 
+
+State Machine - |MMTest|read_state
+Name read_state.read 
+read_state.idle 0 
+read_state.read 1 
