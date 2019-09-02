@@ -1,8 +1,0 @@
-
-State Machine - |gj_elimination|gj_elimination_state
-Name gj_elimination_state.complete gj_elimination_state.divRow gj_elimination_state.mulsubRow gj_elimination_state.idle gj_elimination_state.load 
-gj_elimination_state.load 0 0 0 0 0 
-gj_elimination_state.idle 0 0 0 1 1 
-gj_elimination_state.mulsubRow 0 0 1 0 1 
-gj_elimination_state.divRow 0 1 0 0 1 
-gj_elimination_state.complete 1 0 0 0 1 
