@@ -31,14 +31,17 @@ wire        mw_control_done;
 reg         mw_write_buffer;
 reg [31:0]  mw_buffer_data;
 wire        mw_buffer_full;
-reg write_ram_en;
+wire write_ram_en;
 reg [1:0] write_state;
 parameter write=1;
+assign write_ram_en = 1'b1;
 
 //Net Encoder Wires
 reg 			 encoder_rst;
 wire [31:0]  encoder_pkt_out; 
 wire [31:0]  encoder_pkt_coeff; 
+wire         encoder_done_out_pkts;
+wire         encoder_done_coeffs;
 
 //MM Module
 mm mm0 (
@@ -77,8 +80,10 @@ net_encoder
 		  .clk(clk),
 		  .rst(encoder_rst),
 		  .pkt32bseg_i(mr_buffer_data),
-		  .pkt32bseg_o(mw_buffer_data),
-		  .coeffs_out(encoder_pkt_coeff)
+		  .pkt32bseg_o(encoder_pkt_out),
+		  .coeffs_out(encoder_pkt_coeff),
+		  .done_out_pkts(encoder_done_out_pkts),
+		  .done_coeffs(encoder_done_coeffs)
 );
 
 //Master Read FSM
@@ -86,98 +91,102 @@ always @(posedge clk or negedge rst)
 begin
 	if(~rst)
 		read_state = idle;
-		write_ram_en = 1'b0;
 	else
-
-		//RAM Read Idle and Read states
-		case(read_state)
-			idle:
-				begin
-					start_delay = 0;
-					//Enable address incrementing while reading RAM
-					mr_control_fixed_location = 1'b0;
-					//Offset address base to account for FIFO delay. Address Read starts before 32'h0700_0000, so do not populate that memory space.
-					mr_control_base =   (32'h0700_0000 - 32'h0000_008) & 32'hFFFF_FFFC;
-					mr_control_length = 32'h0000_01B6;
-					mr_control_go = 1'b0;
-					if(read_ram_en == 1)
-						read_state = read;
-					else
-						read_state = idle;
-				end
-			read:
-				begin
-					//Default control go deassert.
-					mr_control_go = 1'b0;
-					
-					//Delay master read transfer begin.
-					if(start_delay == 4'h0A)
-						mr_control_go = 1'b1;					
-					
-					//Deassert control go to complete go cycle strobe, and begin transfer.
-					if(start_delay == 4'h0B)
-						begin
+		begin
+			//RAM Read Idle and Read states
+			case(read_state)
+				idle:
+					begin
+						start_delay = 0;
+						//Enable address incrementing while reading RAM
+						mr_control_fixed_location = 1'b0;
+						//Offset address base to account for FIFO delay. Address Read starts before 32'h0700_0000, so do not populate that memory space.
+						mr_control_base =   (32'h0700_0000 - 32'h0000_008) & 32'hFFFF_FFFC;
+						mr_control_length = 32'h0000_01B6;
 						mr_control_go = 1'b0;
-						end
-					else
-						start_delay = start_delay + 4'h1;
-				
-					//Begin reading FIFO output.
-					if(mr_data_avali == 1)
-						begin
+						if(read_ram_en == 1)
+							read_state = read;
+						else
+							read_state = idle;
+					end
+				read:
+					begin
+						//Default control go deassert.
+						mr_control_go = 1'b0;
+						
+						//Delay master read transfer begin.
+						if(start_delay == 4'h0A)
+							mr_control_go = 1'b1;					
+						
+						//Deassert control go to complete go cycle strobe, and begin transfer.
+						if(start_delay == 4'h0B)
+							begin
+							mr_control_go = 1'b0;
+							end
+						else
+							start_delay = start_delay + 4'h1;
+					
+						//Begin reading FIFO output.
+						if(mr_data_avali == 1)
 							mr_read_buffer = 1'b1;
-						end
-					else
-						mr_read_buffer = 1'b0;
-						
-					//Delay Read buffer signal
-					if(mr_read_buffer ==1)
-						mr_read_buffer_d <= 1'b1;
-						
-					if(read_ram_en == 0 )
-						read_state = idle;
-					else
-						read_state = read;
-				end
-		endcase				
+						else
+							mr_read_buffer = 1'b0;
+							
+						//Delay Read buffer signal
+						if(mr_read_buffer ==1)
+							mr_read_buffer_d <= 1'b1;
+							
+						if(read_ram_en == 0 )
+							read_state = idle;
+						else
+							read_state = read;
+					end
+			endcase	
+		end
 end
 
-//Master Write FSM
+//Master Write FSM for output packets
 always @(posedge clk or negedge rst)
 begin
 	if(~rst)
 		write_state = idle;
 	else
-		
-		case(write_state)
-			idle:
-				begin
-					//Enable address incrementing while writing RAM
-					mw_control_fixed_location = 1'b0;
-					
-					mw_control_base = 32'h0700_0200 & 32'hFFFF_FFFC;
-					mw_control_length = 32'h0000_01B6;
-					mw_control_go = 1'b0;
-					if(write_ram_en == 1)
-						write_state = write;
-					else
-						write_state = idle;
-				end
-			write:
-				begin
-					mw_control_go = 1'b1;
-					mw_write_buffer = 1'b0;
-					//Only Write when buffer is not full
-					if(mw_buffer_full == 0)
-						mw_write_buffer = 1'b1;
-					//Change States if write_name disabled.	
-					if(write_ram_en == 0)
-						write_state = idle;
-					else
-						write_state = write;
-				end
-		endcase
-	
+		begin
+			//Write state cases
+			case(write_state)
+				idle:
+					begin
+						//Enable address incrementing while writing RAM
+						mw_control_fixed_location = 1'b0;
+						
+						mw_control_base = 32'h0700_0200 & 32'hFFFF_FFFC;
+						mw_control_length = 32'h0000_01B6;
+						mw_control_go = 1'b0;
+						if(write_ram_en == 1)
+							write_state = write;
+						else
+							write_state = idle;
+					end
+				write:
+					begin
+						if(encoder_done_out_pkts == 1)
+							begin
+								mw_control_go = 1'b1;
+								mw_write_buffer = 1'b0;
+								//Only Write when buffer is not full
+								if(mw_buffer_full == 0)
+									mw_write_buffer = 1'b1;
+									mw_buffer_data = encoder_pkt_out;
+							end
+							
+						//Change States if write_name disabled.	
+						if(write_ram_en == 0)
+							write_state = idle;
+						else
+							write_state = write;
+					end
+			endcase
+		end
 end
 	
 //Net Encoder Controller

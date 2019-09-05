@@ -182,7 +182,7 @@ refer to the applicable agreement for further details.
 		(text "buffer_full" (rect 245 435 556 880)(font "Arial" (color 0 0 0)))
 		(text "reset" (rect 211 451 452 915)(font "Arial" (color 128 0 0)(font_size 9)))
 		(text "reset_n" (rect 245 475 532 960)(font "Arial" (color 0 0 0)))
-		(text " mm " (rect 573 496 1170 1002)(font "Arial" ))
+		(text " system " (rect 557 496 1162 1002)(font "Arial" ))
 		(line (pt 240 32)(pt 352 32)(line_width 1))
 		(line (pt 352 32)(pt 352 496)(line_width 1))
 		(line (pt 240 496)(pt 352 496)(line_width 1))

@@ -1,0 +1,41 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst q_sys.pcie_cv_hip_avmm_0 -pg 1 -lvl 2 -y 440
+preplace inst q_sys.ctl_0.clk_0 -pg 1
+preplace inst q_sys.pio_encoder_start -pg 1 -lvl 4 -y 420
+preplace inst q_sys.ctl_0.dma_write_master_0 -pg 1
+preplace inst q_sys.master_write -pg 1 -lvl 3 -y 230
+preplace inst q_sys.clk_0 -pg 1 -lvl 3 -y 500
+preplace inst q_sys.alt_xcvr_reconfig_0 -pg 1 -lvl 2 -y 150
+preplace inst q_sys.ctl_0.dma_read_master_0 -pg 1
+preplace inst q_sys.ctl_0 -pg 1 -lvl 1 -y 170
+preplace inst q_sys.master_read -pg 1 -lvl 3 -y 110
+preplace inst q_sys -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst q_sys.ctl_0.modular_sgdma_dispatcher_0 -pg 1
+preplace inst q_sys.onchip_memory2_0 -pg 1 -lvl 3 -y 360
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.pcie_cv_hip_avmm_0_hip_ctrl,(SLAVE)pcie_cv_hip_avmm_0.hip_ctrl) 1 0 2 NJ 610 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.master_write_control,(SLAVE)master_write.control) 1 0 3 NJ 370 NJ 320 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(MASTER)clk_0.clk_reset,(MASTER)q_sys.clk_0_clk_reset) 1 3 2 NJ 550 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(MASTER)q_sys.clk_0_clk,(MASTER)clk_0.clk) 1 3 2 NJ 530 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.pcie_cv_hip_avmm_0_refclk,(SLAVE)pcie_cv_hip_avmm_0.refclk) 1 0 2 NJ 810 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)pcie_cv_hip_avmm_0.npor,(SLAVE)q_sys.pcie_cv_hip_avmm_0_npor) 1 0 2 NJ 690 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)pcie_cv_hip_avmm_0.hip_serial,(SLAVE)q_sys.pcie_cv_hip_avmm_0_hip_serial) 1 0 2 NJ 670 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)master_read.user,(SLAVE)q_sys.master_read_user) 1 0 3 NJ 90 NJ 140 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.alt_xcvr_reconfig_0_reconfig_mgmt,(SLAVE)alt_xcvr_reconfig_0.reconfig_mgmt) 1 0 2 NJ 330 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)alt_xcvr_reconfig_0.mgmt_rst_reset,(SLAVE)q_sys.alt_xcvr_reconfig_0_mgmt_rst_reset) 1 0 2 NJ 130 NJ
+preplace netloc INTERCONNECT<net_container>q_sys</net_container>(SLAVE)pcie_cv_hip_avmm_0.Txs,(MASTER)ctl_0.dma_write_master_0_data_write_master,(MASTER)pcie_cv_hip_avmm_0.Rxm_BAR0,(MASTER)ctl_0.dma_read_master_0_data_read_master,(MASTER)master_write.avalon_master,(SLAVE)onchip_memory2_0.s1,(MASTER)master_read.avalon_master) 1 1 3 750 430 1330 350 1630
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.pcie_cv_hip_avmm_0_reconfig_clk_locked,(SLAVE)pcie_cv_hip_avmm_0.reconfig_clk_locked) 1 0 2 NJ 750 NJ
+preplace netloc POINT_TO_POINT<net_container>q_sys</net_container>(SLAVE)pcie_cv_hip_avmm_0.reconfig_to_xcvr,(SLAVE)alt_xcvr_reconfig_0.reconfig_to_xcvr) 1 1 1 890
+preplace netloc POINT_TO_POINT<net_container>q_sys</net_container>(SLAVE)alt_xcvr_reconfig_0.reconfig_busy,(SLAVE)pcie_cv_hip_avmm_0.reconfig_busy) 1 1 1 850
+preplace netloc FAN_OUT<net_container>q_sys</net_container>(MASTER)pcie_cv_hip_avmm_0.Rxm_BAR2,(SLAVE)ctl_0.modular_sgdma_dispatcher_0_csr,(SLAVE)ctl_0.modular_sgdma_dispatcher_0_descriptor_slave,(SLAVE)pcie_cv_hip_avmm_0.Cra) 1 0 3 270 410 790 410 1230
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)alt_xcvr_reconfig_0.mgmt_clk_clk,(SLAVE)q_sys.alt_xcvr_reconfig_0_mgmt_clk_clk) 1 0 2 NJ 110 NJ
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.master_write_user,(SLAVE)master_write.user) 1 0 3 NJ 390 NJ 340 NJ
+preplace netloc POINT_TO_POINT<net_container>q_sys</net_container>(SLAVE)pio_encoder_start.s1,(MASTER)pcie_cv_hip_avmm_0.Rxm_BAR4) 1 2 2 NJ 630 1670
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)pcie_cv_hip_avmm_0.hip_pipe,(SLAVE)q_sys.pcie_cv_hip_avmm_0_hip_pipe) 1 0 2 NJ 650 NJ
+preplace netloc FAN_OUT<net_container>q_sys</net_container>(SLAVE)pio_encoder_start.clk,(SLAVE)master_write.clock_reset,(SLAVE)clk_0.clk_in,(SLAVE)master_read.clock_reset,(SLAVE)ctl_0.clk,(MASTER)pcie_cv_hip_avmm_0.coreclkout,(SLAVE)onchip_memory2_0.clk1) 1 0 4 230 30 NJ 30 1290 450 1630
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.master_read_control,(SLAVE)master_read.control) 1 0 3 NJ 70 NJ 120 NJ
+preplace netloc POINT_TO_POINT<net_container>q_sys</net_container>(SLAVE)alt_xcvr_reconfig_0.reconfig_from_xcvr,(SLAVE)pcie_cv_hip_avmm_0.reconfig_from_xcvr) 1 1 1 870
+preplace netloc EXPORT<net_container>q_sys</net_container>(SLAVE)q_sys.pio_encoder_start_external_connection,(SLAVE)pio_encoder_start.external_connection) 1 0 4 NJ 350 NJ 300 NJ 220 NJ
+preplace netloc FAN_OUT<net_container>q_sys</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)master_write.clock_reset_reset,(MASTER)pcie_cv_hip_avmm_0.nreset_status,(SLAVE)ctl_0.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)master_read.clock_reset_reset,(SLAVE)pio_encoder_start.reset) 1 0 4 250 50 NJ 50 1270 470 N
+levelinfo -pg 1 0 200 2000
+levelinfo -hier q_sys 210 480 1040 1400 1720 1870

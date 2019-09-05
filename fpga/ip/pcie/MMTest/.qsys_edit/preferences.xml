@@ -7,7 +7,8 @@
    <irq preferredWidth="34" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library" />
- <window width="1922" height="1105" x="-1" y="1056" />
+ <library
+   expandedCategories="Library,Library/Basic Functions/Simulation; Debug and Verification,Project,Library/Basic Functions/Simulation; Debug and Verification/Debug and Performance,Library/Basic Functions" />
+ <window width="949" height="1065" x="965" y="-17" />
  <generation path="_PROJECT_NAME_" simulation="VERILOG" />
 </preferences>

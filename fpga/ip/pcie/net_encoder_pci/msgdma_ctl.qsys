@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags=""
+   categories="System" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element clk_0
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+   element dma_read_master_0
+   {
+      datum _sortIndex
+      {
+         value = "2";
+         type = "int";
+      }
+   }
+   element dma_write_master_0
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element modular_sgdma_dispatcher_0
+   {
+      datum _sortIndex
+      {
+         value = "1";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="AUTO" />
+ <parameter name="device" value="5CGTFD9E5F35C7" />
+ <parameter name="deviceFamily" value="Cyclone V" />
+ <parameter name="deviceSpeedGrade" value="7_H5" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="maxAdditionalLatency" value="4" />
+ <parameter name="projectName">c5gt_gen2x4_mSGMDA.qpf</parameter>
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="1" />
+ <parameter name="timeStamp" value="1366138855760" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="modular_sgdma_dispatcher_0_csr"
+   internal="modular_sgdma_dispatcher_0.CSR"
+   type="avalon"
+   dir="end" />
+ <interface
+   name="modular_sgdma_dispatcher_0_descriptor_slave"
+   internal="modular_sgdma_dispatcher_0.Descriptor_Slave"
+   type="avalon"
+   dir="end" />
+ <interface
+   name="dma_read_master_0_data_read_master"
+   internal="dma_read_master_0.Data_Read_Master"
+   type="avalon"
+   dir="start" />
+ <interface
+   name="dma_write_master_0_data_write_master"
+   internal="dma_write_master_0.Data_Write_Master"
+   type="avalon"
+   dir="start" />
+ <interface
+   name="modular_sgdma_dispatcher_0_csr_irq"
+   internal="modular_sgdma_dispatcher_0.csr_irq"
+   type="interrupt"
+   dir="end" />
+ <module kind="clock_source" version="13.0" enabled="1" name="clk_0">
+  <parameter name="clockFrequency" value="250000000" />
+  <parameter name="clockFrequencyKnown" value="true" />
+  <parameter name="inputClockFrequency" value="0" />
+  <parameter name="resetSynchronousEdges" value="NONE" />
+ </module>
+ <module
+   kind="modular_sgdma_dispatcher"
+   version="1.0"
+   enabled="1"
+   name="modular_sgdma_dispatcher_0">
+  <parameter name="MODE" value="0" />
+  <parameter name="GUI_RESPONSE_PORT" value="2" />
+  <parameter name="DESCRIPTOR_FIFO_DEPTH" value="64" />
+  <parameter name="ENHANCED_FEATURES" value="0" />
+  <parameter name="CSR_ADDRESS_WIDTH" value="3" />
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="250000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+ </module>
+ <module
+   kind="dma_read_master"
+   version="1.0"
+   enabled="1"
+   name="dma_read_master_0">
+  <parameter name="DATA_WIDTH" value="128" />
+  <parameter name="LENGTH_WIDTH" value="19" />
+  <parameter name="FIFO_DEPTH" value="256" />
+  <parameter name="STRIDE_ENABLE" value="0" />
+  <parameter name="GUI_STRIDE_WIDTH" value="1" />
+  <parameter name="BURST_ENABLE" value="1" />
+  <parameter name="GUI_MAX_BURST_COUNT" value="64" />
+  <parameter name="GUI_PROGRAMMABLE_BURST_ENABLE" value="0" />
+  <parameter name="GUI_BURST_WRAPPING_SUPPORT" value="0" />
+  <parameter name="TRANSFER_TYPE">Full Word Accesses Only</parameter>
+  <parameter name="PACKET_ENABLE" value="0" />
+  <parameter name="ERROR_ENABLE" value="0" />
+  <parameter name="ERROR_WIDTH" value="8" />
+  <parameter name="CHANNEL_ENABLE" value="0" />
+  <parameter name="CHANNEL_WIDTH" value="8" />
+  <parameter name="ADDRESS_WIDTH" value="32" />
+  <parameter name="FIFO_SPEED_OPTIMIZATION" value="1" />
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="250000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+ </module>
+ <module
+   kind="dma_write_master"
+   version="1.0"
+   enabled="1"
+   name="dma_write_master_0">
+  <parameter name="DATA_WIDTH" value="128" />
+  <parameter name="LENGTH_WIDTH" value="19" />
+  <parameter name="FIFO_DEPTH" value="256" />
+  <parameter name="STRIDE_ENABLE" value="0" />
+  <parameter name="GUI_STRIDE_WIDTH" value="1" />
+  <parameter name="BURST_ENABLE" value="1" />
+  <parameter name="GUI_MAX_BURST_COUNT" value="128" />
+  <parameter name="GUI_PROGRAMMABLE_BURST_ENABLE" value="0" />
+  <parameter name="GUI_BURST_WRAPPING_SUPPORT" value="0" />
+  <parameter name="TRANSFER_TYPE">Full Word Accesses Only</parameter>
+  <parameter name="PACKET_ENABLE" value="0" />
+  <parameter name="ERROR_ENABLE" value="0" />
+  <parameter name="ERROR_WIDTH" value="8" />
+  <parameter name="ADDRESS_WIDTH" value="32" />
+  <parameter name="FIFO_SPEED_OPTIMIZATION" value="1" />
+  <parameter name="AUTO_CLOCK_CLOCK_RATE" value="250000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+ </module>
+ <connection
+   kind="clock"
+   version="13.0"
+   start="clk_0.clk"
+   end="dma_read_master_0.Clock" />
+ <connection
+   kind="clock"
+   version="13.0"
+   start="clk_0.clk"
+   end="dma_write_master_0.Clock" />
+ <connection
+   kind="reset"
+   version="13.0"
+   start="clk_0.clk_reset"
+   end="dma_read_master_0.Clock_reset" />
+ <connection
+   kind="reset"
+   version="13.0"
+   start="clk_0.clk_reset"
+   end="dma_write_master_0.Clock_reset" />
+ <connection
+   kind="avalon_streaming"
+   version="13.0"
+   start="modular_sgdma_dispatcher_0.Write_Command_Source"
+   end="dma_write_master_0.Command_Sink" />
+ <connection
+   kind="avalon_streaming"
+   version="13.0"
+   start="dma_write_master_0.Response_Source"
+   end="modular_sgdma_dispatcher_0.Write_Response_Sink" />
+ <connection
+   kind="avalon_streaming"
+   version="13.0"
+   start="modular_sgdma_dispatcher_0.Read_Command_Source"
+   end="dma_read_master_0.Command_Sink" />
+ <connection
+   kind="avalon_streaming"
+   version="13.0"
+   start="dma_read_master_0.Response_Source"
+   end="modular_sgdma_dispatcher_0.Read_Response_Sink" />
+ <connection
+   kind="avalon_streaming"
+   version="13.0"
+   start="dma_read_master_0.Data_Source"
+   end="dma_write_master_0.Data_Sink" />
+ <connection
+   kind="reset"
+   version="13.0"
+   start="clk_0.clk_reset"
+   end="modular_sgdma_dispatcher_0.clock_reset" />
+ <connection
+   kind="clock"
+   version="13.0"
+   start="clk_0.clk"
+   end="modular_sgdma_dispatcher_0.clock" />
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="AUTO" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="4" />
+</system>

@@ -1,0 +1,17 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "CLOCK_50_B3B",
+					"strict" : false
+				},
+				{
+					"name" : "PCIE_PERST_n",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
