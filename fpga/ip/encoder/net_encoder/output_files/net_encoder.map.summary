@@ -1,11 +1,11 @@
-Analysis & Synthesis Status : Successful - Tue Aug 20 23:08:08 2019
+Analysis & Synthesis Status : Successful - Sun Sep  1 23:57:02 2019
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : net_encoder
 Top-level Entity Name : net_encoder
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 4332
-Total pins : 98
+Total registers : 4333
+Total pins : 100
 Total virtual pins : 0
 Total block memory bits : 4,096
 Total DSP Blocks : 0

@@ -260,6 +260,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "done_out_pkts",
+					"strict" : false
+				},
+				{
+					"name" : "done_coeffs",
+					"strict" : false
+				},
+				{
 					"name" : "clk",
 					"strict" : false
 				},

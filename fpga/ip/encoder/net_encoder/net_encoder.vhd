@@ -1,3 +1,21 @@
+--Copyright 2019 DBB de Villiers
+--Permission is hereby granted, free of charge, to any person obtaining 
+--a copy of this software and associated documentation files (the "Software"), 
+--to deal in the Software without restriction, including without limitation 
+--the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+--and/or sell copies of the Software, and to permit persons to whom the Software 
+--is furnished to do so, subject to the following conditions:
+--
+--The above copyright notice and this permission notice shall be included in 
+--all copies or substantial portions of the Software.
+
+--THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+--INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+--PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+--HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+--CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+--OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -15,7 +33,9 @@ port(
 
 	 -- Outputs
 	 pkt32bseg_o : out std_logic_vector(31 downto 0); -- 4 byte packet segment output
-	 coeffs_out : out std_logic_vector(31 downto 0));
+	 coeffs_out : out std_logic_vector(31 downto 0);
+	 done_out_pkts : out std_logic;
+	 done_coeffs : out std_logic);
 	
 end entity net_encoder;
 
@@ -78,9 +98,10 @@ type read_state_Type is (idle, rd);
 
 	-- Pseudo-Random Coefficients
 	signal rcoeffs :  std_logic_vector_array_coefficients;
-	--Pseudo-Random FIFO
+	--Pseudo-Random Signals
 	signal pseudoin : std_logic_vector(55 downto 0);
 	signal pseudoin_bytes  : std_logic_vector_array_coefficients;
+	signal pseudo_ready : std_logic;
 
 	-- Multiplier Signals
 	signal rslt_m : std_logic_vector_array;	
@@ -105,9 +126,13 @@ type read_state_Type is (idle, rd);
 	--Output Counter
 	signal outCount,outVectorCount : integer := 0;
 	signal en_output : std_logic := '0';
-
-
+	
 begin
+
+	--Set done_out_pkts output to en_output to signal output ready to be read.
+	done_out_pkts <= en_output;
+	--Set done_coeffs to pseudo_ready when pseudo coeffs are ready to be read.
+	done_coeffs <= pseudo_ready;
 
 	--h coeffs, Per single packet
 	generate_coeffs: for i in 0 to (h-1) generate 
@@ -280,6 +305,7 @@ begin
 				pseudoin(39 downto 32) <= (others=>'0');
 				pseudoin(47 downto 40) <= (others=>'0');
 				pseudoin(55 downto 48) <= (others=>'0');
+				pseudo_ready <= '0';
 			elsif clk'event and clk = '1' then
 
 				--Pseudo-random inputs.
@@ -358,16 +384,19 @@ begin
 					coeffs_out(15 downto 8) <= pseudoin_bytes(1);
 					coeffs_out(23 downto 16) <= pseudoin_bytes(2);
 					coeffs_out(31 downto 24) <= pseudoin_bytes(3);
+					pseudo_ready <= '1';
 				elsif mulcount = 3 and rowCount = 0 then
 					coeffs_out(7 downto 0) <= pseudoin_bytes(4);
 					coeffs_out(15 downto 8) <= pseudoin_bytes(5);
 					coeffs_out(23 downto 16) <= pseudoin_bytes(6);
 					coeffs_out(31 downto 24) <= (others=>'0');
+					pseudo_ready <= '1';
 				else --Set remaining to zero
 					coeffs_out(7 downto 0) <= (others=>'0');
 					coeffs_out(15 downto 8) <= (others=>'0');
 					coeffs_out(23 downto 16) <= (others=>'0');
 					coeffs_out(31 downto 24) <= (others=>'0');
+					pseudo_ready <= '0';
 				end if;
 
 			end if;

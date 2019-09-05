@@ -4097,6 +4097,7 @@ clk => coeffs_out[28]~reg0.CLK
 clk => coeffs_out[29]~reg0.CLK
 clk => coeffs_out[30]~reg0.CLK
 clk => coeffs_out[31]~reg0.CLK
+clk => pseudo_ready.CLK
 clk => pseudoin[0].CLK
 clk => pseudoin[1].CLK
 clk => pseudoin[2].CLK
@@ -8209,6 +8210,7 @@ rst => mulcount[29].ACLR
 rst => mulcount[30].ACLR
 rst => mulcount[31].ACLR
 rst => mulready.PRESET
+rst => pseudo_ready.ACLR
 rst => pseudoin[0].ACLR
 rst => pseudoin[1].ACLR
 rst => pseudoin[2].ACLR
@@ -8908,6 +8910,8 @@ coeffs_out[28] <= coeffs_out[28]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 coeffs_out[29] <= coeffs_out[29]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 coeffs_out[30] <= coeffs_out[30]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 coeffs_out[31] <= coeffs_out[31]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+done_out_pkts <= en_output.DB_MAX_OUTPUT_PORT_TYPE
+done_coeffs <= pseudo_ready.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |net_encoder|prngen:\generate_coeffs:0:prngen_1
