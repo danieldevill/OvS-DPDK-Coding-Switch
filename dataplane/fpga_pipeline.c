@@ -80,10 +80,10 @@ main(int argc, char *argv[])
 		{
 			uint32_t num = (uint32_t)strtol(hex, NULL, 16);
 			
-			pWrite[0 + (4*file_count)] = (num >> 24) & 0xFF;
-			pWrite[1 + (4*file_count)] = (num >> 16) & 0xFF;
-			pWrite[2 + (4*file_count)] = (num >> 8) & 0xFF;
-			pWrite[3 + (4*file_count)] = (num) & 0xFF;
+			pWrite[3 + (4*file_count)] = (num >> 24) & 0xFF;
+			pWrite[2 + (4*file_count)] = (num >> 16) & 0xFF;
+			pWrite[1 + (4*file_count)] = (num >> 8) & 0xFF;
+			pWrite[0 + (4*file_count)] = (num) & 0xFF;
 			
 			//printf("%s %X %d %X %X %X %X\n",hex, num, sizeof(pWrite), pWrite[0], pWrite[1],pWrite[2],pWrite[3]);
 			
