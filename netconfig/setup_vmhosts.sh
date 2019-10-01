@@ -5,7 +5,7 @@
 
 vm_names='A B C D E F G H'
 vm_count=0
-vm_ram='128M'
+vm_ram='2048M'
 
 if ! pgrep -f "qemu-system-x86_64" > /dev/null
 then
@@ -14,10 +14,10 @@ then
 		if [ $vm_count -lt $1 ]
 		then
 	 		#Add VM port to OvS bridge.
-			sudo ovs-vsctl add-port br0 vhp"$vm_count" -- set Interface vhp"$vm_count" type=dpdkvhostuserclient options:vhost-server-path=/tmp/dpdkvhostclient"$vm_count"
+			sudo /usr/local/bin/ovs-vsctl add-port br0 vhp"$vm_count" -- set Interface vhp"$vm_count" type=dpdkvhostuserclient options:vhost-server-path=/tmp/dpdkvhostclient"$vm_count"
 
 			#Start VM
-			sudo qemu-system-x86_64 -drive file=~/vm-images/debian9_"$vm_name".qcow2 -accel kvm -display none -m size="$vm_ram" \
+			sudo /usr/local/bin/qemu-system-x86_64 -drive file=/sdata/debian9_"$vm_name".qcow2 -enable-kvm -display none -m size="$vm_ram" \
 				-cpu host,+ssse3,+sse4.1,+sse4.2,+x2apic \
 				-netdev user,id=hostnet"$vm_name",hostfwd=tcp::1002"$vm_count"-:22 \
 				-device e1000,netdev=hostnet"$vm_name" \
@@ -38,7 +38,7 @@ then
 		if [ $vm_count -lt $1 ]
 		then
 	 		#Add VM port to OvS bridge.
-			sudo ovs-vsctl add-port br0 vhp"$vm_count" -- set Interface vhp"$vm_count" type=dpdkvhostuserclient options:vhost-server-path=/tmp/dpdkvhostclient"$vm_count"
+			sudo /usr/local/bin/ovs-vsctl add-port br0 vhp"$vm_count" -- set Interface vhp"$vm_count" type=dpdkvhostuserclient options:vhost-server-path=/tmp/dpdkvhostclient"$vm_count"
 		fi
 		vm_count=$((vm_count + 1))
 	done
