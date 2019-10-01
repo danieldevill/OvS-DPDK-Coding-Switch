@@ -14,10 +14,10 @@ sudo rm -f /var/run/openvswitch/vhost-user*
 sudo rm -f /etc/openvswitch/conf.db
 
 #Bind devices to DPDK
-sudo ip link set enp7s0f0 down
-sudo ip link set enp7s0f1 down
-sudo ip link set enp8s0f0 down
-sudo ip link set enp8s0f1 down
+# sudo ip link set enp7s0f0 down
+# sudo ip link set enp7s0f1 down
+# sudo ip link set enp8s0f0 down
+# sudo ip link set enp8s0f1 down
 
 #Enable PMD
 #sudo modprobe uio_pci_generic
@@ -25,11 +25,11 @@ sudo ip link set enp8s0f1 down
 #sudo insmod /usr/src/dpdk-stable-17.11.1/build/kmod/igb_uio.ko
 sudo modprobe vfio-pci
 
-#Bind NICs to DPDK
-sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp7s0f0
-sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp7s0f1
-sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp8s0f0
-sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp8s0f1
+# #Bind NICs to DPDK
+# sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp7s0f0
+# sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp7s0f1
+# sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp8s0f0
+# sudo $RTE_SDK/usertools/dpdk-devbind.py --bind=vfio-pci enp8s0f1
 
 #Start ovsdb
 export DB_SOCK=/usr/local/var/run/openvswitch/db.sock
@@ -45,14 +45,14 @@ sudo /usr/local/bin/ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lco
 sudo /usr/local/share/openvswitch/scripts/ovs-ctl --no-ovsdb-server --db-sock="$DB_SOCK" start
 sudo /usr/local/sbin/ovs-vswitchd unix:$DB_SOCK --pidfile --detach --log-file=/var/log/openvswitch/ovs-vswitchd.log
 
-#Create OVS-DPDK Bridge and Ports
+#Create OVS-DPDK Bridge
 echo Adding bridge br0..
 sudo /usr/local/bin/ovs-vsctl --if-exists del-br br0
 sudo /usr/local/bin/ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
-sudo /usr/local/bin/ovs-vsctl add-port br0 enp7s0f0 -- set Interface enp7s0f0 type=dpdk options:dpdk-devargs=0000:07:00.0 ofport_request=1
-sudo /usr/local/bin/ovs-vsctl add-port br0 enp7s0f1 -- set Interface enp7s0f1 type=dpdk options:dpdk-devargs=0000:07:00.1 ofport_request=2
-sudo /usr/local/bin/ovs-vsctl add-port br0 enp8s0f0 -- set Interface enp8s0f0 type=dpdk options:dpdk-devargs=0000:08:00.0 ofport_request=3
-sudo /usr/local/bin/ovs-vsctl add-port br0 enp8s0f1 -- set Interface enp8s0f1 type=dpdk options:dpdk-devargs=0000:08:00.1 ofport_request=4
+# sudo /usr/local/bin/ovs-vsctl add-port br0 enp7s0f0 -- set Interface enp7s0f0 type=dpdk options:dpdk-devargs=0000:07:00.0 ofport_request=1
+# sudo /usr/local/bin/ovs-vsctl add-port br0 enp7s0f1 -- set Interface enp7s0f1 type=dpdk options:dpdk-devargs=0000:07:00.1 ofport_request=2
+# sudo /usr/local/bin/ovs-vsctl add-port br0 enp8s0f0 -- set Interface enp8s0f0 type=dpdk options:dpdk-devargs=0000:08:00.0 ofport_request=3
+# sudo /usr/local/bin/ovs-vsctl add-port br0 enp8s0f1 -- set Interface enp8s0f1 type=dpdk options:dpdk-devargs=0000:08:00.1 ofport_request=4
 
 #Set Controller to Ryu
 sudo /usr/local/bin/ovs-vsctl set-controller br0 tcp:10.10.11.117:6633
