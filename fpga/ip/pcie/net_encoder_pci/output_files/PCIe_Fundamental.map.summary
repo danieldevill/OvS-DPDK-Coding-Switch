@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Tue Sep 24 14:54:42 2019
+Analysis & Synthesis Status : Successful - Tue Oct  1 19:27:46 2019
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : PCIe_Fundamental
 Top-level Entity Name : PCIe_Fundamental
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 16558
+Total registers : 17248
 Total pins : 65
 Total virtual pins : 0
-Total block memory bits : 952,832
+Total block memory bits : 1,143,296
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 4
 Total HSSI PMA RX Deserializers : 4

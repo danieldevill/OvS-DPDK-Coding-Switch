@@ -8,8 +8,7 @@
    <export preferredWidth="352" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/Interface Protocols,Library/Processors and Peripherals/Peripherals,Library,Library/Processors and Peripherals,Library/Interface Protocols/PCI Express,Project,Library/Interface Protocols/PCI Express/QSYS Example Designs" />
+ <library expandedCategories="Project,Library" />
  <window width="1922" height="1105" x="-1" y="1056" />
  <generation simulation="VERILOG" />
 </preferences>

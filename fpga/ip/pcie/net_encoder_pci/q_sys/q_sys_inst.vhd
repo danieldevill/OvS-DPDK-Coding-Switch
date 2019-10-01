@@ -112,8 +112,8 @@
 			pcie_cv_hip_avmm_0_npor_pin_perst                      : in  std_logic                     := 'X';             -- pin_perst
 			pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked : out std_logic;                                        -- fixedclk_locked
 			pcie_cv_hip_avmm_0_refclk_clk                          : in  std_logic                     := 'X';             -- clk
-			pio_encoder_start_external_connection_export           : out std_logic;                                        -- export
-			pio_coder_rst_external_connection_export               : out std_logic                                         -- export
+			pio_coder_rst_external_connection_export               : out std_logic;                                        -- export
+			pio_encoder_start_external_connection_export           : out std_logic                                         -- export
 		);
 	end component q_sys;
 
@@ -231,7 +231,7 @@
 			pcie_cv_hip_avmm_0_npor_pin_perst                      => CONNECTED_TO_pcie_cv_hip_avmm_0_npor_pin_perst,                      --                                       .pin_perst
 			pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked => CONNECTED_TO_pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked, -- pcie_cv_hip_avmm_0_reconfig_clk_locked.fixedclk_locked
 			pcie_cv_hip_avmm_0_refclk_clk                          => CONNECTED_TO_pcie_cv_hip_avmm_0_refclk_clk,                          --              pcie_cv_hip_avmm_0_refclk.clk
-			pio_encoder_start_external_connection_export           => CONNECTED_TO_pio_encoder_start_external_connection_export,           --  pio_encoder_start_external_connection.export
-			pio_coder_rst_external_connection_export               => CONNECTED_TO_pio_coder_rst_external_connection_export                --      pio_coder_rst_external_connection.export
+			pio_coder_rst_external_connection_export               => CONNECTED_TO_pio_coder_rst_external_connection_export,               --      pio_coder_rst_external_connection.export
+			pio_encoder_start_external_connection_export           => CONNECTED_TO_pio_encoder_start_external_connection_export            --  pio_encoder_start_external_connection.export
 		);
 

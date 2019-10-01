@@ -99,7 +99,6 @@ wire        mr_control_early_done;
 wire [31:0] mr_buffer_data; 
 wire      mr_data_avali;
 reg       mr_read_buffer;
-reg       mr_read_buffer_d;
 wire read_ram_en;
 reg [3:0] start_delay;
 reg [1:0] read_state;
@@ -167,7 +166,7 @@ assign reconfig_xcvr_clk = CLOCK_50_B3B;
 //Instantiate Terasic qsys connections with added master templates.
 q_sys u0 (
         .clk_0_clk_clk                                          (pld_clk_clk),
-		    .clk_0_clk_reset_reset_n                                (),
+		  .clk_0_clk_reset_reset_n                                (),
         
         .pcie_cv_hip_avmm_0_refclk_clk                          (PCIE_REFCLK_p),
         .pcie_cv_hip_avmm_0_npor_npor                           (any_rstn_rr),
@@ -259,9 +258,10 @@ begin
           begin
             start_delay = 0;
             //Enable address incrementing while reading RAM
-            mr_control_fixed_location = 1'b0;
+            mr_control_fixed_location = 1'b1;
             //Offset address base to account for FIFO delay. Address Read starts before 32'h0700_0000, so do not populate that memory space.
-            mr_control_base =   (32'h0700_0000 - 32'h0000_008) & 32'hFFFF_FFFC;
+            //mr_control_base =   (32'h0700_0000 - 32'h0000_008) & 32'hFFFF_FFFC;
+				mr_control_base =   (32'h0700_0000) & 32'hFFFF_FFFC;
             mr_control_length = 32'h0000_01B6;
             mr_control_go = 1'b0;
             if(read_ram_en == 1)
@@ -288,16 +288,24 @@ begin
           
             //Begin reading FIFO output.
             if(mr_data_avali == 1)
-              mr_read_buffer = 1'b1;
+					begin
+						mr_read_buffer = 1'b1;
+						encoder_rst = 1'b1;
+						//Test temp
+						if(mr_control_base < mr_control_length)
+						begin
+							mr_control_base = mr_control_base + 32'h4;
+							mr_control_go = 1'b1;
+						end
+						else
+							mr_control_go = 1'b0;
+					end
             else
-              mr_read_buffer = 1'b0;
-              
-            //Delay Read buffer signal
-            if(mr_read_buffer ==1)
-              mr_read_buffer_d <= 1'b1;
-				 else 
-				  mr_read_buffer_d <= 1'b0;
-              
+					begin
+						mr_read_buffer = 1'b0;
+                  encoder_rst = 1'b0;
+					end
+									 
             if(read_ram_en == 0 )
               read_state = idle;
             else
@@ -352,16 +360,14 @@ begin
 end
   
 //Net Encoder Controller
-always @(posedge mr_read_buffer_d)
-begin
-	
-   if(mr_read_buffer_d == 1)
-		begin
-        encoder_rst = 1;
-		end
-	else
-		encoder_rst = 0;
-	
-end
+//always @(posedge mr_read_buffer)
+//begin
+//	
+//   if(mr_read_buffer == 1)
+//      encoder_rst = 1'b1;
+//	else
+//		encoder_rst = 1'b0;
+//	
+//end
 	
 endmodule
