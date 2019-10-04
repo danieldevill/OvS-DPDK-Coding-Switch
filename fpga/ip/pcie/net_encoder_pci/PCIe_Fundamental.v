@@ -263,7 +263,7 @@ begin
             //mr_control_base =   (32'h0700_0000 - 32'h0000_008) & 32'hFFFF_FFFC;
 				mr_control_base =   (32'h0700_0000) & 32'hFFFF_FFFC;
             mr_control_length = 32'h0000_01B6;
-            mr_control_go = 1'b0;
+            mr_control_go = 1'b1;
             if(read_ram_en == 1)
               read_state = read;
             else
@@ -275,30 +275,28 @@ begin
             mr_control_go = 1'b0;
             
             //Delay master read transfer begin.
-            if(start_delay == 4'h0A)
-              mr_control_go = 1'b1;         
+//            if(start_delay == 4'h0A)
+//              mr_control_go = 1'b1;         
             
             //Deassert control go to complete go cycle strobe, and begin transfer.
-            if(start_delay == 4'h0B)
-              begin
-              mr_control_go = 1'b0;
-              end
-            else
-              start_delay = start_delay + 4'h1;
+//            if(start_delay == 4'h0B)
+//              begin
+//              mr_control_go = 1'b0;
+//              end
+//            else
+//              start_delay = start_delay + 4'h1;
           
             //Begin reading FIFO output.
             if(mr_data_avali == 1)
 					begin
 						mr_read_buffer = 1'b1;
-						encoder_rst = 1'b1;
+						encoder_rst <= 1'b1;
 						//Test temp
-						if(mr_control_base < mr_control_length)
-						begin
-							mr_control_base = mr_control_base + 32'h4;
-							mr_control_go = 1'b1;
-						end
-						else
-							mr_control_go = 1'b0;
+						if(mr_control_base != 32'h0700_01D0)  
+							begin
+								mr_control_base = mr_control_base + 32'h4;
+								mr_control_go <= 1'b1;
+							end
 					end
             else
 					begin

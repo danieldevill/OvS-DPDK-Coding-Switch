@@ -1,5 +1,5 @@
 Timing Analyzer report for net_decoder
-Thu Aug 22 17:44:12 2019
+Tue Sep 17 17:42:23 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -98,15 +98,29 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.81        ;
-; Maximum used               ; 2           ;
+; Average used               ; 6.10        ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  80.9%      ;
+;     Processor 2            ;  50.4%      ;
+;     Processor 3            ;  49.2%      ;
+;     Processor 4            ;  49.0%      ;
+;     Processor 5            ;  30.1%      ;
+;     Processor 6            ;  30.1%      ;
+;     Processor 7            ;  30.1%      ;
+;     Processor 8            ;  30.1%      ;
+;     Processor 9            ;  30.1%      ;
+;     Processor 10           ;  30.1%      ;
+;     Processor 11           ;  30.1%      ;
+;     Processor 12           ;  30.1%      ;
+;     Processor 13           ;  30.1%      ;
+;     Processor 14           ;  30.1%      ;
+;     Processor 15           ;  30.1%      ;
+;     Processor 16           ;  30.1%      ;
 +----------------------------+-------------+
 
 
@@ -946,11 +960,11 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Aug 22 17:41:45 2019
+    Info: Processing started: Tue Sep 17 17:41:21 2019
 Info: Command: quartus_sta net_decoder -c net_decoder
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'net_decoder.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
@@ -1070,9 +1084,9 @@ Info (332114): Report Metastability: Found 3976 synchronizer chains.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 2044 megabytes
-    Info: Processing ended: Thu Aug 22 17:44:12 2019
-    Info: Elapsed time: 00:02:27
-    Info: Total CPU time (on all processors): 00:04:16
+    Info: Peak virtual memory: 2354 megabytes
+    Info: Processing ended: Tue Sep 17 17:42:23 2019
+    Info: Elapsed time: 00:01:02
+    Info: Total CPU time (on all processors): 00:05:15
 
 

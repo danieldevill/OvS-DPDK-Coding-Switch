@@ -1,5 +1,5 @@
 Fitter report for gj_elimination
-Tue Aug 13 12:47:14 2019
+Tue Sep 17 17:04:42 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -54,7 +54,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Failed - Tue Aug 13 12:47:14 2019           ;
+; Fitter Status                   ; Failed - Tue Sep 17 17:04:42 2019           ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gj_elimination                              ;
 ; Top-level Entity Name           ; gj_elimination                              ;
@@ -141,8 +141,8 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -6931,8 +6931,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pkt_coef_i_in_mulsub~5                                                                          ; 1138    ;
 ; pkt_coef_i_in_mulsub~0                                                                          ; 1138    ;
 ; pkt_data_j_in_mulsub[0][50]~3                                                                   ; 1136    ;
-; gj_mulsubRow:\generate_gj_mulsubRows:4:gj_mulsubRows_1|gfmul:\generate_mulsN:0:gfmul_N|Mux0~0   ; 1136    ;
 ; gj_mulsubRow:\generate_gj_mulsubRows:5:gj_mulsubRows_1|gfmul:\generate_mulsN:0:gfmul_N|Mux0~0   ; 1136    ;
+; gj_mulsubRow:\generate_gj_mulsubRows:4:gj_mulsubRows_1|gfmul:\generate_mulsN:0:gfmul_N|Mux0~0   ; 1136    ;
 ; gj_mulsubRow:\generate_gj_mulsubRows:0:gj_mulsubRows_1|gfmul:\generate_mulsN:0:gfmul_N|Mux0~0   ; 1136    ;
 ; gj_mulsubRow:\generate_gj_mulsubRows:1:gj_mulsubRows_1|gfmul:\generate_mulsN:0:gfmul_N|Mux0~0   ; 1136    ;
 ; gj_mulsubRow:\generate_gj_mulsubRows:2:gj_mulsubRows_1|gfmul:\generate_mulsN:0:gfmul_N|Mux0~0   ; 1136    ;
@@ -6971,8 +6971,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pkt_data_i_in_mulsub[3][0]~5                                                                    ; 568     ;
 ; pkt_data_i_in_mulsub[6][0]~6                                                                    ; 568     ;
 ; pkt_data_i_in_mulsub[4][0]~0                                                                    ; 568     ;
-; gj_divRow:gj_divRow_1|gfdiv:\generate_divsN:0:gfdiv_N|gfinv:gfinv_1|LessThan0~1                 ; 568     ;
 ; gj_divRow:gj_divRow_1|Equal1~0                                                                  ; 568     ;
+; gj_divRow:gj_divRow_1|gfdiv:\generate_divsN:0:gfdiv_N|gfinv:gfinv_1|LessThan0~1                 ; 568     ;
 ; pkt_data_in_rowDiv[170]~0                                                                       ; 568     ;
 ; coeff_matrix~0                                                                                  ; 568     ;
 ; data_matrix~0                                                                                   ; 568     ;
@@ -8250,7 +8250,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Fitter Messages ;
 +-----------------+
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (119006): Selected device 5CGXFC9D6F27C7 for design "gj_elimination"
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -8262,12 +8262,12 @@ Error (169281): There are 571 IO input pads in the design, but only 360 IO input
 Error (169282): There are 569 IO output pads in the design, but only 360 IO output pad locations available on the device.
 Info (11798): Fitter preparation operations ending: elapsed time is 00:00:02
 Warning (169069): Following 1 pins have nothing, GND, or VCC driving datain port -- changes to this connectivity may change fitting results
-    Info (169070): Pin done_o has VCC driving its datain port File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/gj_elimination/gj_elimination.vhd Line: 20
+    Info (169070): Pin done_o has VCC driving its datain port File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_elimination/gj_elimination.vhd Line: 20
 Error (11802): Can't fit design in device. Modify your design to reduce resources, or choose a larger device. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
 Error: Quartus Prime Fitter was unsuccessful. 3 errors, 5 warnings
-    Error: Peak virtual memory: 1263 megabytes
-    Error: Processing ended: Tue Aug 13 12:47:15 2019
-    Error: Elapsed time: 00:00:33
-    Error: Total CPU time (on all processors): 00:00:33
+    Error: Peak virtual memory: 1384 megabytes
+    Error: Processing ended: Tue Sep 17 17:04:43 2019
+    Error: Elapsed time: 00:00:29
+    Error: Total CPU time (on all processors): 00:00:29
 
 

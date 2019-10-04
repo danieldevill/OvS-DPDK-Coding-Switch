@@ -1,5 +1,5 @@
 Analysis & Synthesis report for fifo32x128
-Wed Aug 21 15:10:45 2019
+Tue Sep 17 16:43:31 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -47,7 +47,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Aug 21 15:10:45 2019       ;
+; Analysis & Synthesis Status     ; Successful - Tue Sep 17 16:43:31 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; fifo32x128                                  ;
 ; Top-level Entity Name           ; fifo32x128                                  ;
@@ -159,38 +159,38 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                             ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                         ; Library ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------------------------------+---------+
-; fifo32x128.vhd                   ; yes             ; User Wizard-Generated File   ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd         ;         ;
-; scfifo.tdf                       ; yes             ; Megafunction                 ; /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/scfifo.tdf                                          ;         ;
-; a_regfifo.inc                    ; yes             ; Megafunction                 ; /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_regfifo.inc                                       ;         ;
-; a_dpfifo.inc                     ; yes             ; Megafunction                 ; /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_dpfifo.inc                                        ;         ;
-; a_i2fifo.inc                     ; yes             ; Megafunction                 ; /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_i2fifo.inc                                        ;         ;
-; a_fffifo.inc                     ; yes             ; Megafunction                 ; /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_fffifo.inc                                        ;         ;
-; a_f2fifo.inc                     ; yes             ; Megafunction                 ; /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_f2fifo.inc                                        ;         ;
-; aglobal181.inc                   ; yes             ; Megafunction                 ; /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                      ;         ;
-; db/scfifo_h491.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/scfifo_h491.tdf     ;         ;
-; db/a_dpfifo_oa91.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf   ;         ;
-; db/a_fefifo_u7e.tdf              ; yes             ; Auto-Generated Megafunction  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_fefifo_u7e.tdf    ;         ;
-; db/cntr_0h7.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_0h7.tdf        ;         ;
-; db/altsyncram_0us1.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/altsyncram_0us1.tdf ;         ;
-; db/cntr_kgb.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_kgb.tdf        ;         ;
-+----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                      ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                  ; Library ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------+---------+
+; fifo32x128.vhd                   ; yes             ; User Wizard-Generated File   ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd         ;         ;
+; scfifo.tdf                       ; yes             ; Megafunction                 ; /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/scfifo.tdf                   ;         ;
+; a_regfifo.inc                    ; yes             ; Megafunction                 ; /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_regfifo.inc                ;         ;
+; a_dpfifo.inc                     ; yes             ; Megafunction                 ; /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_dpfifo.inc                 ;         ;
+; a_i2fifo.inc                     ; yes             ; Megafunction                 ; /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_i2fifo.inc                 ;         ;
+; a_fffifo.inc                     ; yes             ; Megafunction                 ; /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_fffifo.inc                 ;         ;
+; a_f2fifo.inc                     ; yes             ; Megafunction                 ; /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/a_f2fifo.inc                 ;         ;
+; aglobal181.inc                   ; yes             ; Megafunction                 ; /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc               ;         ;
+; db/scfifo_h491.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/scfifo_h491.tdf     ;         ;
+; db/a_dpfifo_oa91.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf   ;         ;
+; db/a_fefifo_u7e.tdf              ; yes             ; Auto-Generated Megafunction  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_fefifo_u7e.tdf    ;         ;
+; db/cntr_0h7.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_0h7.tdf        ;         ;
+; db/altsyncram_0us1.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/altsyncram_0us1.tdf ;         ;
+; db/cntr_kgb.tdf                  ; yes             ; Auto-Generated Megafunction  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_kgb.tdf        ;         ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------------+
@@ -357,7 +357,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -367,17 +367,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Wed Aug 21 15:10:11 2019
+    Info: Processing started: Tue Sep 17 16:43:19 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off fifo32x128 -c fifo32x128
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file fifo32x128.vhd
-    Info (12022): Found design unit 1: fifo32x128-SYN File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 56
-    Info (12023): Found entity 1: fifo32x128 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 42
+    Info (12022): Found design unit 1: fifo32x128-SYN File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 56
+    Info (12023): Found entity 1: fifo32x128 File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 42
 Info (12127): Elaborating entity "fifo32x128" for the top level hierarchy
-Info (12128): Elaborating entity "scfifo" for hierarchy "scfifo:scfifo_component" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 93
-Info (12130): Elaborated megafunction instantiation "scfifo:scfifo_component" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 93
-Info (12133): Instantiated megafunction "scfifo:scfifo_component" with the following parameter: File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 93
+Info (12128): Elaborating entity "scfifo" for hierarchy "scfifo:scfifo_component" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 93
+Info (12130): Elaborated megafunction instantiation "scfifo:scfifo_component" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 93
+Info (12133): Instantiated megafunction "scfifo:scfifo_component" with the following parameter: File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/fifo32x128.vhd Line: 93
     Info (12134): Parameter "add_ram_output_register" = "OFF"
     Info (12134): Parameter "intended_device_family" = "Cyclone V"
     Info (12134): Parameter "lpm_numwords" = "128"
@@ -389,23 +389,23 @@ Info (12133): Instantiated megafunction "scfifo:scfifo_component" with the follo
     Info (12134): Parameter "underflow_checking" = "ON"
     Info (12134): Parameter "use_eab" = "ON"
 Info (12021): Found 1 design units, including 1 entities, in source file db/scfifo_h491.tdf
-    Info (12023): Found entity 1: scfifo_h491 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/scfifo_h491.tdf Line: 24
-Info (12128): Elaborating entity "scfifo_h491" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated" File: /home/daniel/intelFPGA_lite/18.1/quartus/libraries/megafunctions/scfifo.tdf Line: 299
+    Info (12023): Found entity 1: scfifo_h491 File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/scfifo_h491.tdf Line: 24
+Info (12128): Elaborating entity "scfifo_h491" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated" File: /home/switch/intelFPGA_lite/18.1/quartus/libraries/megafunctions/scfifo.tdf Line: 299
 Info (12021): Found 1 design units, including 1 entities, in source file db/a_dpfifo_oa91.tdf
-    Info (12023): Found entity 1: a_dpfifo_oa91 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 28
-Info (12128): Elaborating entity "a_dpfifo_oa91" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/scfifo_h491.tdf Line: 35
+    Info (12023): Found entity 1: a_dpfifo_oa91 File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 28
+Info (12128): Elaborating entity "a_dpfifo_oa91" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/scfifo_h491.tdf Line: 35
 Info (12021): Found 1 design units, including 1 entities, in source file db/a_fefifo_u7e.tdf
-    Info (12023): Found entity 1: a_fefifo_u7e File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_fefifo_u7e.tdf Line: 24
-Info (12128): Elaborating entity "a_fefifo_u7e" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|a_fefifo_u7e:fifo_state" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 40
+    Info (12023): Found entity 1: a_fefifo_u7e File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_fefifo_u7e.tdf Line: 24
+Info (12128): Elaborating entity "a_fefifo_u7e" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|a_fefifo_u7e:fifo_state" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_0h7.tdf
-    Info (12023): Found entity 1: cntr_0h7 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_0h7.tdf Line: 25
-Info (12128): Elaborating entity "cntr_0h7" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|a_fefifo_u7e:fifo_state|cntr_0h7:count_usedw" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_fefifo_u7e.tdf Line: 37
+    Info (12023): Found entity 1: cntr_0h7 File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_0h7.tdf Line: 25
+Info (12128): Elaborating entity "cntr_0h7" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|a_fefifo_u7e:fifo_state|cntr_0h7:count_usedw" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_fefifo_u7e.tdf Line: 37
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0us1.tdf
-    Info (12023): Found entity 1: altsyncram_0us1 File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/altsyncram_0us1.tdf Line: 27
-Info (12128): Elaborating entity "altsyncram_0us1" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|altsyncram_0us1:FIFOram" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 41
+    Info (12023): Found entity 1: altsyncram_0us1 File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/altsyncram_0us1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_0us1" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|altsyncram_0us1:FIFOram" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 41
 Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_kgb.tdf
-    Info (12023): Found entity 1: cntr_kgb File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_kgb.tdf Line: 25
-Info (12128): Elaborating entity "cntr_kgb" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|cntr_kgb:rd_ptr_count" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 42
+    Info (12023): Found entity 1: cntr_kgb File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/cntr_kgb.tdf Line: 25
+Info (12128): Elaborating entity "cntr_kgb" for hierarchy "scfifo:scfifo_component|scfifo_h491:auto_generated|a_dpfifo_oa91:dpfifo|cntr_kgb:rd_ptr_count" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/fifo32x128/db/a_dpfifo_oa91.tdf Line: 42
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -415,9 +415,9 @@ Info (21057): Implemented 130 device resources after synthesis - the final resou
     Info (21061): Implemented 29 logic cells
     Info (21064): Implemented 32 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 1065 megabytes
-    Info: Processing ended: Wed Aug 21 15:10:45 2019
-    Info: Elapsed time: 00:00:34
-    Info: Total CPU time (on all processors): 00:01:03
+    Info: Peak virtual memory: 1243 megabytes
+    Info: Processing ended: Tue Sep 17 16:43:31 2019
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:33
 
 

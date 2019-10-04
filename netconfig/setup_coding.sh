@@ -2,27 +2,27 @@
 
 #Bash script to setup OvS coding ports.
 
-coders='1 2 3' #Port IDs for encoder, decoder and recoder respectively.
+coders='1 2' #Port IDs for encoder, decoder respectively.
 for coder in $coders
 do 
 	#Add each port to OvS bridge.
-	sudo ovs-vsctl add-port br0 dpdkr"$coder"0  -- set Interface dpdkr"$coder"0 type=dpdkr
-	sudo ovs-vsctl add-port br0 dpdkr"$coder"1  -- set Interface dpdkr"$coder"1 type=dpdkr
+	sudo /usr/local/bin/ovs-vsctl add-port br0 dpdkr"$coder"0  -- set Interface dpdkr"$coder"0 type=dpdkr
+	sudo /usr/local/bin/ovs-vsctl add-port br0 dpdkr"$coder"1  -- set Interface dpdkr"$coder"1 type=dpdkr
 done
 
 #Temp add flows for dpdkr ports. 
 #Send all packets to encoder.
-sudo ovs-ofctl add-flow br0 ip,in_port="vhp0",ip_proto="17",actions=output:"dpdkr10"
-sudo ovs-ofctl add-flow br0 ip,in_port="vhp1",ip_proto="17",actions=output:"dpdkr10"
-sudo ovs-ofctl add-flow br0 ip,in_port="vhp2",ip_proto="17",actions=output:"dpdkr10"
-sudo ovs-ofctl add-flow br0 ip,in_port="vhp3",ip_proto="17",actions=output:"dpdkr10"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 ip,in_port="vhp0",ip_proto="17",actions=output:"dpdkr10"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 ip,in_port="vhp1",ip_proto="17",actions=output:"dpdkr10"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 ip,in_port="vhp2",ip_proto="17",actions=output:"dpdkr10"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 ip,in_port="vhp3",ip_proto="17",actions=output:"dpdkr10"
 # Send encoded packets to decoder.
-sudo ovs-ofctl add-flow br0 in_port="dpdkr11",actions=output:"dpdkr20"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 in_port="dpdkr11",actions=output:"dpdkr20"
 # Send decoded packets to multicast hosts.
-sudo ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:43",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
-sudo ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:44",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
-sudo ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:45",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
-sudo ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:46",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:43",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:44",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:45",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
+sudo /usr/local/bin/ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:46",actions=output:"vhp0",output:"vhp1",output:"vhp2",output:"vhp3"
 
 #Temp add vhost-user ports and flows for vhost-user ports.
 # sudo ovs-vsctl add-port br0 dpdkvhostclient20 -- set Interface dpdkvhostclient20 type=dpdkvhostuser 
@@ -42,3 +42,6 @@ sudo ovs-ofctl add-flow br0 in_port="dpdkr21",dl_dst="01:00:5e:00:43:46",actions
 # sudo ovs-ofctl add-flow br0 ip,in_port="vhp1",actions=flood
 # sudo ovs-ofctl add-flow br0 ip,in_port="vhp2",actions=flood
 # sudo ovs-ofctl add-flow br0 ip,in_port="vhp3",actions=flood
+
+#Dump Flows
+sudo /usr/local/bin/ovs-ofctl -O OpenFlow13 dump-flows br0

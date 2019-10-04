@@ -1,5 +1,5 @@
 Analysis & Synthesis report for gj_mulsubRow
-Thu Aug 22 16:43:10 2019
+Tue Sep 17 16:59:43 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -116,7 +116,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Aug 22 16:43:10 2019       ;
+; Analysis & Synthesis Status     ; Successful - Tue Sep 17 16:59:43 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gj_mulsubRow                                ;
 ; Top-level Entity Name           ; gj_mulsubRow                                ;
@@ -228,26 +228,38 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Average used               ; 1.01        ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processor 9            ;   0.0%      ;
+;     Processor 10           ;   0.0%      ;
+;     Processor 11           ;   0.0%      ;
+;     Processor 12           ;   0.0%      ;
+;     Processor 13           ;   0.0%      ;
+;     Processors 14-16       ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                            ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                                     ; Library ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------+---------+
-; ../../encoder/gfmul/gfmul.vhd    ; yes             ; User VHDL File  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd               ;         ;
-; gj_mulsubRow.vhd                 ; yes             ; User VHDL File  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd ;         ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                     ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                              ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------------+---------+
+; ../../encoder/gfmul/gfmul.vhd    ; yes             ; User VHDL File  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd               ;         ;
+; gj_mulsubRow.vhd                 ; yes             ; User VHDL File  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -3389,7 +3401,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -3399,26 +3411,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Aug 22 16:42:48 2019
+    Info: Processing started: Tue Sep 17 16:59:29 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off gj_mulsubRow -c gj_mulsubRow
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd
-    Info (12022): Found design unit 1: gfmul-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 19
-    Info (12023): Found entity 1: gfmul File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 5
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd
+    Info (12022): Found design unit 1: gfmul-rtl File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 19
+    Info (12023): Found entity 1: gfmul File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gj_mulsubRow.vhd
-    Info (12022): Found design unit 1: gj_mulsubRow-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd Line: 28
-    Info (12023): Found entity 1: gj_mulsubRow File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd Line: 5
+    Info (12022): Found design unit 1: gj_mulsubRow-rtl File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd Line: 28
+    Info (12023): Found entity 1: gj_mulsubRow File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gj_mulsubRowTb.vhd
-    Info (12022): Found design unit 1: gj_mulsubRowTb-sim File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRowTb.vhd Line: 10
-    Info (12023): Found entity 1: gj_mulsubRowTb File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRowTb.vhd Line: 7
+    Info (12022): Found design unit 1: gj_mulsubRowTb-sim File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRowTb.vhd Line: 10
+    Info (12023): Found entity 1: gj_mulsubRowTb File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRowTb.vhd Line: 7
 Info (12127): Elaborating entity "gj_mulsubRow" for the top level hierarchy
-Info (12128): Elaborating entity "gfmul" for hierarchy "gfmul:\generate_mulsh:0:gfmul_h" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd Line: 64
+Info (12128): Elaborating entity "gfmul" for hierarchy "gfmul:\generate_mulsh:0:gfmul_h" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gj_mulsubRow/gj_mulsubRow.vhd Line: 64
 Info (286030): Timing-Driven Synthesis is running
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
-    Critical Warning (18010): Register gfmul:\generate_mulsN:0:gfmul_N|count[2] will power up to High File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
-    Critical Warning (18010): Register gfmul:\generate_mulsN:0:gfmul_N|count[1] will power up to High File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
-    Critical Warning (18010): Register gfmul:\generate_mulsN:0:gfmul_N|count[31] will power up to Low File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
+    Critical Warning (18010): Register gfmul:\generate_mulsN:0:gfmul_N|count[2] will power up to High File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
+    Critical Warning (18010): Register gfmul:\generate_mulsN:0:gfmul_N|count[1] will power up to High File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
+    Critical Warning (18010): Register gfmul:\generate_mulsN:0:gfmul_N|count[31] will power up to Low File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Info (21057): Implemented 4641 device resources after synthesis - the final resource count might be different
@@ -3426,9 +3438,9 @@ Info (21057): Implemented 4641 device resources after synthesis - the final reso
     Info (21059): Implemented 569 output pins
     Info (21061): Implemented 2926 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 1033 megabytes
-    Info: Processing ended: Thu Aug 22 16:43:10 2019
-    Info: Elapsed time: 00:00:22
-    Info: Total CPU time (on all processors): 00:00:41
+    Info: Peak virtual memory: 1258 megabytes
+    Info: Processing ended: Tue Sep 17 16:59:43 2019
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:35
 
 

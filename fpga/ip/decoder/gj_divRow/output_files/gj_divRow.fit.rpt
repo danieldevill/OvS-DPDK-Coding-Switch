@@ -1,5 +1,5 @@
 Fitter report for gj_divRow
-Thu Aug 22 16:39:29 2019
+Tue Sep 17 17:00:50 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -54,7 +54,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Failed - Thu Aug 22 16:39:29 2019           ;
+; Fitter Status                   ; Failed - Tue Sep 17 17:00:50 2019           ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gj_divRow                                   ;
 ; Top-level Entity Name           ; gj_divRow                                   ;
@@ -141,8 +141,8 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -7602,7 +7602,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Fitter Messages ;
 +-----------------+
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (119006): Selected device 5CGXFC9D6F27C7 for design "gj_divRow"
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -7612,12 +7612,12 @@ Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Ass
 Critical Warning (169085): No exact pin location assignment(s) for 1147 pins of 1147 total pins. For the list of pins please refer to the I/O Assignment Warnings table in the fitter report.
 Error (169281): There are 578 IO input pads in the design, but only 360 IO input pad locations available on the device.
 Error (169282): There are 569 IO output pads in the design, but only 360 IO output pad locations available on the device.
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:00
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:01
 Error (11802): Can't fit design in device. Modify your design to reduce resources, or choose a larger device. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number.
 Error: Quartus Prime Fitter was unsuccessful. 3 errors, 4 warnings
-    Error: Peak virtual memory: 1173 megabytes
-    Error: Processing ended: Thu Aug 22 16:39:30 2019
+    Error: Peak virtual memory: 1295 megabytes
+    Error: Processing ended: Tue Sep 17 17:00:51 2019
     Error: Elapsed time: 00:00:05
-    Error: Total CPU time (on all processors): 00:00:05
+    Error: Total CPU time (on all processors): 00:00:04
 
 

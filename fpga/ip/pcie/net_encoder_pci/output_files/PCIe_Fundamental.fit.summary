@@ -1,16 +1,16 @@
-Fitter Status : Successful - Tue Oct  1 19:34:56 2019
+Fitter Status : Successful - Wed Oct  2 10:33:41 2019
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : PCIe_Fundamental
 Top-level Entity Name : PCIe_Fundamental
 Family : Cyclone V
 Device : 5CGXFC9D6F27C7
 Timing Models : Final
-Logic utilization (in ALMs) : 9,361 / 113,560 ( 8 % )
-Total registers : 17883
+Logic utilization (in ALMs) : 9,403 / 113,560 ( 8 % )
+Total registers : 17919
 Total pins : 74 / 378 ( 20 % )
 Total virtual pins : 0
-Total block memory bits : 1,142,544 / 12,492,800 ( 9 % )
-Total RAM Blocks : 141 / 1,220 ( 12 % )
+Total block memory bits : 1,156,880 / 12,492,800 ( 9 % )
+Total RAM Blocks : 143 / 1,220 ( 12 % )
 Total DSP Blocks : 0 / 342 ( 0 % )
 Total HSSI RX PCSs : 4 / 9 ( 44 % )
 Total HSSI PMA RX Deserializers : 4 / 9 ( 44 % )

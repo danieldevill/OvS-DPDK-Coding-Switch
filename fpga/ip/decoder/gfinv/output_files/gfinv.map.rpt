@@ -1,5 +1,5 @@
 Analysis & Synthesis report for gfinv
-Sat Aug 24 18:34:02 2019
+Tue Sep 17 16:54:52 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -42,7 +42,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Aug 24 18:34:02 2019       ;
+; Analysis & Synthesis Status     ; Successful - Tue Sep 17 16:54:52 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gfinv                                       ;
 ; Top-level Entity Name           ; gfinv                                       ;
@@ -154,8 +154,8 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
@@ -165,13 +165,13 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                              ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                       ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
-; gfinv.vhd                        ; yes             ; User VHDL File  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                       ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
+; gfinv.vhd                        ; yes             ; User VHDL File  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
 
 
 +----------------------------------------------------------------+
@@ -250,7 +250,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -260,19 +260,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Aug 24 18:33:45 2019
+    Info: Processing started: Tue Sep 17 16:54:41 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off gfinv -c gfinv
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 2 design units, including 1 entities, in source file gfinv.vhd
-    Info (12022): Found design unit 1: gfinv-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 16
-    Info (12023): Found entity 1: gfinv File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 5
+    Info (12022): Found design unit 1: gfinv-rtl File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 16
+    Info (12023): Found entity 1: gfinv File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gfinvTb.vhd
-    Info (12022): Found design unit 1: gfinvTb-sim File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinvTb.vhd Line: 10
-    Info (12023): Found entity 1: gfinvTb File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinvTb.vhd Line: 7
+    Info (12022): Found design unit 1: gfinvTb-sim File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinvTb.vhd Line: 10
+    Info (12023): Found entity 1: gfinvTb File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinvTb.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file gfinv_avalon_interface.vhd
-    Info (12022): Found design unit 1: gfinv_avalon_interface-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv_avalon_interface.vhd Line: 15
-    Info (12023): Found entity 1: gfinv_avalon_interface File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv_avalon_interface.vhd Line: 4
+    Info (12022): Found design unit 1: gfinv_avalon_interface-rtl File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv_avalon_interface.vhd Line: 15
+    Info (12023): Found entity 1: gfinv_avalon_interface File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv_avalon_interface.vhd Line: 4
 Info (12127): Elaborating entity "gfinv" for the top level hierarchy
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -282,9 +282,9 @@ Info (21057): Implemented 60 device resources after synthesis - the final resour
     Info (21059): Implemented 8 output pins
     Info (21061): Implemented 42 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 997 megabytes
-    Info: Processing ended: Sat Aug 24 18:34:02 2019
-    Info: Elapsed time: 00:00:17
-    Info: Total CPU time (on all processors): 00:00:37
+    Info: Peak virtual memory: 1146 megabytes
+    Info: Processing ended: Tue Sep 17 16:54:52 2019
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:32
 
 

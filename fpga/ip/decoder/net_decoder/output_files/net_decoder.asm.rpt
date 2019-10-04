@@ -1,5 +1,5 @@
 Assembler report for net_decoder
-Thu Aug 22 17:41:44 2019
+Tue Sep 17 17:41:19 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Aug 22 17:41:44 2019 ;
+; Assembler Status      ; Successful - Tue Sep 17 17:41:19 2019 ;
 ; Revision Name         ; net_decoder                           ;
 ; Top-level Entity Name ; net_decoder                           ;
 ; Family                ; Cyclone V                             ;
@@ -52,13 +52,13 @@ refer to the applicable agreement for further details.
 +--------+---------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                                   ;
-+-----------------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                                   ;
-+-----------------------------------------------------------------------------------------------------------------------------+
-; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/net_decoder/output_files/net_decoder.sof ;
-+-----------------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                            ;
++------------------------------------------------------------------------------------------------------+
+; File Name                                                                                            ;
++------------------------------------------------------------------------------------------------------+
+; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/net_decoder/output_files/net_decoder.sof ;
++------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------------------+
@@ -77,14 +77,14 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Aug 22 17:41:16 2019
+    Info: Processing started: Tue Sep 17 17:40:49 2019
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off net_decoder -c net_decoder
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 1290 megabytes
-    Info: Processing ended: Thu Aug 22 17:41:45 2019
-    Info: Elapsed time: 00:00:29
-    Info: Total CPU time (on all processors): 00:00:28
+    Info: Peak virtual memory: 1411 megabytes
+    Info: Processing ended: Tue Sep 17 17:41:20 2019
+    Info: Elapsed time: 00:00:31
+    Info: Total CPU time (on all processors): 00:00:30
 
 

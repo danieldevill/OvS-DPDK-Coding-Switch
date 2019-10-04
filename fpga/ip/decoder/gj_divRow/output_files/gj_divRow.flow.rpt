@@ -1,5 +1,5 @@
 Flow report for gj_divRow
-Thu Aug 22 16:40:50 2019
+Tue Sep 17 17:00:50 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,25 +40,25 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Aug 22 16:40:50 2019       ;
+; Flow Status                     ; Flow Failed - Tue Sep 17 17:00:50 2019      ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gj_divRow                                   ;
 ; Top-level Entity Name           ; gj_divRow                                   ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC9D6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; N/A                                         ;
+; Logic utilization (in ALMs)     ; 917 / 113,560 ( < 1 % )                     ;
 ; Total registers                 ; 1777                                        ;
-; Total pins                      ; 1,147                                       ;
+; Total pins                      ; 1,147 / 378 ( 303 % )                       ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 0                                           ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0                                           ;
-; Total DLLs                      ; 0                                           ;
+; Total block memory bits         ; 0 / 12,492,800 ( 0 % )                      ;
+; Total DSP Blocks                ; 0 / 342 ( 0 % )                             ;
+; Total HSSI RX PCSs              ; 0 / 9 ( 0 % )                               ;
+; Total HSSI PMA RX Deserializers ; 0 / 9 ( 0 % )                               ;
+; Total HSSI TX PCSs              ; 0 / 9 ( 0 % )                               ;
+; Total HSSI PMA TX Serializers   ; 0 / 9 ( 0 % )                               ;
+; Total PLLs                      ; 0 / 17 ( 0 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
 +---------------------------------+---------------------------------------------+
 
 
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/22/2019 16:40:15 ;
+; Start date & time ; 09/17/2019 17:00:16 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; gj_divRow           ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 103947309669421.156648481522910        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 130586021222.156873241630947           ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; gj_divRowTb    ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; gj_divRowTb                            ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Vhdl                                   ; --            ; --          ; eda_simulation ;
@@ -104,24 +104,27 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:35     ; 1.0                     ; 1041 MB             ; 00:00:55                           ;
-; Total                ; 00:00:35     ; --                      ; --                  ; 00:00:55                           ;
+; Analysis & Synthesis ; 00:00:29     ; 1.0                     ; 1275 MB             ; 00:00:50                           ;
+; Fitter               ; 00:00:04     ; 1.0                     ; 1295 MB             ; 00:00:04                           ;
+; Total                ; 00:00:33     ; --                      ; --                  ; 00:00:54                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                          ;
-+----------------------+------------------+---------------+---------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name       ; OS Version    ; Processor type ;
-+----------------------+------------------+---------------+---------------+----------------+
-; Analysis & Synthesis ; daniel-t460s     ; Manjaro Linux ; Manjaro Linux ; x86_64         ;
-+----------------------+------------------+---------------+---------------+----------------+
++---------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                             ;
++----------------------+-----------------------+--------------+--------------+----------------+
+; Module Name          ; Machine Hostname      ; OS Name      ; OS Version   ; Processor type ;
++----------------------+-----------------------+--------------+--------------+----------------+
+; Analysis & Synthesis ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; Fitter               ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
++----------------------+-----------------------+--------------+--------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off gj_divRow -c gj_divRow
+quartus_fit --read_settings_files=off --write_settings_files=off gj_divRow -c gj_divRow
 
 
 

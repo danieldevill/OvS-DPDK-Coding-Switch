@@ -1,5 +1,5 @@
 Analysis & Synthesis report for gfdiv
-Thu Aug 22 16:27:25 2019
+Tue Sep 17 16:56:26 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -45,7 +45,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Aug 22 16:27:25 2019       ;
+; Analysis & Synthesis Status     ; Successful - Tue Sep 17 16:56:26 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; gfdiv                                       ;
 ; Top-level Entity Name           ; gfdiv                                       ;
@@ -157,27 +157,27 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 32          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                              ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                       ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
-; ../../encoder/gfmul/gfmul.vhd    ; yes             ; User VHDL File  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd ;         ;
-; ../gfinv/gfinv.vhd               ; yes             ; User VHDL File  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd ;         ;
-; gfdiv.vhd                        ; yes             ; User VHDL File  ; /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                       ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
+; ../../encoder/gfmul/gfmul.vhd    ; yes             ; User VHDL File  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd ;         ;
+; ../gfinv/gfinv.vhd               ; yes             ; User VHDL File  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd ;         ;
+; gfdiv.vhd                        ; yes             ; User VHDL File  ; /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -298,7 +298,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -308,30 +308,30 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Aug 22 16:27:07 2019
+    Info: Processing started: Tue Sep 17 16:56:15 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off gfdiv -c gfdiv
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd
-    Info (12022): Found design unit 1: gfmul-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 19
-    Info (12023): Found entity 1: gfmul File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd
-    Info (12022): Found design unit 1: gfinv-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 16
-    Info (12023): Found entity 1: gfinv File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 5
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd
+    Info (12022): Found design unit 1: gfmul-rtl File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 19
+    Info (12023): Found entity 1: gfmul File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd
+    Info (12022): Found design unit 1: gfinv-rtl File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 16
+    Info (12023): Found entity 1: gfinv File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfinv/gfinv.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gfdiv.vhd
-    Info (12022): Found design unit 1: gfdiv-rtl File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 19
-    Info (12023): Found entity 1: gfdiv File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 5
+    Info (12022): Found design unit 1: gfdiv-rtl File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 19
+    Info (12023): Found entity 1: gfdiv File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file gfdivTb.vhd
-    Info (12022): Found design unit 1: gfdivTb-sim File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdivTb.vhd Line: 10
-    Info (12023): Found entity 1: gfdivTb File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdivTb.vhd Line: 7
+    Info (12022): Found design unit 1: gfdivTb-sim File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdivTb.vhd Line: 10
+    Info (12023): Found entity 1: gfdivTb File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdivTb.vhd Line: 7
 Info (12127): Elaborating entity "gfdiv" for the top level hierarchy
-Info (12128): Elaborating entity "gfmul" for hierarchy "gfmul:gfmul_1" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 47
-Info (12128): Elaborating entity "gfinv" for hierarchy "gfinv:gfinv_1" File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 55
+Info (12128): Elaborating entity "gfmul" for hierarchy "gfmul:gfmul_1" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 47
+Info (12128): Elaborating entity "gfinv" for hierarchy "gfinv:gfinv_1" File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/decoder/gfdiv/gfdiv.vhd Line: 55
 Info (286030): Timing-Driven Synthesis is running
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
-    Critical Warning (18010): Register gfmul:gfmul_1|count[2] will power up to High File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
-    Critical Warning (18010): Register gfmul:gfmul_1|count[1] will power up to High File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
-    Critical Warning (18010): Register gfmul:gfmul_1|count[31] will power up to Low File: /home/daniel/Dropbox/Academics/MEng/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
+    Critical Warning (18010): Register gfmul:gfmul_1|count[2] will power up to High File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
+    Critical Warning (18010): Register gfmul:gfmul_1|count[1] will power up to High File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
+    Critical Warning (18010): Register gfmul:gfmul_1|count[31] will power up to Low File: /home/switch/Working/OvS-DPDK-Coding-Switch/fpga/ip/encoder/gfmul/gfmul.vhd Line: 27
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Info (21057): Implemented 129 device resources after synthesis - the final resource count might be different
@@ -339,9 +339,9 @@ Info (21057): Implemented 129 device resources after synthesis - the final resou
     Info (21059): Implemented 8 output pins
     Info (21061): Implemented 103 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 1016 megabytes
-    Info: Processing ended: Thu Aug 22 16:27:25 2019
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:37
+    Info: Peak virtual memory: 1199 megabytes
+    Info: Processing ended: Tue Sep 17 16:56:26 2019
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:32
 
 

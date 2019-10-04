@@ -1,5 +1,5 @@
 Flow report for net_decoder
-Thu Aug 22 17:44:31 2019
+Tue Sep 17 17:42:43 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Aug 22 17:44:31 2019       ;
+; Flow Status                     ; Successful - Tue Sep 17 17:42:43 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; net_decoder                                 ;
 ; Top-level Entity Name           ; net_decoder                                 ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/22/2019 16:55:24 ;
+; Start date & time ; 09/17/2019 17:11:41 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; net_decoder         ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ refer to the applicable agreement for further details.
 ; Assignment Name                            ; Value                                                                                                 ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------------+-------------------------------------------------------------------------------------------------------+---------------+-------------+----------------+
 ; ALM_REGISTER_PACKING_EFFORT                ; High                                                                                                  ; Medium        ; --          ; --             ;
-; COMPILER_SIGNATURE_ID                      ; 103947309669421.156648572423929                                                                       ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                      ; 130586021222.156873310135245                                                                          ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME                   ; NA                                                                                                    ; --            ; --          ; net_decoderTb  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH       ; net_decoderTb                                                                                         ; --            ; --          ; eda_simulation ;
 ; EDA_NETLIST_WRITER_OUTPUT_DIR              ; simulation/modelsim                                                                                   ; --            ; --          ; eda_simulation ;
@@ -109,26 +109,26 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:55     ; 1.2                     ; 1656 MB             ; 00:03:48                           ;
-; Fitter               ; 00:42:31     ; 1.1                     ; 3342 MB             ; 01:05:39                           ;
-; Assembler            ; 00:00:28     ; 1.0                     ; 1290 MB             ; 00:00:28                           ;
-; Timing Analyzer      ; 00:02:26     ; 1.8                     ; 2044 MB             ; 00:04:15                           ;
-; EDA Netlist Writer   ; 00:00:18     ; 1.0                     ; 1746 MB             ; 00:00:17                           ;
-; Total                ; 00:48:38     ; --                      ; --                  ; 01:14:27                           ;
+; Analysis & Synthesis ; 00:02:05     ; 2.2                     ; 1899 MB             ; 00:03:19                           ;
+; Fitter               ; 00:26:38     ; 1.4                     ; 4802 MB             ; 01:19:29                           ;
+; Assembler            ; 00:00:30     ; 1.0                     ; 1411 MB             ; 00:00:30                           ;
+; Timing Analyzer      ; 00:01:02     ; 6.1                     ; 2354 MB             ; 00:05:15                           ;
+; EDA Netlist Writer   ; 00:00:18     ; 1.0                     ; 1870 MB             ; 00:00:18                           ;
+; Total                ; 00:30:33     ; --                      ; --                  ; 01:28:51                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+------------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                          ;
-+----------------------+------------------+---------------+---------------+----------------+
-; Module Name          ; Machine Hostname ; OS Name       ; OS Version    ; Processor type ;
-+----------------------+------------------+---------------+---------------+----------------+
-; Analysis & Synthesis ; daniel-t460s     ; Manjaro Linux ; Manjaro Linux ; x86_64         ;
-; Fitter               ; daniel-t460s     ; Manjaro Linux ; Manjaro Linux ; x86_64         ;
-; Assembler            ; daniel-t460s     ; Manjaro Linux ; Manjaro Linux ; x86_64         ;
-; Timing Analyzer      ; daniel-t460s     ; Manjaro Linux ; Manjaro Linux ; x86_64         ;
-; EDA Netlist Writer   ; daniel-t460s     ; Manjaro Linux ; Manjaro Linux ; x86_64         ;
-+----------------------+------------------+---------------+---------------+----------------+
++---------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                             ;
++----------------------+-----------------------+--------------+--------------+----------------+
+; Module Name          ; Machine Hostname      ; OS Name      ; OS Version   ; Processor type ;
++----------------------+-----------------------+--------------+--------------+----------------+
+; Analysis & Synthesis ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; Fitter               ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; Assembler            ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; Timing Analyzer      ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; EDA Netlist Writer   ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
++----------------------+-----------------------+--------------+--------------+----------------+
 
 
 ------------
