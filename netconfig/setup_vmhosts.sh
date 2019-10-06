@@ -7,7 +7,7 @@ vm_names='A B C D E F G H'
 vm_count=0
 vm_ram='2048M'
 
-if ! pgrep -f "qemu-system-x86_64" > /dev/null
+if pgrep -f "qemu-system-x86_64" > /dev/null
 then
 	for vm_name in $vm_names
 	do

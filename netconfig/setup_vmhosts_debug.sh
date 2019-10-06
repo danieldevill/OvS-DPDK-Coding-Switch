@@ -11,7 +11,7 @@ sudo /usr/local/bin/ovs-vsctl del-port br0 vhp"$vm_count"
 sudo /usr/local/bin/ovs-vsctl add-port br0 vhp"$vm_count" -- set Interface vhp"$vm_count" type=dpdkvhostuserclient options:vhost-server-path=/tmp/dpdkvhostclient"$vm_count"
 
 #Start VM #Debug -nographic -serial mon:stdio
-sudo qemu-system-x86_64 -hda /sdata/encoderVNF.qcow2 -enable-kvm -nographic -serial mon:stdio -m "$vm_ram" \
+sudo qemu-system-x86_64  -drive file=/sdata/encoderVNF.qcow2 -enable-kvm -nographic -serial mon:stdio -m "$vm_ram" \
 	-cpu host,+ssse3,+sse4.1,+sse4.2,+x2apic \
 	-netdev user,id=hostnet"$vm_name",hostfwd=tcp::1002"$vm_count"-:22 \
 	-device e1000,netdev=hostnet"$vm_name" \
