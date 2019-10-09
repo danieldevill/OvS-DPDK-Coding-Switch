@@ -1,6 +1,6 @@
 <session jtag_chain="C5P [2-1.2]" jtag_device="@1: 5CGTFD9(A5|C5|D5|E5)/.. (0x02B040DD)" sof_file="../output_files/PCIe_Fundamental.sof">
   <display_tree gui_logging_enabled="0">
-    <display_branch instance="auto_signaltap_0" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+    <display_branch instance="auto_signaltap_0" log="USE_GLOBAL_TEMP" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
   </display_tree>
   <instance enabled="true" entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_0" source_file="sld_signaltap.vhd">
     <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
@@ -2830,7 +2830,7 @@
             <node data_index="117" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|inPacketCount[1]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="117" tap_mode="classic" type="unknown"/>
             <node data_index="106" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|inPacketCount[0]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="106" tap_mode="classic" type="unknown"/>
           </node>
-          <node is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|mul1[27..0][7..0]" order="lsb_to_msb" state="expand" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="register">
+          <node is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|mul1[27..0][7..0]" order="lsb_to_msb" state="collapse" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="register">
             <node is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|mul1[27][7..0]" order="msb_to_lsb" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="register">
               <node data_index="297" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][7]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="297" tap_mode="classic" type="unknown"/>
               <node data_index="296" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][6]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="296" tap_mode="classic" type="unknown"/>
@@ -4001,7 +4001,7 @@
             <node data_index="52" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|data_datain[1]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="52" tap_mode="classic" type="unknown"/>
             <node data_index="41" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|data_datain[0]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="41" tap_mode="classic" type="unknown"/>
           </node>
-          <node is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31..0]" order="msb_to_lsb" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
+          <node is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31..0]" order="msb_to_lsb" state="collapse" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
             <node data_index="98" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="98" tap_mode="classic" type="unknown"/>
             <node data_index="97" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[30]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="97" tap_mode="classic" type="unknown"/>
             <node data_index="95" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[29]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="95" tap_mode="classic" type="unknown"/>
@@ -4284,7 +4284,7 @@
             <net data_index="117" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|inPacketCount[1]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="117" tap_mode="classic" type="unknown"/>
             <net data_index="106" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|inPacketCount[0]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="106" tap_mode="classic" type="unknown"/>
           </bus>
-          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|mul1[27..0][7..0]" order="lsb_to_msb" state="expand" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="register">
+          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|mul1[27..0][7..0]" order="lsb_to_msb" state="collapse" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="register">
             <net data_index="297" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][7]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="297" tap_mode="classic" type="unknown"/>
             <net data_index="296" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][6]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="296" tap_mode="classic" type="unknown"/>
             <net data_index="295" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][5]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="295" tap_mode="classic" type="unknown"/>
@@ -5321,7 +5321,7 @@
             <net data_index="52" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|data_datain[1]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="52" tap_mode="classic" type="unknown"/>
             <net data_index="41" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|data_datain[0]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="41" tap_mode="classic" type="unknown"/>
           </bus>
-          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31..0]" order="msb_to_lsb" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
+          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31..0]" order="msb_to_lsb" state="collapse" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
             <net data_index="98" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="98" tap_mode="classic" type="unknown"/>
             <net data_index="97" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[30]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="97" tap_mode="classic" type="unknown"/>
             <net data_index="95" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[29]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="95" tap_mode="classic" type="unknown"/>
@@ -5604,7 +5604,7 @@
             <net data_index="117" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|inPacketCount[1]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="117" tap_mode="classic" type="unknown"/>
             <net data_index="106" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|inPacketCount[0]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="106" tap_mode="classic" type="unknown"/>
           </bus>
-          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|mul1[27..0][7..0]" order="lsb_to_msb" state="expand" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="register">
+          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|mul1[27..0][7..0]" order="lsb_to_msb" state="collapse" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="register">
             <net data_index="297" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][7]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="297" tap_mode="classic" type="unknown"/>
             <net data_index="296" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][6]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="296" tap_mode="classic" type="unknown"/>
             <net data_index="295" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|mul1[27][5]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="295" tap_mode="classic" type="unknown"/>
@@ -6641,7 +6641,7 @@
             <net data_index="52" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|data_datain[1]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="52" tap_mode="classic" type="unknown"/>
             <net data_index="41" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|data_datain[0]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="41" tap_mode="classic" type="unknown"/>
           </bus>
-          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31..0]" order="msb_to_lsb" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
+          <bus is_selected="false" level-0="alt_or" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31..0]" order="msb_to_lsb" state="collapse" storage-0="alt_or" storage-1="alt_or" storage-2="alt_or" type="combinatorial">
             <net data_index="98" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[31]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="98" tap_mode="classic" type="unknown"/>
             <net data_index="97" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[30]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="97" tap_mode="classic" type="unknown"/>
             <net data_index="95" duplicate_name_allowed="false" is_data_input="true" is_node_valid="true" is_selected="false" is_storage_input="true" is_trigger_input="false" name="net_encoder:net_encoder0|fifo32x128:fifo32x128_datain|q[29]" pwr_storage-0="dont_care" pwr_storage-1="dont_care" pwr_storage-2="dont_care" storage-0="dont_care" storage-1="dont_care" storage-2="dont_care" storage_index="95" tap_mode="classic" type="unknown"/>
@@ -6679,13 +6679,12 @@
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="9CEFA1FF" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2019/10/09 01:44:13  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="512" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="9CEFA1FF" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2019/10/09 01:44:13  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="512" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">'rst' == high
             <power_up enabled="yes">
-            </power_up>
-            <op_node/>
+            </power_up><op_node/>
           </level>
         </events>
         <storage_qualifier_events>
@@ -6712,7 +6711,7 @@
     </signal_set>
     <position_info>
       <single attribute="active tab" value="0"/>
-      <single attribute="data horizontal scroll position" value="256"/>
+      <single attribute="data horizontal scroll position" value="255"/>
       <single attribute="data vertical scroll position" value="3"/>
       <single attribute="setup horizontal scroll position" value="0"/>
       <single attribute="setup vertical scroll position" value="0"/>
@@ -6736,7 +6735,7 @@
     <single attribute="lock mode" value="0"/>
     <single attribute="sof manager visible" value="0"/>
     <multi attribute="column width" size="23" value="34,61,348,74,255,78,95,96,98,98,88,88,110,101,101,101,101,101,101,101,101,77,207"/>
-    <multi attribute="frame size" size="2" value="1920,971"/>
+    <multi attribute="frame size" size="2" value="1920,945"/>
     <multi attribute="jtag widget size" size="2" value="355,145"/>
   </global_info>
 </session>

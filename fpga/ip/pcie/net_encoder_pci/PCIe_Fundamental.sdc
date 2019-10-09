@@ -14,7 +14,7 @@ create_clock -period 20 [get_ports CLOCK_50_B6A]
 create_clock -period 20 [get_ports CLOCK_50_B7A]
 create_clock -period 20 [get_ports CLOCK_50_B8A]
 # PCIE
-create_clock -period 20 [get_ports PCIE_REFCLK_p]
+create_clock -period 10 [get_ports PCIE_REFCLK_p]
 
 
 #**************************************************************
