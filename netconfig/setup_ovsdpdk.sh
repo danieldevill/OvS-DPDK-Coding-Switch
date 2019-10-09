@@ -29,6 +29,7 @@ sudo /usr/local/sbin/ovs-vswitchd unix:$DB_SOCK --pidfile --detach --log-file=/v
 echo Adding bridge br0..
 sudo /usr/local/bin/ovs-vsctl --if-exists del-br br0
 sudo /usr/local/bin/ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
+sudo ifconfig br0 10.0.0.100 netmask 255.255.255.0 up
 
 #Set Controller to Ryu
 sudo /usr/local/bin/ovs-vsctl set-controller br0 tcp:10.10.11.117:6633

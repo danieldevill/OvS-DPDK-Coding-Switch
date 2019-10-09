@@ -29,8 +29,21 @@ sudo /usr/local/bin/ovs-vsctl add-port br0 vhp_decodeVNF -- set Interface vhp_de
 		-netdev type=vhost-user,id=net9,chardev=char9,vhostforce \
 		-device virtio-net-pci,mac=de:ad:be:ef:00:09,netdev=net9 \
 		-object memory-backend-file,id=mem,size="$vm_ram",mem-path=/dev/hugepages,share=on \
-		-numa node,memdev=mem -mem-prealloc 
+		-numa node,memdev=mem -mem-prealloc &
 	#Start decoder VNF
+	sudo /usr/local/bin/qemu-system-x86_64 -drive file=/sdata/decoderVNF.qcow2 -enable-kvm -display none -serial mon:stdio \
+		-m size="$vm_ram" \
+		-cpu host,+ssse3,+sse4.1,+sse4.2,+x2apic \
+		-smp "$vm_lcores" \
+		-netdev user,id=encodenet,hostfwd=tcp::10030-:22 \
+		-device e1000,netdev=encodenet \
+		-chardev socket,id=char10,path=/tmp/dpdkvhostclient10,server \
+		-netdev type=vhost-user,id=net10,chardev=char10,vhostforce \
+		-device virtio-net-pci,mac=de:ad:be:ef:00:10,netdev=net10 \
+		-object memory-backend-file,id=mem,size="$vm_ram",mem-path=/dev/hugepages,share=on \
+		-numa node,memdev=mem -mem-prealloc &
+
+
 	# sudo /usr/local/bin/qemu-system-x86_64 \
 	# 	-drive file=~/vm-images/decode_VNF_ubuntu18.04.qcow2 -enable-kvm -m size="$vm_ram" \
 	# 	-cpu host,+ssse3,+sse4.1,+sse4.2,+x2apic \

@@ -1,5 +1,5 @@
 Flow report for PCIe_Fundamental
-Wed Oct  9 03:13:44 2019
+Wed Oct  9 09:59:27 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Oct  9 03:11:57 2019       ;
+; Flow Status                     ; Successful - Wed Oct  9 09:57:40 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; PCIe_Fundamental                            ;
 ; Top-level Entity Name           ; PCIe_Fundamental                            ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/09/2019 03:00:46 ;
+; Start date & time ; 10/09/2019 09:46:27 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; PCIe_Fundamental    ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
 ; Assignment Name                      ; Value                                                   ; Default Value                        ; Entity Name ; Section Id       ;
 +--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
-; COMPILER_SIGNATURE_ID                ; 130586021222.157058284520277                            ; --                                   ; --          ; --               ;
+; COMPILER_SIGNATURE_ID                ; 130586021222.157060718709634                            ; --                                   ; --          ; --               ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                      ; --                                   ; --          ; --               ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; PCIe_Fundamental                                        ; --                                   ; --          ; eda_simulation   ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                             ; --                                   ; --          ; eda_simulation   ;
@@ -142,10 +142,10 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:35     ; 1.9                     ; 2003 MB             ; 00:05:07                           ;
-; Fitter               ; 00:08:21     ; 1.8                     ; 5107 MB             ; 00:32:49                           ;
-; Timing Analyzer      ; 00:01:29     ; 2.9                     ; 2406 MB             ; 00:03:49                           ;
-; Total                ; 00:12:25     ; --                      ; --                  ; 00:41:45                           ;
+; Analysis & Synthesis ; 00:02:33     ; 1.9                     ; 1965 MB             ; 00:05:03                           ;
+; Fitter               ; 00:08:24     ; 1.8                     ; 5105 MB             ; 00:33:06                           ;
+; Timing Analyzer      ; 00:01:30     ; 2.9                     ; 2407 MB             ; 00:03:50                           ;
+; Total                ; 00:12:27     ; --                      ; --                  ; 00:41:59                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
