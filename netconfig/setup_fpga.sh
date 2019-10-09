@@ -3,5 +3,5 @@
 #Configure Intel FGPA Environment
 
 #Insert drivers into running kernel 
-cd ./../fpga/driver/PCIe_Driver
+cd ~/Working/OvS-DPDK-Coding-Switch/fpga/driver/PCIe_Driver
 sudo sh load_driver

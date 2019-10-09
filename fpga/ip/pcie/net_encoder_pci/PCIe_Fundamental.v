@@ -121,6 +121,7 @@ assign write_ram_en = 1'b1;
 
 //Net Encoder Wires
 reg          encoder_rst;
+reg [31:0]   encoder_pkt_in;
 wire [31:0]  encoder_pkt_out; 
 wire [31:0]  encoder_pkt_coeff; 
 wire         encoder_done_out_pkts;
@@ -238,7 +239,7 @@ net_encoder
     net_encoder0 (
       .clk(reconfig_xcvr_clk),
       .rst(encoder_rst),
-      .pkt32bseg_i(mr_buffer_data),
+      .pkt32bseg_i(encoder_pkt_in),
       .pkt32bseg_o(encoder_pkt_out),
       .coeffs_out(encoder_pkt_coeff),
       .done_out_pkts(encoder_done_out_pkts),
@@ -289,13 +290,21 @@ begin
             //Begin reading FIFO output.
             if(mr_data_avali == 1)
 					begin
+						
+						if(start_delay == 4'h3)
+							begin
+								encoder_rst <= 1'b1;
+							end
+						else
+							start_delay = start_delay + 4'h1;
+
 						mr_read_buffer = 1'b1;
-						encoder_rst <= 1'b1;
-						//Test temp
+
 						if(mr_control_base != 32'h0700_01D0)  
 							begin
 								mr_control_base = mr_control_base + 32'h4;
 								mr_control_go <= 1'b1;
+								encoder_pkt_in = mr_buffer_data;
 							end
 					end
             else

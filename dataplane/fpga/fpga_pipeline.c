@@ -1,58 +1,19 @@
-//System
-#include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <inttypes.h>
-#include <sys/types.h>
-#include <sys/queue.h>
-#include <netinet/in.h>
-#include <setjmp.h>
-#include <stdarg.h>
-#include <ctype.h>
-#include <errno.h>
-#include <getopt.h>
-#include <signal.h>
-#include <stdbool.h>
-
-//DPDK
-// #include <rte_common.h>
-// #include <rte_log.h>
-// #include <rte_malloc.h>
-// #include <rte_memory.h>
-// #include <rte_memcpy.h>
-// #include <rte_eal.h>
-// #include <rte_launch.h>
-// #include <rte_atomic.h>
-// #include <rte_cycles.h>
-// #include <rte_prefetch.h>
-// #include <rte_lcore.h>
-// #include <rte_per_lcore.h>
-// #include <rte_branch_prediction.h>
-// #include <rte_interrupts.h>
-// #include <rte_random.h>
-// #include <rte_debug.h>
-// #include <rte_ether.h>
-// #include <rte_ethdev.h>
-// #include <rte_mempool.h>
-// #include <rte_mbuf.h>
-// #include <rte_hash.h>
-// #include <rte_jhash.h>
-
-
-//PCIe
 #include <memory.h>
 #include "PCIE.h"
 
-//PCIe Definitions
 #define PCIE_BAR					PCIE_BAR4
 #define ENCODER_START				0x4000010
 #define CODER_RST				    0x4000020
 
-#define PCIE_MEM_ADDR				0x07000000
+
+#define DEMO_PCIE_MEM_ADDR			0x07000000
 #define MEM_SIZE					(512) //512KB
 
+/*
+ * Application main function
+ */
 int
 main(int argc, char *argv[])
 {
@@ -85,7 +46,7 @@ main(int argc, char *argv[])
 		int bPass = 1;
 		int i;
 		const int nTestSize = MEM_SIZE;
-		const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR;
+		const PCIE_LOCAL_ADDRESS LocalAddr = DEMO_PCIE_MEM_ADDR;
 		//char *pWrite;
 		char *pRead;
 		char szError[256];
@@ -97,7 +58,22 @@ main(int argc, char *argv[])
 			sprintf(szError, "DMA Memory:malloc failed\r\n");
 		}
 
-		//Write Packets to DMA
+
+		// // Read DMA
+		// if (bPass) {
+		// 	bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
+
+		// 	if (!bPass) {
+		// 		sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
+		// 	} else {
+		// 		for (i = 0; i < 1024 && bPass; i++) {
+		// 			printf("index:%d read=%xh\n", i,*(pRead + i));
+		// 		}
+		// 	}
+		// }
+
+		//Write
+		//for (i = 0; i < nTestSize && bPass; i++)
 		uint32_t file_count = 0;
 		char hex[9];
 		while(fscanf(ptr_pkts_in,"%s",hex) != EOF)
@@ -115,7 +91,15 @@ main(int argc, char *argv[])
 		}
 		PCIE_DmaWrite(hPCIe, LocalAddr, pWrite, 512);
 
-		//Reset Coder
+		//sleep(2);
+
+		//Start Encoder
+/*		bPass = PCIE_Write32(hPCIe, PCIE_BAR, ENCODER_START,
+			(uint32_t) 1);
+		if (bPass)
+			printf("Start Encoder\n");*/
+
+		//Reset
 		bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
 			(uint32_t) 0);
 		bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
@@ -123,8 +107,9 @@ main(int argc, char *argv[])
 		if (bPass)
 			printf("Reset\n");
 
+		//sleep(10);
 
-		// Read Packets from DMA
+		// Read DMA
 		if (bPass) {
 			bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
 
@@ -137,20 +122,18 @@ main(int argc, char *argv[])
 			}
 		}
 
-		// free resources
-		if (pWrite)
-			free(pWrite);
+		// free resource
+/*		if (pWrite)
+			free(pWrite);*/
 		if (pRead)
 			free(pRead);
 
-		//Reset Coder
+		//Reset
 		bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
 			(uint32_t) 0);
 
-		//Close PCIe connection
 		PCIE_Close(hPCIe);
 	}
 
 	return 0;
 }
-
