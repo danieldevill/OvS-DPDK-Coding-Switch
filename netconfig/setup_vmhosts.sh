@@ -7,8 +7,8 @@ vm_names='A B C D E F G H'
 vm_count=0
 vm_ram='2048M'
 
-if pgrep -f "qemu-system-x86_64" > /dev/null
-then
+# if pgrep -f "qemu-system-x86_64" > /dev/null
+# then
 	for vm_name in $vm_names
 	do
 		if [ $vm_count -lt $1 ]
@@ -29,10 +29,10 @@ then
 		fi
 		vm_count=$((vm_count + 1))
 	done
-fi
+# fi
 
-if pgrep -f "qemu-system-x86_64" > /dev/null
-then
+# if pgrep -f "qemu-system-x86_64" > /dev/null
+# then
 	for vm_name in $vm_names
 	do
 		if [ $vm_count -lt $1 ]
@@ -42,7 +42,7 @@ then
 		fi
 		vm_count=$((vm_count + 1))
 	done
-fi
+# fi
 
 #sudo ovs-vsctl add-port br0 vhp0 -- set Interface vhp0 type=dpdkvhostuserclient options:vhost-server-path=/tmp/dpdkvhostclient0
 
