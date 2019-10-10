@@ -1,5 +1,5 @@
 Flow report for PCIe_Fundamental
-Wed Oct  9 09:59:27 2019
+Thu Oct 10 20:43:32 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,25 +40,25 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Oct  9 09:57:40 2019       ;
+; Flow Status                     ; Successful - Thu Oct 10 20:43:31 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; PCIe_Fundamental                            ;
 ; Top-level Entity Name           ; PCIe_Fundamental                            ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC9D6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 10,822 / 113,560 ( 10 % )                   ;
-; Total registers                 ; 22742                                       ;
-; Total pins                      ; 74 / 378 ( 20 % )                           ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 22773                                       ;
+; Total pins                      ; 19                                          ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 2,787,088 / 12,492,800 ( 22 % )             ;
-; Total DSP Blocks                ; 0 / 342 ( 0 % )                             ;
-; Total HSSI RX PCSs              ; 4 / 9 ( 44 % )                              ;
-; Total HSSI PMA RX Deserializers ; 4 / 9 ( 44 % )                              ;
-; Total HSSI TX PCSs              ; 4 / 9 ( 44 % )                              ;
-; Total HSSI PMA TX Serializers   ; 4 / 9 ( 44 % )                              ;
-; Total PLLs                      ; 5 / 17 ( 29 % )                             ;
-; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
+; Total block memory bits         ; 3,033,600                                   ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 4                                           ;
+; Total HSSI PMA RX Deserializers ; 4                                           ;
+; Total HSSI TX PCSs              ; 4                                           ;
+; Total HSSI PMA TX Serializers   ; 4                                           ;
+; Total PLLs                      ; 5                                           ;
+; Total DLLs                      ; 0                                           ;
 +---------------------------------+---------------------------------------------+
 
 
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/09/2019 09:46:27 ;
+; Start date & time ; 10/10/2019 20:40:33 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; PCIe_Fundamental    ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
 ; Assignment Name                      ; Value                                                   ; Default Value                        ; Entity Name ; Section Id       ;
 +--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
-; COMPILER_SIGNATURE_ID                ; 130586021222.157060718709634                            ; --                                   ; --          ; --               ;
+; COMPILER_SIGNATURE_ID                ; 130586021222.157073283210480                            ; --                                   ; --          ; --               ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                      ; --                                   ; --          ; --               ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; PCIe_Fundamental                                        ; --                                   ; --          ; eda_simulation   ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                             ; --                                   ; --          ; eda_simulation   ;
@@ -129,8 +129,8 @@ refer to the applicable agreement for further details.
 ; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_BITS=1                                      ; --                                   ; --          ; auto_signaltap_0 ;
 ; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK=0000000000000000000000000000         ; --                                   ; --          ; auto_signaltap_0 ;
 ; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK_LENGTH=28                            ; --                                   ; --          ; auto_signaltap_0 ;
-; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_DATA_BITS=1282                                      ; --                                   ; --          ; auto_signaltap_0 ;
-; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STORAGE_QUALIFIER_BITS=1282                         ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_DATA_BITS=1402                                      ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STORAGE_QUALIFIER_BITS=1402                         ; --                                   ; --          ; auto_signaltap_0 ;
 ; SOPCINFO_FILE                        ; q_sys/synthesis/../../q_sys.sopcinfo                    ; --                                   ; --          ; --               ;
 ; SYNTHESIS_ONLY_QIP                   ; On                                                      ; --                                   ; --          ; --               ;
 ; USE_SIGNALTAP_FILE                   ; encocder_logic_analyzer.stp                             ; --                                   ; --          ; --               ;
@@ -142,10 +142,8 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:33     ; 1.9                     ; 1965 MB             ; 00:05:03                           ;
-; Fitter               ; 00:08:24     ; 1.8                     ; 5105 MB             ; 00:33:06                           ;
-; Timing Analyzer      ; 00:01:30     ; 2.9                     ; 2407 MB             ; 00:03:50                           ;
-; Total                ; 00:12:27     ; --                      ; --                  ; 00:41:59                           ;
+; Analysis & Synthesis ; 00:02:45     ; 1.8                     ; 1978 MB             ; 00:05:19                           ;
+; Total                ; 00:02:45     ; --                      ; --                  ; 00:05:19                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -155,8 +153,6 @@ refer to the applicable agreement for further details.
 ; Module Name          ; Machine Hostname      ; OS Name      ; OS Version   ; Processor type ;
 +----------------------+-----------------------+--------------+--------------+----------------+
 ; Analysis & Synthesis ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
-; Fitter               ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
-; Timing Analyzer      ; localhost.localdomain ; CentOS Linux ; CentOS Linux ; x86_64         ;
 +----------------------+-----------------------+--------------+--------------+----------------+
 
 
@@ -164,8 +160,6 @@ refer to the applicable agreement for further details.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off PCIe_Fundamental -c PCIe_Fundamental
-quartus_fit --read_settings_files=off --write_settings_files=off PCIe_Fundamental -c PCIe_Fundamental
-quartus_sta PCIe_Fundamental -c PCIe_Fundamental
 
 
 

@@ -40,27 +40,22 @@ module PCIe_Fundamental(
 
       ///////// CLOCK /////////
       input              CLOCK_50_B3B,
-      input              CLOCK_50_B4A, //Clock in DDR3's Bank
-      input              CLOCK_50_B5B,
-      input              CLOCK_50_B6A,
-      input              CLOCK_50_B7A,
-      input              CLOCK_50_B8A,
-
+		
       ///////// FAN /////////
       output             FAN_CTRL,
 
       ///////// DRAM /////////
-      output             DRAM_CLK,
-      output             DRAM_CKE,
-      output   [12: 0]   DRAM_ADDR,
-      output   [ 1: 0]   DRAM_BA,
-      inout    [15: 0]   DRAM_DQ,
-      output             DRAM_LDQM,
-      output             DRAM_UDQM,
-      output             DRAM_CS_n,
-      output             DRAM_WE_n,
-      output             DRAM_CAS_n,
-      output             DRAM_RAS_n,
+//      output             DRAM_CLK,
+//      output             DRAM_CKE,
+//      output   [12: 0]   DRAM_ADDR,
+//      output   [ 1: 0]   DRAM_BA,
+//      inout    [15: 0]   DRAM_DQ,
+//      output             DRAM_LDQM,
+//      output             DRAM_UDQM,
+//      output             DRAM_CS_n,
+//      output             DRAM_WE_n,
+//      output             DRAM_CAS_n,
+//      output             DRAM_RAS_n,
 
       ///////// Uart to Usb /////////
       output             UART_TX,
@@ -75,11 +70,11 @@ module PCIe_Fundamental(
       output   [ 3: 0]   PCIE_TX_p,
       input    [ 3: 0]   PCIE_RX_p,
       input              PCIE_PERST_n,
-      output             PCIE_WAKE_n,
+      output             PCIE_WAKE_n
 
       ///////// SMA /////////
-      input              SMA_CLKIN,
-      output             SMA_CLKOUT 
+//      input              SMA_CLKIN,
+//      output             SMA_CLKOUT 
 
 );
 
@@ -106,18 +101,18 @@ parameter idle=0, read=1;
 //assign read_ram_en = 1'b0;
 
 //Master Write Wires
-reg       mw_control_fixed_location;
-reg [31:0]  mw_control_base;
-reg [31:0]  mw_control_length;
-reg         mw_control_go;
-wire        mw_control_done;
-reg         mw_write_buffer;
-reg [31:0]  mw_buffer_data;
-wire        mw_buffer_full;
-wire write_ram_en;
-reg [1:0] write_state;
-parameter write=1;
-assign write_ram_en = 1'b1;
+//reg       mw_control_fixed_location;
+//reg [31:0]  mw_control_base;
+//reg [31:0]  mw_control_length;
+//reg         mw_control_go;
+//wire        mw_control_done;
+//reg         mw_write_buffer;
+//reg [31:0]  mw_buffer_data;
+//wire        mw_buffer_full;
+//wire write_ram_en;
+//reg [1:0] write_state;
+//parameter write=1;
+//assign write_ram_en = 1'b1;
 
 //Net Encoder Wires
 reg          encoder_rst;
@@ -323,48 +318,48 @@ begin
 end
 
 //Master Write FSM for output packets
-always @(posedge reconfig_xcvr_clk or negedge pio_coder_rst)
-begin
-  if(~pio_coder_rst)
-    write_state = idle;
-  else
-    begin
-      //Write state cases
-      case(write_state)
-        idle:
-          begin
-            //Enable address incrementing while writing RAM
-            mw_control_fixed_location = 1'b0;
-            
-            mw_control_base = 32'h0700_0200 & 32'hFFFF_FFFC;
-            mw_control_length = 32'h0000_01B6;
-            mw_control_go = 1'b0;
-            if(write_ram_en == 1)
-              write_state = write;
-            else
-              write_state = idle;
-          end
-        write:
-          begin
-            if(encoder_done_out_pkts == 1)
-              begin
-                mw_control_go = 1'b1;
-                mw_write_buffer = 1'b0;
-                //Only Write when buffer is not full
-                if(mw_buffer_full == 0)
-                  mw_write_buffer = 1'b1;
-                  mw_buffer_data = encoder_pkt_out;
-              end
-              
-            //Change States if write_name disabled. 
-            if(write_ram_en == 0)
-              write_state = idle;
-            else
-              write_state = write;
-          end
-      endcase
-    end
-end
+//always @(posedge reconfig_xcvr_clk or negedge pio_coder_rst)
+//begin
+//  if(~pio_coder_rst)
+//    write_state = idle;
+//  else
+//    begin
+//      //Write state cases
+//      case(write_state)
+//        idle:
+//          begin
+//            //Enable address incrementing while writing RAM
+//            mw_control_fixed_location = 1'b0;
+//            
+//            mw_control_base = 32'h0700_0200 & 32'hFFFF_FFFC;
+//            mw_control_length = 32'h0000_01B6;
+//            mw_control_go = 1'b0;
+//            if(write_ram_en == 1)
+//              write_state = write;
+//            else
+//              write_state = idle;
+//          end
+//        write:
+//          begin
+//            if(encoder_done_out_pkts == 1)
+//              begin
+//                mw_control_go = 1'b1;
+//                mw_write_buffer = 1'b0;
+//                //Only Write when buffer is not full
+//                if(mw_buffer_full == 0)
+//                  mw_write_buffer = 1'b1;
+//                  mw_buffer_data = encoder_pkt_out;
+//              end
+//              
+//            //Change States if write_name disabled. 
+//            if(write_ram_en == 0)
+//              write_state = idle;
+//            else
+//              write_state = write;
+//          end
+//      endcase
+//    end
+//end
   
 //Net Encoder Controller
 //always @(posedge mr_read_buffer)
