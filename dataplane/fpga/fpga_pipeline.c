@@ -1,5 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+//TUN/TAP
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <linux/if.h>
+#include <linux/if_tun.h>
+
+//DMA,PCIe
 #include <memory.h>
 #include "PCIE.h"
 
@@ -17,6 +28,33 @@
 int
 main(int argc, char *argv[])
 {
+	//Create TAP Interface
+	char tap_name[IFNAMSIZ];
+	strcpy(tap_name,"tapEncoder");
+	int tapfd = tun_alloc(tap_name);
+	char tapBuffer[1500];
+
+
+
+	//Test tx to tap device.
+	while(1) {
+		
+		int nread = read(tapfd,tapBuffer,sizeof(tapBuffer));
+		if(nread < 0) {
+			perror("Reading from interface");
+			close(tapfd);
+			exit(1);
+		}
+		else if (nread > 0) {
+			uint i;
+			for (i = 0; i < sizeof(tapBuffer); i++) {
+				printf("%x ",*(tapBuffer + i));
+			}
+			printf("\n\n");
+		}
+
+	}
+
 
 	FILE *ptr_pkts_in;
 	ptr_pkts_in = fopen("packets_in.txt","r");
@@ -109,18 +147,18 @@ main(int argc, char *argv[])
 
 		//sleep(10);
 
-		// Read DMA
-		if (bPass) {
-			bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
+		// // Read DMA
+		// if (bPass) {
+		// 	bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
 
-			if (!bPass) {
-				sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
-			} else {
-				for (i = 0; i < 1024 && bPass; i++) {
-					printf("index:%d read=%xh\n", i,*(pRead + i));
-				}
-			}
-		}
+		// 	if (!bPass) {
+		// 		sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
+		// 	} else {
+		// 		for (i = 0; i < 1024 && bPass; i++) {
+		// 			printf("index:%d read=%xh\n", i,*(pRead + i));
+		// 		}
+		// 	}
+		// }
 
 		// free resource
 /*		if (pWrite)
@@ -136,4 +174,42 @@ main(int argc, char *argv[])
 	}
 
 	return 0;
+}
+
+//From tuntap.txt
+//Multiqueue does exist if using greater than x1 PCIe
+int tun_alloc(char *dev)
+{
+	struct ifreq ifr;
+	int fd, err;
+
+	if( (fd = open("/dev/net/tun", O_RDWR)) < 0 )
+	   return fd;
+
+	memset(&ifr, 0, sizeof(ifr));
+
+	/* Flags: IFF_TUN   - TUN device (no Ethernet headers) 
+	 *        IFF_TAP   - TAP device  
+	 *
+	 *        IFF_NO_PI - Do not provide packet information  
+	 */ 
+	ifr.ifr_flags = IFF_TAP; 
+	if( *dev )
+	   strncpy(ifr.ifr_name, dev, IFNAMSIZ);
+
+	if( (err = ioctl(fd, TUNSETIFF, (void *) &ifr)) < 0 ){
+	   close(fd);
+	   return err;
+	}
+	strcpy(dev, ifr.ifr_name);
+
+
+	if(ioctl(fd, TUNSETPERSIST, 0) < 0){
+		perror("enabling TUNSETPERSIST");
+	    exit(1);
+	}
+
+
+	return fd;
+
 }
