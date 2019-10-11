@@ -10,6 +10,9 @@
 #include <linux/if.h>
 #include <linux/if_tun.h>
 
+#define RX_BUFFER					100
+#define TX_BUFFER					100
+
 //DMA,PCIe
 #include <memory.h>
 #include "PCIE.h"
@@ -38,29 +41,20 @@ main(int argc, char *argv[]) {
 	strcpy(tap_name,"tapEncoder");
 	int tapfd = tap_alloc(tap_name);
 	
+	//Buffers
+	unsigned char tapRXBuffer[RX_BUFFER];
+	unsigned char tapTXBuffer[TX_BUFFER];
+
+
 	//Get packets
-	//tap_receive(7);
 	while(1) {
-		
-		unsigned char tapBuffer[90];
 
-		int nread = read(tapfd,tapBuffer,sizeof(tapBuffer));
-		if(nread < 0) {
-			perror("Reading from interface");
-			close(tapfd);
-			exit(1);
-		}
-		else if (nread > 0) {
-			uint i;
-			for (i = 0; i < sizeof(tapBuffer); i++) {
-				printf("%02X ",*(tapBuffer + i));
-			}
-			printf("Read %d bytes from device %s\n", nread, tap_name);
-			printf("\n\n");
-		}
-
+		//Loopback test
+		tap_receive(tapfd,tapRXBuffer);
+		memcpy(&tapTXBuffer,&tapRXBuffer,TX_BUFFER);
+		tap_transmit(tapfd,tapTXBuffer);
 	}
-	
+
 
 	FILE *ptr_pkts_in;
 	ptr_pkts_in = fopen("packets_in.txt","r");
@@ -134,7 +128,7 @@ main(int argc, char *argv[]) {
 		//sleep(2);
 
 		//Start Encoder
-/*		bPass = PCIE_Write32(hPCIe, PCIE_BAR, ENCODER_START,
+		/*bPass = PCIE_Write32(hPCIe, PCIE_BAR, ENCODER_START,
 			(uint32_t) 1);
 		if (bPass)
 			printf("Start Encoder\n");*/
@@ -163,7 +157,7 @@ main(int argc, char *argv[]) {
 		// }
 
 		// free resource
-/*		if (pWrite)
+		/*if (pWrite)
 			free(pWrite);*/
 		if (pRead)
 			free(pRead);
@@ -209,10 +203,9 @@ int tap_alloc(char *dev) {
 
 
 	if(ioctl(fd, TUNSETPERSIST, 0) < 0){
-		perror("enabling TUNSETPERSIST");
+		perror("dssabling TUNSETPERSIST");
 	    exit(1);
 	}
-
 
 	//Set link up
 	int callStatus = system("ip link set tapEncoder up");
@@ -221,37 +214,54 @@ int tap_alloc(char *dev) {
 	//Add to OvS br0
 	callStatus = system("ovs-vsctl add-port br0 tapEncoder");
 
-
 	return fd;
 
 }
 
-/* Recevie packets from tap device. 
-   Takes number of packets as input 
-   and returns 1 on success or 0 on 
-   failure.
+/* Receive packets from tap device. 
+   Takes number of packets and Buffer
+   as input and returns 1 on success 
+   or 0 on failure.
 */
-int tap_receive(int no_packets)
+int tap_receive(int tapfd, unsigned char* tapBuffer)
 {
-		//Test tx to tap device.
-	while(1) {
-		
-		unsigned char tapBuffer[90];
+	int nread = read(tapfd,tapBuffer,RX_BUFFER);
 
-		int nread = read(tapfd,tapBuffer,sizeof(tapBuffer));
-		if(nread < 0) {
-			perror("Reading from interface");
-			close(tapfd);
-			exit(1);
+	if (nread > 0) {
+		printf("Rx: %d bytes\n", nread, tap_name);
+		uint i;
+		for (i = 0; i < RX_BUFFER; i++) {
+			printf("%02X ",*(tapBuffer + i));
 		}
-		else if (nread > 0) {
-			uint i;
-			for (i = 0; i < sizeof(tapBuffer); i++) {
-				printf("%02X ",*(tapBuffer + i));
-			}
-			printf("Read %d bytes from device %s\n", nread, tap_name);
-			printf("\n\n");
-		}
-
+		printf("\n\n");
 	}
+	else if(nread < 0) {
+		perror("Reading from interface");
+		close(tapfd);
+		exit(1);
+	}
+}
+
+/* Transmit packets from tap device. 
+   Takes number of packets and Buffer
+   as input and returns 1 on success 
+   or 0 on failure.
+*/
+int tap_transmit(int tapfd, unsigned char* tapBuffer)
+{
+	int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
+
+	if (nwrite > 0) {
+		printf("Tx: %d bytes\n", nwrite, tap_name);
+		uint i;
+		for (i = 0; i < TX_BUFFER; i++) {
+			printf("%02X ",*(tapBuffer + i));
+		}
+		printf("\n\n");
+	}
+	else if(nwrite < 0) {
+		perror("Writing from interface");
+		close(tapfd);
+		exit(1);
+	}	
 }
