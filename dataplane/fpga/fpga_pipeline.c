@@ -22,23 +22,28 @@
 #define DEMO_PCIE_MEM_ADDR			0x07000000
 #define MEM_SIZE					(512) //512KB
 
-/*
- * Application main function
- */
+
+//TAP
+char tap_name[IFNAMSIZ];
+int tapfd;
+
+//Main function
 int
-main(int argc, char *argv[])
-{
+main(int argc, char *argv[]) {
+
+	//Input packet counter
+	int pkt_in_cnt = 0;
+	
 	//Create TAP Interface
-	char tap_name[IFNAMSIZ];
 	strcpy(tap_name,"tapEncoder");
-	int tapfd = tun_alloc(tap_name);
-	char tapBuffer[1500];
-
-
-
-	//Test tx to tap device.
+	int tapfd = tap_alloc(tap_name);
+	
+	//Get packets
+	//tap_receive(7);
 	while(1) {
 		
+		unsigned char tapBuffer[90];
+
 		int nread = read(tapfd,tapBuffer,sizeof(tapBuffer));
 		if(nread < 0) {
 			perror("Reading from interface");
@@ -48,13 +53,14 @@ main(int argc, char *argv[])
 		else if (nread > 0) {
 			uint i;
 			for (i = 0; i < sizeof(tapBuffer); i++) {
-				printf("%x ",*(tapBuffer + i));
+				printf("%02X ",*(tapBuffer + i));
 			}
+			printf("Read %d bytes from device %s\n", nread, tap_name);
 			printf("\n\n");
 		}
 
 	}
-
+	
 
 	FILE *ptr_pkts_in;
 	ptr_pkts_in = fopen("packets_in.txt","r");
@@ -65,20 +71,17 @@ main(int argc, char *argv[])
 
 	//Load PCIe driver.
 	lib_handle = PCIE_Load();
-	if (!lib_handle) 
-	{
+	if (!lib_handle) {
 		printf("PCIE_Load failed!\r\n");
 		return 0;
 	}
 
 	//Open PCIe connection.
 	hPCIe = PCIE_Open(DEFAULT_PCIE_VID, DEFAULT_PCIE_DID, 0);
-	if (!hPCIe) 
-	{
+	if (!hPCIe) {
 		printf("PCIE_Open failed\r\n");
 	} 
-	else 
-	{
+	else {
 		printf("PCIE_Open success\r\n");
 		
 		int bPass = 1;
@@ -114,8 +117,7 @@ main(int argc, char *argv[])
 		//for (i = 0; i < nTestSize && bPass; i++)
 		uint32_t file_count = 0;
 		char hex[9];
-		while(fscanf(ptr_pkts_in,"%s",hex) != EOF)
-		{
+		while(fscanf(ptr_pkts_in,"%s",hex) != EOF) {
 			uint32_t num = (uint32_t)strtol(hex, NULL, 16);
 			
 			pWrite[3 + (4*file_count)] = (num >> 24) & 0xFF;
@@ -176,10 +178,12 @@ main(int argc, char *argv[])
 	return 0;
 }
 
-//From tuntap.txt
-//Multiqueue does exist if using greater than x1 PCIe
-int tun_alloc(char *dev)
-{
+/* Creates non-persisten TAP interface
+   Taken From tuntap.txt
+   Multiqueue does exist if using 
+   greater than x1 PCIe.
+*/
+int tap_alloc(char *dev) {
 	struct ifreq ifr;
 	int fd, err;
 
@@ -210,6 +214,44 @@ int tun_alloc(char *dev)
 	}
 
 
+	//Set link up
+	int callStatus = system("ip link set tapEncoder up");
+	//Set MAC address
+	callStatus = system("ip link set tapEncoder address 02:01:02:03:04:08");
+	//Add to OvS br0
+	callStatus = system("ovs-vsctl add-port br0 tapEncoder");
+
+
 	return fd;
 
+}
+
+/* Recevie packets from tap device. 
+   Takes number of packets as input 
+   and returns 1 on success or 0 on 
+   failure.
+*/
+int tap_receive(int no_packets)
+{
+		//Test tx to tap device.
+	while(1) {
+		
+		unsigned char tapBuffer[90];
+
+		int nread = read(tapfd,tapBuffer,sizeof(tapBuffer));
+		if(nread < 0) {
+			perror("Reading from interface");
+			close(tapfd);
+			exit(1);
+		}
+		else if (nread > 0) {
+			uint i;
+			for (i = 0; i < sizeof(tapBuffer); i++) {
+				printf("%02X ",*(tapBuffer + i));
+			}
+			printf("Read %d bytes from device %s\n", nread, tap_name);
+			printf("\n\n");
+		}
+
+	}
 }
