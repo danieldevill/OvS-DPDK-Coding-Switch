@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//DMA,PCIe
+#include <memory.h>
+#include "PCIE.h"
+
+#define PCIE_BAR					PCIE_BAR4
+#define ENCODER_START				0x4000010
+#define CODER_RST				    0x4000020
+
+#define PCIE_MEM_ADDR			0x07000000
+#define MEM_SIZE					(512) //512KB
+
 //TUN/TAP
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -10,25 +21,28 @@
 #include <linux/if.h>
 #include <linux/if_tun.h>
 
-#define RX_BUFFER					100
-#define TX_BUFFER					100
-
-//DMA,PCIe
-#include <memory.h>
-#include "PCIE.h"
-
-#define PCIE_BAR					PCIE_BAR4
-#define ENCODER_START				0x4000010
-#define CODER_RST				    0x4000020
-
-
-#define DEMO_PCIE_MEM_ADDR			0x07000000
-#define MEM_SIZE					(512) //512KB
-
+#define RING_SIZE					7 
+#define RX_BUFFER					82 //64 + header + preamble
+#define TX_BUFFER					82
+#define MAC_ADDR_LEN				6
 
 //TAP
+struct ifreq tap;
 char tap_name[IFNAMSIZ];
+unsigned char if_mac [MAC_ADDR_LEN] = {2, 1, 2, 3, 4,8, 0};;
 int tapfd;
+//TAP Buffers
+unsigned char tapRXBuffer[RX_BUFFER];
+unsigned char tapTXBuffer[TX_BUFFER];
+unsigned char tapRXBufferQueue[RX_BUFFER*RING_SIZE];
+unsigned char tapTXBufferQueue[TX_BUFFER*RING_SIZE];
+uint RXcount = 0;
+uint TXcount = 0;
+uint RXDone = 0;
+uint TXDone = 0;
+
+
+//Normally a ring buffer should be used. For this proof on concept h buffers are made.
 
 //Main function
 int
@@ -39,22 +53,16 @@ main(int argc, char *argv[]) {
 	
 	//Create TAP Interface
 	strcpy(tap_name,"tapEncoder");
-	int tapfd = tap_alloc(tap_name);
+	int tapfd = tap_encoder_alloc(tap_name);
 	
-	//Buffers
-	unsigned char tapRXBuffer[RX_BUFFER];
-	unsigned char tapTXBuffer[TX_BUFFER];
-
-
-	//Get packets
-	while(1) {
+	//Get packets until pkt count is = h
+	while(RXDone == 0) {
 
 		//Loopback test
-		tap_receive(tapfd,tapRXBuffer);
+		tap_encoder_receive(tapfd,tapRXBuffer);
 		memcpy(&tapTXBuffer,&tapRXBuffer,TX_BUFFER);
-		tap_transmit(tapfd,tapTXBuffer);
+		tap_encoder_transmit(tapfd,tapTXBuffer);
 	}
-
 
 	FILE *ptr_pkts_in;
 	ptr_pkts_in = fopen("packets_in.txt","r");
@@ -81,7 +89,9 @@ main(int argc, char *argv[]) {
 		int bPass = 1;
 		int i;
 		const int nTestSize = MEM_SIZE;
-		const PCIE_LOCAL_ADDRESS LocalAddr = DEMO_PCIE_MEM_ADDR;
+		const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR;
+		const PCIE_LOCAL_ADDRESS LocalAddr1 = PCIE_MEM_ADDR+512;
+
 		//char *pWrite;
 		char *pRead;
 		char szError[256];
@@ -92,20 +102,6 @@ main(int argc, char *argv[]) {
 		if (!pWrite || !pRead) {
 			sprintf(szError, "DMA Memory:malloc failed\r\n");
 		}
-
-
-		// // Read DMA
-		// if (bPass) {
-		// 	bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
-
-		// 	if (!bPass) {
-		// 		sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
-		// 	} else {
-		// 		for (i = 0; i < 1024 && bPass; i++) {
-		// 			printf("index:%d read=%xh\n", i,*(pRead + i));
-		// 		}
-		// 	}
-		// }
 
 		//Write
 		//for (i = 0; i < nTestSize && bPass; i++)
@@ -123,7 +119,20 @@ main(int argc, char *argv[]) {
 			
 			file_count+=1;
 		}
-		PCIE_DmaWrite(hPCIe, LocalAddr, pWrite, 512);
+		PCIE_DmaWrite(hPCIe, LocalAddr, pWrite, MEM_SIZE);
+
+		//Write from Packet
+		// unsigned char* readPtr = tapRXBufferQueue;
+		// uint h;
+		// for (h = 0;h<RING_SIZE;h++) {
+		// 	//Get packet data
+		//     uint i;
+		// 	for (i = 0; i < RX_BUFFER; i++) {
+		// 		printf("%02X ",*(readPtr + i + (h*RX_BUFFER)));
+		// 	}
+		// 	printf("\n\n");
+		// }
+		PCIE_DmaWrite(hPCIe, LocalAddr1, tapRXBufferQueue, MEM_SIZE);
 
 		//sleep(2);
 
@@ -143,18 +152,18 @@ main(int argc, char *argv[]) {
 
 		//sleep(10);
 
-		// // Read DMA
-		// if (bPass) {
-		// 	bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
+		// Read DMA
+		if (bPass) {
+			bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
 
-		// 	if (!bPass) {
-		// 		sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
-		// 	} else {
-		// 		for (i = 0; i < 1024 && bPass; i++) {
-		// 			printf("index:%d read=%xh\n", i,*(pRead + i));
-		// 		}
-		// 	}
-		// }
+			if (!bPass) {
+				sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
+			} else {
+				for (i = 0; i < 1024 && bPass; i++) {
+					printf("index:%d read=%xh\n", i,*(pRead + i));
+				}
+			}
+		}
 
 		// free resource
 		/*if (pWrite)
@@ -177,7 +186,7 @@ main(int argc, char *argv[]) {
    Multiqueue does exist if using 
    greater than x1 PCIe.
 */
-int tap_alloc(char *dev) {
+int tap_encoder_alloc(char *dev) {
 	struct ifreq ifr;
 	int fd, err;
 
@@ -201,20 +210,40 @@ int tap_alloc(char *dev) {
 	}
 	strcpy(dev, ifr.ifr_name);
 
-
 	if(ioctl(fd, TUNSETPERSIST, 0) < 0){
 		perror("dssabling TUNSETPERSIST");
 	    exit(1);
 	}
 
-	//Set link up
-	int callStatus = system("ip link set tapEncoder up");
-	//Set MAC address
-	callStatus = system("ip link set tapEncoder address 02:01:02:03:04:08");
-	//Add to OvS br0
-	callStatus = system("ovs-vsctl add-port br0 tapEncoder");
-
+	//Set link up ; Set MAC address ; Add to OvS br0
+	int callStatus = system("ip link set tapEncoder up; ip link set tapEncoder address 02:01:02:03:04:08; ovs-vsctl add-port br0 tapEncoder");
+	
+	printf("Link Up.\n");
 	return fd;
+
+}
+
+/* Inspect Incoming packets.
+   Not all packets on TAP 
+   are for NC so check first.
+*/
+int tap_pkt_inspection(unsigned char* tapBuffer)
+{
+	unsigned char dst_mac [MAC_ADDR_LEN];
+	memcpy(dst_mac,tapBuffer+4,MAC_ADDR_LEN);
+
+	if (memcmp(dst_mac,if_mac,MAC_ADDR_LEN) == 0) {
+		return 1;
+	}
+
+	return 0;
+}
+
+/* 
+
+*/
+int tap_encoder_packetize()
+{
 
 }
 
@@ -223,17 +252,38 @@ int tap_alloc(char *dev) {
    as input and returns 1 on success 
    or 0 on failure.
 */
-int tap_receive(int tapfd, unsigned char* tapBuffer)
+int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
 {
 	int nread = read(tapfd,tapBuffer,RX_BUFFER);
 
 	if (nread > 0) {
-		printf("Rx: %d bytes\n", nread, tap_name);
-		uint i;
-		for (i = 0; i < RX_BUFFER; i++) {
-			printf("%02X ",*(tapBuffer + i));
+
+		//Inspect for correct dst_addr
+		int pkt_inspc = tap_pkt_inspection(tapBuffer);
+		if (pkt_inspc == 1) {
+			//Add packet to queue
+			memcpy(tapRXBufferQueue+((RXcount)*RX_BUFFER),tapBuffer,RX_BUFFER);
+
+			RXcount++;
+
+			//Begin Using Packets
+			if (RXcount == RING_SIZE) {
+				RXcount = 0;
+				//Get each packet 
+				unsigned char* readPtr = tapRXBufferQueue;
+				uint h;
+				for (h = 0;h<RING_SIZE;h++) {
+					//Get packet data
+				    uint i;
+					for (i = 0; i < RX_BUFFER; i++) {
+						printf("%02X ",*(readPtr + i + (h*RX_BUFFER)));
+					}
+					printf("\n\n");
+				}
+			
+				RXDone = 1;
+			}
 		}
-		printf("\n\n");
 	}
 	else if(nread < 0) {
 		perror("Reading from interface");
@@ -247,17 +297,17 @@ int tap_receive(int tapfd, unsigned char* tapBuffer)
    as input and returns 1 on success 
    or 0 on failure.
 */
-int tap_transmit(int tapfd, unsigned char* tapBuffer)
+int tap_encoder_transmit(int tapfd, unsigned char* tapBuffer)
 {
 	int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
 
 	if (nwrite > 0) {
-		printf("Tx: %d bytes\n", nwrite, tap_name);
-		uint i;
-		for (i = 0; i < TX_BUFFER; i++) {
-			printf("%02X ",*(tapBuffer + i));
-		}
-		printf("\n\n");
+		// printf("Tx: %d bytes\n", nwrite, tap_name);
+		// uint i;
+		// for (i = 0; i < TX_BUFFER; i++) {
+		// 	printf("%02X ",*(tapBuffer + i));
+		// }
+		// printf("\n\n");
 	}
 	else if(nwrite < 0) {
 		perror("Writing from interface");
