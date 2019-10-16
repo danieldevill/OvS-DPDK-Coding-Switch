@@ -21,10 +21,11 @@
 #include <linux/if.h>
 #include <linux/if_tun.h>
 
-#define RING_SIZE					7 
-#define RX_BUFFER					82 //64 + header + preamble
-#define TX_BUFFER					82
+#define RING_SIZE					7
+#define RX_BUFFER					64
+#define TX_BUFFER					64
 #define MAC_ADDR_LEN				6
+#define TAP_HDR_LEN					18
 
 //TAP
 struct ifreq tap;
@@ -254,7 +255,7 @@ int tap_encoder_packetize()
 */
 int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
 {
-	int nread = read(tapfd,tapBuffer,RX_BUFFER);
+	int nread = read(tapfd,tapBuffer,RX_BUFFER+TAP_HDR_LEN);
 
 	if (nread > 0) {
 
@@ -262,7 +263,7 @@ int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
 		int pkt_inspc = tap_pkt_inspection(tapBuffer);
 		if (pkt_inspc == 1) {
 			//Add packet to queue
-			memcpy(tapRXBufferQueue+((RXcount)*RX_BUFFER),tapBuffer,RX_BUFFER);
+			memcpy(tapRXBufferQueue+(RXcount*RX_BUFFER),tapBuffer+TAP_HDR_LEN,RX_BUFFER);
 
 			RXcount++;
 
