@@ -4,12 +4,12 @@ DEFAULT:                                                              ./librarie
 work:                                                                 ./libraries/work/                                                                
 error_adapter_0:                                                      ./libraries/error_adapter_0/                                                     
 rsp_mux:                                                              ./libraries/rsp_mux/                                                             
-rsp_demux:                                                            ./libraries/rsp_demux/                                                           
 cmd_mux:                                                              ./libraries/cmd_mux/                                                             
 cmd_demux:                                                            ./libraries/cmd_demux/                                                           
 router_001:                                                           ./libraries/router_001/                                                          
 router:                                                               ./libraries/router/                                                              
 avalon_st_adapter_002:                                                ./libraries/avalon_st_adapter_002/                                               
+rsp_demux:                                                            ./libraries/rsp_demux/                                                           
 router_003:                                                           ./libraries/router_003/                                                          
 avalon_st_adapter_001:                                                ./libraries/avalon_st_adapter_001/                                               
 avalon_st_adapter:                                                    ./libraries/avalon_st_adapter/                                                   

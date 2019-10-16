@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 linux 2019.10.01.23:40:08
+# ACDS 18.1 625 linux 2019.10.16.16:26:37
 
 # ----------------------------------------
 # vcs - auto-generated simulation script
@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 linux 2019.10.01.23:40:08
+# ACDS 18.1 625 linux 2019.10.16.16:26:37
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="q_sys"
@@ -148,7 +148,6 @@ vcs -lca -timescale=1ps/1ps -sverilog +verilog2001ext+.v -ntb_opts dtm $ELAB_OPT
   $QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv \
   $QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_rsp_mux.sv \
   $QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv \
-  $QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_rsp_demux.sv \
   $QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_cmd_mux.sv \
   $QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_cmd_demux.sv \
   $QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_router_001.sv \

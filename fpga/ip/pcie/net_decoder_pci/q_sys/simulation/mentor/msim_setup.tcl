@@ -94,7 +94,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 linux 2019.10.01.23:40:08
+# ACDS 18.1 625 linux 2019.10.16.16:26:37
 
 # ----------------------------------------
 # Initialize variables
@@ -172,8 +172,6 @@ ensure_lib                                                                      
 vmap       error_adapter_0                                                      ./libraries/error_adapter_0/                                                     
 ensure_lib                                                                      ./libraries/rsp_mux/                                                             
 vmap       rsp_mux                                                              ./libraries/rsp_mux/                                                             
-ensure_lib                                                                      ./libraries/rsp_demux/                                                           
-vmap       rsp_demux                                                            ./libraries/rsp_demux/                                                           
 ensure_lib                                                                      ./libraries/cmd_mux/                                                             
 vmap       cmd_mux                                                              ./libraries/cmd_mux/                                                             
 ensure_lib                                                                      ./libraries/cmd_demux/                                                           
@@ -184,6 +182,8 @@ ensure_lib                                                                      
 vmap       router                                                               ./libraries/router/                                                              
 ensure_lib                                                                      ./libraries/avalon_st_adapter_002/                                               
 vmap       avalon_st_adapter_002                                                ./libraries/avalon_st_adapter_002/                                               
+ensure_lib                                                                      ./libraries/rsp_demux/                                                           
+vmap       rsp_demux                                                            ./libraries/rsp_demux/                                                           
 ensure_lib                                                                      ./libraries/router_003/                                                          
 vmap       router_003                                                           ./libraries/router_003/                                                          
 ensure_lib                                                                      ./libraries/avalon_st_adapter_001/                                               
@@ -282,7 +282,6 @@ alias com {
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv"                 -work error_adapter_0                                                     
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_rsp_mux.sv"                                           -work rsp_mux                                                             
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                                  -work rsp_mux                                                             
-  eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_rsp_demux.sv"                                         -work rsp_demux                                                           
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_cmd_mux.sv"                                           -work cmd_mux                                                             
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                                  -work cmd_mux                                                             
   eval  vlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_2_cmd_demux.sv"                                         -work cmd_demux                                                           
@@ -588,14 +587,14 @@ alias com {
 # Elaborate top level design
 alias elab {
   echo "\[exec\] elab"
-  eval vsim -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L error_adapter_0 -L rsp_mux -L rsp_demux -L cmd_mux -L cmd_demux -L router_001 -L router -L avalon_st_adapter_002 -L router_003 -L avalon_st_adapter_001 -L avalon_st_adapter -L limiter_pipeline -L pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter -L rsp_mux_003 -L rsp_mux_001 -L rsp_demux_001 -L cmd_mux_001 -L cmd_demux_003 -L cmd_demux_001 -L onchip_memory2_0_s1_burst_adapter -L ctl_0_dma_read_master_0_data_read_master_limiter -L router_006 -L router_005 -L onchip_memory2_0_s1_agent_rsp_fifo -L onchip_memory2_0_s1_agent -L pcie_cv_hip_avmm_0_Rxm_BAR0_agent -L onchip_memory2_0_s1_translator -L pcie_cv_hip_avmm_0_Rxm_BAR0_translator -L dma_write_master_0 -L dma_read_master_0 -L modular_sgdma_dispatcher_0 -L rst_controller -L irq_mapper -L mm_interconnect_2 -L mm_interconnect_1 -L mm_interconnect_0 -L pio_coder_rst -L pcie_cv_hip_avmm_0 -L onchip_memory2_0 -L master_read -L ctl_0 -L alt_xcvr_reconfig_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
+  eval vsim -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L error_adapter_0 -L rsp_mux -L cmd_mux -L cmd_demux -L router_001 -L router -L avalon_st_adapter_002 -L rsp_demux -L router_003 -L avalon_st_adapter_001 -L avalon_st_adapter -L limiter_pipeline -L pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter -L rsp_mux_003 -L rsp_mux_001 -L rsp_demux_001 -L cmd_mux_001 -L cmd_demux_003 -L cmd_demux_001 -L onchip_memory2_0_s1_burst_adapter -L ctl_0_dma_read_master_0_data_read_master_limiter -L router_006 -L router_005 -L onchip_memory2_0_s1_agent_rsp_fifo -L onchip_memory2_0_s1_agent -L pcie_cv_hip_avmm_0_Rxm_BAR0_agent -L onchip_memory2_0_s1_translator -L pcie_cv_hip_avmm_0_Rxm_BAR0_translator -L dma_write_master_0 -L dma_read_master_0 -L modular_sgdma_dispatcher_0 -L rst_controller -L irq_mapper -L mm_interconnect_2 -L mm_interconnect_1 -L mm_interconnect_0 -L pio_coder_rst -L pcie_cv_hip_avmm_0 -L onchip_memory2_0 -L master_read -L ctl_0 -L alt_xcvr_reconfig_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------
 # Elaborate the top level design with novopt option
 alias elab_debug {
   echo "\[exec\] elab_debug"
-  eval vsim -novopt -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L error_adapter_0 -L rsp_mux -L rsp_demux -L cmd_mux -L cmd_demux -L router_001 -L router -L avalon_st_adapter_002 -L router_003 -L avalon_st_adapter_001 -L avalon_st_adapter -L limiter_pipeline -L pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter -L rsp_mux_003 -L rsp_mux_001 -L rsp_demux_001 -L cmd_mux_001 -L cmd_demux_003 -L cmd_demux_001 -L onchip_memory2_0_s1_burst_adapter -L ctl_0_dma_read_master_0_data_read_master_limiter -L router_006 -L router_005 -L onchip_memory2_0_s1_agent_rsp_fifo -L onchip_memory2_0_s1_agent -L pcie_cv_hip_avmm_0_Rxm_BAR0_agent -L onchip_memory2_0_s1_translator -L pcie_cv_hip_avmm_0_Rxm_BAR0_translator -L dma_write_master_0 -L dma_read_master_0 -L modular_sgdma_dispatcher_0 -L rst_controller -L irq_mapper -L mm_interconnect_2 -L mm_interconnect_1 -L mm_interconnect_0 -L pio_coder_rst -L pcie_cv_hip_avmm_0 -L onchip_memory2_0 -L master_read -L ctl_0 -L alt_xcvr_reconfig_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
+  eval vsim -novopt -t ps $ELAB_OPTIONS $USER_DEFINED_ELAB_OPTIONS -L work -L work_lib -L error_adapter_0 -L rsp_mux -L cmd_mux -L cmd_demux -L router_001 -L router -L avalon_st_adapter_002 -L rsp_demux -L router_003 -L avalon_st_adapter_001 -L avalon_st_adapter -L limiter_pipeline -L pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter -L rsp_mux_003 -L rsp_mux_001 -L rsp_demux_001 -L cmd_mux_001 -L cmd_demux_003 -L cmd_demux_001 -L onchip_memory2_0_s1_burst_adapter -L ctl_0_dma_read_master_0_data_read_master_limiter -L router_006 -L router_005 -L onchip_memory2_0_s1_agent_rsp_fifo -L onchip_memory2_0_s1_agent -L pcie_cv_hip_avmm_0_Rxm_BAR0_agent -L onchip_memory2_0_s1_translator -L pcie_cv_hip_avmm_0_Rxm_BAR0_translator -L dma_write_master_0 -L dma_read_master_0 -L modular_sgdma_dispatcher_0 -L rst_controller -L irq_mapper -L mm_interconnect_2 -L mm_interconnect_1 -L mm_interconnect_0 -L pio_coder_rst -L pcie_cv_hip_avmm_0 -L onchip_memory2_0 -L master_read -L ctl_0 -L alt_xcvr_reconfig_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------

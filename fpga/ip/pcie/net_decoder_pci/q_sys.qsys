@@ -162,7 +162,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "7";
          type = "int";
       }
    }
@@ -176,32 +176,6 @@
       datum baseAddress
       {
          value = "67108896";
-         type = "String";
-      }
-   }
-   element pio_encoder_start
-   {
-      datum _sortIndex
-      {
-         value = "7";
-         type = "int";
-      }
-      datum sopceditor_expanded
-      {
-         value = "1";
-         type = "boolean";
-      }
-   }
-   element pio_encoder_start.s1
-   {
-      datum _lockedAddress
-      {
-         value = "1";
-         type = "boolean";
-      }
-      datum baseAddress
-      {
-         value = "67108880";
          type = "String";
       }
    }
@@ -300,11 +274,6 @@
  <interface
    name="pio_coder_rst_external_connection"
    internal="pio_coder_rst.external_connection"
-   type="conduit"
-   dir="end" />
- <interface
-   name="pio_encoder_start_external_connection"
-   internal="pio_encoder_start.external_connection"
    type="conduit"
    dir="end" />
  <module
@@ -659,24 +628,6 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="1" />
  </module>
- <module
-   name="pio_encoder_start"
-   kind="altera_avalon_pio"
-   version="18.1"
-   enabled="1">
-  <parameter name="bitClearingEdgeCapReg" value="false" />
-  <parameter name="bitModifyingOutReg" value="false" />
-  <parameter name="captureEdge" value="false" />
-  <parameter name="clockRate" value="125000000" />
-  <parameter name="direction" value="Output" />
-  <parameter name="edgeType" value="RISING" />
-  <parameter name="generateIRQ" value="false" />
-  <parameter name="irqType" value="LEVEL" />
-  <parameter name="resetValue" value="0" />
-  <parameter name="simDoTestBenchWiring" value="false" />
-  <parameter name="simDrivenValue" value="0" />
-  <parameter name="width" value="1" />
- </module>
  <connection
    kind="avalon"
    version="18.1"
@@ -711,15 +662,6 @@
    end="ctl_0.modular_sgdma_dispatcher_0_descriptor_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x06000020" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="18.1"
-   start="pcie_cv_hip_avmm_0.Rxm_BAR4"
-   end="pio_encoder_start.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x04000010" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -790,11 +732,6 @@
    version="18.1"
    start="pcie_cv_hip_avmm_0.coreclkout"
    end="ctl_0.clk" />
- <connection
-   kind="clock"
-   version="18.1"
-   start="pcie_cv_hip_avmm_0.coreclkout"
-   end="pio_encoder_start.clk" />
  <connection
    kind="clock"
    version="18.1"
@@ -873,11 +810,6 @@
    version="18.1"
    start="pcie_cv_hip_avmm_0.nreset_status"
    end="ctl_0.reset" />
- <connection
-   kind="reset"
-   version="18.1"
-   start="pcie_cv_hip_avmm_0.nreset_status"
-   end="pio_encoder_start.reset" />
  <connection
    kind="reset"
    version="18.1"

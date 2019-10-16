@@ -11,12 +11,12 @@ DEFINE cds_assertions                                                       $CDS
 DEFINE work                                                                 ./libraries/work/                                                                
 DEFINE error_adapter_0                                                      ./libraries/error_adapter_0/                                                     
 DEFINE rsp_mux                                                              ./libraries/rsp_mux/                                                             
-DEFINE rsp_demux                                                            ./libraries/rsp_demux/                                                           
 DEFINE cmd_mux                                                              ./libraries/cmd_mux/                                                             
 DEFINE cmd_demux                                                            ./libraries/cmd_demux/                                                           
 DEFINE router_001                                                           ./libraries/router_001/                                                          
 DEFINE router                                                               ./libraries/router/                                                              
 DEFINE avalon_st_adapter_002                                                ./libraries/avalon_st_adapter_002/                                               
+DEFINE rsp_demux                                                            ./libraries/rsp_demux/                                                           
 DEFINE router_003                                                           ./libraries/router_003/                                                          
 DEFINE avalon_st_adapter_001                                                ./libraries/avalon_st_adapter_001/                                               
 DEFINE avalon_st_adapter                                                    ./libraries/avalon_st_adapter/                                                   

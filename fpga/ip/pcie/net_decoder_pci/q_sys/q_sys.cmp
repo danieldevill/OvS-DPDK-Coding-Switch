@@ -112,8 +112,7 @@
 			pcie_cv_hip_avmm_0_npor_pin_perst                      : in  std_logic                     := 'X';             -- pin_perst
 			pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked : out std_logic;                                        -- fixedclk_locked
 			pcie_cv_hip_avmm_0_refclk_clk                          : in  std_logic                     := 'X';             -- clk
-			pio_coder_rst_external_connection_export               : out std_logic;                                        -- export
-			pio_encoder_start_external_connection_export           : out std_logic                                         -- export
+			pio_coder_rst_external_connection_export               : out std_logic                                         -- export
 		);
 	end component q_sys;
 

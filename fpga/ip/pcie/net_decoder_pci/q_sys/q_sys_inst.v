@@ -111,7 +111,6 @@
 		.pcie_cv_hip_avmm_0_npor_pin_perst                      (<connected-to-pcie_cv_hip_avmm_0_npor_pin_perst>),                      //                                       .pin_perst
 		.pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked (<connected-to-pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked>), // pcie_cv_hip_avmm_0_reconfig_clk_locked.fixedclk_locked
 		.pcie_cv_hip_avmm_0_refclk_clk                          (<connected-to-pcie_cv_hip_avmm_0_refclk_clk>),                          //              pcie_cv_hip_avmm_0_refclk.clk
-		.pio_coder_rst_external_connection_export               (<connected-to-pio_coder_rst_external_connection_export>),               //      pio_coder_rst_external_connection.export
-		.pio_encoder_start_external_connection_export           (<connected-to-pio_encoder_start_external_connection_export>)            //  pio_encoder_start_external_connection.export
+		.pio_coder_rst_external_connection_export               (<connected-to-pio_coder_rst_external_connection_export>)                //      pio_coder_rst_external_connection.export
 	);
 

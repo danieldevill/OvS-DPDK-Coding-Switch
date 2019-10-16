@@ -116,8 +116,7 @@ module q_sys (
 		input  wire        pcie_cv_hip_avmm_0_npor_pin_perst,                      //                                       .pin_perst
 		output wire        pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked, // pcie_cv_hip_avmm_0_reconfig_clk_locked.fixedclk_locked
 		input  wire        pcie_cv_hip_avmm_0_refclk_clk,                          //              pcie_cv_hip_avmm_0_refclk.clk
-		output wire        pio_coder_rst_external_connection_export,               //      pio_coder_rst_external_connection.export
-		output wire        pio_encoder_start_external_connection_export            //  pio_encoder_start_external_connection.export
+		output wire        pio_coder_rst_external_connection_export                //      pio_coder_rst_external_connection.export
 	);
 
 	wire          alt_xcvr_reconfig_0_reconfig_busy_reconfig_busy;                                 // alt_xcvr_reconfig_0:reconfig_busy -> pcie_cv_hip_avmm_0:busy_xcvr_reconfig
@@ -209,18 +208,13 @@ module q_sys (
 	wire          pcie_cv_hip_avmm_0_rxm_bar4_write;                                               // pcie_cv_hip_avmm_0:RxmWrite_4_o -> mm_interconnect_2:pcie_cv_hip_avmm_0_Rxm_BAR4_write
 	wire   [63:0] pcie_cv_hip_avmm_0_rxm_bar4_writedata;                                           // pcie_cv_hip_avmm_0:RxmWriteData_4_o -> mm_interconnect_2:pcie_cv_hip_avmm_0_Rxm_BAR4_writedata
 	wire    [6:0] pcie_cv_hip_avmm_0_rxm_bar4_burstcount;                                          // pcie_cv_hip_avmm_0:RxmBurstCount_4_o -> mm_interconnect_2:pcie_cv_hip_avmm_0_Rxm_BAR4_burstcount
-	wire          mm_interconnect_2_pio_encoder_start_s1_chipselect;                               // mm_interconnect_2:pio_encoder_start_s1_chipselect -> pio_encoder_start:chipselect
-	wire   [31:0] mm_interconnect_2_pio_encoder_start_s1_readdata;                                 // pio_encoder_start:readdata -> mm_interconnect_2:pio_encoder_start_s1_readdata
-	wire    [1:0] mm_interconnect_2_pio_encoder_start_s1_address;                                  // mm_interconnect_2:pio_encoder_start_s1_address -> pio_encoder_start:address
-	wire          mm_interconnect_2_pio_encoder_start_s1_write;                                    // mm_interconnect_2:pio_encoder_start_s1_write -> pio_encoder_start:write_n
-	wire   [31:0] mm_interconnect_2_pio_encoder_start_s1_writedata;                                // mm_interconnect_2:pio_encoder_start_s1_writedata -> pio_encoder_start:writedata
 	wire          mm_interconnect_2_pio_coder_rst_s1_chipselect;                                   // mm_interconnect_2:pio_coder_rst_s1_chipselect -> pio_coder_rst:chipselect
 	wire   [31:0] mm_interconnect_2_pio_coder_rst_s1_readdata;                                     // pio_coder_rst:readdata -> mm_interconnect_2:pio_coder_rst_s1_readdata
 	wire    [1:0] mm_interconnect_2_pio_coder_rst_s1_address;                                      // mm_interconnect_2:pio_coder_rst_s1_address -> pio_coder_rst:address
 	wire          mm_interconnect_2_pio_coder_rst_s1_write;                                        // mm_interconnect_2:pio_coder_rst_s1_write -> pio_coder_rst:write_n
 	wire   [31:0] mm_interconnect_2_pio_coder_rst_s1_writedata;                                    // mm_interconnect_2:pio_coder_rst_s1_writedata -> pio_coder_rst:writedata
 	wire   [15:0] pcie_cv_hip_avmm_0_rxmirq_irq;                                                   // irq_mapper:sender_irq -> pcie_cv_hip_avmm_0:RxmIrq_i
-	wire          rst_controller_reset_out_reset;                                                  // rst_controller:reset_out -> [irq_mapper:reset, master_read:reset, master_write:reset, mm_interconnect_0:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_0:master_read_clock_reset_reset_reset_bridge_in_reset_reset, mm_interconnect_1:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:pcie_cv_hip_avmm_0_Rxm_BAR2_translator_reset_reset_bridge_in_reset_reset, mm_interconnect_2:pio_encoder_start_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, pio_coder_rst:reset_n, pio_encoder_start:reset_n, rst_translator:in_reset]
+	wire          rst_controller_reset_out_reset;                                                  // rst_controller:reset_out -> [irq_mapper:reset, master_read:reset, master_write:reset, mm_interconnect_0:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_0:master_read_clock_reset_reset_reset_bridge_in_reset_reset, mm_interconnect_1:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:pcie_cv_hip_avmm_0_Rxm_BAR2_translator_reset_reset_bridge_in_reset_reset, mm_interconnect_2:pio_coder_rst_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, pio_coder_rst:reset_n, rst_translator:in_reset]
 	wire          rst_controller_reset_out_reset_req;                                              // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 
 	alt_xcvr_reconfig #(
@@ -903,17 +897,6 @@ module q_sys (
 		.out_port   (pio_coder_rst_external_connection_export)       // external_connection.export
 	);
 
-	q_sys_pio_coder_rst pio_encoder_start (
-		.clk        (clk_0_clk_clk),                                     //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),                   //               reset.reset_n
-		.address    (mm_interconnect_2_pio_encoder_start_s1_address),    //                  s1.address
-		.write_n    (~mm_interconnect_2_pio_encoder_start_s1_write),     //                    .write_n
-		.writedata  (mm_interconnect_2_pio_encoder_start_s1_writedata),  //                    .writedata
-		.chipselect (mm_interconnect_2_pio_encoder_start_s1_chipselect), //                    .chipselect
-		.readdata   (mm_interconnect_2_pio_encoder_start_s1_readdata),   //                    .readdata
-		.out_port   (pio_encoder_start_external_connection_export)       // external_connection.export
-	);
-
 	q_sys_mm_interconnect_0 mm_interconnect_0 (
 		.pcie_cv_hip_avmm_0_coreclkout_clk                         (clk_0_clk_clk),                                          //                       pcie_cv_hip_avmm_0_coreclkout.clk
 		.ctl_0_reset_reset_bridge_in_reset_reset                   (rst_controller_reset_out_reset),                         //                   ctl_0_reset_reset_bridge_in_reset.reset
@@ -1004,27 +987,22 @@ module q_sys (
 	);
 
 	q_sys_mm_interconnect_2 mm_interconnect_2 (
-		.pcie_cv_hip_avmm_0_coreclkout_clk                   (clk_0_clk_clk),                                     //                 pcie_cv_hip_avmm_0_coreclkout.clk
-		.pio_encoder_start_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                    // pio_encoder_start_reset_reset_bridge_in_reset.reset
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_address                 (pcie_cv_hip_avmm_0_rxm_bar4_address),               //                   pcie_cv_hip_avmm_0_Rxm_BAR4.address
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_waitrequest             (pcie_cv_hip_avmm_0_rxm_bar4_waitrequest),           //                                              .waitrequest
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_burstcount              (pcie_cv_hip_avmm_0_rxm_bar4_burstcount),            //                                              .burstcount
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_byteenable              (pcie_cv_hip_avmm_0_rxm_bar4_byteenable),            //                                              .byteenable
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_read                    (pcie_cv_hip_avmm_0_rxm_bar4_read),                  //                                              .read
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_readdata                (pcie_cv_hip_avmm_0_rxm_bar4_readdata),              //                                              .readdata
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_readdatavalid           (pcie_cv_hip_avmm_0_rxm_bar4_readdatavalid),         //                                              .readdatavalid
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_write                   (pcie_cv_hip_avmm_0_rxm_bar4_write),                 //                                              .write
-		.pcie_cv_hip_avmm_0_Rxm_BAR4_writedata               (pcie_cv_hip_avmm_0_rxm_bar4_writedata),             //                                              .writedata
-		.pio_coder_rst_s1_address                            (mm_interconnect_2_pio_coder_rst_s1_address),        //                              pio_coder_rst_s1.address
-		.pio_coder_rst_s1_write                              (mm_interconnect_2_pio_coder_rst_s1_write),          //                                              .write
-		.pio_coder_rst_s1_readdata                           (mm_interconnect_2_pio_coder_rst_s1_readdata),       //                                              .readdata
-		.pio_coder_rst_s1_writedata                          (mm_interconnect_2_pio_coder_rst_s1_writedata),      //                                              .writedata
-		.pio_coder_rst_s1_chipselect                         (mm_interconnect_2_pio_coder_rst_s1_chipselect),     //                                              .chipselect
-		.pio_encoder_start_s1_address                        (mm_interconnect_2_pio_encoder_start_s1_address),    //                          pio_encoder_start_s1.address
-		.pio_encoder_start_s1_write                          (mm_interconnect_2_pio_encoder_start_s1_write),      //                                              .write
-		.pio_encoder_start_s1_readdata                       (mm_interconnect_2_pio_encoder_start_s1_readdata),   //                                              .readdata
-		.pio_encoder_start_s1_writedata                      (mm_interconnect_2_pio_encoder_start_s1_writedata),  //                                              .writedata
-		.pio_encoder_start_s1_chipselect                     (mm_interconnect_2_pio_encoder_start_s1_chipselect)  //                                              .chipselect
+		.pcie_cv_hip_avmm_0_coreclkout_clk               (clk_0_clk_clk),                                 //             pcie_cv_hip_avmm_0_coreclkout.clk
+		.pio_coder_rst_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                // pio_coder_rst_reset_reset_bridge_in_reset.reset
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_address             (pcie_cv_hip_avmm_0_rxm_bar4_address),           //               pcie_cv_hip_avmm_0_Rxm_BAR4.address
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_waitrequest         (pcie_cv_hip_avmm_0_rxm_bar4_waitrequest),       //                                          .waitrequest
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_burstcount          (pcie_cv_hip_avmm_0_rxm_bar4_burstcount),        //                                          .burstcount
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_byteenable          (pcie_cv_hip_avmm_0_rxm_bar4_byteenable),        //                                          .byteenable
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_read                (pcie_cv_hip_avmm_0_rxm_bar4_read),              //                                          .read
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_readdata            (pcie_cv_hip_avmm_0_rxm_bar4_readdata),          //                                          .readdata
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_readdatavalid       (pcie_cv_hip_avmm_0_rxm_bar4_readdatavalid),     //                                          .readdatavalid
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_write               (pcie_cv_hip_avmm_0_rxm_bar4_write),             //                                          .write
+		.pcie_cv_hip_avmm_0_Rxm_BAR4_writedata           (pcie_cv_hip_avmm_0_rxm_bar4_writedata),         //                                          .writedata
+		.pio_coder_rst_s1_address                        (mm_interconnect_2_pio_coder_rst_s1_address),    //                          pio_coder_rst_s1.address
+		.pio_coder_rst_s1_write                          (mm_interconnect_2_pio_coder_rst_s1_write),      //                                          .write
+		.pio_coder_rst_s1_readdata                       (mm_interconnect_2_pio_coder_rst_s1_readdata),   //                                          .readdata
+		.pio_coder_rst_s1_writedata                      (mm_interconnect_2_pio_coder_rst_s1_writedata),  //                                          .writedata
+		.pio_coder_rst_s1_chipselect                     (mm_interconnect_2_pio_coder_rst_s1_chipselect)  //                                          .chipselect
 	);
 
 	q_sys_irq_mapper irq_mapper (

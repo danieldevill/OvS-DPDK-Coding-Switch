@@ -112,8 +112,7 @@ module q_sys (
 	pcie_cv_hip_avmm_0_npor_pin_perst,
 	pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked,
 	pcie_cv_hip_avmm_0_refclk_clk,
-	pio_coder_rst_external_connection_export,
-	pio_encoder_start_external_connection_export);	
+	pio_coder_rst_external_connection_export);	
 
 	input		alt_xcvr_reconfig_0_mgmt_clk_clk_clk;
 	input		alt_xcvr_reconfig_0_mgmt_rst_reset_reset;
@@ -228,5 +227,4 @@ module q_sys (
 	output		pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked;
 	input		pcie_cv_hip_avmm_0_refclk_clk;
 	output		pio_coder_rst_external_connection_export;
-	output		pio_encoder_start_external_connection_export;
 endmodule

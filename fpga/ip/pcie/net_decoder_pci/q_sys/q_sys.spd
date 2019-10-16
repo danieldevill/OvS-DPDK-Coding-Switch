@@ -21,10 +21,6 @@
    type="SYSTEM_VERILOG"
    library="rsp_mux" />
  <file
-   path="simulation/submodules/q_sys_mm_interconnect_2_rsp_demux.sv"
-   type="SYSTEM_VERILOG"
-   library="rsp_demux" />
- <file
    path="simulation/submodules/q_sys_mm_interconnect_2_cmd_mux.sv"
    type="SYSTEM_VERILOG"
    library="cmd_mux" />

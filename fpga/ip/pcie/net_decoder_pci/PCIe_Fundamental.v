@@ -115,14 +115,22 @@ parameter idle=0, read=1;
 //assign write_ram_en = 1'b1;
 
 //Net Encoder Wires
-reg          encoder_rst;
-reg [31:0]   encoder_pkt_in;
-wire [31:0]  encoder_pkt_out; 
-wire [31:0]  encoder_pkt_coeff; 
-wire         encoder_done_out_pkts;
-wire         encoder_done_coeffs;
-wire         pio_coder_rst;
-assign read_ram_en = pio_coder_rst;
+//reg          encoder_rst;
+//reg [31:0]   encoder_pkt_in;
+//wire [31:0]  encoder_pkt_out; 
+//wire [31:0]  encoder_pkt_coeff; 
+//wire         encoder_done_out_pkts;
+//wire         encoder_done_coeffs;
+//wire         pio_coder_rst;
+//assign read_ram_en = pio_coder_rst;
+
+//Net Decoder Wires
+reg			decoder_rst;
+reg [31:0]  decoder_pkt_in;
+wire [31:0] decoder_coeff_in;
+wire [31:0] decoder_pkt_out;
+wire 			decoder_done;
+
 
 //////////////////////
 // PCIE RESET
@@ -216,29 +224,25 @@ q_sys u0 (
         .master_write_user_buffer_input_data(mw_buffer_data),            //                     .buffer_input_data
         .master_write_user_buffer_full(mw_buffer_full),                  //                     .buffer_full
 		  
-      //Encoder Begin PIO
-      //.pio_encoder_start_external_connection_export(read_ram_en),
       //Coder reset PI
       .pio_coder_rst_external_connection_export(pio_coder_rst)
 
     );
 	 
-//Instantiate network encoder VHDL module.
-net_encoder 
-    #(
-      .m(8),
-      .h(7),
-      .N(64),
-      .seed(31)
-    )
-    net_encoder0 (
-      .clk(reconfig_xcvr_clk),
-      .rst(encoder_rst),
-      .pkt32bseg_i(encoder_pkt_in),
-      .pkt32bseg_o(encoder_pkt_out),
-      .coeffs_out(encoder_pkt_coeff),
-      .done_out_pkts(encoder_done_out_pkts),
-      .done_coeffs(encoder_done_coeffs)
+//Instantiate network decoder VHDL module.
+net_decoder
+	#(
+		.m(8),
+		.h(7),
+		.N(64)
+	)
+	net_decoder0 (
+		.clk(reconfig_xcvr_clk),
+		.rst(decoder_rst),
+		.pkt32bseg_i(decoder_pkt_in),
+		.coeffs_in(decoder_coeff_in),
+		.pkt32bseg_o(decoder_pkt_out),
+		.decoder_done(decoder_done)
 );
 
 //Master Read FSM
@@ -256,7 +260,6 @@ begin
             //Enable address incrementing while reading RAM
             mr_control_fixed_location = 1'b1;
             //Offset address base to account for FIFO delay. Address Read starts before 32'h0700_0000, so do not populate that memory space.
-            //mr_control_base =   (32'h0700_0000 - 32'h0000_008) & 32'hFFFF_FFFC;
 				mr_control_base =   (32'h0700_0000) & 32'hFFFF_FFFC;
             mr_control_length = 32'h0000_01B6;
             mr_control_go = 1'b1;
@@ -270,25 +273,12 @@ begin
             //Default control go deassert.
             mr_control_go = 1'b0;
             
-            //Delay master read transfer begin.
-//            if(start_delay == 4'h0A)
-//              mr_control_go = 1'b1;         
-            
-            //Deassert control go to complete go cycle strobe, and begin transfer.
-//            if(start_delay == 4'h0B)
-//              begin
-//              mr_control_go = 1'b0;
-//              end
-//            else
-//              start_delay = start_delay + 4'h1;
-          
             //Begin reading FIFO output.
             if(mr_data_avali == 1)
 					begin
-						
 						if(start_delay == 4'h3)
 							begin
-								encoder_rst <= 1'b1;
+								decoder_rst <= 1'b1;
 							end
 						else
 							start_delay = start_delay + 4'h1;
@@ -299,13 +289,13 @@ begin
 							begin
 								mr_control_base = mr_control_base + 32'h4;
 								mr_control_go <= 1'b1;
-								encoder_pkt_in = mr_buffer_data;
+								decoder_pkt_in = mr_buffer_data;
 							end
 					end
             else
 					begin
 						mr_read_buffer = 1'b0;
-                  encoder_rst = 1'b0;
+                  decoder_rst = 1'b0;
 					end
 									 
             if(read_ram_en == 0 )
@@ -316,60 +306,5 @@ begin
       endcase 
     end
 end
-
-//Master Write FSM for output packets
-//always @(posedge reconfig_xcvr_clk or negedge pio_coder_rst)
-//begin
-//  if(~pio_coder_rst)
-//    write_state = idle;
-//  else
-//    begin
-//      //Write state cases
-//      case(write_state)
-//        idle:
-//          begin
-//            //Enable address incrementing while writing RAM
-//            mw_control_fixed_location = 1'b0;
-//            
-//            mw_control_base = 32'h0700_0200 & 32'hFFFF_FFFC;
-//            mw_control_length = 32'h0000_01B6;
-//            mw_control_go = 1'b0;
-//            if(write_ram_en == 1)
-//              write_state = write;
-//            else
-//              write_state = idle;
-//          end
-//        write:
-//          begin
-//            if(encoder_done_out_pkts == 1)
-//              begin
-//                mw_control_go = 1'b1;
-//                mw_write_buffer = 1'b0;
-//                //Only Write when buffer is not full
-//                if(mw_buffer_full == 0)
-//                  mw_write_buffer = 1'b1;
-//                  mw_buffer_data = encoder_pkt_out;
-//              end
-//              
-//            //Change States if write_name disabled. 
-//            if(write_ram_en == 0)
-//              write_state = idle;
-//            else
-//              write_state = write;
-//          end
-//      endcase
-//    end
-//end
-  
-//Net Encoder Controller
-//always @(posedge mr_read_buffer)
-//begin
-//	
-//   if(mr_read_buffer == 1)
-//      encoder_rst = 1'b1;
-//	else
-//		encoder_rst = 1'b0;
-//	
-//end
 	
 endmodule
