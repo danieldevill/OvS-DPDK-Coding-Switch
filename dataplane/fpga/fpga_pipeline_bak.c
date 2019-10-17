@@ -9,13 +9,8 @@
 #define ENCODER_START				0x4000010
 #define CODER_RST				    0x4000020
 
-#define PCIE_MEM_ADDR_RX			0x07000000 //MEM RX from PC -> FPGA
-#define PCIE_MEM_ADDR_TX			0x07000512 //MEM TX from FPGA -> PC
-#define PCIE_MEM_ADDR_COEFF			0x07000450 //MEM COEFF. If encoder: FPGA -> PC, If decoder: PC -> FPGA
-
-
-#define MEM_SIZE					512 //512KB
-#define MEM_SIZE_COEF				64 //64KB
+#define PCIE_MEM_ADDR			0x07000000
+#define MEM_SIZE					(512) //512KB
 
 //TUN/TAP
 #include <sys/types.h>
@@ -35,7 +30,7 @@
 //TAP
 struct ifreq tap;
 char tap_name[IFNAMSIZ];
-unsigned char if_mac [MAC_ADDR_LEN] = {2, 1, 2, 3, 4,8, 0};
+unsigned char if_mac [MAC_ADDR_LEN] = {2, 1, 2, 3, 4,8, 0};;
 int tapfd;
 //TAP Buffers
 unsigned char tapRXBuffer[RX_BUFFER];
@@ -47,104 +42,146 @@ uint TXcount = 0;
 uint RXDone = 0;
 uint TXDone = 0;
 
+
+//Normally a ring buffer should be used. For this proof on concept h buffers are made.
+
 //Main function
 int
 main(int argc, char *argv[]) {
 
-	//Check for arv, else stop.
-	if(argc < 2) {
-		printf("fpga_pipeline: No coder specified.\n Usage: fpga_pipeline <coder>\n");
+	//Input packet counter
+	int pkt_in_cnt = 0;
+	
+	//Create TAP Interface
+	strcpy(tap_name,"tapEncoder");
+	int tapfd = tap_encoder_alloc(tap_name);
+	
+	//Get packets until pkt count is = h
+	while(RXDone == 0) {
+
+		//Loopback test
+		tap_encoder_receive(tapfd,tapRXBuffer);
+		memcpy(&tapTXBuffer,&tapRXBuffer,TX_BUFFER);
+		tap_encoder_transmit(tapfd,tapTXBuffer);
+	}
+
+	FILE *ptr_pkts_in;
+	ptr_pkts_in = fopen("packets_in.txt","r");
+
+	void *lib_handle;
+	PCIE_HANDLE hPCIe;
+	uint bQuit = 0;
+
+	//Load PCIe driver.
+	lib_handle = PCIE_Load();
+	if (!lib_handle) {
+		printf("PCIE_Load failed!\r\n");
 		return 0;
 	}
-	else if(strcmp("encoder",argv[1]) == 0) {
-		printf("Encoder interface begin.\n");
-		
-		//Create TAP Interface
-		strcpy(tap_name,"tapEncoder");
-		int tapfd = tap_encoder_alloc(tap_name);
-		
-		//Get packets until pkt count is = h
-		while(RXDone == 0) {
 
-			//Loopback test
-			tap_encoder_receive(tapfd,tapRXBuffer);
-			memcpy(&tapTXBuffer,&tapRXBuffer,TX_BUFFER);
-			tap_encoder_transmit(tapfd,tapTXBuffer);
+	//Open PCIe connection.
+	hPCIe = PCIE_Open(DEFAULT_PCIE_VID, DEFAULT_PCIE_DID, 0);
+	if (!hPCIe) {
+		printf("PCIE_Open failed\r\n");
+	} 
+	else {
+		printf("PCIE_Open success\r\n");
+		
+		int bPass = 1;
+		int i;
+		const int nTestSize = MEM_SIZE;
+		const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR;
+		const PCIE_LOCAL_ADDRESS LocalAddr1 = PCIE_MEM_ADDR+512;
+
+		//char *pWrite;
+		char *pRead;
+		char szError[256];
+		char *pWrite;
+
+		pWrite = (char *) malloc(512);
+		pRead = (char *) malloc(1024);
+		if (!pWrite || !pRead) {
+			sprintf(szError, "DMA Memory:malloc failed\r\n");
 		}
 
-		void *lib_handle;
-		PCIE_HANDLE hPCIe;
-
-		//Load PCIe driver.
-		lib_handle = PCIE_Load();
-		if (!lib_handle) {
-			printf("PCIE_Load failed!\r\n");
-			return 0;
-		}
-
-		//Open PCIe connection.
-		hPCIe = PCIE_Open(DEFAULT_PCIE_VID, DEFAULT_PCIE_DID, 0);
-		if (!hPCIe) {
-			printf("PCIE_Open failed\r\n");
-		} 
-		else {
-			printf("PCIE_Open success\r\n");
+		//Write
+		//for (i = 0; i < nTestSize && bPass; i++)
+		uint32_t file_count = 0;
+		char hex[9];
+		while(fscanf(ptr_pkts_in,"%s",hex) != EOF) {
+			uint32_t num = (uint32_t)strtol(hex, NULL, 16);
 			
-			int bPass = 1;
-			int i;
-			const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR_RX;
+			pWrite[3 + (4*file_count)] = (num >> 24) & 0xFF;
+			pWrite[2 + (4*file_count)] = (num >> 16) & 0xFF;
+			pWrite[1 + (4*file_count)] = (num >> 8) & 0xFF;
+			pWrite[0 + (4*file_count)] = (num) & 0xFF;
+			
+			//printf("%s %X %d %X %X %X %X\n",hex, num, sizeof(pWrite), pWrite[0], pWrite[1],pWrite[2],pWrite[3]);
+			
+			file_count+=1;
+		}
+		PCIE_DmaWrite(hPCIe, LocalAddr, pWrite, MEM_SIZE);
 
-			char *pRead;
-			char szError[256];
+		//Write from Packet
+		// unsigned char* readPtr = tapRXBufferQueue;
+		// uint h;
+		// for (h = 0;h<RING_SIZE;h++) {
+		// 	//Get packet data
+		//     uint i;
+		// 	for (i = 0; i < RX_BUFFER; i++) {
+		// 		printf("%02X ",*(readPtr + i + (h*RX_BUFFER)));
+		// 	}
+		// 	printf("\n\n");
+		// }
 
-			pRead = (char *) malloc(1024);
+		//Write RX Packet Generation block to DMA.
+		PCIE_DmaWrite(hPCIe, LocalAddr1, tapRXBufferQueue, MEM_SIZE);
 
-			//Write RX Packet Generation block to DMA.
-			printf("Write to DMA.\n");
-			PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
+		//sleep(2);
 
-			//Reset coder entity on FPGA. This will begin the coding process.
-			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
-				(uint32_t) 0);
-			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
-				(uint32_t) 1);
-			if (bPass)
-				printf("Reset\n");
+		//Start Encoder
+		/*bPass = PCIE_Write32(hPCIe, PCIE_BAR, ENCODER_START,
+			(uint32_t) 1);
+		if (bPass)
+			printf("Start Encoder\n");*/
 
-			// Read DMA results.
-			if (bPass) {
-				bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, MEM_SIZE*2);
+		//Reset
+		bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+			(uint32_t) 0);
+		bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+			(uint32_t) 1);
+		if (bPass)
+			printf("Reset\n");
 
-				if (!bPass) {
-					sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
-				} else {
-					for (i = 0; i < 1024 && bPass; i++) {
-						printf("index:%d read=%xh\n", i,*(pRead + i));
-					}
+		//sleep(10);
+
+		// Read DMA
+		if (bPass) {
+			bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, 1024);
+
+			if (!bPass) {
+				sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
+			} else {
+				for (i = 0; i < 1024 && bPass; i++) {
+					printf("index:%d read=%xh\n", i,*(pRead + i));
 				}
 			}
-
-			// free resource
-			if (pRead)
-				free(pRead);
-
-			//Set encoder to 0.
-			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
-				(uint32_t) 0);
-
-			PCIE_Close(hPCIe);
 		}
 
-		return 0;
-	}
-	else if(strcmp("decoder",argv[1]) == 0) {
-		printf("Decoder interface begin.\n");
-	}
-	else {
-		printf("fpga_pipeline: Incorrect coder specified.\n Usage: fpga_pipeline <coder>\n <coder> must be encoder or decoder.\n");
-		return 0;
+		// free resource
+		/*if (pWrite)
+			free(pWrite);*/
+		if (pRead)
+			free(pRead);
+
+		//Reset
+		bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+			(uint32_t) 0);
+
+		PCIE_Close(hPCIe);
 	}
 
+	return 0;
 }
 
 /* Creates non-persisten TAP interface
@@ -182,7 +219,7 @@ int tap_encoder_alloc(char *dev) {
 	}
 
 	//Set link up ; Set MAC address ; Add to OvS br0
-	system("ip link set tapEncoder up; ip link set tapEncoder address 02:01:02:03:04:08; ovs-vsctl add-port br0 tapEncoder");
+	int callStatus = system("ip link set tapEncoder up; ip link set tapEncoder address 02:01:02:03:04:08; ovs-vsctl add-port br0 tapEncoder");
 	
 	printf("Link Up.\n");
 	return fd;
@@ -203,6 +240,14 @@ int tap_pkt_inspection(unsigned char* tapBuffer)
 	}
 
 	return 0;
+}
+
+/* 
+
+*/
+int tap_encoder_packetize()
+{
+
 }
 
 /* Receive packets from tap device. 
