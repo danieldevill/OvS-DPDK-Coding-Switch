@@ -65,11 +65,7 @@ main(int argc, char *argv[]) {
 		
 		//Get packets until pkt count is = h
 		while(RXDone == 0) {
-
-			//Loopback test
 			tap_encoder_receive(tapfd,tapRXBuffer);
-			memcpy(&tapTXBuffer,&tapRXBuffer,TX_BUFFER);
-			tap_encoder_transmit(tapfd,tapTXBuffer);
 		}
 
 		void *lib_handle;
@@ -94,7 +90,7 @@ main(int argc, char *argv[]) {
 			int i;
 			const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR_RX;
 
-			char *pRead;
+			unsigned char *pRead;
 			char szError[256];
 
 			pRead = (char *) malloc(1024);
@@ -119,9 +115,14 @@ main(int argc, char *argv[]) {
 					sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
 				} else {
 					for (i = 0; i < 1024 && bPass; i++) {
-						printf("index:%d read=%xh\n", i,*(pRead + i));
+						printf("index:%d read= %x  h\n", i,*(pRead + i));
 					}
 				}
+
+				//Cpy DMA read to tapTXBufferQueue
+				memcpy(tapTXBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
+				//Transmit encoded packets
+				tap_encoder_transmit(tapfd,tapTXBufferQueue);
 			}
 
 			// free resource
@@ -152,7 +153,8 @@ main(int argc, char *argv[]) {
    Multiqueue does exist if using 
    greater than x1 PCIe.
 */
-int tap_encoder_alloc(char *dev) {
+int tap_encoder_alloc(char *dev) 
+{
 	struct ifreq ifr;
 	int fd, err;
 
@@ -255,8 +257,20 @@ int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
    as input and returns 1 on success 
    or 0 on failure.
 */
-int tap_encoder_transmit(int tapfd, unsigned char* tapBuffer)
+int tap_encoder_transmit(int tapfd, unsigned char* tapTXBufferQueue)
 {
+	//Get each packet 
+	unsigned char* readPtr = tapTXBufferQueue;
+	uint h;
+	for (h = 0;h<RING_SIZE;h++) {
+		//Get packet data from encoded block
+	    uint i;
+		for (i = 0; i < TX_BUFFER; i++) {
+			printf("%02X ",*(readPtr + i + (h*TX_BUFFER)));
+		}
+		printf("\n\n");
+	}
+
 	int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
 
 	if (nwrite > 0) {
@@ -272,4 +286,5 @@ int tap_encoder_transmit(int tapfd, unsigned char* tapBuffer)
 		close(tapfd);
 		exit(1);
 	}	
+	return 0;
 }
