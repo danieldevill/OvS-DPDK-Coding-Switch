@@ -6,6 +6,13 @@ state.ST_COMP_TRANS 1 0 0 1
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
+State Machine - |PCIe_Fundamental|net_decoder:net_decoder0|net_decoder_state
+Name net_decoder_state.idle net_decoder_state.complete net_decoder_state.gj_elim net_decoder_state.load 
+net_decoder_state.load 0 0 0 0 
+net_decoder_state.gj_elim 0 0 1 1 
+net_decoder_state.complete 0 1 0 1 
+net_decoder_state.idle 1 0 0 1 
+
 State Machine - |PCIe_Fundamental|q_sys:u0|alt_xcvr_reconfig:alt_xcvr_reconfig_0|alt_xcvr_reconfig_offset_cancellation:offset.sc_offset|alt_xcvr_reconfig_offset_cancellation_av:offset_cancellation_av|state
 Name state.RELEASE_PHY_RESET_OVERRIDE_START_STATE state.RELEASE_PHY_RESET_OVERRIDE_DATA_STATE state.RELEASE_PHY_RESET_OVERRIDE_ADDR_STATE state.SET_PHY_RESET_OVERRIDE_START_STATE state.SET_PHY_RESET_OVERRIDE_DATA_STATE state.SET_PHY_RESET_OVERRIDE_ADDR_STATE state.RELEASE_OC_CALEN_DONE_STATE state.RELEASE_OC_CALEN_START_STATE state.RELEASE_OC_CALEN_DATA_STATE state.START_OC_CALEN_STATE state.SET_OC_CALEN_DATA_STATE state.SET_OC_CALEN_ADDR_STATE state.GET_TESTBUS_DATA_STATE state.GET_TESTBUS_ADDR_STATE state.WAIT_FOR_NEXT_STATE state.RELEASE_PMUTEX_STATE state.CHECK_PMUTEX_STATE state.READ_PMUTEX_STATE state.ACQUIRE_PMUTEX_STATE state.WRITE_DONE_STATE state.READ_DATA_STATE state.ADDRESS_OFFSET_STATE state.CHECK_REQ_DATA_STATE state.READ_REQ_DATA_STATE state.REQUEST_CONTROL_STATE state.SET_ADDR_OFFSET_REQ_STATE state.CHECK_PHY_ADDR_STATE state.READ_PHY_ADDR_STATE state.BUSY_STATE state.CONTROL_STATE state.WRITE_DATA_STATE state.LOGICAL_ADDRESS_STATE state.000000 
 state.000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
@@ -51,15 +58,6 @@ avalon_state_reg.CRA_READ_WAIT 0 0 1 0 0 1
 avalon_state_reg.CRA_READ_ACK 0 1 0 0 0 1 
 avalon_state_reg.CRA_PIPE 1 0 0 0 0 1 
 
-State Machine - |PCIe_Fundamental|q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpciexpav_stif_app:avalon_bridge|altpciexpav_stif_tx:tx|altpciexpav_stif_tx_cntrl:tx_cntrl|txrp_state
-Name txrp_state.TXRP_RESET txrp_state.TXRP_WAIT txrp_state.TXRP_STREAM txrp_state.TXRP_FIFO_PREFETCH1 txrp_state.TXRP_FIFO_PREFETCH0 txrp_state.TXRP_IDLE 
-txrp_state.TXRP_IDLE 0 0 0 0 0 0 
-txrp_state.TXRP_FIFO_PREFETCH0 0 0 0 0 1 1 
-txrp_state.TXRP_FIFO_PREFETCH1 0 0 0 1 0 1 
-txrp_state.TXRP_STREAM 0 0 1 0 0 1 
-txrp_state.TXRP_WAIT 0 1 0 0 0 1 
-txrp_state.TXRP_RESET 1 0 0 0 0 1 
-
 State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_memory2_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
@@ -73,6 +71,23 @@ state.ST_IDLE 0 0 0 0
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |PCIe_Fundamental|q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpciexpav_stif_app:avalon_bridge|altpciexpav_stif_tx:tx|altpciexpav_stif_tx_cntrl:tx_cntrl|txrp_state
+Name txrp_state.TXRP_RESET txrp_state.TXRP_WAIT txrp_state.TXRP_STREAM txrp_state.TXRP_FIFO_PREFETCH1 txrp_state.TXRP_FIFO_PREFETCH0 txrp_state.TXRP_IDLE 
+txrp_state.TXRP_IDLE 0 0 0 0 0 0 
+txrp_state.TXRP_FIFO_PREFETCH0 0 0 0 0 1 1 
+txrp_state.TXRP_FIFO_PREFETCH1 0 0 0 1 0 1 
+txrp_state.TXRP_STREAM 0 0 1 0 0 1 
+txrp_state.TXRP_WAIT 0 1 0 0 0 1 
+txrp_state.TXRP_RESET 1 0 0 0 0 1 
+
+State Machine - |PCIe_Fundamental|net_decoder:net_decoder0|gj_elimination:gj_elimination_1|gj_elimination_state
+Name gj_elimination_state.complete gj_elimination_state.divRow gj_elimination_state.mulsubRow gj_elimination_state.idle gj_elimination_state.load 
+gj_elimination_state.load 0 0 0 0 0 
+gj_elimination_state.idle 0 0 0 1 1 
+gj_elimination_state.mulsubRow 0 0 1 0 1 
+gj_elimination_state.divRow 0 1 0 0 1 
+gj_elimination_state.complete 1 0 0 0 1 
 
 State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:pcie_cv_hip_avmm_0_cra_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
@@ -94,6 +109,11 @@ state.ST_IDLE 0 0 0 0
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |PCIe_Fundamental|read_state
+Name read_state.read 
+read_state.idle 0 
+read_state.read 1 
 
 State Machine - |PCIe_Fundamental|q_sys:u0|alt_xcvr_reconfig:alt_xcvr_reconfig_0|alt_xcvr_reconfig_analog:analog.sc_analog|alt_xcvr_reconfig_analog_av:reconfig_analog_cv|alt_xreconf_cif:inst_xreconf_cif|alt_xreconf_basic_acq:inst_basic_acq|state
 Name state.ST_CLR_RECONFIG_BASIC_PADDR_MODE state.ST_RELEASE_REQ state.ST_START_AGAIN state.ST_CHECK_CTRLLOCK state.ST_READ_RECONFIG_BASIC_DATA state.ST_SET_RECONFIG_BASIC_READ state.ST_SET_RECONFIG_BASIC_WRITE state.ST_WRITE_DATA_TO_RECONFIG_BASIC state.ST_ACCESS_RECONFIG_BASIC_OFFSET_REG state.ST_CONFIRM_RECONFIG_BASIC_CH_LOCK state.ST_SET_RECONFIG_BASIC_PADDR_MODE state.ST_CHECK_PHY_ADD_LEGAL state.ST_READ_PHY_ADDRESS state.ST_WRITE_RECONFIG_BASIC_LCH state.ST_REQ_MUTEX state.0000 
@@ -151,18 +171,3 @@ state.DPRIO_READ 0 0 1 0 0 0 0 0 0 0 0 1 0
 state.DPRIO_WRITE 0 1 0 0 0 0 0 0 0 0 0 1 0 
 state.PDOF_TEST_RD 1 0 0 0 0 0 0 0 0 0 0 1 0 
 state.PDOF_TEST_WR 0 0 0 0 0 0 0 0 0 0 0 1 1 
-
-State Machine - |PCIe_Fundamental|net_decoder:net_decoder0|net_decoder_state
-Name net_decoder_state.idle net_decoder_state.complete net_decoder_state.gj_elim net_decoder_state.load 
-net_decoder_state.load 0 0 0 0 
-net_decoder_state.gj_elim 0 0 1 1 
-net_decoder_state.complete 0 1 0 1 
-net_decoder_state.idle 1 0 0 1 
-
-State Machine - |PCIe_Fundamental|net_decoder:net_decoder0|gj_elimination:gj_elimination_1|gj_elimination_state
-Name gj_elimination_state.complete gj_elimination_state.divRow gj_elimination_state.mulsubRow gj_elimination_state.idle gj_elimination_state.load 
-gj_elimination_state.load 0 0 0 0 0 
-gj_elimination_state.idle 0 0 0 1 1 
-gj_elimination_state.mulsubRow 0 0 1 0 1 
-gj_elimination_state.divRow 0 1 0 0 1 
-gj_elimination_state.complete 1 0 0 0 1 

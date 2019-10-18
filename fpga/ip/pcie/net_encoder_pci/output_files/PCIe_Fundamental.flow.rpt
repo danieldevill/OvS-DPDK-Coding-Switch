@@ -1,5 +1,5 @@
 Flow report for PCIe_Fundamental
-Thu Oct 10 20:53:39 2019
+Fri Oct 18 14:15:51 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,18 +40,18 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Oct 10 20:53:39 2019       ;
+; Flow Status                     ; Successful - Fri Oct 18 14:15:51 2019       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; PCIe_Fundamental                            ;
 ; Top-level Entity Name           ; PCIe_Fundamental                            ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CGXFC9D6F27C7                              ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 10,976 / 113,560 ( 10 % )                   ;
-; Total registers                 ; 23463                                       ;
+; Logic utilization (in ALMs)     ; 11,338 / 113,560 ( 10 % )                   ;
+; Total registers                 ; 24509                                       ;
 ; Total pins                      ; 28 / 378 ( 7 % )                            ;
 ; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 3,032,848 / 12,492,800 ( 24 % )             ;
+; Total block memory bits         ; 3,370,768 / 12,492,800 ( 27 % )             ;
 ; Total DSP Blocks                ; 0 / 342 ( 0 % )                             ;
 ; Total HSSI RX PCSs              ; 4 / 9 ( 44 % )                              ;
 ; Total HSSI PMA RX Deserializers ; 4 / 9 ( 44 % )                              ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/10/2019 20:40:33 ;
+; Start date & time ; 10/18/2019 14:02:18 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; PCIe_Fundamental    ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
 ; Assignment Name                      ; Value                                                   ; Default Value                        ; Entity Name ; Section Id       ;
 +--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
-; COMPILER_SIGNATURE_ID                ; 130586021222.157073283210480                            ; --                                   ; --          ; --               ;
+; COMPILER_SIGNATURE_ID                ; 130586021222.157140013747512                            ; --                                   ; --          ; --               ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                      ; --                                   ; --          ; --               ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; PCIe_Fundamental                                        ; --                                   ; --          ; eda_simulation   ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                             ; --                                   ; --          ; eda_simulation   ;
@@ -129,8 +129,8 @@ refer to the applicable agreement for further details.
 ; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_BITS=1                                      ; --                                   ; --          ; auto_signaltap_0 ;
 ; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK=0000000000000000000000000000         ; --                                   ; --          ; auto_signaltap_0 ;
 ; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK_LENGTH=28                            ; --                                   ; --          ; auto_signaltap_0 ;
-; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_DATA_BITS=1402                                      ; --                                   ; --          ; auto_signaltap_0 ;
-; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STORAGE_QUALIFIER_BITS=1402                         ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_DATA_BITS=1567                                      ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STORAGE_QUALIFIER_BITS=1567                         ; --                                   ; --          ; auto_signaltap_0 ;
 ; SOPCINFO_FILE                        ; q_sys/synthesis/../../q_sys.sopcinfo                    ; --                                   ; --          ; --               ;
 ; SYNTHESIS_ONLY_QIP                   ; On                                                      ; --                                   ; --          ; --               ;
 ; USE_SIGNALTAP_FILE                   ; encocder_logic_analyzer.stp                             ; --                                   ; --          ; --               ;
@@ -142,12 +142,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:45     ; 1.8                     ; 1978 MB             ; 00:05:19                           ;
-; Fitter               ; 00:07:56     ; 1.8                     ; 5113 MB             ; 00:32:59                           ;
-; Assembler            ; 00:00:38     ; 1.0                     ; 1351 MB             ; 00:00:37                           ;
-; Timing Analyzer      ; 00:00:49     ; 4.5                     ; 2398 MB             ; 00:03:05                           ;
-; EDA Netlist Writer   ; 00:00:19     ; 1.0                     ; 1698 MB             ; 00:00:19                           ;
-; Total                ; 00:12:27     ; --                      ; --                  ; 00:42:19                           ;
+; Analysis & Synthesis ; 00:02:54     ; 2.1                     ; 1986 MB             ; 00:06:19                           ;
+; Fitter               ; 00:08:11     ; 1.8                     ; 5138 MB             ; 00:34:52                           ;
+; Assembler            ; 00:00:38     ; 1.0                     ; 1357 MB             ; 00:00:38                           ;
+; Timing Analyzer      ; 00:00:50     ; 4.6                     ; 2411 MB             ; 00:03:11                           ;
+; EDA Netlist Writer   ; 00:00:18     ; 1.0                     ; 1709 MB             ; 00:00:19                           ;
+; Total                ; 00:12:51     ; --                      ; --                  ; 00:45:19                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

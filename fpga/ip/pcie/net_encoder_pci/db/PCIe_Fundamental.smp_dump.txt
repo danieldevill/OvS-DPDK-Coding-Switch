@@ -6,6 +6,11 @@ state.ST_COMP_TRANS 1 0 0 1
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
+State Machine - |PCIe_Fundamental|write_state
+Name write_state.write 
+write_state.idle 0 
+write_state.write 1 
+
 State Machine - |PCIe_Fundamental|q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpciexpav_stif_app:avalon_bridge|altpciexpav_stif_control_register:cntrl_reg|altpciexpav_stif_cr_avalon:i_avalon|avalon_state_reg
 Name avalon_state_reg.CRA_PIPE avalon_state_reg.CRA_READ_ACK avalon_state_reg.CRA_READ_WAIT avalon_state_reg.CRA_READ_FIRST avalon_state_reg.CRA_WRITE_ACK avalon_state_reg.CRA_IDLE 
 avalon_state_reg.CRA_IDLE 0 0 0 0 0 0 
@@ -14,11 +19,6 @@ avalon_state_reg.CRA_READ_FIRST 0 0 0 1 0 1
 avalon_state_reg.CRA_READ_WAIT 0 0 1 0 0 1 
 avalon_state_reg.CRA_READ_ACK 0 1 0 0 0 1 
 avalon_state_reg.CRA_PIPE 1 0 0 0 0 1 
-
-State Machine - |PCIe_Fundamental|read_state
-Name read_state.read 
-read_state.idle 0 
-read_state.read 1 
 
 State Machine - |PCIe_Fundamental|q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpciexpav_stif_app:avalon_bridge|altpciexpav_stif_tx:tx|altpciexpav_stif_tx_cntrl:tx_cntrl|txrp_state
 Name txrp_state.TXRP_RESET txrp_state.TXRP_WAIT txrp_state.TXRP_STREAM txrp_state.TXRP_FIFO_PREFETCH1 txrp_state.TXRP_FIFO_PREFETCH0 txrp_state.TXRP_IDLE 
@@ -29,14 +29,14 @@ txrp_state.TXRP_STREAM 0 0 1 0 0 1
 txrp_state.TXRP_WAIT 0 1 0 0 0 1 
 txrp_state.TXRP_RESET 1 0 0 0 0 1 
 
-State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:ctl_0_modular_sgdma_dispatcher_0_csr_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_2:mm_interconnect_2|altera_merlin_burst_adapter:pio_coder_rst_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_2:mm_interconnect_2|altera_merlin_burst_adapter:pio_coder_rst_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:ctl_0_modular_sgdma_dispatcher_0_csr_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
@@ -111,14 +111,19 @@ state.RELEASE_PHY_RESET_OVERRIDE_ADDR_STATE 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 state.RELEASE_PHY_RESET_OVERRIDE_DATA_STATE 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 state.RELEASE_PHY_RESET_OVERRIDE_START_STATE 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
-State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_memory2_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |PCIe_Fundamental|read_state
+Name read_state.read 
+read_state.idle 0 
+read_state.read 1 
+
+State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:ctl_0_modular_sgdma_dispatcher_0_descriptor_slave_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
 
-State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:ctl_0_modular_sgdma_dispatcher_0_descriptor_slave_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |PCIe_Fundamental|q_sys:u0|q_sys_mm_interconnect_0:mm_interconnect_0|altera_merlin_burst_adapter:onchip_memory2_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 

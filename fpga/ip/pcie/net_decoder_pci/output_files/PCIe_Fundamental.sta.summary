@@ -3,59 +3,59 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.595
-TNS   : 0.000
+Slack : -4.516
+TNS   : -266.477
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK_50_B3B'
-Slack : 0.832
+Slack : 1.053
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Setup 'n/a'
-Slack : 6.127
+Slack : 5.133
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Setup 'altera_reserved_tck'
-Slack : 7.398
+Slack : 8.679
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'CLOCK_50_B3B'
-Slack : -4.229
-TNS   : -788.089
-
-Type  : Slow 1100mV 85C Model Hold 'altera_reserved_tck'
-Slack : 0.253
-TNS   : 0.000
+Slack : -4.230
+TNS   : -828.310
 
 Type  : Slow 1100mV 85C Model Hold 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.256
+Slack : 0.252
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'altera_reserved_tck'
+Slack : 0.441
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'n/a'
-Slack : 19.253
+Slack : 19.215
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Recovery 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : -4.471
-TNS   : -174.043
+Slack : -4.462
+TNS   : -151.963
 
 Type  : Slow 1100mV 85C Model Recovery 'CLOCK_50_B3B'
-Slack : 16.883
+Slack : 16.668
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Recovery 'altera_reserved_tck'
-Slack : 25.492
+Slack : 25.284
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Removal 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.694
+Slack : 0.677
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Removal 'CLOCK_50_B3B'
-Slack : 1.148
+Slack : 0.697
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Removal 'altera_reserved_tck'
-Slack : 1.181
+Slack : 0.952
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr'
@@ -151,7 +151,7 @@ Slack : 2.000
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 2.788
+Slack : 2.789
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout'
@@ -159,7 +159,7 @@ Slack : 4.000
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'alt_cal_av_edge_detect_clk'
-Slack : 4.335
+Slack : 4.322
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'PCIE_REFCLK_p'
@@ -171,11 +171,11 @@ Slack : 5.000
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'sv_reconfig_pma_testbus_clk_0'
-Slack : 8.438
+Slack : 7.622
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50_B3B'
-Slack : 8.462
+Slack : 8.469
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
@@ -183,59 +183,59 @@ Slack : 15.333
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Setup 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.545
-TNS   : 0.000
+Slack : -4.160
+TNS   : -243.836
 
 Type  : Slow 1100mV 0C Model Setup 'CLOCK_50_B3B'
-Slack : 0.818
+Slack : 0.992
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Setup 'n/a'
-Slack : 6.630
+Slack : 5.714
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Setup 'altera_reserved_tck'
-Slack : 7.708
+Slack : 8.955
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'CLOCK_50_B3B'
-Slack : -4.032
-TNS   : -730.703
-
-Type  : Slow 1100mV 0C Model Hold 'altera_reserved_tck'
-Slack : 0.206
-TNS   : 0.000
+Slack : -4.024
+TNS   : -768.913
 
 Type  : Slow 1100mV 0C Model Hold 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.242
+Slack : 0.243
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'altera_reserved_tck'
+Slack : 0.310
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'n/a'
-Slack : 18.932
+Slack : 18.913
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Recovery 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : -4.083
-TNS   : -158.231
+Slack : -4.104
+TNS   : -137.845
 
 Type  : Slow 1100mV 0C Model Recovery 'CLOCK_50_B3B'
-Slack : 17.006
+Slack : 16.828
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Recovery 'altera_reserved_tck'
-Slack : 25.842
+Slack : 25.670
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Removal 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.639
+Slack : 0.627
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Removal 'CLOCK_50_B3B'
-Slack : 1.082
+Slack : 0.642
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Removal 'altera_reserved_tck'
-Slack : 1.116
+Slack : 0.899
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr'
@@ -339,7 +339,7 @@ Slack : 4.000
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'alt_cal_av_edge_detect_clk'
-Slack : 4.309
+Slack : 4.297
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'PCIE_REFCLK_p'
@@ -351,71 +351,71 @@ Slack : 5.000
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'sv_reconfig_pma_testbus_clk_0'
-Slack : 8.432
+Slack : 7.591
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50_B3B'
-Slack : 8.472
+Slack : 8.475
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
 Slack : 15.289
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Setup 'CLOCK_50_B3B'
-Slack : 2.316
-TNS   : 0.000
-
 Type  : Fast 1100mV 85C Model Setup 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 4.284
-TNS   : 0.000
+Slack : -0.553
+TNS   : -19.455
 
-Type  : Fast 1100mV 85C Model Setup 'altera_reserved_tck'
-Slack : 11.523
+Type  : Fast 1100mV 85C Model Setup 'CLOCK_50_B3B'
+Slack : 2.553
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Setup 'n/a'
-Slack : 12.829
+Slack : 12.060
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'altera_reserved_tck'
+Slack : 12.775
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'CLOCK_50_B3B'
-Slack : -1.955
-TNS   : -337.125
+Slack : -1.957
+TNS   : -354.961
 
 Type  : Fast 1100mV 85C Model Hold 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.094
+Slack : 0.106
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'altera_reserved_tck'
-Slack : 0.176
+Slack : 0.178
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'n/a'
-Slack : 14.585
+Slack : 14.589
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Recovery 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : -0.432
-TNS   : -14.017
+Slack : -0.455
+TNS   : -14.520
 
 Type  : Fast 1100mV 85C Model Recovery 'CLOCK_50_B3B'
-Slack : 18.185
+Slack : 17.980
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Recovery 'altera_reserved_tck'
-Slack : 28.234
+Slack : 28.217
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Removal 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.306
+Slack : 0.294
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Removal 'CLOCK_50_B3B'
-Slack : 0.540
+Slack : 0.302
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Removal 'altera_reserved_tck'
-Slack : 0.587
+Slack : 0.448
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr'
@@ -511,7 +511,7 @@ Slack : 2.000
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 2.865
+Slack : 2.862
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout'
@@ -519,7 +519,7 @@ Slack : 4.000
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'alt_cal_av_edge_detect_clk'
-Slack : 4.641
+Slack : 4.628
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'PCIE_REFCLK_p'
@@ -531,71 +531,71 @@ Slack : 5.000
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50_B3B'
-Slack : 8.839
+Slack : 8.841
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'sv_reconfig_pma_testbus_clk_0'
-Slack : 9.261
+Slack : 8.844
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'altera_reserved_tck'
-Slack : 14.875
-TNS   : 0.000
-
-Type  : Fast 1100mV 0C Model Setup 'CLOCK_50_B3B'
-Slack : 2.726
+Slack : 14.876
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Setup 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 4.607
-TNS   : 0.000
+Slack : -0.388
+TNS   : -10.448
 
-Type  : Fast 1100mV 0C Model Setup 'altera_reserved_tck'
-Slack : 12.324
+Type  : Fast 1100mV 0C Model Setup 'CLOCK_50_B3B'
+Slack : 2.789
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Setup 'n/a'
-Slack : 13.253
+Slack : 12.589
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'altera_reserved_tck'
+Slack : 13.378
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'CLOCK_50_B3B'
-Slack : -2.090
-TNS   : -401.837
+Slack : -2.091
+TNS   : -417.862
 
 Type  : Fast 1100mV 0C Model Hold 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.095
+Slack : 0.097
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'altera_reserved_tck'
-Slack : 0.168
+Slack : 0.169
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'n/a'
-Slack : 14.484
+Slack : 14.492
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Recovery 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : -0.241
-TNS   : -6.860
+Slack : -0.285
+TNS   : -8.546
 
 Type  : Fast 1100mV 0C Model Recovery 'CLOCK_50_B3B'
-Slack : 18.405
+Slack : 18.229
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Recovery 'altera_reserved_tck'
-Slack : 28.921
+Slack : 28.918
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Removal 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 0.277
+Slack : 0.265
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Removal 'CLOCK_50_B3B'
-Slack : 0.489
+Slack : 0.274
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Removal 'altera_reserved_tck'
-Slack : 0.530
+Slack : 0.402
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr'
@@ -691,7 +691,7 @@ Slack : 2.000
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout'
-Slack : 2.880
+Slack : 2.878
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout'
@@ -699,7 +699,7 @@ Slack : 4.000
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'alt_cal_av_edge_detect_clk'
-Slack : 4.639
+Slack : 4.628
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'PCIE_REFCLK_p'
@@ -715,11 +715,11 @@ Slack : 8.846
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'sv_reconfig_pma_testbus_clk_0'
-Slack : 9.289
+Slack : 8.919
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'altera_reserved_tck'
-Slack : 14.837
+Slack : 14.838
 TNS   : 0.000
 
 ------------------------------------------------------------

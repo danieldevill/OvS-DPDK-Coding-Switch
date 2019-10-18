@@ -270,23 +270,11 @@ begin
             //Default control go deassert.
             mr_control_go = 1'b0;
             
-            //Delay master read transfer begin.
-//            if(start_delay == 4'h0A)
-//              mr_control_go = 1'b1;         
-            
-            //Deassert control go to complete go cycle strobe, and begin transfer.
-//            if(start_delay == 4'h0B)
-//              begin
-//              mr_control_go = 1'b0;
-//              end
-//            else
-//              start_delay = start_delay + 4'h1;
-          
             //Begin reading FIFO output.
             if(mr_data_avali == 1)
 					begin
 						
-						if(start_delay == 4'h3)
+						if(start_delay == 4'h4)
 							begin
 								encoder_rst <= 1'b1;
 							end
@@ -305,7 +293,10 @@ begin
             else
 					begin
 						mr_read_buffer = 1'b0;
-                  encoder_rst = 1'b0;
+						if(encoder_done_out_pkts==1)
+							encoder_rst = 1'b1;
+						else
+							encoder_rst = 1'b0;
 					end
 									 
             if(read_ram_en == 0 )
@@ -329,10 +320,10 @@ begin
         idle:
           begin
             //Enable address incrementing while writing RAM
-            mw_control_fixed_location = 1'b0;
+            mw_control_fixed_location = 1'b1;
             
             mw_control_base = 32'h0700_0512 & 32'hFFFF_FFFC;
-            mw_control_length = 32'h0000_01B6;
+            mw_control_length = 32'h0000_0001;
             mw_control_go = 1'b0;
             if(write_ram_en == 1)
               write_state = write;
@@ -341,13 +332,17 @@ begin
           end
         write:
           begin
-            if(encoder_done_out_pkts == 1)
+            //Default control go
+				mw_control_go = 1'b0;
+				
+				if(encoder_done_out_pkts == 1)
               begin
-                mw_control_go = 1'b1;
                 mw_write_buffer = 1'b0;
                 //Only Write when buffer is not full
                 if(mw_buffer_full == 0)
                   mw_write_buffer = 1'b1;
+						mw_control_base = mw_control_base + 32'h4;
+						mw_control_go = 1'b1;
                   mw_buffer_data = encoder_pkt_out;
               end
               
@@ -360,16 +355,5 @@ begin
       endcase
     end
 end
-  
-//Net Encoder Controller
-//always @(posedge mr_read_buffer)
-//begin
-//	
-//   if(mr_read_buffer == 1)
-//      encoder_rst = 1'b1;
-//	else
-//		encoder_rst = 1'b0;
-//	
-//end
-	
+  	
 endmodule
