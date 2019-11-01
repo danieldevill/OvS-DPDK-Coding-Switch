@@ -1,0 +1,290 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//DMA,PCIe
+#include <memory.h>
+#include "PCIE.h"
+
+#define PCIE_BAR					PCIE_BAR4
+#define ENCODER_START				0x4000010
+#define CODER_RST				    0x4000020
+
+#define PCIE_MEM_ADDR_RX			0x07000000 //MEM RX from PC -> FPGA
+#define PCIE_MEM_ADDR_TX			0x07000512 //MEM TX from FPGA -> PC
+#define PCIE_MEM_ADDR_COEFF			0x07000450 //MEM COEFF. If encoder: FPGA -> PC, If decoder: PC -> FPGA
+
+
+#define MEM_SIZE					512 //512KB
+#define MEM_SIZE_COEF				64 //64KB
+
+//TUN/TAP
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <sys/socket.h>
+#include <linux/if.h>
+#include <linux/if_tun.h>
+
+#define RING_SIZE					7
+#define RX_BUFFER					64
+#define TX_BUFFER					64
+#define MAC_ADDR_LEN				6
+#define TAP_HDR_LEN					18
+
+//TAP
+struct ifreq tap;
+char tap_name[IFNAMSIZ];
+unsigned char if_mac [MAC_ADDR_LEN] = {2, 1, 2, 3, 4,8, 0};
+int tapfd;
+//TAP Buffers
+unsigned char tapRXBuffer[RX_BUFFER];
+unsigned char tapTXBuffer[TX_BUFFER];
+unsigned char tapRXBufferQueue[RX_BUFFER*RING_SIZE];
+unsigned char tapTXBufferQueue[TX_BUFFER*RING_SIZE];
+uint RXcount = 0;
+uint TXcount = 0;
+uint RXDone = 0;
+uint TXDone = 0;
+
+//Main function
+int
+main(int argc, char *argv[]) {
+
+	//Check for arv, else stop.
+	if(argc < 2) {
+		printf("fpga_pipeline: No coder specified.\n Usage: fpga_pipeline <coder>\n");
+		return 0;
+	}
+	else if(strcmp("encoder",argv[1]) == 0) {
+		printf("Encoder interface begin.\n");
+		
+		//Create TAP Interface
+		strcpy(tap_name,"tapEncoder");
+		int tapfd = tap_encoder_alloc(tap_name);
+		
+		//Get packets until pkt count is = h
+		while(RXDone == 0) {
+			tap_encoder_receive(tapfd,tapRXBuffer);
+		}
+
+		void *lib_handle;
+		PCIE_HANDLE hPCIe;
+
+		//Load PCIe driver.
+		lib_handle = PCIE_Load();
+		if (!lib_handle) {
+			printf("PCIE_Load failed!\r\n");
+			return 0;
+		}
+
+		//Open PCIe connection.
+		hPCIe = PCIE_Open(DEFAULT_PCIE_VID, DEFAULT_PCIE_DID, 0);
+		if (!hPCIe) {
+			printf("PCIE_Open failed\r\n");
+		} 
+		else {
+			printf("PCIE_Open success\r\n");
+			
+			int bPass = 1;
+			int i;
+			const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR_RX;
+
+			unsigned char *pRead;
+			char szError[256];
+
+			pRead = (char *) malloc(1024);
+
+			//Write RX Packet Generation block to DMA.
+			printf("Write to DMA.\n");
+			PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
+
+			//Reset coder entity on FPGA. This will begin the coding process.
+			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+				(uint32_t) 0);
+			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+				(uint32_t) 1);
+			if (bPass)
+				printf("Reset\n");
+
+			// Read DMA results.
+			if (bPass) {
+				bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, MEM_SIZE*2);
+
+				if (!bPass) {
+					sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
+				} else {
+					for (i = 0; i < 1024 && bPass; i++) {
+						printf("index:%d read= %x  h\n", i,*(pRead + i));
+					}
+				}
+
+				//Cpy DMA read to tapTXBufferQueue
+				memcpy(tapTXBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
+				//Transmit encoded packets
+				tap_encoder_transmit(tapfd,tapTXBufferQueue);
+			}
+
+			// free resource
+			if (pRead)
+				free(pRead);
+
+			//Set encoder to 0.
+			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+				(uint32_t) 0);
+
+			PCIE_Close(hPCIe);
+		}
+
+		return 0;
+	}
+	else if(strcmp("decoder",argv[1]) == 0) {
+		printf("Decoder interface begin.\n");
+	}
+	else {
+		printf("fpga_pipeline: Incorrect coder specified.\n Usage: fpga_pipeline <coder>\n <coder> must be encoder or decoder.\n");
+		return 0;
+	}
+
+}
+
+/* Creates non-persisten TAP interface
+   Taken From tuntap.txt
+   Multiqueue does exist if using 
+   greater than x1 PCIe.
+*/
+int tap_encoder_alloc(char *dev) 
+{
+	struct ifreq ifr;
+	int fd, err;
+
+	if( (fd = open("/dev/net/tun", O_RDWR)) < 0 )
+	   return fd;
+
+	memset(&ifr, 0, sizeof(ifr));
+
+	/* Flags: IFF_TUN   - TUN device (no Ethernet headers) 
+	 *        IFF_TAP   - TAP device  
+	 *
+	 *        IFF_NO_PI - Do not provide packet information  
+	 */ 
+	ifr.ifr_flags = IFF_TAP; 
+	if( *dev )
+	   strncpy(ifr.ifr_name, dev, IFNAMSIZ);
+
+	if( (err = ioctl(fd, TUNSETIFF, (void *) &ifr)) < 0 ){
+	   close(fd);
+	   return err;
+	}
+	strcpy(dev, ifr.ifr_name);
+
+	if(ioctl(fd, TUNSETPERSIST, 0) < 0){
+		perror("dssabling TUNSETPERSIST");
+	    exit(1);
+	}
+
+	//Set link up ; Set MAC address ; Add to OvS br0
+	system("ip link set tapEncoder up; ip link set tapEncoder address 02:01:02:03:04:08; ovs-vsctl add-port br0 tapEncoder");
+	
+	printf("Link Up.\n");
+	return fd;
+
+}
+
+/* Inspect Incoming packets.
+   Not all packets on TAP 
+   are for NC so check first.
+*/
+int tap_pkt_inspection(unsigned char* tapBuffer)
+{
+	unsigned char dst_mac [MAC_ADDR_LEN];
+	memcpy(dst_mac,tapBuffer+4,MAC_ADDR_LEN);
+
+	if (memcmp(dst_mac,if_mac,MAC_ADDR_LEN) == 0) {
+		return 1;
+	}
+
+	return 0;
+}
+
+/* Receive packets from tap device. 
+   Takes number of packets and Buffer
+   as input and returns 1 on success 
+   or 0 on failure.
+*/
+int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
+{
+	int nread = read(tapfd,tapBuffer,RX_BUFFER+TAP_HDR_LEN);
+
+	if (nread > 0) {
+
+		//Inspect for correct dst_addr
+		int pkt_inspc = tap_pkt_inspection(tapBuffer);
+		if (pkt_inspc == 1) {
+			//Add packet to queue
+			memcpy(tapRXBufferQueue+(RXcount*RX_BUFFER),tapBuffer+TAP_HDR_LEN,RX_BUFFER);
+
+			RXcount++;
+
+			//Begin Using Packets
+			if (RXcount == RING_SIZE) {
+				RXcount = 0;
+				//Get each packet 
+				unsigned char* readPtr = tapRXBufferQueue;
+				uint h;
+				for (h = 0;h<RING_SIZE;h++) {
+					//Get packet data
+				    uint i;
+					for (i = 0; i < RX_BUFFER; i++) {
+						printf("%02X ",*(readPtr + i + (h*RX_BUFFER)));
+					}
+					printf("\n\n");
+				}
+			
+				RXDone = 1;
+			}
+		}
+	}
+	else if(nread < 0) {
+		perror("Reading from interface");
+		close(tapfd);
+		exit(1);
+	}
+}
+
+/* Transmit packets from tap device. 
+   Takes number of packets and Buffer
+   as input and returns 1 on success 
+   or 0 on failure.
+*/
+int tap_encoder_transmit(int tapfd, unsigned char* tapTXBufferQueue)
+{
+	//Get each packet 
+	unsigned char* readPtr = tapTXBufferQueue;
+	uint h;
+	for (h = 0;h<RING_SIZE;h++) {
+		//Get packet data from encoded block
+	    uint i;
+		for (i = 0; i < TX_BUFFER; i++) {
+			printf("%02X ",*(readPtr + i + (h*TX_BUFFER)));
+		}
+		printf("\n\n");
+	}
+
+	int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
+
+	if (nwrite > 0) {
+		// printf("Tx: %d bytes\n", nwrite, tap_name);
+		// uint i;
+		// for (i = 0; i < TX_BUFFER; i++) {
+		// 	printf("%02X ",*(tapBuffer + i));
+		// }
+		// printf("\n\n");
+	}
+	else if(nwrite < 0) {
+		perror("Writing from interface");
+		close(tapfd);
+		exit(1);
+	}	
+	return 0;
+}
