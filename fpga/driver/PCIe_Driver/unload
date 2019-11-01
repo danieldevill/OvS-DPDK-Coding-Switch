@@ -1,2 +1,0 @@
-#!/bin/sh
-rmmod altera_pcie || exit -1
