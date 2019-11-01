@@ -1,0 +1,177 @@
+Flow report for PCIe_Fundamental
+Tue Oct 29 21:52:10 2019
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Tue Oct 29 21:52:10 2019       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; PCIe_Fundamental                            ;
+; Top-level Entity Name           ; PCIe_Fundamental                            ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CGXFC9D6F27C7                              ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 26,721 / 113,560 ( 24 % )                   ;
+; Total registers                 ; 53637                                       ;
+; Total pins                      ; 28 / 378 ( 7 % )                            ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 2,017,040 / 12,492,800 ( 16 % )             ;
+; Total DSP Blocks                ; 0 / 342 ( 0 % )                             ;
+; Total HSSI RX PCSs              ; 4 / 9 ( 44 % )                              ;
+; Total HSSI PMA RX Deserializers ; 4 / 9 ( 44 % )                              ;
+; Total HSSI TX PCSs              ; 4 / 9 ( 44 % )                              ;
+; Total HSSI PMA TX Serializers   ; 4 / 9 ( 44 % )                              ;
+; Total PLLs                      ; 5 / 17 ( 29 % )                             ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 10/29/2019 21:24:21 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; PCIe_Fundamental    ;
++-------------------+---------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                       ;
++--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
+; Assignment Name                      ; Value                                                   ; Default Value                        ; Entity Name ; Section Id       ;
++--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
+; COMPILER_SIGNATURE_ID                ; 130586021222.157237706008781                            ; --                                   ; --          ; --               ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                      ; --                                   ; --          ; --               ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; PCIe_Fundamental                                        ; --                                   ; --          ; eda_simulation   ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                             ; --                                   ; --          ; eda_simulation   ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)                               ; <None>                               ; --          ; --               ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                         ; --                                   ; --          ; eda_simulation   ;
+; EDA_TEST_BENCH_FILE                  ; PCIe_Fundamental.v                                      ; --                                   ; --          ; --               ;
+; EDA_TEST_BENCH_MODULE_NAME           ; PCIe_Fundamental                                        ; --                                   ; --          ; --               ;
+; EDA_TEST_BENCH_NAME                  ; PCIe_Fundamental                                        ; --                                   ; --          ; eda_simulation   ;
+; EDA_TIME_SCALE                       ; 1 ps                                                    ; --                                   ; --          ; eda_simulation   ;
+; ENABLE_SIGNALTAP                     ; On                                                      ; --                                   ; --          ; --               ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                                      ; --                                   ; --          ; --               ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                                       ; --                                   ; --          ; --               ;
+; MISC_FILE                            ; q_sys/synthesis/../q_sys.cmp                            ; --                                   ; --          ; --               ;
+; MISC_FILE                            ; q_sys/synthesis/../../q_sys.qsys                        ; --                                   ; --          ; --               ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family)                  ; --                                   ; --          ; Top              ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family)                  ; --                                   ; --          ; Top              ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family)                  ; --                                   ; --          ; Top              ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                     ; --                                   ; --          ; --               ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                   ; --                                   ; --          ; --               ;
+; PROJECT_IP_REGENERATION_POLICY       ; ALWAYS_REGENERATE_IP                                    ; SKIP_REGENERATING_IP_IF_HDL_MODIFIED ; --          ; --               ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                                            ; --                                   ; --          ; --               ;
+; SLD_FILE                             ; q_sys/synthesis/q_sys.regmap                            ; --                                   ; --          ; --               ;
+; SLD_FILE                             ; q_sys/synthesis/q_sys.debuginfo                         ; --                                   ; --          ; --               ;
+; SLD_FILE                             ; db/decocder_logic_analyzer_auto_stripped.stp            ; --                                   ; --          ; --               ;
+; SLD_INFO                             ; QSYS_NAME q_sys HAS_SOPCINFO 1 GENERATION_ID 1571235998 ; --                                   ; q_sys       ; --               ;
+; SLD_NODE_CREATOR_ID                  ; 110                                                     ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_ENTITY_NAME                 ; sld_signaltap                                           ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_RAM_BLOCK_TYPE=AUTO                                 ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_NODE_INFO=805334528                                 ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_POWER_UP_TRIGGER=0                                  ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0           ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_ATTRIBUTE_MEM_MODE=OFF                              ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STATE_FLOW_USE_GENERATED=0                          ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STATE_BITS=11                                       ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_BUFFER_FULL_STOP=1                                  ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_CURRENT_RESOURCE_WIDTH=1                            ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INCREMENTAL_ROUTING=1                               ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_LEVEL=1                                     ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_IN_ENABLED=0                                ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_PIPELINE=0                                  ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_RAM_PIPELINE=0                                      ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_COUNTER_PIPELINE=0                                  ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_ADVANCED_TRIGGER_ENTITY=basic,1,                    ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_LEVEL_PIPELINE=1                            ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_ENABLE_ADVANCED_TRIGGER=0                           ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_SEGMENT_SIZE=2048                                   ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_SAMPLE_DEPTH=2048                                   ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_TRIGGER_BITS=1                                      ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK=0000000000000000000000000000         ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_INVERSION_MASK_LENGTH=28                            ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_DATA_BITS=908                                       ; --                                   ; --          ; auto_signaltap_0 ;
+; SLD_NODE_PARAMETER_ASSIGNMENT        ; SLD_STORAGE_QUALIFIER_BITS=908                          ; --                                   ; --          ; auto_signaltap_0 ;
+; SOPCINFO_FILE                        ; q_sys/synthesis/../../q_sys.sopcinfo                    ; --                                   ; --          ; --               ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                      ; --                                   ; --          ; --               ;
+; USE_SIGNALTAP_FILE                   ; decocder_logic_analyzer.stp                             ; --                                   ; --          ; --               ;
++--------------------------------------+---------------------------------------------------------+--------------------------------------+-------------+------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:05:36     ; 1.9                     ; 2594 MB             ; 00:08:23                           ;
+; Fitter               ; 00:17:20     ; 2.1                     ; 5948 MB             ; 01:15:29                           ;
+; Assembler            ; 00:01:03     ; 1.0                     ; 1632 MB             ; 00:00:52                           ;
+; Timing Analyzer      ; 00:02:07     ; 4.6                     ; 2982 MB             ; 00:07:42                           ;
+; EDA Netlist Writer   ; 00:00:46     ; 1.0                     ; 2164 MB             ; 00:00:37                           ;
+; Total                ; 00:26:52     ; --                      ; --                  ; 01:33:03                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++----------------------+------------------+--------------+--------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name      ; OS Version   ; Processor type ;
++----------------------+------------------+--------------+--------------+----------------+
+; Analysis & Synthesis ; ovsswitch        ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; Fitter               ; ovsswitch        ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; Assembler            ; ovsswitch        ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; Timing Analyzer      ; ovsswitch        ; CentOS Linux ; CentOS Linux ; x86_64         ;
+; EDA Netlist Writer   ; ovsswitch        ; CentOS Linux ; CentOS Linux ; x86_64         ;
++----------------------+------------------+--------------+--------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off PCIe_Fundamental -c PCIe_Fundamental
+quartus_fit --read_settings_files=off --write_settings_files=off PCIe_Fundamental -c PCIe_Fundamental
+quartus_asm --read_settings_files=off --write_settings_files=off PCIe_Fundamental -c PCIe_Fundamental
+quartus_sta PCIe_Fundamental -c PCIe_Fundamental
+quartus_eda --read_settings_files=off --write_settings_files=off PCIe_Fundamental -c PCIe_Fundamental
+
+
+

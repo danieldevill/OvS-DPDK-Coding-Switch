@@ -1,0 +1,22 @@
+	component gfadd is
+		generic(m : integer := 8);
+		port (
+			-- Inputs
+			clk,rst : in std_logic;
+			operand_1,operand_2 : in std_logic_vector(m-1 downto 0);
+			
+			-- Outputs
+			rslt : out std_logic_vector(m-1 downto 0));
+	end component gfadd;
+
+
+
+	generate_adds: for i in 0 to ((h-1)*N) generate --(h-1)*N adders, Per single packet
+		gfadd_1 : gfadd 
+		generic map(m => m)
+		port map(clk=>clk, 
+			rst=>rst, 
+			operand_1=>add1(i), 
+			operand_2=>add2(i), 
+			rslt=>rslt_a(i));
+	end generate generate_adds;
