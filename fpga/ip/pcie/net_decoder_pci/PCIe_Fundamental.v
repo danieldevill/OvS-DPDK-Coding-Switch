@@ -44,19 +44,6 @@ module PCIe_Fundamental(
       ///////// FAN /////////
       output             FAN_CTRL,
 
-      ///////// DRAM /////////
-//      output             DRAM_CLK,
-//      output             DRAM_CKE,
-//      output   [12: 0]   DRAM_ADDR,
-//      output   [ 1: 0]   DRAM_BA,
-//      inout    [15: 0]   DRAM_DQ,
-//      output             DRAM_LDQM,
-//      output             DRAM_UDQM,
-//      output             DRAM_CS_n,
-//      output             DRAM_WE_n,
-//      output             DRAM_CAS_n,
-//      output             DRAM_RAS_n,
-
       ///////// Uart to Usb /////////
       output             UART_TX,
       input              UART_RX,
@@ -71,11 +58,6 @@ module PCIe_Fundamental(
       input    [ 3: 0]   PCIE_RX_p,
       input              PCIE_PERST_n,
       output             PCIE_WAKE_n
-
-      ///////// SMA /////////
-//      input              SMA_CLKIN,
-//      output             SMA_CLKOUT 
-
 );
 
 //=======================================================
@@ -121,7 +103,6 @@ wire [31:0] decoder_coeff_in;
 wire [31:0] decoder_pkt_out;
 wire 			decoder_done;
 assign read_ram_en = pio_coder_rst;
-
 
 //////////////////////
 // PCIE RESET
