@@ -29,19 +29,25 @@
 #define RING_SIZE					7
 #define RX_BUFFER					64
 #define TX_BUFFER					64
+#define COEFF_BUFFER				7
 #define MAC_ADDR_LEN				6
 #define TAP_HDR_LEN					18
+#define ETH_TYPE_LEN				2
 
 //TAP
 struct ifreq tap;
 char tap_name[IFNAMSIZ];
-unsigned char if_mac [MAC_ADDR_LEN] = {2, 1, 2, 3, 4,8, 0};
+unsigned char if_mac[MAC_ADDR_LEN] = {2, 1, 2, 3, 4,8, 0};
+unsigned char nc_type[2] = {0x20,0x20};
+unsigned char src_mac[MAC_ADDR_LEN];
 int tapfd;
 //TAP Buffers
 unsigned char tapRXBuffer[RX_BUFFER];
 unsigned char tapTXBuffer[TX_BUFFER];
+unsigned char coeffBuffer[COEFF_BUFFER];
 unsigned char tapRXBufferQueue[RX_BUFFER*RING_SIZE];
 unsigned char tapTXBufferQueue[TX_BUFFER*RING_SIZE];
+unsigned char coeffBufferQueue[COEFF_BUFFER*RING_SIZE];
 uint RXcount = 0;
 uint TXcount = 0;
 uint RXDone = 0;
@@ -61,17 +67,16 @@ main(int argc, char *argv[]) {
 		
 		//Create TAP Interface
 		strcpy(tap_name,"tapEncoder");
-		int tapfd = tap_encoder_alloc(tap_name);
+		int tapfd = tap_alloc(tap_name);
 		
 		//Get packets until pkt count is = h
 		while(RXDone == 0) {
 			tap_encoder_receive(tapfd,tapRXBuffer);
 		}
 
+		//Load PCIe driver.
 		void *lib_handle;
 		PCIE_HANDLE hPCIe;
-
-		//Load PCIe driver.
 		lib_handle = PCIE_Load();
 		if (!lib_handle) {
 			printf("PCIE_Load failed!\r\n");
@@ -105,7 +110,7 @@ main(int argc, char *argv[]) {
 			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
 				(uint32_t) 1);
 			if (bPass)
-				printf("Reset\n");
+				printf("Reset Coder\n");
 
 			// Read DMA results.
 			if (bPass) {
@@ -114,13 +119,25 @@ main(int argc, char *argv[]) {
 				if (!bPass) {
 					sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
 				} else {
+					int lnbr = 0;
+					printf("Read from DMA:\n0000: ");
 					for (i = 0; i < 1024 && bPass; i++) {
-						printf("index:%d read= %x  h\n", i,*(pRead + i));
+						printf("%02X ",*(pRead + i));
+						lnbr++;
+						if(lnbr==4)
+						{
+							lnbr = 0;
+							printf("\n%04d: ",i);
+						}
+
 					}
 				}
 
-				//Cpy DMA read to tapTXBufferQueue
+				//Cpy RESULTS read to tapTXBufferQueue
 				memcpy(tapTXBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
+				//Cpy COEFFS to coeffbufferqueue
+				memcpy(coeffBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
+
 				//Transmit encoded packets
 				tap_encoder_transmit(tapfd,tapTXBufferQueue);
 			}
@@ -153,7 +170,7 @@ main(int argc, char *argv[]) {
    Multiqueue does exist if using 
    greater than x1 PCIe.
 */
-int tap_encoder_alloc(char *dev) 
+int tap_alloc(char *dev) 
 {
 	struct ifreq ifr;
 	int fd, err;
@@ -184,7 +201,9 @@ int tap_encoder_alloc(char *dev)
 	}
 
 	//Set link up ; Set MAC address ; Add to OvS br0
-	system("ip link set tapEncoder up; ip link set tapEncoder address 02:01:02:03:04:08; ovs-vsctl add-port br0 tapEncoder");
+	char command[200];
+	snprintf(command,sizeof(command),"ip link set %s up; ip link set %s address 02:01:02:03:04:08; ovs-vsctl add-port br0 %s",dev,dev,dev);
+	system(command);
 	
 	printf("Link Up.\n");
 	return fd;
@@ -223,13 +242,15 @@ int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
 		if (pkt_inspc == 1) {
 			//Add packet to queue
 			memcpy(tapRXBufferQueue+(RXcount*RX_BUFFER),tapBuffer+TAP_HDR_LEN,RX_BUFFER);
-
+			//Store source mac
+			memcpy(src_mac,tapBuffer+MAC_ADDR_LEN+4,MAC_ADDR_LEN);
 			RXcount++;
 
 			//Begin Using Packets
 			if (RXcount == RING_SIZE) {
 				RXcount = 0;
 				//Get each packet 
+				printf("Read packet data\n");
 				unsigned char* readPtr = tapRXBufferQueue;
 				uint h;
 				for (h = 0;h<RING_SIZE;h++) {
@@ -240,7 +261,6 @@ int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
 					}
 					printf("\n\n");
 				}
-			
 				RXDone = 1;
 			}
 		}
@@ -259,32 +279,50 @@ int tap_encoder_receive(int tapfd, unsigned char* tapBuffer)
 */
 int tap_encoder_transmit(int tapfd, unsigned char* tapTXBufferQueue)
 {
+	printf("\nTransmit results\n");
+
+	    uint i;
+		for (i = 0; i < MAC_ADDR_LEN; i++) {
+			printf("%02X ",*(src_mac+i));
+		}
+		printf("\n\n");
+
 	//Get each packet 
 	unsigned char* readPtr = tapTXBufferQueue;
 	uint h;
 	for (h = 0;h<RING_SIZE;h++) {
 		//Get packet data from encoded block
-	    uint i;
-		for (i = 0; i < TX_BUFFER; i++) {
-			printf("%02X ",*(readPtr + i + (h*TX_BUFFER)));
-		}
-		printf("\n\n");
-	}
-
-	int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
-
-	if (nwrite > 0) {
-		// printf("Tx: %d bytes\n", nwrite, tap_name);
-		// uint i;
+	 	// uint i;
 		// for (i = 0; i < TX_BUFFER; i++) {
-		// 	printf("%02X ",*(tapBuffer + i));
+		// 	printf("%02X ",*(readPtr + i + (h*TX_BUFFER)));
 		// }
 		// printf("\n\n");
+	
+		unsigned char *tapBuffer = (unsigned char *) malloc(1024); //Buffer to store packet encoded packet with generation.
+
+		memcpy(tapBuffer,src_mac,MAC_ADDR_LEN); //Add dst_addr
+		memcpy(tapBuffer+MAC_ADDR_LEN,if_mac,MAC_ADDR_LEN); //Add src_addr
+		memcpy(tapBuffer+(2*MAC_ADDR_LEN),nc_type,ETH_TYPE_LEN); //Add eth_type
+		memcpy(tapBuffer+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN,coeffBufferQueue+(h*COEFF_BUFFER),COEFF_BUFFER); //Add coef_vector
+		memcpy(tapBuffer+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN+COEFF_BUFFER,tapTXBufferQueue+(h*TX_BUFFER),TX_BUFFER); //Add encoded_data
+
+		//Transmit packets
+		int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
+		if (nwrite > 0) {
+			printf("Tx: %d bytes\n", nwrite, tap_name);
+			uint i;
+			for (i = 0; i < TX_BUFFER; i++) {
+				printf("%02X ",*(tapBuffer + i));
+			}
+			printf("\n\n");
+		}
+		else if(nwrite < 0) {
+			perror("Writing from interface");
+			close(tapfd);
+			exit(1);
+		}	
 	}
-	else if(nwrite < 0) {
-		perror("Writing from interface");
-		close(tapfd);
-		exit(1);
-	}	
+
+	//Packetize results
 	return 0;
 }
