@@ -143,6 +143,11 @@ module q_sys (
 	wire    [3:0] master_write_avalon_master_byteenable;                                           // master_write:master_byteenable -> mm_interconnect_0:master_write_avalon_master_byteenable
 	wire          master_write_avalon_master_write;                                                // master_write:master_write -> mm_interconnect_0:master_write_avalon_master_write
 	wire   [31:0] master_write_avalon_master_writedata;                                            // master_write:master_writedata -> mm_interconnect_0:master_write_avalon_master_writedata
+	wire          master_write_coeffs_avalon_master_waitrequest;                                   // mm_interconnect_0:master_write_coeffs_avalon_master_waitrequest -> master_write_coeffs:master_waitrequest
+	wire   [31:0] master_write_coeffs_avalon_master_address;                                       // master_write_coeffs:master_address -> mm_interconnect_0:master_write_coeffs_avalon_master_address
+	wire    [3:0] master_write_coeffs_avalon_master_byteenable;                                    // master_write_coeffs:master_byteenable -> mm_interconnect_0:master_write_coeffs_avalon_master_byteenable
+	wire          master_write_coeffs_avalon_master_write;                                         // master_write_coeffs:master_write -> mm_interconnect_0:master_write_coeffs_avalon_master_write
+	wire   [31:0] master_write_coeffs_avalon_master_writedata;                                     // master_write_coeffs:master_writedata -> mm_interconnect_0:master_write_coeffs_avalon_master_writedata
 	wire  [127:0] ctl_0_dma_read_master_0_data_read_master_readdata;                               // mm_interconnect_0:ctl_0_dma_read_master_0_data_read_master_readdata -> ctl_0:dma_read_master_0_data_read_master_readdata
 	wire          ctl_0_dma_read_master_0_data_read_master_waitrequest;                            // mm_interconnect_0:ctl_0_dma_read_master_0_data_read_master_waitrequest -> ctl_0:dma_read_master_0_data_read_master_waitrequest
 	wire   [26:0] ctl_0_dma_read_master_0_data_read_master_address;                                // ctl_0:dma_read_master_0_data_read_master_address -> mm_interconnect_0:ctl_0_dma_read_master_0_data_read_master_address
@@ -158,7 +163,7 @@ module q_sys (
 	wire    [7:0] ctl_0_dma_write_master_0_data_write_master_burstcount;                           // ctl_0:dma_write_master_0_data_write_master_burstcount -> mm_interconnect_0:ctl_0_dma_write_master_0_data_write_master_burstcount
 	wire          mm_interconnect_0_onchip_memory2_0_s1_chipselect;                                // mm_interconnect_0:onchip_memory2_0_s1_chipselect -> onchip_memory2_0:chipselect
 	wire   [31:0] mm_interconnect_0_onchip_memory2_0_s1_readdata;                                  // onchip_memory2_0:readdata -> mm_interconnect_0:onchip_memory2_0_s1_readdata
-	wire    [7:0] mm_interconnect_0_onchip_memory2_0_s1_address;                                   // mm_interconnect_0:onchip_memory2_0_s1_address -> onchip_memory2_0:address
+	wire    [8:0] mm_interconnect_0_onchip_memory2_0_s1_address;                                   // mm_interconnect_0:onchip_memory2_0_s1_address -> onchip_memory2_0:address
 	wire    [3:0] mm_interconnect_0_onchip_memory2_0_s1_byteenable;                                // mm_interconnect_0:onchip_memory2_0_s1_byteenable -> onchip_memory2_0:byteenable
 	wire          mm_interconnect_0_onchip_memory2_0_s1_write;                                     // mm_interconnect_0:onchip_memory2_0_s1_write -> onchip_memory2_0:write
 	wire   [31:0] mm_interconnect_0_onchip_memory2_0_s1_writedata;                                 // mm_interconnect_0:onchip_memory2_0_s1_writedata -> onchip_memory2_0:writedata
@@ -220,7 +225,7 @@ module q_sys (
 	wire          mm_interconnect_2_pio_coder_rst_s1_write;                                        // mm_interconnect_2:pio_coder_rst_s1_write -> pio_coder_rst:write_n
 	wire   [31:0] mm_interconnect_2_pio_coder_rst_s1_writedata;                                    // mm_interconnect_2:pio_coder_rst_s1_writedata -> pio_coder_rst:writedata
 	wire   [15:0] pcie_cv_hip_avmm_0_rxmirq_irq;                                                   // irq_mapper:sender_irq -> pcie_cv_hip_avmm_0:RxmIrq_i
-	wire          rst_controller_reset_out_reset;                                                  // rst_controller:reset_out -> [irq_mapper:reset, master_read:reset, master_write:reset, mm_interconnect_0:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_0:master_read_clock_reset_reset_reset_bridge_in_reset_reset, mm_interconnect_1:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:pcie_cv_hip_avmm_0_Rxm_BAR2_translator_reset_reset_bridge_in_reset_reset, mm_interconnect_2:pio_encoder_start_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, pio_coder_rst:reset_n, pio_encoder_start:reset_n, rst_translator:in_reset]
+	wire          rst_controller_reset_out_reset;                                                  // rst_controller:reset_out -> [irq_mapper:reset, master_read:reset, master_write:reset, master_write_coeffs:reset, mm_interconnect_0:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_0:master_read_clock_reset_reset_reset_bridge_in_reset_reset, mm_interconnect_1:ctl_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:pcie_cv_hip_avmm_0_Rxm_BAR2_translator_reset_reset_bridge_in_reset_reset, mm_interconnect_2:pio_encoder_start_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, pio_coder_rst:reset_n, pio_encoder_start:reset_n, rst_translator:in_reset]
 	wire          rst_controller_reset_out_reset_req;                                              // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 
 	alt_xcvr_reconfig #(
@@ -361,6 +366,44 @@ module q_sys (
 		.user_read_buffer        (1'b0),                                   //       (terminated)
 		.user_buffer_output_data (),                                       //       (terminated)
 		.user_data_available     ()                                        //       (terminated)
+	);
+
+	custom_master #(
+		.MASTER_DIRECTION    (1),
+		.DATA_WIDTH          (32),
+		.ADDRESS_WIDTH       (32),
+		.BURST_CAPABLE       (0),
+		.MAXIMUM_BURST_COUNT (2),
+		.BURST_COUNT_WIDTH   (2),
+		.FIFO_DEPTH          (256),
+		.FIFO_DEPTH_LOG2     (8),
+		.MEMORY_BASED_FIFO   (1)
+	) master_write_coeffs (
+		.clk                     (clk_0_clk_clk),                                 //       clock_reset.clk
+		.reset                   (rst_controller_reset_out_reset),                // clock_reset_reset.reset
+		.master_address          (master_write_coeffs_avalon_master_address),     //     avalon_master.address
+		.master_write            (master_write_coeffs_avalon_master_write),       //                  .write
+		.master_byteenable       (master_write_coeffs_avalon_master_byteenable),  //                  .byteenable
+		.master_writedata        (master_write_coeffs_avalon_master_writedata),   //                  .writedata
+		.master_waitrequest      (master_write_coeffs_avalon_master_waitrequest), //                  .waitrequest
+		.control_fixed_location  (),                                              //           control.export
+		.control_write_base      (),                                              //                  .export
+		.control_write_length    (),                                              //                  .export
+		.control_go              (),                                              //                  .export
+		.control_done            (),                                              //                  .export
+		.user_write_buffer       (),                                              //              user.export
+		.user_buffer_input_data  (),                                              //                  .export
+		.user_buffer_full        (),                                              //                  .export
+		.master_read             (),                                              //       (terminated)
+		.master_readdata         (32'b00000000000000000000000000000000),          //       (terminated)
+		.master_readdatavalid    (1'b0),                                          //       (terminated)
+		.master_burstcount       (),                                              //       (terminated)
+		.control_read_base       (32'b00000000000000000000000000000000),          //       (terminated)
+		.control_read_length     (32'b00000000000000000000000000000000),          //       (terminated)
+		.control_early_done      (),                                              //       (terminated)
+		.user_read_buffer        (1'b0),                                          //       (terminated)
+		.user_buffer_output_data (),                                              //       (terminated)
+		.user_data_available     ()                                               //       (terminated)
 	);
 
 	q_sys_onchip_memory2_0 onchip_memory2_0 (
@@ -942,6 +985,11 @@ module q_sys (
 		.master_write_avalon_master_byteenable                     (master_write_avalon_master_byteenable),                  //                                                    .byteenable
 		.master_write_avalon_master_write                          (master_write_avalon_master_write),                       //                                                    .write
 		.master_write_avalon_master_writedata                      (master_write_avalon_master_writedata),                   //                                                    .writedata
+		.master_write_coeffs_avalon_master_address                 (master_write_coeffs_avalon_master_address),              //                   master_write_coeffs_avalon_master.address
+		.master_write_coeffs_avalon_master_waitrequest             (master_write_coeffs_avalon_master_waitrequest),          //                                                    .waitrequest
+		.master_write_coeffs_avalon_master_byteenable              (master_write_coeffs_avalon_master_byteenable),           //                                                    .byteenable
+		.master_write_coeffs_avalon_master_write                   (master_write_coeffs_avalon_master_write),                //                                                    .write
+		.master_write_coeffs_avalon_master_writedata               (master_write_coeffs_avalon_master_writedata),            //                                                    .writedata
 		.pcie_cv_hip_avmm_0_Rxm_BAR0_address                       (pcie_cv_hip_avmm_0_rxm_bar0_address),                    //                         pcie_cv_hip_avmm_0_Rxm_BAR0.address
 		.pcie_cv_hip_avmm_0_Rxm_BAR0_waitrequest                   (pcie_cv_hip_avmm_0_rxm_bar0_waitrequest),                //                                                    .waitrequest
 		.pcie_cv_hip_avmm_0_Rxm_BAR0_burstcount                    (pcie_cv_hip_avmm_0_rxm_bar0_burstcount),                 //                                                    .burstcount

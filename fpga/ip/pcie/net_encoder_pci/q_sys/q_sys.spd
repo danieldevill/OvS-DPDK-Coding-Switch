@@ -113,13 +113,13 @@
    type="SYSTEM_VERILOG"
    library="pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter" />
  <file
-   path="simulation/submodules/q_sys_mm_interconnect_0_rsp_mux_003.sv"
+   path="simulation/submodules/q_sys_mm_interconnect_0_rsp_mux_004.sv"
    type="SYSTEM_VERILOG"
-   library="rsp_mux_003" />
+   library="rsp_mux_004" />
  <file
    path="simulation/submodules/altera_merlin_arbitrator.sv"
    type="SYSTEM_VERILOG"
-   library="rsp_mux_003" />
+   library="rsp_mux_004" />
  <file
    path="simulation/submodules/q_sys_mm_interconnect_0_rsp_mux_001.sv"
    type="SYSTEM_VERILOG"
@@ -161,9 +161,9 @@
    type="SYSTEM_VERILOG"
    library="cmd_mux" />
  <file
-   path="simulation/submodules/q_sys_mm_interconnect_0_cmd_demux_003.sv"
+   path="simulation/submodules/q_sys_mm_interconnect_0_cmd_demux_004.sv"
    type="SYSTEM_VERILOG"
-   library="cmd_demux_003" />
+   library="cmd_demux_004" />
  <file
    path="simulation/submodules/q_sys_mm_interconnect_0_cmd_demux_001.sv"
    type="SYSTEM_VERILOG"
@@ -229,17 +229,17 @@
    type="SYSTEM_VERILOG"
    library="ctl_0_dma_read_master_0_data_read_master_limiter" />
  <file
+   path="simulation/submodules/q_sys_mm_interconnect_0_router_007.sv"
+   type="SYSTEM_VERILOG"
+   library="router_007" />
+ <file
    path="simulation/submodules/q_sys_mm_interconnect_0_router_006.sv"
    type="SYSTEM_VERILOG"
    library="router_006" />
  <file
-   path="simulation/submodules/q_sys_mm_interconnect_0_router_005.sv"
+   path="simulation/submodules/q_sys_mm_interconnect_0_router_004.sv"
    type="SYSTEM_VERILOG"
-   library="router_005" />
- <file
-   path="simulation/submodules/q_sys_mm_interconnect_0_router_003.sv"
-   type="SYSTEM_VERILOG"
-   library="router_003" />
+   library="router_004" />
  <file
    path="simulation/submodules/q_sys_mm_interconnect_0_router_001.sv"
    type="SYSTEM_VERILOG"

@@ -44,19 +44,6 @@ module PCIe_Fundamental(
       ///////// FAN /////////
       output             FAN_CTRL,
 
-      ///////// DRAM /////////
-//      output             DRAM_CLK,
-//      output             DRAM_CKE,
-//      output   [12: 0]   DRAM_ADDR,
-//      output   [ 1: 0]   DRAM_BA,
-//      inout    [15: 0]   DRAM_DQ,
-//      output             DRAM_LDQM,
-//      output             DRAM_UDQM,
-//      output             DRAM_CS_n,
-//      output             DRAM_WE_n,
-//      output             DRAM_CAS_n,
-//      output             DRAM_RAS_n,
-
       ///////// Uart to Usb /////////
       output             UART_TX,
       input              UART_RX,
@@ -72,10 +59,6 @@ module PCIe_Fundamental(
       input              PCIE_PERST_n,
       output             PCIE_WAKE_n
 
-      ///////// SMA /////////
-//      input              SMA_CLKIN,
-//      output             SMA_CLKOUT 
-
 );
 
 //=======================================================
@@ -84,7 +67,7 @@ module PCIe_Fundamental(
 wire [31:0] pcie_hip_ctrl_test_in;//           .test_in
 wire        pld_clk_clk;
 
-//Master Read Wires
+//Master Read Wires: uncoded_data in
 reg         mr_control_fixed_location;
 reg [31:0]  mr_control_base;
 reg [31:0]  mr_control_length;
@@ -100,7 +83,7 @@ reg [1:0] read_state;
 parameter idle=0, read=1; 
 //assign read_ram_en = 1'b0;
 
-//Master Write Wires
+//Master Write Wires: encoded_data out
 reg       mw_control_fixed_location;
 reg [31:0]  mw_control_base;
 reg [31:0]  mw_control_length;
@@ -113,6 +96,8 @@ wire write_ram_en;
 reg [1:0] write_state;
 parameter write=1;
 assign write_ram_en = 1'b1;
+
+//Master Write Wires: coeff_data out
 
 //Net Encoder Wires
 reg          encoder_rst;
@@ -274,7 +259,7 @@ begin
             if(mr_data_avali == 1)
 					begin
 						
-						if(start_delay == 4'h4)
+						if(start_delay == 4'h3)
 							begin
 								encoder_rst <= 1'b1;
 							end
