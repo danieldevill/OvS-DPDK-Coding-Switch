@@ -10,8 +10,8 @@
 #define CODER_RST				    0x4000020
 
 #define PCIE_MEM_ADDR_RX			0x07000000 //MEM RX from PC -> FPGA
-#define PCIE_MEM_ADDR_TX			0x07000512 //MEM TX from FPGA -> PC
-#define PCIE_MEM_ADDR_COEFF			0x07000450 //MEM COEFF. If encoder: FPGA -> PC, If decoder: PC -> FPGA
+#define PCIE_MEM_ADDR_TX			0x07000200 //MEM TX from FPGA -> PC
+#define PCIE_MEM_ADDR_COEFF			0x07000400 //MEM COEFF. If encoder: FPGA -> PC, If decoder: PC -> FPGA
 
 
 #define MEM_SIZE					512 //512KB
@@ -42,12 +42,12 @@ unsigned char nc_type[2] = {0x20,0x20};
 unsigned char src_mac[MAC_ADDR_LEN];
 int tapfd;
 //TAP Buffers
-unsigned char tapRXBuffer[RX_BUFFER];
-unsigned char tapTXBuffer[TX_BUFFER];
-unsigned char coeffBuffer[COEFF_BUFFER];
-unsigned char tapRXBufferQueue[RX_BUFFER*RING_SIZE];
-unsigned char tapTXBufferQueue[TX_BUFFER*RING_SIZE];
-unsigned char coeffBufferQueue[COEFF_BUFFER*RING_SIZE];
+unsigned char tapRXBuffer[RX_BUFFER] = {0};
+unsigned char tapTXBuffer[TX_BUFFER] = {0};
+unsigned char coeffBuffer[COEFF_BUFFER] = {0};
+unsigned char tapRXBufferQueue[RX_BUFFER*RING_SIZE] = {0};
+unsigned char tapTXBufferQueue[TX_BUFFER*RING_SIZE] = {0};
+unsigned char coeffBufferQueue[COEFF_BUFFER*RING_SIZE] = {0};
 uint RXcount = 0;
 uint TXcount = 0;
 uint RXDone = 0;
@@ -193,10 +193,13 @@ main(int argc, char *argv[]) {
 
 			pRead = (char *) malloc(1024);
 
-			//Write RX Packet Generation block to DMA.
+			//Write RX Packet Generation block via DMA.
 			printf("Write to DMA.\n");
 			PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
 
+			//Write RX Packet Coefficients via DMA.
+			PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
+			
 			//Reset coder entity on FPGA. This will begin the coding process.
 			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
 				(uint32_t) 0);
@@ -228,8 +231,6 @@ main(int argc, char *argv[]) {
 
 				//Cpy RESULTS read to tapTXBufferQueue
 				memcpy(tapTXBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
-				//Cpy COEFFS to coeffbufferqueue
-				memcpy(coeffBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
 
 				//Transmit encoded packets
 				tap_decoder_transmit(tapfd,tapTXBufferQueue);
@@ -462,7 +463,7 @@ int tap_decoder_receive(int tapfd, unsigned char* tapBuffer)
 				for (h = 0;h<RING_SIZE;h++) {
 					//Get packet data
 				    uint i;
-					for (i = 0; i < COEFF_BUFFER; i++) {
+					for (i = 0; i < (COEFF_BUFFER); i++) {
 						printf("%02X ",*(coeffBufferQueue + i + (h*COEFF_BUFFER)));
 					}
 					printf("\n\n");
