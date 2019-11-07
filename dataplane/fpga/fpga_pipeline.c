@@ -48,6 +48,7 @@ unsigned char coeffBuffer[COEFF_BUFFER] = {0};
 unsigned char tapRXBufferQueue[RX_BUFFER*RING_SIZE] = {0};
 unsigned char tapTXBufferQueue[TX_BUFFER*RING_SIZE] = {0};
 unsigned char coeffBufferQueue[COEFF_BUFFER*RING_SIZE] = {0};
+unsigned char coeffBufferQueue_decoder[(COEFF_BUFFER+1)*RING_SIZE] = {0};
 uint RXcount = 0;
 uint TXcount = 0;
 uint RXDone = 0;
@@ -181,25 +182,27 @@ main(int argc, char *argv[]) {
 		if (!hPCIe) {
 			printf("PCIE_Open failed\r\n");
 		} 
-		else {
+		else {	
 			printf("PCIE_Open success\r\n");
 			
 			int bPass = 1;
 			int i;
 			const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR_RX;
+			const PCIE_LOCAL_ADDRESS LocalAddr_coeff = PCIE_MEM_ADDR_COEFF;
 
 			unsigned char *pRead;
 			char szError[256];
 
-			pRead = (char *) malloc(1024);
+			pRead = (char *) malloc(2048);
 
 			//Write RX Packet Generation block via DMA.
 			printf("Write to DMA.\n");
+			//Write to shared memory
 			PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
 
 			//Write RX Packet Coefficients via DMA.
-			PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
-			
+			PCIE_DmaWrite(hPCIe, LocalAddr_coeff, coeffBufferQueue_decoder, MEM_SIZE_COEF);
+
 			//Reset coder entity on FPGA. This will begin the coding process.
 			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
 				(uint32_t) 0);
@@ -210,14 +213,14 @@ main(int argc, char *argv[]) {
 
 			// Read DMA results.
 			if (bPass) {
-				bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, MEM_SIZE*2);
+				bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, MEM_SIZE*4);
 
 				if (!bPass) {
 					sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
 				} else {
 					int lnbr = 0;
 					printf("Read from DMA:\n0000: ");
-					for (i = 0; i < 1024 && bPass; i++) {
+					for (i = 0; i < 2048 && bPass; i++) {
 						printf("%02X ",*(pRead + i));
 						lnbr++;
 						if(lnbr==4)
@@ -434,10 +437,30 @@ int tap_decoder_receive(int tapfd, unsigned char* tapBuffer)
 		//Inspect for correct dst_addr
 		int pkt_inspc = tap_pkt_inspection(tapBuffer);
 		if (pkt_inspc == 1) {
-			//Add packet to queue
-			memcpy(tapRXBufferQueue+(RXcount*RX_BUFFER),tapBuffer+TAP_HDR_LEN+COEFF_BUFFER,RX_BUFFER);
+
+			//Inverse packet for decoder fpga module.
+			unsigned char tapBuffer_inv[RX_BUFFER] = {0};
+			int c,d;
+			for (c = RX_BUFFER - 1, d = 0; c >= 0; c--, d++)
+			{
+			   tapBuffer_inv[d] = tapBuffer[c+TAP_HDR_LEN+COEFF_BUFFER];
+			}
+
+			//Split coeff into two 32bit segments for fpga mdoule
+			unsigned char coeffSegments[COEFF_BUFFER+1] = {0};
+			memcpy(coeffSegments,tapBuffer+TAP_HDR_LEN+3,4);
+			memcpy(coeffSegments+4,tapBuffer+TAP_HDR_LEN,3);
+
+		    uint i;
+			for (i = 0; i < 8; i++) {
+				printf("%02X ",*(coeffSegments + i));
+			}
+			printf("\n\n");
+
+			//Add packet to queue			
+			memcpy(tapRXBufferQueue+(RXcount*RX_BUFFER),tapBuffer_inv,RX_BUFFER);
 			//Add coeffs to queue
-			memcpy(coeffBufferQueue+(RXcount*COEFF_BUFFER),tapBuffer+TAP_HDR_LEN,COEFF_BUFFER);
+			memcpy(coeffBufferQueue_decoder+(RXcount*(COEFF_BUFFER+1)),coeffSegments,COEFF_BUFFER+1);
 			//Store source mac
 			memcpy(src_mac,tapBuffer+MAC_ADDR_LEN+4,MAC_ADDR_LEN);
 
@@ -464,7 +487,7 @@ int tap_decoder_receive(int tapfd, unsigned char* tapBuffer)
 					//Get packet data
 				    uint i;
 					for (i = 0; i < (COEFF_BUFFER); i++) {
-						printf("%02X ",*(coeffBufferQueue + i + (h*COEFF_BUFFER)));
+						printf("%02X ",*(coeffBufferQueue_decoder + i + (h*(COEFF_BUFFER+1))));
 					}
 					printf("\n\n");
 				}
