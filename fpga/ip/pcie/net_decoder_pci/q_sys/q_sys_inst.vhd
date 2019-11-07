@@ -112,7 +112,16 @@
 			pcie_cv_hip_avmm_0_npor_pin_perst                      : in  std_logic                     := 'X';             -- pin_perst
 			pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked : out std_logic;                                        -- fixedclk_locked
 			pcie_cv_hip_avmm_0_refclk_clk                          : in  std_logic                     := 'X';             -- clk
-			pio_coder_rst_external_connection_export               : out std_logic                                         -- export
+			pio_coder_rst_external_connection_export               : out std_logic;                                        -- export
+			master_read_coeff_user_read_buffer                     : in  std_logic                     := 'X';             -- read_buffer
+			master_read_coeff_user_buffer_output_data              : out std_logic_vector(31 downto 0);                    -- buffer_output_data
+			master_read_coeff_user_data_available                  : out std_logic;                                        -- data_available
+			master_read_coeff_control_fixed_location               : in  std_logic                     := 'X';             -- fixed_location
+			master_read_coeff_control_read_base                    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- read_base
+			master_read_coeff_control_read_length                  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- read_length
+			master_read_coeff_control_go                           : in  std_logic                     := 'X';             -- go
+			master_read_coeff_control_done                         : out std_logic;                                        -- done
+			master_read_coeff_control_early_done                   : out std_logic                                         -- early_done
 		);
 	end component q_sys;
 
@@ -230,6 +239,15 @@
 			pcie_cv_hip_avmm_0_npor_pin_perst                      => CONNECTED_TO_pcie_cv_hip_avmm_0_npor_pin_perst,                      --                                       .pin_perst
 			pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked => CONNECTED_TO_pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked, -- pcie_cv_hip_avmm_0_reconfig_clk_locked.fixedclk_locked
 			pcie_cv_hip_avmm_0_refclk_clk                          => CONNECTED_TO_pcie_cv_hip_avmm_0_refclk_clk,                          --              pcie_cv_hip_avmm_0_refclk.clk
-			pio_coder_rst_external_connection_export               => CONNECTED_TO_pio_coder_rst_external_connection_export                --      pio_coder_rst_external_connection.export
+			pio_coder_rst_external_connection_export               => CONNECTED_TO_pio_coder_rst_external_connection_export,               --      pio_coder_rst_external_connection.export
+			master_read_coeff_user_read_buffer                     => CONNECTED_TO_master_read_coeff_user_read_buffer,                     --                 master_read_coeff_user.read_buffer
+			master_read_coeff_user_buffer_output_data              => CONNECTED_TO_master_read_coeff_user_buffer_output_data,              --                                       .buffer_output_data
+			master_read_coeff_user_data_available                  => CONNECTED_TO_master_read_coeff_user_data_available,                  --                                       .data_available
+			master_read_coeff_control_fixed_location               => CONNECTED_TO_master_read_coeff_control_fixed_location,               --              master_read_coeff_control.fixed_location
+			master_read_coeff_control_read_base                    => CONNECTED_TO_master_read_coeff_control_read_base,                    --                                       .read_base
+			master_read_coeff_control_read_length                  => CONNECTED_TO_master_read_coeff_control_read_length,                  --                                       .read_length
+			master_read_coeff_control_go                           => CONNECTED_TO_master_read_coeff_control_go,                           --                                       .go
+			master_read_coeff_control_done                         => CONNECTED_TO_master_read_coeff_control_done,                         --                                       .done
+			master_read_coeff_control_early_done                   => CONNECTED_TO_master_read_coeff_control_early_done                    --                                       .early_done
 		);
 

@@ -111,6 +111,15 @@
 		.pcie_cv_hip_avmm_0_npor_pin_perst                      (<connected-to-pcie_cv_hip_avmm_0_npor_pin_perst>),                      //                                       .pin_perst
 		.pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked (<connected-to-pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked>), // pcie_cv_hip_avmm_0_reconfig_clk_locked.fixedclk_locked
 		.pcie_cv_hip_avmm_0_refclk_clk                          (<connected-to-pcie_cv_hip_avmm_0_refclk_clk>),                          //              pcie_cv_hip_avmm_0_refclk.clk
-		.pio_coder_rst_external_connection_export               (<connected-to-pio_coder_rst_external_connection_export>)                //      pio_coder_rst_external_connection.export
+		.pio_coder_rst_external_connection_export               (<connected-to-pio_coder_rst_external_connection_export>),               //      pio_coder_rst_external_connection.export
+		.master_read_coeff_user_read_buffer                     (<connected-to-master_read_coeff_user_read_buffer>),                     //                 master_read_coeff_user.read_buffer
+		.master_read_coeff_user_buffer_output_data              (<connected-to-master_read_coeff_user_buffer_output_data>),              //                                       .buffer_output_data
+		.master_read_coeff_user_data_available                  (<connected-to-master_read_coeff_user_data_available>),                  //                                       .data_available
+		.master_read_coeff_control_fixed_location               (<connected-to-master_read_coeff_control_fixed_location>),               //              master_read_coeff_control.fixed_location
+		.master_read_coeff_control_read_base                    (<connected-to-master_read_coeff_control_read_base>),                    //                                       .read_base
+		.master_read_coeff_control_read_length                  (<connected-to-master_read_coeff_control_read_length>),                  //                                       .read_length
+		.master_read_coeff_control_go                           (<connected-to-master_read_coeff_control_go>),                           //                                       .go
+		.master_read_coeff_control_done                         (<connected-to-master_read_coeff_control_done>),                         //                                       .done
+		.master_read_coeff_control_early_done                   (<connected-to-master_read_coeff_control_early_done>)                    //                                       .early_done
 	);
 

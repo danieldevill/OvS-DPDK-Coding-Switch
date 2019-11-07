@@ -10,6 +10,15 @@
 			alt_xcvr_reconfig_0_reconfig_mgmt_writedata            : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			clk_0_clk_clk                                          : out std_logic;                                        -- clk
 			clk_0_clk_reset_reset_n                                : out std_logic;                                        -- reset_n
+			master_read_coeff_control_fixed_location               : in  std_logic                     := 'X';             -- fixed_location
+			master_read_coeff_control_read_base                    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- read_base
+			master_read_coeff_control_read_length                  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- read_length
+			master_read_coeff_control_go                           : in  std_logic                     := 'X';             -- go
+			master_read_coeff_control_done                         : out std_logic;                                        -- done
+			master_read_coeff_control_early_done                   : out std_logic;                                        -- early_done
+			master_read_coeff_user_read_buffer                     : in  std_logic                     := 'X';             -- read_buffer
+			master_read_coeff_user_buffer_output_data              : out std_logic_vector(31 downto 0);                    -- buffer_output_data
+			master_read_coeff_user_data_available                  : out std_logic;                                        -- data_available
 			master_read_control_fixed_location                     : in  std_logic                     := 'X';             -- fixed_location
 			master_read_control_read_base                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- read_base
 			master_read_control_read_length                        : in  std_logic_vector(31 downto 0) := (others => 'X'); -- read_length

@@ -29,6 +29,12 @@ module q_sys_mm_interconnect_0 (
 		input  wire         master_read_avalon_master_read,                            //                                                    .read
 		output wire [31:0]  master_read_avalon_master_readdata,                        //                                                    .readdata
 		output wire         master_read_avalon_master_readdatavalid,                   //                                                    .readdatavalid
+		input  wire [31:0]  master_read_coeff_avalon_master_address,                   //                     master_read_coeff_avalon_master.address
+		output wire         master_read_coeff_avalon_master_waitrequest,               //                                                    .waitrequest
+		input  wire [3:0]   master_read_coeff_avalon_master_byteenable,                //                                                    .byteenable
+		input  wire         master_read_coeff_avalon_master_read,                      //                                                    .read
+		output wire [31:0]  master_read_coeff_avalon_master_readdata,                  //                                                    .readdata
+		output wire         master_read_coeff_avalon_master_readdatavalid,             //                                                    .readdatavalid
 		input  wire [31:0]  master_write_avalon_master_address,                        //                          master_write_avalon_master.address
 		output wire         master_write_avalon_master_waitrequest,                    //                                                    .waitrequest
 		input  wire [3:0]   master_write_avalon_master_byteenable,                     //                                                    .byteenable
@@ -43,7 +49,7 @@ module q_sys_mm_interconnect_0 (
 		output wire         pcie_cv_hip_avmm_0_Rxm_BAR0_readdatavalid,                 //                                                    .readdatavalid
 		input  wire         pcie_cv_hip_avmm_0_Rxm_BAR0_write,                         //                                                    .write
 		input  wire [63:0]  pcie_cv_hip_avmm_0_Rxm_BAR0_writedata,                     //                                                    .writedata
-		output wire [7:0]   onchip_memory2_0_s1_address,                               //                                 onchip_memory2_0_s1.address
+		output wire [8:0]   onchip_memory2_0_s1_address,                               //                                 onchip_memory2_0_s1.address
 		output wire         onchip_memory2_0_s1_write,                                 //                                                    .write
 		input  wire [31:0]  onchip_memory2_0_s1_readdata,                              //                                                    .readdata
 		output wire [31:0]  onchip_memory2_0_s1_writedata,                             //                                                    .writedata
@@ -76,7 +82,7 @@ module q_sys_mm_interconnect_0 (
 	wire          rsp_mux_src_valid;                                                                                        // rsp_mux:src_valid -> pcie_cv_hip_avmm_0_Rxm_BAR0_agent:rp_valid
 	wire  [150:0] rsp_mux_src_data;                                                                                         // rsp_mux:src_data -> pcie_cv_hip_avmm_0_Rxm_BAR0_agent:rp_data
 	wire          rsp_mux_src_ready;                                                                                        // pcie_cv_hip_avmm_0_Rxm_BAR0_agent:rp_ready -> rsp_mux:src_ready
-	wire    [4:0] rsp_mux_src_channel;                                                                                      // rsp_mux:src_channel -> pcie_cv_hip_avmm_0_Rxm_BAR0_agent:rp_channel
+	wire    [5:0] rsp_mux_src_channel;                                                                                      // rsp_mux:src_channel -> pcie_cv_hip_avmm_0_Rxm_BAR0_agent:rp_channel
 	wire          rsp_mux_src_startofpacket;                                                                                // rsp_mux:src_startofpacket -> pcie_cv_hip_avmm_0_Rxm_BAR0_agent:rp_startofpacket
 	wire          rsp_mux_src_endofpacket;                                                                                  // rsp_mux:src_endofpacket -> pcie_cv_hip_avmm_0_Rxm_BAR0_agent:rp_endofpacket
 	wire          master_read_avalon_master_translator_avalon_universal_master_0_waitrequest;                               // master_read_avalon_master_agent:av_waitrequest -> master_read_avalon_master_translator:uav_waitrequest
@@ -93,7 +99,7 @@ module q_sys_mm_interconnect_0 (
 	wire          rsp_mux_001_src_valid;                                                                                    // rsp_mux_001:src_valid -> master_read_avalon_master_agent:rp_valid
 	wire  [114:0] rsp_mux_001_src_data;                                                                                     // rsp_mux_001:src_data -> master_read_avalon_master_agent:rp_data
 	wire          rsp_mux_001_src_ready;                                                                                    // master_read_avalon_master_agent:rp_ready -> rsp_mux_001:src_ready
-	wire    [4:0] rsp_mux_001_src_channel;                                                                                  // rsp_mux_001:src_channel -> master_read_avalon_master_agent:rp_channel
+	wire    [5:0] rsp_mux_001_src_channel;                                                                                  // rsp_mux_001:src_channel -> master_read_avalon_master_agent:rp_channel
 	wire          rsp_mux_001_src_startofpacket;                                                                            // rsp_mux_001:src_startofpacket -> master_read_avalon_master_agent:rp_startofpacket
 	wire          rsp_mux_001_src_endofpacket;                                                                              // rsp_mux_001:src_endofpacket -> master_read_avalon_master_agent:rp_endofpacket
 	wire          master_write_avalon_master_translator_avalon_universal_master_0_waitrequest;                              // master_write_avalon_master_agent:av_waitrequest -> master_write_avalon_master_translator:uav_waitrequest
@@ -110,9 +116,26 @@ module q_sys_mm_interconnect_0 (
 	wire          rsp_mux_002_src_valid;                                                                                    // rsp_mux_002:src_valid -> master_write_avalon_master_agent:rp_valid
 	wire  [114:0] rsp_mux_002_src_data;                                                                                     // rsp_mux_002:src_data -> master_write_avalon_master_agent:rp_data
 	wire          rsp_mux_002_src_ready;                                                                                    // master_write_avalon_master_agent:rp_ready -> rsp_mux_002:src_ready
-	wire    [4:0] rsp_mux_002_src_channel;                                                                                  // rsp_mux_002:src_channel -> master_write_avalon_master_agent:rp_channel
+	wire    [5:0] rsp_mux_002_src_channel;                                                                                  // rsp_mux_002:src_channel -> master_write_avalon_master_agent:rp_channel
 	wire          rsp_mux_002_src_startofpacket;                                                                            // rsp_mux_002:src_startofpacket -> master_write_avalon_master_agent:rp_startofpacket
 	wire          rsp_mux_002_src_endofpacket;                                                                              // rsp_mux_002:src_endofpacket -> master_write_avalon_master_agent:rp_endofpacket
+	wire          master_read_coeff_avalon_master_translator_avalon_universal_master_0_waitrequest;                         // master_read_coeff_avalon_master_agent:av_waitrequest -> master_read_coeff_avalon_master_translator:uav_waitrequest
+	wire   [31:0] master_read_coeff_avalon_master_translator_avalon_universal_master_0_readdata;                            // master_read_coeff_avalon_master_agent:av_readdata -> master_read_coeff_avalon_master_translator:uav_readdata
+	wire          master_read_coeff_avalon_master_translator_avalon_universal_master_0_debugaccess;                         // master_read_coeff_avalon_master_translator:uav_debugaccess -> master_read_coeff_avalon_master_agent:av_debugaccess
+	wire   [31:0] master_read_coeff_avalon_master_translator_avalon_universal_master_0_address;                             // master_read_coeff_avalon_master_translator:uav_address -> master_read_coeff_avalon_master_agent:av_address
+	wire          master_read_coeff_avalon_master_translator_avalon_universal_master_0_read;                                // master_read_coeff_avalon_master_translator:uav_read -> master_read_coeff_avalon_master_agent:av_read
+	wire    [3:0] master_read_coeff_avalon_master_translator_avalon_universal_master_0_byteenable;                          // master_read_coeff_avalon_master_translator:uav_byteenable -> master_read_coeff_avalon_master_agent:av_byteenable
+	wire          master_read_coeff_avalon_master_translator_avalon_universal_master_0_readdatavalid;                       // master_read_coeff_avalon_master_agent:av_readdatavalid -> master_read_coeff_avalon_master_translator:uav_readdatavalid
+	wire          master_read_coeff_avalon_master_translator_avalon_universal_master_0_lock;                                // master_read_coeff_avalon_master_translator:uav_lock -> master_read_coeff_avalon_master_agent:av_lock
+	wire          master_read_coeff_avalon_master_translator_avalon_universal_master_0_write;                               // master_read_coeff_avalon_master_translator:uav_write -> master_read_coeff_avalon_master_agent:av_write
+	wire   [31:0] master_read_coeff_avalon_master_translator_avalon_universal_master_0_writedata;                           // master_read_coeff_avalon_master_translator:uav_writedata -> master_read_coeff_avalon_master_agent:av_writedata
+	wire    [2:0] master_read_coeff_avalon_master_translator_avalon_universal_master_0_burstcount;                          // master_read_coeff_avalon_master_translator:uav_burstcount -> master_read_coeff_avalon_master_agent:av_burstcount
+	wire          rsp_mux_003_src_valid;                                                                                    // rsp_mux_003:src_valid -> master_read_coeff_avalon_master_agent:rp_valid
+	wire  [114:0] rsp_mux_003_src_data;                                                                                     // rsp_mux_003:src_data -> master_read_coeff_avalon_master_agent:rp_data
+	wire          rsp_mux_003_src_ready;                                                                                    // master_read_coeff_avalon_master_agent:rp_ready -> rsp_mux_003:src_ready
+	wire    [5:0] rsp_mux_003_src_channel;                                                                                  // rsp_mux_003:src_channel -> master_read_coeff_avalon_master_agent:rp_channel
+	wire          rsp_mux_003_src_startofpacket;                                                                            // rsp_mux_003:src_startofpacket -> master_read_coeff_avalon_master_agent:rp_startofpacket
+	wire          rsp_mux_003_src_endofpacket;                                                                              // rsp_mux_003:src_endofpacket -> master_read_coeff_avalon_master_agent:rp_endofpacket
 	wire          ctl_0_dma_read_master_0_data_read_master_translator_avalon_universal_master_0_waitrequest;                // ctl_0_dma_read_master_0_data_read_master_agent:av_waitrequest -> ctl_0_dma_read_master_0_data_read_master_translator:uav_waitrequest
 	wire  [127:0] ctl_0_dma_read_master_0_data_read_master_translator_avalon_universal_master_0_readdata;                   // ctl_0_dma_read_master_0_data_read_master_agent:av_readdata -> ctl_0_dma_read_master_0_data_read_master_translator:uav_readdata
 	wire          ctl_0_dma_read_master_0_data_read_master_translator_avalon_universal_master_0_debugaccess;                // ctl_0_dma_read_master_0_data_read_master_translator:uav_debugaccess -> ctl_0_dma_read_master_0_data_read_master_agent:av_debugaccess
@@ -135,12 +158,12 @@ module q_sys_mm_interconnect_0 (
 	wire          ctl_0_dma_write_master_0_data_write_master_translator_avalon_universal_master_0_write;                    // ctl_0_dma_write_master_0_data_write_master_translator:uav_write -> ctl_0_dma_write_master_0_data_write_master_agent:av_write
 	wire  [127:0] ctl_0_dma_write_master_0_data_write_master_translator_avalon_universal_master_0_writedata;                // ctl_0_dma_write_master_0_data_write_master_translator:uav_writedata -> ctl_0_dma_write_master_0_data_write_master_agent:av_writedata
 	wire   [11:0] ctl_0_dma_write_master_0_data_write_master_translator_avalon_universal_master_0_burstcount;               // ctl_0_dma_write_master_0_data_write_master_translator:uav_burstcount -> ctl_0_dma_write_master_0_data_write_master_agent:av_burstcount
-	wire          rsp_mux_004_src_valid;                                                                                    // rsp_mux_004:src_valid -> ctl_0_dma_write_master_0_data_write_master_agent:rp_valid
-	wire  [222:0] rsp_mux_004_src_data;                                                                                     // rsp_mux_004:src_data -> ctl_0_dma_write_master_0_data_write_master_agent:rp_data
-	wire          rsp_mux_004_src_ready;                                                                                    // ctl_0_dma_write_master_0_data_write_master_agent:rp_ready -> rsp_mux_004:src_ready
-	wire    [4:0] rsp_mux_004_src_channel;                                                                                  // rsp_mux_004:src_channel -> ctl_0_dma_write_master_0_data_write_master_agent:rp_channel
-	wire          rsp_mux_004_src_startofpacket;                                                                            // rsp_mux_004:src_startofpacket -> ctl_0_dma_write_master_0_data_write_master_agent:rp_startofpacket
-	wire          rsp_mux_004_src_endofpacket;                                                                              // rsp_mux_004:src_endofpacket -> ctl_0_dma_write_master_0_data_write_master_agent:rp_endofpacket
+	wire          rsp_mux_005_src_valid;                                                                                    // rsp_mux_005:src_valid -> ctl_0_dma_write_master_0_data_write_master_agent:rp_valid
+	wire  [222:0] rsp_mux_005_src_data;                                                                                     // rsp_mux_005:src_data -> ctl_0_dma_write_master_0_data_write_master_agent:rp_data
+	wire          rsp_mux_005_src_ready;                                                                                    // ctl_0_dma_write_master_0_data_write_master_agent:rp_ready -> rsp_mux_005:src_ready
+	wire    [5:0] rsp_mux_005_src_channel;                                                                                  // rsp_mux_005:src_channel -> ctl_0_dma_write_master_0_data_write_master_agent:rp_channel
+	wire          rsp_mux_005_src_startofpacket;                                                                            // rsp_mux_005:src_startofpacket -> ctl_0_dma_write_master_0_data_write_master_agent:rp_startofpacket
+	wire          rsp_mux_005_src_endofpacket;                                                                              // rsp_mux_005:src_endofpacket -> ctl_0_dma_write_master_0_data_write_master_agent:rp_endofpacket
 	wire   [31:0] onchip_memory2_0_s1_agent_m0_readdata;                                                                    // onchip_memory2_0_s1_translator:uav_readdata -> onchip_memory2_0_s1_agent:m0_readdata
 	wire          onchip_memory2_0_s1_agent_m0_waitrequest;                                                                 // onchip_memory2_0_s1_translator:uav_waitrequest -> onchip_memory2_0_s1_agent:m0_waitrequest
 	wire          onchip_memory2_0_s1_agent_m0_debugaccess;                                                                 // onchip_memory2_0_s1_agent:m0_debugaccess -> onchip_memory2_0_s1_translator:uav_debugaccess
@@ -194,7 +217,7 @@ module q_sys_mm_interconnect_0 (
 	wire          router_src_valid;                                                                                         // router:src_valid -> cmd_demux:sink_valid
 	wire  [150:0] router_src_data;                                                                                          // router:src_data -> cmd_demux:sink_data
 	wire          router_src_ready;                                                                                         // cmd_demux:sink_ready -> router:src_ready
-	wire    [4:0] router_src_channel;                                                                                       // router:src_channel -> cmd_demux:sink_channel
+	wire    [5:0] router_src_channel;                                                                                       // router:src_channel -> cmd_demux:sink_channel
 	wire          router_src_startofpacket;                                                                                 // router:src_startofpacket -> cmd_demux:sink_startofpacket
 	wire          router_src_endofpacket;                                                                                   // router:src_endofpacket -> cmd_demux:sink_endofpacket
 	wire          master_read_avalon_master_agent_cp_valid;                                                                 // master_read_avalon_master_agent:cp_valid -> router_001:sink_valid
@@ -205,7 +228,7 @@ module q_sys_mm_interconnect_0 (
 	wire          router_001_src_valid;                                                                                     // router_001:src_valid -> cmd_demux_001:sink_valid
 	wire  [114:0] router_001_src_data;                                                                                      // router_001:src_data -> cmd_demux_001:sink_data
 	wire          router_001_src_ready;                                                                                     // cmd_demux_001:sink_ready -> router_001:src_ready
-	wire    [4:0] router_001_src_channel;                                                                                   // router_001:src_channel -> cmd_demux_001:sink_channel
+	wire    [5:0] router_001_src_channel;                                                                                   // router_001:src_channel -> cmd_demux_001:sink_channel
 	wire          router_001_src_startofpacket;                                                                             // router_001:src_startofpacket -> cmd_demux_001:sink_startofpacket
 	wire          router_001_src_endofpacket;                                                                               // router_001:src_endofpacket -> cmd_demux_001:sink_endofpacket
 	wire          master_write_avalon_master_agent_cp_valid;                                                                // master_write_avalon_master_agent:cp_valid -> router_002:sink_valid
@@ -216,155 +239,166 @@ module q_sys_mm_interconnect_0 (
 	wire          router_002_src_valid;                                                                                     // router_002:src_valid -> cmd_demux_002:sink_valid
 	wire  [114:0] router_002_src_data;                                                                                      // router_002:src_data -> cmd_demux_002:sink_data
 	wire          router_002_src_ready;                                                                                     // cmd_demux_002:sink_ready -> router_002:src_ready
-	wire    [4:0] router_002_src_channel;                                                                                   // router_002:src_channel -> cmd_demux_002:sink_channel
+	wire    [5:0] router_002_src_channel;                                                                                   // router_002:src_channel -> cmd_demux_002:sink_channel
 	wire          router_002_src_startofpacket;                                                                             // router_002:src_startofpacket -> cmd_demux_002:sink_startofpacket
 	wire          router_002_src_endofpacket;                                                                               // router_002:src_endofpacket -> cmd_demux_002:sink_endofpacket
-	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_valid;                                                  // ctl_0_dma_read_master_0_data_read_master_agent:cp_valid -> router_003:sink_valid
-	wire  [222:0] ctl_0_dma_read_master_0_data_read_master_agent_cp_data;                                                   // ctl_0_dma_read_master_0_data_read_master_agent:cp_data -> router_003:sink_data
-	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_ready;                                                  // router_003:sink_ready -> ctl_0_dma_read_master_0_data_read_master_agent:cp_ready
-	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_startofpacket;                                          // ctl_0_dma_read_master_0_data_read_master_agent:cp_startofpacket -> router_003:sink_startofpacket
-	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_endofpacket;                                            // ctl_0_dma_read_master_0_data_read_master_agent:cp_endofpacket -> router_003:sink_endofpacket
-	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_valid;                                                // ctl_0_dma_write_master_0_data_write_master_agent:cp_valid -> router_004:sink_valid
-	wire  [222:0] ctl_0_dma_write_master_0_data_write_master_agent_cp_data;                                                 // ctl_0_dma_write_master_0_data_write_master_agent:cp_data -> router_004:sink_data
-	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_ready;                                                // router_004:sink_ready -> ctl_0_dma_write_master_0_data_write_master_agent:cp_ready
-	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_startofpacket;                                        // ctl_0_dma_write_master_0_data_write_master_agent:cp_startofpacket -> router_004:sink_startofpacket
-	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_endofpacket;                                          // ctl_0_dma_write_master_0_data_write_master_agent:cp_endofpacket -> router_004:sink_endofpacket
-	wire          router_004_src_valid;                                                                                     // router_004:src_valid -> cmd_demux_004:sink_valid
-	wire  [222:0] router_004_src_data;                                                                                      // router_004:src_data -> cmd_demux_004:sink_data
-	wire          router_004_src_ready;                                                                                     // cmd_demux_004:sink_ready -> router_004:src_ready
-	wire    [4:0] router_004_src_channel;                                                                                   // router_004:src_channel -> cmd_demux_004:sink_channel
-	wire          router_004_src_startofpacket;                                                                             // router_004:src_startofpacket -> cmd_demux_004:sink_startofpacket
-	wire          router_004_src_endofpacket;                                                                               // router_004:src_endofpacket -> cmd_demux_004:sink_endofpacket
-	wire          router_005_src_valid;                                                                                     // router_005:src_valid -> rsp_demux:sink_valid
-	wire  [114:0] router_005_src_data;                                                                                      // router_005:src_data -> rsp_demux:sink_data
-	wire          router_005_src_ready;                                                                                     // rsp_demux:sink_ready -> router_005:src_ready
-	wire    [4:0] router_005_src_channel;                                                                                   // router_005:src_channel -> rsp_demux:sink_channel
-	wire          router_005_src_startofpacket;                                                                             // router_005:src_startofpacket -> rsp_demux:sink_startofpacket
-	wire          router_005_src_endofpacket;                                                                               // router_005:src_endofpacket -> rsp_demux:sink_endofpacket
-	wire          router_006_src_valid;                                                                                     // router_006:src_valid -> rsp_demux_001:sink_valid
-	wire  [150:0] router_006_src_data;                                                                                      // router_006:src_data -> rsp_demux_001:sink_data
-	wire          router_006_src_ready;                                                                                     // rsp_demux_001:sink_ready -> router_006:src_ready
-	wire    [4:0] router_006_src_channel;                                                                                   // router_006:src_channel -> rsp_demux_001:sink_channel
-	wire          router_006_src_startofpacket;                                                                             // router_006:src_startofpacket -> rsp_demux_001:sink_startofpacket
-	wire          router_006_src_endofpacket;                                                                               // router_006:src_endofpacket -> rsp_demux_001:sink_endofpacket
-	wire          router_003_src_valid;                                                                                     // router_003:src_valid -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_valid
-	wire  [222:0] router_003_src_data;                                                                                      // router_003:src_data -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_data
-	wire          router_003_src_ready;                                                                                     // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_ready -> router_003:src_ready
-	wire    [4:0] router_003_src_channel;                                                                                   // router_003:src_channel -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_channel
-	wire          router_003_src_startofpacket;                                                                             // router_003:src_startofpacket -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_startofpacket
-	wire          router_003_src_endofpacket;                                                                               // router_003:src_endofpacket -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_endofpacket
+	wire          master_read_coeff_avalon_master_agent_cp_valid;                                                           // master_read_coeff_avalon_master_agent:cp_valid -> router_003:sink_valid
+	wire  [114:0] master_read_coeff_avalon_master_agent_cp_data;                                                            // master_read_coeff_avalon_master_agent:cp_data -> router_003:sink_data
+	wire          master_read_coeff_avalon_master_agent_cp_ready;                                                           // router_003:sink_ready -> master_read_coeff_avalon_master_agent:cp_ready
+	wire          master_read_coeff_avalon_master_agent_cp_startofpacket;                                                   // master_read_coeff_avalon_master_agent:cp_startofpacket -> router_003:sink_startofpacket
+	wire          master_read_coeff_avalon_master_agent_cp_endofpacket;                                                     // master_read_coeff_avalon_master_agent:cp_endofpacket -> router_003:sink_endofpacket
+	wire          router_003_src_valid;                                                                                     // router_003:src_valid -> cmd_demux_003:sink_valid
+	wire  [114:0] router_003_src_data;                                                                                      // router_003:src_data -> cmd_demux_003:sink_data
+	wire          router_003_src_ready;                                                                                     // cmd_demux_003:sink_ready -> router_003:src_ready
+	wire    [5:0] router_003_src_channel;                                                                                   // router_003:src_channel -> cmd_demux_003:sink_channel
+	wire          router_003_src_startofpacket;                                                                             // router_003:src_startofpacket -> cmd_demux_003:sink_startofpacket
+	wire          router_003_src_endofpacket;                                                                               // router_003:src_endofpacket -> cmd_demux_003:sink_endofpacket
+	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_valid;                                                  // ctl_0_dma_read_master_0_data_read_master_agent:cp_valid -> router_004:sink_valid
+	wire  [222:0] ctl_0_dma_read_master_0_data_read_master_agent_cp_data;                                                   // ctl_0_dma_read_master_0_data_read_master_agent:cp_data -> router_004:sink_data
+	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_ready;                                                  // router_004:sink_ready -> ctl_0_dma_read_master_0_data_read_master_agent:cp_ready
+	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_startofpacket;                                          // ctl_0_dma_read_master_0_data_read_master_agent:cp_startofpacket -> router_004:sink_startofpacket
+	wire          ctl_0_dma_read_master_0_data_read_master_agent_cp_endofpacket;                                            // ctl_0_dma_read_master_0_data_read_master_agent:cp_endofpacket -> router_004:sink_endofpacket
+	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_valid;                                                // ctl_0_dma_write_master_0_data_write_master_agent:cp_valid -> router_005:sink_valid
+	wire  [222:0] ctl_0_dma_write_master_0_data_write_master_agent_cp_data;                                                 // ctl_0_dma_write_master_0_data_write_master_agent:cp_data -> router_005:sink_data
+	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_ready;                                                // router_005:sink_ready -> ctl_0_dma_write_master_0_data_write_master_agent:cp_ready
+	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_startofpacket;                                        // ctl_0_dma_write_master_0_data_write_master_agent:cp_startofpacket -> router_005:sink_startofpacket
+	wire          ctl_0_dma_write_master_0_data_write_master_agent_cp_endofpacket;                                          // ctl_0_dma_write_master_0_data_write_master_agent:cp_endofpacket -> router_005:sink_endofpacket
+	wire          router_005_src_valid;                                                                                     // router_005:src_valid -> cmd_demux_005:sink_valid
+	wire  [222:0] router_005_src_data;                                                                                      // router_005:src_data -> cmd_demux_005:sink_data
+	wire          router_005_src_ready;                                                                                     // cmd_demux_005:sink_ready -> router_005:src_ready
+	wire    [5:0] router_005_src_channel;                                                                                   // router_005:src_channel -> cmd_demux_005:sink_channel
+	wire          router_005_src_startofpacket;                                                                             // router_005:src_startofpacket -> cmd_demux_005:sink_startofpacket
+	wire          router_005_src_endofpacket;                                                                               // router_005:src_endofpacket -> cmd_demux_005:sink_endofpacket
+	wire          router_006_src_valid;                                                                                     // router_006:src_valid -> rsp_demux:sink_valid
+	wire  [114:0] router_006_src_data;                                                                                      // router_006:src_data -> rsp_demux:sink_data
+	wire          router_006_src_ready;                                                                                     // rsp_demux:sink_ready -> router_006:src_ready
+	wire    [5:0] router_006_src_channel;                                                                                   // router_006:src_channel -> rsp_demux:sink_channel
+	wire          router_006_src_startofpacket;                                                                             // router_006:src_startofpacket -> rsp_demux:sink_startofpacket
+	wire          router_006_src_endofpacket;                                                                               // router_006:src_endofpacket -> rsp_demux:sink_endofpacket
+	wire          router_007_src_valid;                                                                                     // router_007:src_valid -> rsp_demux_001:sink_valid
+	wire  [150:0] router_007_src_data;                                                                                      // router_007:src_data -> rsp_demux_001:sink_data
+	wire          router_007_src_ready;                                                                                     // rsp_demux_001:sink_ready -> router_007:src_ready
+	wire    [5:0] router_007_src_channel;                                                                                   // router_007:src_channel -> rsp_demux_001:sink_channel
+	wire          router_007_src_startofpacket;                                                                             // router_007:src_startofpacket -> rsp_demux_001:sink_startofpacket
+	wire          router_007_src_endofpacket;                                                                               // router_007:src_endofpacket -> rsp_demux_001:sink_endofpacket
+	wire          router_004_src_valid;                                                                                     // router_004:src_valid -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_valid
+	wire  [222:0] router_004_src_data;                                                                                      // router_004:src_data -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_data
+	wire          router_004_src_ready;                                                                                     // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_ready -> router_004:src_ready
+	wire    [5:0] router_004_src_channel;                                                                                   // router_004:src_channel -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_channel
+	wire          router_004_src_startofpacket;                                                                             // router_004:src_startofpacket -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_startofpacket
+	wire          router_004_src_endofpacket;                                                                               // router_004:src_endofpacket -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_sink_endofpacket
 	wire          ctl_0_dma_read_master_0_data_read_master_limiter_rsp_src_valid;                                           // ctl_0_dma_read_master_0_data_read_master_limiter:rsp_src_valid -> ctl_0_dma_read_master_0_data_read_master_agent:rp_valid
 	wire  [222:0] ctl_0_dma_read_master_0_data_read_master_limiter_rsp_src_data;                                            // ctl_0_dma_read_master_0_data_read_master_limiter:rsp_src_data -> ctl_0_dma_read_master_0_data_read_master_agent:rp_data
 	wire          ctl_0_dma_read_master_0_data_read_master_limiter_rsp_src_ready;                                           // ctl_0_dma_read_master_0_data_read_master_agent:rp_ready -> ctl_0_dma_read_master_0_data_read_master_limiter:rsp_src_ready
-	wire    [4:0] ctl_0_dma_read_master_0_data_read_master_limiter_rsp_src_channel;                                         // ctl_0_dma_read_master_0_data_read_master_limiter:rsp_src_channel -> ctl_0_dma_read_master_0_data_read_master_agent:rp_channel
+	wire    [5:0] ctl_0_dma_read_master_0_data_read_master_limiter_rsp_src_channel;                                         // ctl_0_dma_read_master_0_data_read_master_limiter:rsp_src_channel -> ctl_0_dma_read_master_0_data_read_master_agent:rp_channel
 	wire          ctl_0_dma_read_master_0_data_read_master_limiter_rsp_src_startofpacket;                                   // ctl_0_dma_read_master_0_data_read_master_limiter:rsp_src_startofpacket -> ctl_0_dma_read_master_0_data_read_master_agent:rp_startofpacket
 	wire          ctl_0_dma_read_master_0_data_read_master_limiter_rsp_src_endofpacket;                                     // ctl_0_dma_read_master_0_data_read_master_limiter:rsp_src_endofpacket -> ctl_0_dma_read_master_0_data_read_master_agent:rp_endofpacket
 	wire          cmd_mux_src_valid;                                                                                        // cmd_mux:src_valid -> onchip_memory2_0_s1_burst_adapter:sink0_valid
 	wire  [114:0] cmd_mux_src_data;                                                                                         // cmd_mux:src_data -> onchip_memory2_0_s1_burst_adapter:sink0_data
 	wire          cmd_mux_src_ready;                                                                                        // onchip_memory2_0_s1_burst_adapter:sink0_ready -> cmd_mux:src_ready
-	wire    [4:0] cmd_mux_src_channel;                                                                                      // cmd_mux:src_channel -> onchip_memory2_0_s1_burst_adapter:sink0_channel
+	wire    [5:0] cmd_mux_src_channel;                                                                                      // cmd_mux:src_channel -> onchip_memory2_0_s1_burst_adapter:sink0_channel
 	wire          cmd_mux_src_startofpacket;                                                                                // cmd_mux:src_startofpacket -> onchip_memory2_0_s1_burst_adapter:sink0_startofpacket
 	wire          cmd_mux_src_endofpacket;                                                                                  // cmd_mux:src_endofpacket -> onchip_memory2_0_s1_burst_adapter:sink0_endofpacket
 	wire          cmd_mux_001_src_valid;                                                                                    // cmd_mux_001:src_valid -> pcie_cv_hip_avmm_0_Txs_burst_adapter:sink0_valid
 	wire  [150:0] cmd_mux_001_src_data;                                                                                     // cmd_mux_001:src_data -> pcie_cv_hip_avmm_0_Txs_burst_adapter:sink0_data
 	wire          cmd_mux_001_src_ready;                                                                                    // pcie_cv_hip_avmm_0_Txs_burst_adapter:sink0_ready -> cmd_mux_001:src_ready
-	wire    [4:0] cmd_mux_001_src_channel;                                                                                  // cmd_mux_001:src_channel -> pcie_cv_hip_avmm_0_Txs_burst_adapter:sink0_channel
+	wire    [5:0] cmd_mux_001_src_channel;                                                                                  // cmd_mux_001:src_channel -> pcie_cv_hip_avmm_0_Txs_burst_adapter:sink0_channel
 	wire          cmd_mux_001_src_startofpacket;                                                                            // cmd_mux_001:src_startofpacket -> pcie_cv_hip_avmm_0_Txs_burst_adapter:sink0_startofpacket
 	wire          cmd_mux_001_src_endofpacket;                                                                              // cmd_mux_001:src_endofpacket -> pcie_cv_hip_avmm_0_Txs_burst_adapter:sink0_endofpacket
 	wire          cmd_demux_src0_valid;                                                                                     // cmd_demux:src0_valid -> pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:in_valid
 	wire  [150:0] cmd_demux_src0_data;                                                                                      // cmd_demux:src0_data -> pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:in_data
 	wire          cmd_demux_src0_ready;                                                                                     // pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:in_ready -> cmd_demux:src0_ready
-	wire    [4:0] cmd_demux_src0_channel;                                                                                   // cmd_demux:src0_channel -> pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:in_channel
+	wire    [5:0] cmd_demux_src0_channel;                                                                                   // cmd_demux:src0_channel -> pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:in_channel
 	wire          cmd_demux_src0_startofpacket;                                                                             // cmd_demux:src0_startofpacket -> pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:in_startofpacket
 	wire          cmd_demux_src0_endofpacket;                                                                               // cmd_demux:src0_endofpacket -> pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:in_endofpacket
-	wire          cmd_demux_003_src0_valid;                                                                                 // cmd_demux_003:src0_valid -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_valid
-	wire  [222:0] cmd_demux_003_src0_data;                                                                                  // cmd_demux_003:src0_data -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_data
-	wire          cmd_demux_003_src0_ready;                                                                                 // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_ready -> cmd_demux_003:src0_ready
-	wire    [4:0] cmd_demux_003_src0_channel;                                                                               // cmd_demux_003:src0_channel -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_channel
-	wire          cmd_demux_003_src0_startofpacket;                                                                         // cmd_demux_003:src0_startofpacket -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_startofpacket
-	wire          cmd_demux_003_src0_endofpacket;                                                                           // cmd_demux_003:src0_endofpacket -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_endofpacket
-	wire          cmd_demux_003_src1_valid;                                                                                 // cmd_demux_003:src1_valid -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_valid
-	wire  [222:0] cmd_demux_003_src1_data;                                                                                  // cmd_demux_003:src1_data -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_data
-	wire          cmd_demux_003_src1_ready;                                                                                 // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_ready -> cmd_demux_003:src1_ready
-	wire    [4:0] cmd_demux_003_src1_channel;                                                                               // cmd_demux_003:src1_channel -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_channel
-	wire          cmd_demux_003_src1_startofpacket;                                                                         // cmd_demux_003:src1_startofpacket -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_startofpacket
-	wire          cmd_demux_003_src1_endofpacket;                                                                           // cmd_demux_003:src1_endofpacket -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_endofpacket
-	wire          cmd_demux_004_src0_valid;                                                                                 // cmd_demux_004:src0_valid -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_valid
-	wire  [222:0] cmd_demux_004_src0_data;                                                                                  // cmd_demux_004:src0_data -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_data
-	wire          cmd_demux_004_src0_ready;                                                                                 // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_ready -> cmd_demux_004:src0_ready
-	wire    [4:0] cmd_demux_004_src0_channel;                                                                               // cmd_demux_004:src0_channel -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_channel
-	wire          cmd_demux_004_src0_startofpacket;                                                                         // cmd_demux_004:src0_startofpacket -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_startofpacket
-	wire          cmd_demux_004_src0_endofpacket;                                                                           // cmd_demux_004:src0_endofpacket -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_endofpacket
-	wire          cmd_demux_004_src1_valid;                                                                                 // cmd_demux_004:src1_valid -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_valid
-	wire  [222:0] cmd_demux_004_src1_data;                                                                                  // cmd_demux_004:src1_data -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_data
-	wire          cmd_demux_004_src1_ready;                                                                                 // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_ready -> cmd_demux_004:src1_ready
-	wire    [4:0] cmd_demux_004_src1_channel;                                                                               // cmd_demux_004:src1_channel -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_channel
-	wire          cmd_demux_004_src1_startofpacket;                                                                         // cmd_demux_004:src1_startofpacket -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_startofpacket
-	wire          cmd_demux_004_src1_endofpacket;                                                                           // cmd_demux_004:src1_endofpacket -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_endofpacket
+	wire          cmd_demux_004_src0_valid;                                                                                 // cmd_demux_004:src0_valid -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_valid
+	wire  [222:0] cmd_demux_004_src0_data;                                                                                  // cmd_demux_004:src0_data -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_data
+	wire          cmd_demux_004_src0_ready;                                                                                 // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_ready -> cmd_demux_004:src0_ready
+	wire    [5:0] cmd_demux_004_src0_channel;                                                                               // cmd_demux_004:src0_channel -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_channel
+	wire          cmd_demux_004_src0_startofpacket;                                                                         // cmd_demux_004:src0_startofpacket -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_startofpacket
+	wire          cmd_demux_004_src0_endofpacket;                                                                           // cmd_demux_004:src0_endofpacket -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_endofpacket
+	wire          cmd_demux_004_src1_valid;                                                                                 // cmd_demux_004:src1_valid -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_valid
+	wire  [222:0] cmd_demux_004_src1_data;                                                                                  // cmd_demux_004:src1_data -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_data
+	wire          cmd_demux_004_src1_ready;                                                                                 // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_ready -> cmd_demux_004:src1_ready
+	wire    [5:0] cmd_demux_004_src1_channel;                                                                               // cmd_demux_004:src1_channel -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_channel
+	wire          cmd_demux_004_src1_startofpacket;                                                                         // cmd_demux_004:src1_startofpacket -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_startofpacket
+	wire          cmd_demux_004_src1_endofpacket;                                                                           // cmd_demux_004:src1_endofpacket -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_endofpacket
+	wire          cmd_demux_005_src0_valid;                                                                                 // cmd_demux_005:src0_valid -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_valid
+	wire  [222:0] cmd_demux_005_src0_data;                                                                                  // cmd_demux_005:src0_data -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_data
+	wire          cmd_demux_005_src0_ready;                                                                                 // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_ready -> cmd_demux_005:src0_ready
+	wire    [5:0] cmd_demux_005_src0_channel;                                                                               // cmd_demux_005:src0_channel -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_channel
+	wire          cmd_demux_005_src0_startofpacket;                                                                         // cmd_demux_005:src0_startofpacket -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_startofpacket
+	wire          cmd_demux_005_src0_endofpacket;                                                                           // cmd_demux_005:src0_endofpacket -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:in_endofpacket
+	wire          cmd_demux_005_src1_valid;                                                                                 // cmd_demux_005:src1_valid -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_valid
+	wire  [222:0] cmd_demux_005_src1_data;                                                                                  // cmd_demux_005:src1_data -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_data
+	wire          cmd_demux_005_src1_ready;                                                                                 // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_ready -> cmd_demux_005:src1_ready
+	wire    [5:0] cmd_demux_005_src1_channel;                                                                               // cmd_demux_005:src1_channel -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_channel
+	wire          cmd_demux_005_src1_startofpacket;                                                                         // cmd_demux_005:src1_startofpacket -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_startofpacket
+	wire          cmd_demux_005_src1_endofpacket;                                                                           // cmd_demux_005:src1_endofpacket -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:in_endofpacket
 	wire          rsp_demux_src0_valid;                                                                                     // rsp_demux:src0_valid -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:in_valid
 	wire  [114:0] rsp_demux_src0_data;                                                                                      // rsp_demux:src0_data -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:in_data
 	wire          rsp_demux_src0_ready;                                                                                     // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:in_ready -> rsp_demux:src0_ready
-	wire    [4:0] rsp_demux_src0_channel;                                                                                   // rsp_demux:src0_channel -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:in_channel
+	wire    [5:0] rsp_demux_src0_channel;                                                                                   // rsp_demux:src0_channel -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:in_channel
 	wire          rsp_demux_src0_startofpacket;                                                                             // rsp_demux:src0_startofpacket -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:in_startofpacket
 	wire          rsp_demux_src0_endofpacket;                                                                               // rsp_demux:src0_endofpacket -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:in_endofpacket
-	wire          rsp_demux_src3_valid;                                                                                     // rsp_demux:src3_valid -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_valid
-	wire  [114:0] rsp_demux_src3_data;                                                                                      // rsp_demux:src3_data -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_data
-	wire          rsp_demux_src3_ready;                                                                                     // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_ready -> rsp_demux:src3_ready
-	wire    [4:0] rsp_demux_src3_channel;                                                                                   // rsp_demux:src3_channel -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_channel
-	wire          rsp_demux_src3_startofpacket;                                                                             // rsp_demux:src3_startofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_startofpacket
-	wire          rsp_demux_src3_endofpacket;                                                                               // rsp_demux:src3_endofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_endofpacket
-	wire          rsp_demux_src4_valid;                                                                                     // rsp_demux:src4_valid -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_valid
-	wire  [114:0] rsp_demux_src4_data;                                                                                      // rsp_demux:src4_data -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_data
-	wire          rsp_demux_src4_ready;                                                                                     // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_ready -> rsp_demux:src4_ready
-	wire    [4:0] rsp_demux_src4_channel;                                                                                   // rsp_demux:src4_channel -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_channel
-	wire          rsp_demux_src4_startofpacket;                                                                             // rsp_demux:src4_startofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_startofpacket
-	wire          rsp_demux_src4_endofpacket;                                                                               // rsp_demux:src4_endofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_endofpacket
+	wire          rsp_demux_src4_valid;                                                                                     // rsp_demux:src4_valid -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_valid
+	wire  [114:0] rsp_demux_src4_data;                                                                                      // rsp_demux:src4_data -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_data
+	wire          rsp_demux_src4_ready;                                                                                     // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_ready -> rsp_demux:src4_ready
+	wire    [5:0] rsp_demux_src4_channel;                                                                                   // rsp_demux:src4_channel -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_channel
+	wire          rsp_demux_src4_startofpacket;                                                                             // rsp_demux:src4_startofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_startofpacket
+	wire          rsp_demux_src4_endofpacket;                                                                               // rsp_demux:src4_endofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_endofpacket
+	wire          rsp_demux_src5_valid;                                                                                     // rsp_demux:src5_valid -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_valid
+	wire  [114:0] rsp_demux_src5_data;                                                                                      // rsp_demux:src5_data -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_data
+	wire          rsp_demux_src5_ready;                                                                                     // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_ready -> rsp_demux:src5_ready
+	wire    [5:0] rsp_demux_src5_channel;                                                                                   // rsp_demux:src5_channel -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_channel
+	wire          rsp_demux_src5_startofpacket;                                                                             // rsp_demux:src5_startofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_startofpacket
+	wire          rsp_demux_src5_endofpacket;                                                                               // rsp_demux:src5_endofpacket -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_endofpacket
 	wire          rsp_demux_001_src0_valid;                                                                                 // rsp_demux_001:src0_valid -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_valid
 	wire  [150:0] rsp_demux_001_src0_data;                                                                                  // rsp_demux_001:src0_data -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_data
 	wire          rsp_demux_001_src0_ready;                                                                                 // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_ready -> rsp_demux_001:src0_ready
-	wire    [4:0] rsp_demux_001_src0_channel;                                                                               // rsp_demux_001:src0_channel -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_channel
+	wire    [5:0] rsp_demux_001_src0_channel;                                                                               // rsp_demux_001:src0_channel -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_channel
 	wire          rsp_demux_001_src0_startofpacket;                                                                         // rsp_demux_001:src0_startofpacket -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_startofpacket
 	wire          rsp_demux_001_src0_endofpacket;                                                                           // rsp_demux_001:src0_endofpacket -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:in_endofpacket
 	wire          rsp_demux_001_src1_valid;                                                                                 // rsp_demux_001:src1_valid -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_valid
 	wire  [150:0] rsp_demux_001_src1_data;                                                                                  // rsp_demux_001:src1_data -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_data
 	wire          rsp_demux_001_src1_ready;                                                                                 // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_ready -> rsp_demux_001:src1_ready
-	wire    [4:0] rsp_demux_001_src1_channel;                                                                               // rsp_demux_001:src1_channel -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_channel
+	wire    [5:0] rsp_demux_001_src1_channel;                                                                               // rsp_demux_001:src1_channel -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_channel
 	wire          rsp_demux_001_src1_startofpacket;                                                                         // rsp_demux_001:src1_startofpacket -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_startofpacket
 	wire          rsp_demux_001_src1_endofpacket;                                                                           // rsp_demux_001:src1_endofpacket -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:in_endofpacket
 	wire    [0:0] ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_valid;                                           // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_src_valid -> limiter_pipeline:in_valid
 	wire  [222:0] ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_data;                                            // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_src_data -> limiter_pipeline:in_data
 	wire          ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_ready;                                           // limiter_pipeline:in_ready -> ctl_0_dma_read_master_0_data_read_master_limiter:cmd_src_ready
-	wire    [4:0] ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_channel;                                         // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_src_channel -> limiter_pipeline:in_channel
+	wire    [5:0] ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_channel;                                         // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_src_channel -> limiter_pipeline:in_channel
 	wire          ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_startofpacket;                                   // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_src_startofpacket -> limiter_pipeline:in_startofpacket
 	wire          ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_endofpacket;                                     // ctl_0_dma_read_master_0_data_read_master_limiter:cmd_src_endofpacket -> limiter_pipeline:in_endofpacket
-	wire          limiter_pipeline_source0_valid;                                                                           // limiter_pipeline:out_valid -> cmd_demux_003:sink_valid
-	wire  [222:0] limiter_pipeline_source0_data;                                                                            // limiter_pipeline:out_data -> cmd_demux_003:sink_data
-	wire          limiter_pipeline_source0_ready;                                                                           // cmd_demux_003:sink_ready -> limiter_pipeline:out_ready
-	wire    [4:0] limiter_pipeline_source0_channel;                                                                         // limiter_pipeline:out_channel -> cmd_demux_003:sink_channel
-	wire          limiter_pipeline_source0_startofpacket;                                                                   // limiter_pipeline:out_startofpacket -> cmd_demux_003:sink_startofpacket
-	wire          limiter_pipeline_source0_endofpacket;                                                                     // limiter_pipeline:out_endofpacket -> cmd_demux_003:sink_endofpacket
-	wire          rsp_mux_003_src_valid;                                                                                    // rsp_mux_003:src_valid -> limiter_pipeline_001:in_valid
-	wire  [222:0] rsp_mux_003_src_data;                                                                                     // rsp_mux_003:src_data -> limiter_pipeline_001:in_data
-	wire          rsp_mux_003_src_ready;                                                                                    // limiter_pipeline_001:in_ready -> rsp_mux_003:src_ready
-	wire    [4:0] rsp_mux_003_src_channel;                                                                                  // rsp_mux_003:src_channel -> limiter_pipeline_001:in_channel
-	wire          rsp_mux_003_src_startofpacket;                                                                            // rsp_mux_003:src_startofpacket -> limiter_pipeline_001:in_startofpacket
-	wire          rsp_mux_003_src_endofpacket;                                                                              // rsp_mux_003:src_endofpacket -> limiter_pipeline_001:in_endofpacket
+	wire          limiter_pipeline_source0_valid;                                                                           // limiter_pipeline:out_valid -> cmd_demux_004:sink_valid
+	wire  [222:0] limiter_pipeline_source0_data;                                                                            // limiter_pipeline:out_data -> cmd_demux_004:sink_data
+	wire          limiter_pipeline_source0_ready;                                                                           // cmd_demux_004:sink_ready -> limiter_pipeline:out_ready
+	wire    [5:0] limiter_pipeline_source0_channel;                                                                         // limiter_pipeline:out_channel -> cmd_demux_004:sink_channel
+	wire          limiter_pipeline_source0_startofpacket;                                                                   // limiter_pipeline:out_startofpacket -> cmd_demux_004:sink_startofpacket
+	wire          limiter_pipeline_source0_endofpacket;                                                                     // limiter_pipeline:out_endofpacket -> cmd_demux_004:sink_endofpacket
+	wire          rsp_mux_004_src_valid;                                                                                    // rsp_mux_004:src_valid -> limiter_pipeline_001:in_valid
+	wire  [222:0] rsp_mux_004_src_data;                                                                                     // rsp_mux_004:src_data -> limiter_pipeline_001:in_data
+	wire          rsp_mux_004_src_ready;                                                                                    // limiter_pipeline_001:in_ready -> rsp_mux_004:src_ready
+	wire    [5:0] rsp_mux_004_src_channel;                                                                                  // rsp_mux_004:src_channel -> limiter_pipeline_001:in_channel
+	wire          rsp_mux_004_src_startofpacket;                                                                            // rsp_mux_004:src_startofpacket -> limiter_pipeline_001:in_startofpacket
+	wire          rsp_mux_004_src_endofpacket;                                                                              // rsp_mux_004:src_endofpacket -> limiter_pipeline_001:in_endofpacket
 	wire          limiter_pipeline_001_source0_valid;                                                                       // limiter_pipeline_001:out_valid -> ctl_0_dma_read_master_0_data_read_master_limiter:rsp_sink_valid
 	wire  [222:0] limiter_pipeline_001_source0_data;                                                                        // limiter_pipeline_001:out_data -> ctl_0_dma_read_master_0_data_read_master_limiter:rsp_sink_data
 	wire          limiter_pipeline_001_source0_ready;                                                                       // ctl_0_dma_read_master_0_data_read_master_limiter:rsp_sink_ready -> limiter_pipeline_001:out_ready
-	wire    [4:0] limiter_pipeline_001_source0_channel;                                                                     // limiter_pipeline_001:out_channel -> ctl_0_dma_read_master_0_data_read_master_limiter:rsp_sink_channel
+	wire    [5:0] limiter_pipeline_001_source0_channel;                                                                     // limiter_pipeline_001:out_channel -> ctl_0_dma_read_master_0_data_read_master_limiter:rsp_sink_channel
 	wire          limiter_pipeline_001_source0_startofpacket;                                                               // limiter_pipeline_001:out_startofpacket -> ctl_0_dma_read_master_0_data_read_master_limiter:rsp_sink_startofpacket
 	wire          limiter_pipeline_001_source0_endofpacket;                                                                 // limiter_pipeline_001:out_endofpacket -> ctl_0_dma_read_master_0_data_read_master_limiter:rsp_sink_endofpacket
 	wire          onchip_memory2_0_s1_burst_adapter_source0_valid;                                                          // onchip_memory2_0_s1_burst_adapter:source0_valid -> agent_pipeline:in_valid
 	wire  [114:0] onchip_memory2_0_s1_burst_adapter_source0_data;                                                           // onchip_memory2_0_s1_burst_adapter:source0_data -> agent_pipeline:in_data
 	wire          onchip_memory2_0_s1_burst_adapter_source0_ready;                                                          // agent_pipeline:in_ready -> onchip_memory2_0_s1_burst_adapter:source0_ready
-	wire    [4:0] onchip_memory2_0_s1_burst_adapter_source0_channel;                                                        // onchip_memory2_0_s1_burst_adapter:source0_channel -> agent_pipeline:in_channel
+	wire    [5:0] onchip_memory2_0_s1_burst_adapter_source0_channel;                                                        // onchip_memory2_0_s1_burst_adapter:source0_channel -> agent_pipeline:in_channel
 	wire          onchip_memory2_0_s1_burst_adapter_source0_startofpacket;                                                  // onchip_memory2_0_s1_burst_adapter:source0_startofpacket -> agent_pipeline:in_startofpacket
 	wire          onchip_memory2_0_s1_burst_adapter_source0_endofpacket;                                                    // onchip_memory2_0_s1_burst_adapter:source0_endofpacket -> agent_pipeline:in_endofpacket
 	wire          agent_pipeline_source0_valid;                                                                             // agent_pipeline:out_valid -> onchip_memory2_0_s1_agent:cp_valid
 	wire  [114:0] agent_pipeline_source0_data;                                                                              // agent_pipeline:out_data -> onchip_memory2_0_s1_agent:cp_data
 	wire          agent_pipeline_source0_ready;                                                                             // onchip_memory2_0_s1_agent:cp_ready -> agent_pipeline:out_ready
-	wire    [4:0] agent_pipeline_source0_channel;                                                                           // agent_pipeline:out_channel -> onchip_memory2_0_s1_agent:cp_channel
+	wire    [5:0] agent_pipeline_source0_channel;                                                                           // agent_pipeline:out_channel -> onchip_memory2_0_s1_agent:cp_channel
 	wire          agent_pipeline_source0_startofpacket;                                                                     // agent_pipeline:out_startofpacket -> onchip_memory2_0_s1_agent:cp_startofpacket
 	wire          agent_pipeline_source0_endofpacket;                                                                       // agent_pipeline:out_endofpacket -> onchip_memory2_0_s1_agent:cp_endofpacket
 	wire          onchip_memory2_0_s1_agent_rp_valid;                                                                       // onchip_memory2_0_s1_agent:rp_valid -> agent_pipeline_001:in_valid
@@ -372,21 +406,21 @@ module q_sys_mm_interconnect_0 (
 	wire          onchip_memory2_0_s1_agent_rp_ready;                                                                       // agent_pipeline_001:in_ready -> onchip_memory2_0_s1_agent:rp_ready
 	wire          onchip_memory2_0_s1_agent_rp_startofpacket;                                                               // onchip_memory2_0_s1_agent:rp_startofpacket -> agent_pipeline_001:in_startofpacket
 	wire          onchip_memory2_0_s1_agent_rp_endofpacket;                                                                 // onchip_memory2_0_s1_agent:rp_endofpacket -> agent_pipeline_001:in_endofpacket
-	wire          agent_pipeline_001_source0_valid;                                                                         // agent_pipeline_001:out_valid -> router_005:sink_valid
-	wire  [114:0] agent_pipeline_001_source0_data;                                                                          // agent_pipeline_001:out_data -> router_005:sink_data
-	wire          agent_pipeline_001_source0_ready;                                                                         // router_005:sink_ready -> agent_pipeline_001:out_ready
-	wire          agent_pipeline_001_source0_startofpacket;                                                                 // agent_pipeline_001:out_startofpacket -> router_005:sink_startofpacket
-	wire          agent_pipeline_001_source0_endofpacket;                                                                   // agent_pipeline_001:out_endofpacket -> router_005:sink_endofpacket
+	wire          agent_pipeline_001_source0_valid;                                                                         // agent_pipeline_001:out_valid -> router_006:sink_valid
+	wire  [114:0] agent_pipeline_001_source0_data;                                                                          // agent_pipeline_001:out_data -> router_006:sink_data
+	wire          agent_pipeline_001_source0_ready;                                                                         // router_006:sink_ready -> agent_pipeline_001:out_ready
+	wire          agent_pipeline_001_source0_startofpacket;                                                                 // agent_pipeline_001:out_startofpacket -> router_006:sink_startofpacket
+	wire          agent_pipeline_001_source0_endofpacket;                                                                   // agent_pipeline_001:out_endofpacket -> router_006:sink_endofpacket
 	wire          pcie_cv_hip_avmm_0_txs_burst_adapter_source0_valid;                                                       // pcie_cv_hip_avmm_0_Txs_burst_adapter:source0_valid -> agent_pipeline_002:in_valid
 	wire  [150:0] pcie_cv_hip_avmm_0_txs_burst_adapter_source0_data;                                                        // pcie_cv_hip_avmm_0_Txs_burst_adapter:source0_data -> agent_pipeline_002:in_data
 	wire          pcie_cv_hip_avmm_0_txs_burst_adapter_source0_ready;                                                       // agent_pipeline_002:in_ready -> pcie_cv_hip_avmm_0_Txs_burst_adapter:source0_ready
-	wire    [4:0] pcie_cv_hip_avmm_0_txs_burst_adapter_source0_channel;                                                     // pcie_cv_hip_avmm_0_Txs_burst_adapter:source0_channel -> agent_pipeline_002:in_channel
+	wire    [5:0] pcie_cv_hip_avmm_0_txs_burst_adapter_source0_channel;                                                     // pcie_cv_hip_avmm_0_Txs_burst_adapter:source0_channel -> agent_pipeline_002:in_channel
 	wire          pcie_cv_hip_avmm_0_txs_burst_adapter_source0_startofpacket;                                               // pcie_cv_hip_avmm_0_Txs_burst_adapter:source0_startofpacket -> agent_pipeline_002:in_startofpacket
 	wire          pcie_cv_hip_avmm_0_txs_burst_adapter_source0_endofpacket;                                                 // pcie_cv_hip_avmm_0_Txs_burst_adapter:source0_endofpacket -> agent_pipeline_002:in_endofpacket
 	wire          agent_pipeline_002_source0_valid;                                                                         // agent_pipeline_002:out_valid -> pcie_cv_hip_avmm_0_Txs_agent:cp_valid
 	wire  [150:0] agent_pipeline_002_source0_data;                                                                          // agent_pipeline_002:out_data -> pcie_cv_hip_avmm_0_Txs_agent:cp_data
 	wire          agent_pipeline_002_source0_ready;                                                                         // pcie_cv_hip_avmm_0_Txs_agent:cp_ready -> agent_pipeline_002:out_ready
-	wire    [4:0] agent_pipeline_002_source0_channel;                                                                       // agent_pipeline_002:out_channel -> pcie_cv_hip_avmm_0_Txs_agent:cp_channel
+	wire    [5:0] agent_pipeline_002_source0_channel;                                                                       // agent_pipeline_002:out_channel -> pcie_cv_hip_avmm_0_Txs_agent:cp_channel
 	wire          agent_pipeline_002_source0_startofpacket;                                                                 // agent_pipeline_002:out_startofpacket -> pcie_cv_hip_avmm_0_Txs_agent:cp_startofpacket
 	wire          agent_pipeline_002_source0_endofpacket;                                                                   // agent_pipeline_002:out_endofpacket -> pcie_cv_hip_avmm_0_Txs_agent:cp_endofpacket
 	wire          pcie_cv_hip_avmm_0_txs_agent_rp_valid;                                                                    // pcie_cv_hip_avmm_0_Txs_agent:rp_valid -> agent_pipeline_003:in_valid
@@ -394,179 +428,203 @@ module q_sys_mm_interconnect_0 (
 	wire          pcie_cv_hip_avmm_0_txs_agent_rp_ready;                                                                    // agent_pipeline_003:in_ready -> pcie_cv_hip_avmm_0_Txs_agent:rp_ready
 	wire          pcie_cv_hip_avmm_0_txs_agent_rp_startofpacket;                                                            // pcie_cv_hip_avmm_0_Txs_agent:rp_startofpacket -> agent_pipeline_003:in_startofpacket
 	wire          pcie_cv_hip_avmm_0_txs_agent_rp_endofpacket;                                                              // pcie_cv_hip_avmm_0_Txs_agent:rp_endofpacket -> agent_pipeline_003:in_endofpacket
-	wire          agent_pipeline_003_source0_valid;                                                                         // agent_pipeline_003:out_valid -> router_006:sink_valid
-	wire  [150:0] agent_pipeline_003_source0_data;                                                                          // agent_pipeline_003:out_data -> router_006:sink_data
-	wire          agent_pipeline_003_source0_ready;                                                                         // router_006:sink_ready -> agent_pipeline_003:out_ready
-	wire          agent_pipeline_003_source0_startofpacket;                                                                 // agent_pipeline_003:out_startofpacket -> router_006:sink_startofpacket
-	wire          agent_pipeline_003_source0_endofpacket;                                                                   // agent_pipeline_003:out_endofpacket -> router_006:sink_endofpacket
+	wire          agent_pipeline_003_source0_valid;                                                                         // agent_pipeline_003:out_valid -> router_007:sink_valid
+	wire  [150:0] agent_pipeline_003_source0_data;                                                                          // agent_pipeline_003:out_data -> router_007:sink_data
+	wire          agent_pipeline_003_source0_ready;                                                                         // router_007:sink_ready -> agent_pipeline_003:out_ready
+	wire          agent_pipeline_003_source0_startofpacket;                                                                 // agent_pipeline_003:out_startofpacket -> router_007:sink_startofpacket
+	wire          agent_pipeline_003_source0_endofpacket;                                                                   // agent_pipeline_003:out_endofpacket -> router_007:sink_endofpacket
 	wire          pcie_cv_hip_avmm_0_rxm_bar0_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid;                           // pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:out_valid -> mux_pipeline:in_valid
 	wire  [114:0] pcie_cv_hip_avmm_0_rxm_bar0_to_onchip_memory2_0_s1_cmd_width_adapter_src_data;                            // pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:out_data -> mux_pipeline:in_data
 	wire          pcie_cv_hip_avmm_0_rxm_bar0_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready;                           // mux_pipeline:in_ready -> pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:out_ready
-	wire    [4:0] pcie_cv_hip_avmm_0_rxm_bar0_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel;                         // pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:out_channel -> mux_pipeline:in_channel
+	wire    [5:0] pcie_cv_hip_avmm_0_rxm_bar0_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel;                         // pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:out_channel -> mux_pipeline:in_channel
 	wire          pcie_cv_hip_avmm_0_rxm_bar0_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket;                   // pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:out_startofpacket -> mux_pipeline:in_startofpacket
 	wire          pcie_cv_hip_avmm_0_rxm_bar0_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket;                     // pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter:out_endofpacket -> mux_pipeline:in_endofpacket
 	wire          mux_pipeline_source0_valid;                                                                               // mux_pipeline:out_valid -> cmd_mux:sink0_valid
 	wire  [114:0] mux_pipeline_source0_data;                                                                                // mux_pipeline:out_data -> cmd_mux:sink0_data
 	wire          mux_pipeline_source0_ready;                                                                               // cmd_mux:sink0_ready -> mux_pipeline:out_ready
-	wire    [4:0] mux_pipeline_source0_channel;                                                                             // mux_pipeline:out_channel -> cmd_mux:sink0_channel
+	wire    [5:0] mux_pipeline_source0_channel;                                                                             // mux_pipeline:out_channel -> cmd_mux:sink0_channel
 	wire          mux_pipeline_source0_startofpacket;                                                                       // mux_pipeline:out_startofpacket -> cmd_mux:sink0_startofpacket
 	wire          mux_pipeline_source0_endofpacket;                                                                         // mux_pipeline:out_endofpacket -> cmd_mux:sink0_endofpacket
 	wire          cmd_demux_001_src0_valid;                                                                                 // cmd_demux_001:src0_valid -> mux_pipeline_001:in_valid
 	wire  [114:0] cmd_demux_001_src0_data;                                                                                  // cmd_demux_001:src0_data -> mux_pipeline_001:in_data
 	wire          cmd_demux_001_src0_ready;                                                                                 // mux_pipeline_001:in_ready -> cmd_demux_001:src0_ready
-	wire    [4:0] cmd_demux_001_src0_channel;                                                                               // cmd_demux_001:src0_channel -> mux_pipeline_001:in_channel
+	wire    [5:0] cmd_demux_001_src0_channel;                                                                               // cmd_demux_001:src0_channel -> mux_pipeline_001:in_channel
 	wire          cmd_demux_001_src0_startofpacket;                                                                         // cmd_demux_001:src0_startofpacket -> mux_pipeline_001:in_startofpacket
 	wire          cmd_demux_001_src0_endofpacket;                                                                           // cmd_demux_001:src0_endofpacket -> mux_pipeline_001:in_endofpacket
 	wire          mux_pipeline_001_source0_valid;                                                                           // mux_pipeline_001:out_valid -> cmd_mux:sink1_valid
 	wire  [114:0] mux_pipeline_001_source0_data;                                                                            // mux_pipeline_001:out_data -> cmd_mux:sink1_data
 	wire          mux_pipeline_001_source0_ready;                                                                           // cmd_mux:sink1_ready -> mux_pipeline_001:out_ready
-	wire    [4:0] mux_pipeline_001_source0_channel;                                                                         // mux_pipeline_001:out_channel -> cmd_mux:sink1_channel
+	wire    [5:0] mux_pipeline_001_source0_channel;                                                                         // mux_pipeline_001:out_channel -> cmd_mux:sink1_channel
 	wire          mux_pipeline_001_source0_startofpacket;                                                                   // mux_pipeline_001:out_startofpacket -> cmd_mux:sink1_startofpacket
 	wire          mux_pipeline_001_source0_endofpacket;                                                                     // mux_pipeline_001:out_endofpacket -> cmd_mux:sink1_endofpacket
 	wire          cmd_demux_002_src0_valid;                                                                                 // cmd_demux_002:src0_valid -> mux_pipeline_002:in_valid
 	wire  [114:0] cmd_demux_002_src0_data;                                                                                  // cmd_demux_002:src0_data -> mux_pipeline_002:in_data
 	wire          cmd_demux_002_src0_ready;                                                                                 // mux_pipeline_002:in_ready -> cmd_demux_002:src0_ready
-	wire    [4:0] cmd_demux_002_src0_channel;                                                                               // cmd_demux_002:src0_channel -> mux_pipeline_002:in_channel
+	wire    [5:0] cmd_demux_002_src0_channel;                                                                               // cmd_demux_002:src0_channel -> mux_pipeline_002:in_channel
 	wire          cmd_demux_002_src0_startofpacket;                                                                         // cmd_demux_002:src0_startofpacket -> mux_pipeline_002:in_startofpacket
 	wire          cmd_demux_002_src0_endofpacket;                                                                           // cmd_demux_002:src0_endofpacket -> mux_pipeline_002:in_endofpacket
 	wire          mux_pipeline_002_source0_valid;                                                                           // mux_pipeline_002:out_valid -> cmd_mux:sink2_valid
 	wire  [114:0] mux_pipeline_002_source0_data;                                                                            // mux_pipeline_002:out_data -> cmd_mux:sink2_data
 	wire          mux_pipeline_002_source0_ready;                                                                           // cmd_mux:sink2_ready -> mux_pipeline_002:out_ready
-	wire    [4:0] mux_pipeline_002_source0_channel;                                                                         // mux_pipeline_002:out_channel -> cmd_mux:sink2_channel
+	wire    [5:0] mux_pipeline_002_source0_channel;                                                                         // mux_pipeline_002:out_channel -> cmd_mux:sink2_channel
 	wire          mux_pipeline_002_source0_startofpacket;                                                                   // mux_pipeline_002:out_startofpacket -> cmd_mux:sink2_startofpacket
 	wire          mux_pipeline_002_source0_endofpacket;                                                                     // mux_pipeline_002:out_endofpacket -> cmd_mux:sink2_endofpacket
-	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid;              // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_valid -> mux_pipeline_003:in_valid
-	wire  [114:0] ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data;               // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_data -> mux_pipeline_003:in_data
-	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready;              // mux_pipeline_003:in_ready -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_ready
-	wire    [4:0] ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel;            // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_channel -> mux_pipeline_003:in_channel
-	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket;      // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_startofpacket -> mux_pipeline_003:in_startofpacket
-	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket;        // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_endofpacket -> mux_pipeline_003:in_endofpacket
+	wire          cmd_demux_003_src0_valid;                                                                                 // cmd_demux_003:src0_valid -> mux_pipeline_003:in_valid
+	wire  [114:0] cmd_demux_003_src0_data;                                                                                  // cmd_demux_003:src0_data -> mux_pipeline_003:in_data
+	wire          cmd_demux_003_src0_ready;                                                                                 // mux_pipeline_003:in_ready -> cmd_demux_003:src0_ready
+	wire    [5:0] cmd_demux_003_src0_channel;                                                                               // cmd_demux_003:src0_channel -> mux_pipeline_003:in_channel
+	wire          cmd_demux_003_src0_startofpacket;                                                                         // cmd_demux_003:src0_startofpacket -> mux_pipeline_003:in_startofpacket
+	wire          cmd_demux_003_src0_endofpacket;                                                                           // cmd_demux_003:src0_endofpacket -> mux_pipeline_003:in_endofpacket
 	wire          mux_pipeline_003_source0_valid;                                                                           // mux_pipeline_003:out_valid -> cmd_mux:sink3_valid
 	wire  [114:0] mux_pipeline_003_source0_data;                                                                            // mux_pipeline_003:out_data -> cmd_mux:sink3_data
 	wire          mux_pipeline_003_source0_ready;                                                                           // cmd_mux:sink3_ready -> mux_pipeline_003:out_ready
-	wire    [4:0] mux_pipeline_003_source0_channel;                                                                         // mux_pipeline_003:out_channel -> cmd_mux:sink3_channel
+	wire    [5:0] mux_pipeline_003_source0_channel;                                                                         // mux_pipeline_003:out_channel -> cmd_mux:sink3_channel
 	wire          mux_pipeline_003_source0_startofpacket;                                                                   // mux_pipeline_003:out_startofpacket -> cmd_mux:sink3_startofpacket
 	wire          mux_pipeline_003_source0_endofpacket;                                                                     // mux_pipeline_003:out_endofpacket -> cmd_mux:sink3_endofpacket
-	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid;            // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_valid -> mux_pipeline_004:in_valid
-	wire  [114:0] ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data;             // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_data -> mux_pipeline_004:in_data
-	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready;            // mux_pipeline_004:in_ready -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_ready
-	wire    [4:0] ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel;          // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_channel -> mux_pipeline_004:in_channel
-	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket;    // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_startofpacket -> mux_pipeline_004:in_startofpacket
-	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket;      // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_endofpacket -> mux_pipeline_004:in_endofpacket
+	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid;              // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_valid -> mux_pipeline_004:in_valid
+	wire  [114:0] ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data;               // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_data -> mux_pipeline_004:in_data
+	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready;              // mux_pipeline_004:in_ready -> ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_ready
+	wire    [5:0] ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel;            // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_channel -> mux_pipeline_004:in_channel
+	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket;      // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_startofpacket -> mux_pipeline_004:in_startofpacket
+	wire          ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket;        // ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_endofpacket -> mux_pipeline_004:in_endofpacket
 	wire          mux_pipeline_004_source0_valid;                                                                           // mux_pipeline_004:out_valid -> cmd_mux:sink4_valid
 	wire  [114:0] mux_pipeline_004_source0_data;                                                                            // mux_pipeline_004:out_data -> cmd_mux:sink4_data
 	wire          mux_pipeline_004_source0_ready;                                                                           // cmd_mux:sink4_ready -> mux_pipeline_004:out_ready
-	wire    [4:0] mux_pipeline_004_source0_channel;                                                                         // mux_pipeline_004:out_channel -> cmd_mux:sink4_channel
+	wire    [5:0] mux_pipeline_004_source0_channel;                                                                         // mux_pipeline_004:out_channel -> cmd_mux:sink4_channel
 	wire          mux_pipeline_004_source0_startofpacket;                                                                   // mux_pipeline_004:out_startofpacket -> cmd_mux:sink4_startofpacket
 	wire          mux_pipeline_004_source0_endofpacket;                                                                     // mux_pipeline_004:out_endofpacket -> cmd_mux:sink4_endofpacket
-	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid;           // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_valid -> mux_pipeline_005:in_valid
-	wire  [150:0] ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data;            // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_data -> mux_pipeline_005:in_data
-	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready;           // mux_pipeline_005:in_ready -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_ready
-	wire    [4:0] ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel;         // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_channel -> mux_pipeline_005:in_channel
-	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket;   // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_startofpacket -> mux_pipeline_005:in_startofpacket
-	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket;     // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_endofpacket -> mux_pipeline_005:in_endofpacket
-	wire          mux_pipeline_005_source0_valid;                                                                           // mux_pipeline_005:out_valid -> cmd_mux_001:sink0_valid
-	wire  [150:0] mux_pipeline_005_source0_data;                                                                            // mux_pipeline_005:out_data -> cmd_mux_001:sink0_data
-	wire          mux_pipeline_005_source0_ready;                                                                           // cmd_mux_001:sink0_ready -> mux_pipeline_005:out_ready
-	wire    [4:0] mux_pipeline_005_source0_channel;                                                                         // mux_pipeline_005:out_channel -> cmd_mux_001:sink0_channel
-	wire          mux_pipeline_005_source0_startofpacket;                                                                   // mux_pipeline_005:out_startofpacket -> cmd_mux_001:sink0_startofpacket
-	wire          mux_pipeline_005_source0_endofpacket;                                                                     // mux_pipeline_005:out_endofpacket -> cmd_mux_001:sink0_endofpacket
-	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid;         // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_valid -> mux_pipeline_006:in_valid
-	wire  [150:0] ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data;          // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_data -> mux_pipeline_006:in_data
-	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready;         // mux_pipeline_006:in_ready -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_ready
-	wire    [4:0] ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel;       // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_channel -> mux_pipeline_006:in_channel
-	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket; // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_startofpacket -> mux_pipeline_006:in_startofpacket
-	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket;   // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_endofpacket -> mux_pipeline_006:in_endofpacket
-	wire          mux_pipeline_006_source0_valid;                                                                           // mux_pipeline_006:out_valid -> cmd_mux_001:sink1_valid
-	wire  [150:0] mux_pipeline_006_source0_data;                                                                            // mux_pipeline_006:out_data -> cmd_mux_001:sink1_data
-	wire          mux_pipeline_006_source0_ready;                                                                           // cmd_mux_001:sink1_ready -> mux_pipeline_006:out_ready
-	wire    [4:0] mux_pipeline_006_source0_channel;                                                                         // mux_pipeline_006:out_channel -> cmd_mux_001:sink1_channel
-	wire          mux_pipeline_006_source0_startofpacket;                                                                   // mux_pipeline_006:out_startofpacket -> cmd_mux_001:sink1_startofpacket
-	wire          mux_pipeline_006_source0_endofpacket;                                                                     // mux_pipeline_006:out_endofpacket -> cmd_mux_001:sink1_endofpacket
-	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_valid;                           // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_valid -> mux_pipeline_007:in_valid
-	wire  [150:0] onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_data;                            // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_data -> mux_pipeline_007:in_data
-	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_ready;                           // mux_pipeline_007:in_ready -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_ready
-	wire    [4:0] onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_channel;                         // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_channel -> mux_pipeline_007:in_channel
-	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_startofpacket;                   // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_startofpacket -> mux_pipeline_007:in_startofpacket
-	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_endofpacket;                     // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_endofpacket -> mux_pipeline_007:in_endofpacket
-	wire          mux_pipeline_007_source0_valid;                                                                           // mux_pipeline_007:out_valid -> rsp_mux:sink0_valid
-	wire  [150:0] mux_pipeline_007_source0_data;                                                                            // mux_pipeline_007:out_data -> rsp_mux:sink0_data
-	wire          mux_pipeline_007_source0_ready;                                                                           // rsp_mux:sink0_ready -> mux_pipeline_007:out_ready
-	wire    [4:0] mux_pipeline_007_source0_channel;                                                                         // mux_pipeline_007:out_channel -> rsp_mux:sink0_channel
-	wire          mux_pipeline_007_source0_startofpacket;                                                                   // mux_pipeline_007:out_startofpacket -> rsp_mux:sink0_startofpacket
-	wire          mux_pipeline_007_source0_endofpacket;                                                                     // mux_pipeline_007:out_endofpacket -> rsp_mux:sink0_endofpacket
-	wire          rsp_demux_src1_valid;                                                                                     // rsp_demux:src1_valid -> mux_pipeline_008:in_valid
-	wire  [114:0] rsp_demux_src1_data;                                                                                      // rsp_demux:src1_data -> mux_pipeline_008:in_data
-	wire          rsp_demux_src1_ready;                                                                                     // mux_pipeline_008:in_ready -> rsp_demux:src1_ready
-	wire    [4:0] rsp_demux_src1_channel;                                                                                   // rsp_demux:src1_channel -> mux_pipeline_008:in_channel
-	wire          rsp_demux_src1_startofpacket;                                                                             // rsp_demux:src1_startofpacket -> mux_pipeline_008:in_startofpacket
-	wire          rsp_demux_src1_endofpacket;                                                                               // rsp_demux:src1_endofpacket -> mux_pipeline_008:in_endofpacket
-	wire          mux_pipeline_008_source0_valid;                                                                           // mux_pipeline_008:out_valid -> rsp_mux_001:sink0_valid
-	wire  [114:0] mux_pipeline_008_source0_data;                                                                            // mux_pipeline_008:out_data -> rsp_mux_001:sink0_data
-	wire          mux_pipeline_008_source0_ready;                                                                           // rsp_mux_001:sink0_ready -> mux_pipeline_008:out_ready
-	wire    [4:0] mux_pipeline_008_source0_channel;                                                                         // mux_pipeline_008:out_channel -> rsp_mux_001:sink0_channel
-	wire          mux_pipeline_008_source0_startofpacket;                                                                   // mux_pipeline_008:out_startofpacket -> rsp_mux_001:sink0_startofpacket
-	wire          mux_pipeline_008_source0_endofpacket;                                                                     // mux_pipeline_008:out_endofpacket -> rsp_mux_001:sink0_endofpacket
-	wire          rsp_demux_src2_valid;                                                                                     // rsp_demux:src2_valid -> mux_pipeline_009:in_valid
-	wire  [114:0] rsp_demux_src2_data;                                                                                      // rsp_demux:src2_data -> mux_pipeline_009:in_data
-	wire          rsp_demux_src2_ready;                                                                                     // mux_pipeline_009:in_ready -> rsp_demux:src2_ready
-	wire    [4:0] rsp_demux_src2_channel;                                                                                   // rsp_demux:src2_channel -> mux_pipeline_009:in_channel
-	wire          rsp_demux_src2_startofpacket;                                                                             // rsp_demux:src2_startofpacket -> mux_pipeline_009:in_startofpacket
-	wire          rsp_demux_src2_endofpacket;                                                                               // rsp_demux:src2_endofpacket -> mux_pipeline_009:in_endofpacket
-	wire          mux_pipeline_009_source0_valid;                                                                           // mux_pipeline_009:out_valid -> rsp_mux_002:sink0_valid
-	wire  [114:0] mux_pipeline_009_source0_data;                                                                            // mux_pipeline_009:out_data -> rsp_mux_002:sink0_data
-	wire          mux_pipeline_009_source0_ready;                                                                           // rsp_mux_002:sink0_ready -> mux_pipeline_009:out_ready
-	wire    [4:0] mux_pipeline_009_source0_channel;                                                                         // mux_pipeline_009:out_channel -> rsp_mux_002:sink0_channel
-	wire          mux_pipeline_009_source0_startofpacket;                                                                   // mux_pipeline_009:out_startofpacket -> rsp_mux_002:sink0_startofpacket
-	wire          mux_pipeline_009_source0_endofpacket;                                                                     // mux_pipeline_009:out_endofpacket -> rsp_mux_002:sink0_endofpacket
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_valid;              // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_valid -> mux_pipeline_010:in_valid
-	wire  [222:0] onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_data;               // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_data -> mux_pipeline_010:in_data
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_ready;              // mux_pipeline_010:in_ready -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_ready
-	wire    [4:0] onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_channel;            // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_channel -> mux_pipeline_010:in_channel
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_startofpacket;      // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_010:in_startofpacket
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_endofpacket;        // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_010:in_endofpacket
-	wire          mux_pipeline_010_source0_valid;                                                                           // mux_pipeline_010:out_valid -> rsp_mux_003:sink0_valid
-	wire  [222:0] mux_pipeline_010_source0_data;                                                                            // mux_pipeline_010:out_data -> rsp_mux_003:sink0_data
-	wire          mux_pipeline_010_source0_ready;                                                                           // rsp_mux_003:sink0_ready -> mux_pipeline_010:out_ready
-	wire    [4:0] mux_pipeline_010_source0_channel;                                                                         // mux_pipeline_010:out_channel -> rsp_mux_003:sink0_channel
-	wire          mux_pipeline_010_source0_startofpacket;                                                                   // mux_pipeline_010:out_startofpacket -> rsp_mux_003:sink0_startofpacket
-	wire          mux_pipeline_010_source0_endofpacket;                                                                     // mux_pipeline_010:out_endofpacket -> rsp_mux_003:sink0_endofpacket
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_valid;           // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_valid -> mux_pipeline_011:in_valid
-	wire  [222:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_data;            // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_data -> mux_pipeline_011:in_data
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_ready;           // mux_pipeline_011:in_ready -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_ready
-	wire    [4:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_channel;         // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_channel -> mux_pipeline_011:in_channel
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_startofpacket;   // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_011:in_startofpacket
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_endofpacket;     // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_011:in_endofpacket
-	wire          mux_pipeline_011_source0_valid;                                                                           // mux_pipeline_011:out_valid -> rsp_mux_003:sink1_valid
-	wire  [222:0] mux_pipeline_011_source0_data;                                                                            // mux_pipeline_011:out_data -> rsp_mux_003:sink1_data
-	wire          mux_pipeline_011_source0_ready;                                                                           // rsp_mux_003:sink1_ready -> mux_pipeline_011:out_ready
-	wire    [4:0] mux_pipeline_011_source0_channel;                                                                         // mux_pipeline_011:out_channel -> rsp_mux_003:sink1_channel
-	wire          mux_pipeline_011_source0_startofpacket;                                                                   // mux_pipeline_011:out_startofpacket -> rsp_mux_003:sink1_startofpacket
-	wire          mux_pipeline_011_source0_endofpacket;                                                                     // mux_pipeline_011:out_endofpacket -> rsp_mux_003:sink1_endofpacket
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_valid;            // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_valid -> mux_pipeline_012:in_valid
-	wire  [222:0] onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_data;             // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_data -> mux_pipeline_012:in_data
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_ready;            // mux_pipeline_012:in_ready -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_ready
-	wire    [4:0] onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_channel;          // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_channel -> mux_pipeline_012:in_channel
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_startofpacket;    // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_012:in_startofpacket
-	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_endofpacket;      // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_012:in_endofpacket
+	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid;            // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_valid -> mux_pipeline_005:in_valid
+	wire  [114:0] ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data;             // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_data -> mux_pipeline_005:in_data
+	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready;            // mux_pipeline_005:in_ready -> ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_ready
+	wire    [5:0] ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel;          // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_channel -> mux_pipeline_005:in_channel
+	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket;    // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_startofpacket -> mux_pipeline_005:in_startofpacket
+	wire          ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket;      // ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter:out_endofpacket -> mux_pipeline_005:in_endofpacket
+	wire          mux_pipeline_005_source0_valid;                                                                           // mux_pipeline_005:out_valid -> cmd_mux:sink5_valid
+	wire  [114:0] mux_pipeline_005_source0_data;                                                                            // mux_pipeline_005:out_data -> cmd_mux:sink5_data
+	wire          mux_pipeline_005_source0_ready;                                                                           // cmd_mux:sink5_ready -> mux_pipeline_005:out_ready
+	wire    [5:0] mux_pipeline_005_source0_channel;                                                                         // mux_pipeline_005:out_channel -> cmd_mux:sink5_channel
+	wire          mux_pipeline_005_source0_startofpacket;                                                                   // mux_pipeline_005:out_startofpacket -> cmd_mux:sink5_startofpacket
+	wire          mux_pipeline_005_source0_endofpacket;                                                                     // mux_pipeline_005:out_endofpacket -> cmd_mux:sink5_endofpacket
+	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid;           // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_valid -> mux_pipeline_006:in_valid
+	wire  [150:0] ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data;            // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_data -> mux_pipeline_006:in_data
+	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready;           // mux_pipeline_006:in_ready -> ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_ready
+	wire    [5:0] ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel;         // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_channel -> mux_pipeline_006:in_channel
+	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket;   // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_startofpacket -> mux_pipeline_006:in_startofpacket
+	wire          ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket;     // ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_endofpacket -> mux_pipeline_006:in_endofpacket
+	wire          mux_pipeline_006_source0_valid;                                                                           // mux_pipeline_006:out_valid -> cmd_mux_001:sink0_valid
+	wire  [150:0] mux_pipeline_006_source0_data;                                                                            // mux_pipeline_006:out_data -> cmd_mux_001:sink0_data
+	wire          mux_pipeline_006_source0_ready;                                                                           // cmd_mux_001:sink0_ready -> mux_pipeline_006:out_ready
+	wire    [5:0] mux_pipeline_006_source0_channel;                                                                         // mux_pipeline_006:out_channel -> cmd_mux_001:sink0_channel
+	wire          mux_pipeline_006_source0_startofpacket;                                                                   // mux_pipeline_006:out_startofpacket -> cmd_mux_001:sink0_startofpacket
+	wire          mux_pipeline_006_source0_endofpacket;                                                                     // mux_pipeline_006:out_endofpacket -> cmd_mux_001:sink0_endofpacket
+	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid;         // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_valid -> mux_pipeline_007:in_valid
+	wire  [150:0] ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data;          // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_data -> mux_pipeline_007:in_data
+	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready;         // mux_pipeline_007:in_ready -> ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_ready
+	wire    [5:0] ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel;       // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_channel -> mux_pipeline_007:in_channel
+	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket; // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_startofpacket -> mux_pipeline_007:in_startofpacket
+	wire          ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket;   // ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_Txs_cmd_width_adapter:out_endofpacket -> mux_pipeline_007:in_endofpacket
+	wire          mux_pipeline_007_source0_valid;                                                                           // mux_pipeline_007:out_valid -> cmd_mux_001:sink1_valid
+	wire  [150:0] mux_pipeline_007_source0_data;                                                                            // mux_pipeline_007:out_data -> cmd_mux_001:sink1_data
+	wire          mux_pipeline_007_source0_ready;                                                                           // cmd_mux_001:sink1_ready -> mux_pipeline_007:out_ready
+	wire    [5:0] mux_pipeline_007_source0_channel;                                                                         // mux_pipeline_007:out_channel -> cmd_mux_001:sink1_channel
+	wire          mux_pipeline_007_source0_startofpacket;                                                                   // mux_pipeline_007:out_startofpacket -> cmd_mux_001:sink1_startofpacket
+	wire          mux_pipeline_007_source0_endofpacket;                                                                     // mux_pipeline_007:out_endofpacket -> cmd_mux_001:sink1_endofpacket
+	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_valid;                           // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_valid -> mux_pipeline_008:in_valid
+	wire  [150:0] onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_data;                            // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_data -> mux_pipeline_008:in_data
+	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_ready;                           // mux_pipeline_008:in_ready -> onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_ready
+	wire    [5:0] onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_channel;                         // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_channel -> mux_pipeline_008:in_channel
+	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_startofpacket;                   // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_startofpacket -> mux_pipeline_008:in_startofpacket
+	wire          onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_endofpacket;                     // onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_Rxm_BAR0_rsp_width_adapter:out_endofpacket -> mux_pipeline_008:in_endofpacket
+	wire          mux_pipeline_008_source0_valid;                                                                           // mux_pipeline_008:out_valid -> rsp_mux:sink0_valid
+	wire  [150:0] mux_pipeline_008_source0_data;                                                                            // mux_pipeline_008:out_data -> rsp_mux:sink0_data
+	wire          mux_pipeline_008_source0_ready;                                                                           // rsp_mux:sink0_ready -> mux_pipeline_008:out_ready
+	wire    [5:0] mux_pipeline_008_source0_channel;                                                                         // mux_pipeline_008:out_channel -> rsp_mux:sink0_channel
+	wire          mux_pipeline_008_source0_startofpacket;                                                                   // mux_pipeline_008:out_startofpacket -> rsp_mux:sink0_startofpacket
+	wire          mux_pipeline_008_source0_endofpacket;                                                                     // mux_pipeline_008:out_endofpacket -> rsp_mux:sink0_endofpacket
+	wire          rsp_demux_src1_valid;                                                                                     // rsp_demux:src1_valid -> mux_pipeline_009:in_valid
+	wire  [114:0] rsp_demux_src1_data;                                                                                      // rsp_demux:src1_data -> mux_pipeline_009:in_data
+	wire          rsp_demux_src1_ready;                                                                                     // mux_pipeline_009:in_ready -> rsp_demux:src1_ready
+	wire    [5:0] rsp_demux_src1_channel;                                                                                   // rsp_demux:src1_channel -> mux_pipeline_009:in_channel
+	wire          rsp_demux_src1_startofpacket;                                                                             // rsp_demux:src1_startofpacket -> mux_pipeline_009:in_startofpacket
+	wire          rsp_demux_src1_endofpacket;                                                                               // rsp_demux:src1_endofpacket -> mux_pipeline_009:in_endofpacket
+	wire          mux_pipeline_009_source0_valid;                                                                           // mux_pipeline_009:out_valid -> rsp_mux_001:sink0_valid
+	wire  [114:0] mux_pipeline_009_source0_data;                                                                            // mux_pipeline_009:out_data -> rsp_mux_001:sink0_data
+	wire          mux_pipeline_009_source0_ready;                                                                           // rsp_mux_001:sink0_ready -> mux_pipeline_009:out_ready
+	wire    [5:0] mux_pipeline_009_source0_channel;                                                                         // mux_pipeline_009:out_channel -> rsp_mux_001:sink0_channel
+	wire          mux_pipeline_009_source0_startofpacket;                                                                   // mux_pipeline_009:out_startofpacket -> rsp_mux_001:sink0_startofpacket
+	wire          mux_pipeline_009_source0_endofpacket;                                                                     // mux_pipeline_009:out_endofpacket -> rsp_mux_001:sink0_endofpacket
+	wire          rsp_demux_src2_valid;                                                                                     // rsp_demux:src2_valid -> mux_pipeline_010:in_valid
+	wire  [114:0] rsp_demux_src2_data;                                                                                      // rsp_demux:src2_data -> mux_pipeline_010:in_data
+	wire          rsp_demux_src2_ready;                                                                                     // mux_pipeline_010:in_ready -> rsp_demux:src2_ready
+	wire    [5:0] rsp_demux_src2_channel;                                                                                   // rsp_demux:src2_channel -> mux_pipeline_010:in_channel
+	wire          rsp_demux_src2_startofpacket;                                                                             // rsp_demux:src2_startofpacket -> mux_pipeline_010:in_startofpacket
+	wire          rsp_demux_src2_endofpacket;                                                                               // rsp_demux:src2_endofpacket -> mux_pipeline_010:in_endofpacket
+	wire          mux_pipeline_010_source0_valid;                                                                           // mux_pipeline_010:out_valid -> rsp_mux_002:sink0_valid
+	wire  [114:0] mux_pipeline_010_source0_data;                                                                            // mux_pipeline_010:out_data -> rsp_mux_002:sink0_data
+	wire          mux_pipeline_010_source0_ready;                                                                           // rsp_mux_002:sink0_ready -> mux_pipeline_010:out_ready
+	wire    [5:0] mux_pipeline_010_source0_channel;                                                                         // mux_pipeline_010:out_channel -> rsp_mux_002:sink0_channel
+	wire          mux_pipeline_010_source0_startofpacket;                                                                   // mux_pipeline_010:out_startofpacket -> rsp_mux_002:sink0_startofpacket
+	wire          mux_pipeline_010_source0_endofpacket;                                                                     // mux_pipeline_010:out_endofpacket -> rsp_mux_002:sink0_endofpacket
+	wire          rsp_demux_src3_valid;                                                                                     // rsp_demux:src3_valid -> mux_pipeline_011:in_valid
+	wire  [114:0] rsp_demux_src3_data;                                                                                      // rsp_demux:src3_data -> mux_pipeline_011:in_data
+	wire          rsp_demux_src3_ready;                                                                                     // mux_pipeline_011:in_ready -> rsp_demux:src3_ready
+	wire    [5:0] rsp_demux_src3_channel;                                                                                   // rsp_demux:src3_channel -> mux_pipeline_011:in_channel
+	wire          rsp_demux_src3_startofpacket;                                                                             // rsp_demux:src3_startofpacket -> mux_pipeline_011:in_startofpacket
+	wire          rsp_demux_src3_endofpacket;                                                                               // rsp_demux:src3_endofpacket -> mux_pipeline_011:in_endofpacket
+	wire          mux_pipeline_011_source0_valid;                                                                           // mux_pipeline_011:out_valid -> rsp_mux_003:sink0_valid
+	wire  [114:0] mux_pipeline_011_source0_data;                                                                            // mux_pipeline_011:out_data -> rsp_mux_003:sink0_data
+	wire          mux_pipeline_011_source0_ready;                                                                           // rsp_mux_003:sink0_ready -> mux_pipeline_011:out_ready
+	wire    [5:0] mux_pipeline_011_source0_channel;                                                                         // mux_pipeline_011:out_channel -> rsp_mux_003:sink0_channel
+	wire          mux_pipeline_011_source0_startofpacket;                                                                   // mux_pipeline_011:out_startofpacket -> rsp_mux_003:sink0_startofpacket
+	wire          mux_pipeline_011_source0_endofpacket;                                                                     // mux_pipeline_011:out_endofpacket -> rsp_mux_003:sink0_endofpacket
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_valid;              // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_valid -> mux_pipeline_012:in_valid
+	wire  [222:0] onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_data;               // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_data -> mux_pipeline_012:in_data
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_ready;              // mux_pipeline_012:in_ready -> onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_ready
+	wire    [5:0] onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_channel;            // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_channel -> mux_pipeline_012:in_channel
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_startofpacket;      // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_012:in_startofpacket
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_endofpacket;        // onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_012:in_endofpacket
 	wire          mux_pipeline_012_source0_valid;                                                                           // mux_pipeline_012:out_valid -> rsp_mux_004:sink0_valid
 	wire  [222:0] mux_pipeline_012_source0_data;                                                                            // mux_pipeline_012:out_data -> rsp_mux_004:sink0_data
 	wire          mux_pipeline_012_source0_ready;                                                                           // rsp_mux_004:sink0_ready -> mux_pipeline_012:out_ready
-	wire    [4:0] mux_pipeline_012_source0_channel;                                                                         // mux_pipeline_012:out_channel -> rsp_mux_004:sink0_channel
+	wire    [5:0] mux_pipeline_012_source0_channel;                                                                         // mux_pipeline_012:out_channel -> rsp_mux_004:sink0_channel
 	wire          mux_pipeline_012_source0_startofpacket;                                                                   // mux_pipeline_012:out_startofpacket -> rsp_mux_004:sink0_startofpacket
 	wire          mux_pipeline_012_source0_endofpacket;                                                                     // mux_pipeline_012:out_endofpacket -> rsp_mux_004:sink0_endofpacket
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_valid;         // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_valid -> mux_pipeline_013:in_valid
-	wire  [222:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_data;          // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_data -> mux_pipeline_013:in_data
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_ready;         // mux_pipeline_013:in_ready -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_ready
-	wire    [4:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_channel;       // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_channel -> mux_pipeline_013:in_channel
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_startofpacket; // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_013:in_startofpacket
-	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_endofpacket;   // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_013:in_endofpacket
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_valid;           // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_valid -> mux_pipeline_013:in_valid
+	wire  [222:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_data;            // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_data -> mux_pipeline_013:in_data
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_ready;           // mux_pipeline_013:in_ready -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_ready
+	wire    [5:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_channel;         // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_channel -> mux_pipeline_013:in_channel
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_startofpacket;   // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_013:in_startofpacket
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_endofpacket;     // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_013:in_endofpacket
 	wire          mux_pipeline_013_source0_valid;                                                                           // mux_pipeline_013:out_valid -> rsp_mux_004:sink1_valid
 	wire  [222:0] mux_pipeline_013_source0_data;                                                                            // mux_pipeline_013:out_data -> rsp_mux_004:sink1_data
 	wire          mux_pipeline_013_source0_ready;                                                                           // rsp_mux_004:sink1_ready -> mux_pipeline_013:out_ready
-	wire    [4:0] mux_pipeline_013_source0_channel;                                                                         // mux_pipeline_013:out_channel -> rsp_mux_004:sink1_channel
+	wire    [5:0] mux_pipeline_013_source0_channel;                                                                         // mux_pipeline_013:out_channel -> rsp_mux_004:sink1_channel
 	wire          mux_pipeline_013_source0_startofpacket;                                                                   // mux_pipeline_013:out_startofpacket -> rsp_mux_004:sink1_startofpacket
 	wire          mux_pipeline_013_source0_endofpacket;                                                                     // mux_pipeline_013:out_endofpacket -> rsp_mux_004:sink1_endofpacket
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_valid;            // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_valid -> mux_pipeline_014:in_valid
+	wire  [222:0] onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_data;             // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_data -> mux_pipeline_014:in_data
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_ready;            // mux_pipeline_014:in_ready -> onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_ready
+	wire    [5:0] onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_channel;          // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_channel -> mux_pipeline_014:in_channel
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_startofpacket;    // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_014:in_startofpacket
+	wire          onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_endofpacket;      // onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_014:in_endofpacket
+	wire          mux_pipeline_014_source0_valid;                                                                           // mux_pipeline_014:out_valid -> rsp_mux_005:sink0_valid
+	wire  [222:0] mux_pipeline_014_source0_data;                                                                            // mux_pipeline_014:out_data -> rsp_mux_005:sink0_data
+	wire          mux_pipeline_014_source0_ready;                                                                           // rsp_mux_005:sink0_ready -> mux_pipeline_014:out_ready
+	wire    [5:0] mux_pipeline_014_source0_channel;                                                                         // mux_pipeline_014:out_channel -> rsp_mux_005:sink0_channel
+	wire          mux_pipeline_014_source0_startofpacket;                                                                   // mux_pipeline_014:out_startofpacket -> rsp_mux_005:sink0_startofpacket
+	wire          mux_pipeline_014_source0_endofpacket;                                                                     // mux_pipeline_014:out_endofpacket -> rsp_mux_005:sink0_endofpacket
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_valid;         // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_valid -> mux_pipeline_015:in_valid
+	wire  [222:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_data;          // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_data -> mux_pipeline_015:in_data
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_ready;         // mux_pipeline_015:in_ready -> pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_ready
+	wire    [5:0] pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_channel;       // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_channel -> mux_pipeline_015:in_channel
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_startofpacket; // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_startofpacket -> mux_pipeline_015:in_startofpacket
+	wire          pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_endofpacket;   // pcie_cv_hip_avmm_0_Txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter:out_endofpacket -> mux_pipeline_015:in_endofpacket
+	wire          mux_pipeline_015_source0_valid;                                                                           // mux_pipeline_015:out_valid -> rsp_mux_005:sink1_valid
+	wire  [222:0] mux_pipeline_015_source0_data;                                                                            // mux_pipeline_015:out_data -> rsp_mux_005:sink1_data
+	wire          mux_pipeline_015_source0_ready;                                                                           // rsp_mux_005:sink1_ready -> mux_pipeline_015:out_ready
+	wire    [5:0] mux_pipeline_015_source0_channel;                                                                         // mux_pipeline_015:out_channel -> rsp_mux_005:sink1_channel
+	wire          mux_pipeline_015_source0_startofpacket;                                                                   // mux_pipeline_015:out_startofpacket -> rsp_mux_005:sink1_startofpacket
+	wire          mux_pipeline_015_source0_endofpacket;                                                                     // mux_pipeline_015:out_endofpacket -> rsp_mux_005:sink1_endofpacket
 	wire          onchip_memory2_0_s1_agent_rdata_fifo_src_valid;                                                           // onchip_memory2_0_s1_agent:rdata_fifo_src_valid -> avalon_st_adapter:in_0_valid
 	wire   [33:0] onchip_memory2_0_s1_agent_rdata_fifo_src_data;                                                            // onchip_memory2_0_s1_agent:rdata_fifo_src_data -> avalon_st_adapter:in_0_data
 	wire          onchip_memory2_0_s1_agent_rdata_fifo_src_ready;                                                           // avalon_st_adapter:in_0_ready -> onchip_memory2_0_s1_agent:rdata_fifo_src_ready
@@ -763,6 +821,66 @@ module q_sys_mm_interconnect_0 (
 	);
 
 	altera_merlin_master_translator #(
+		.AV_ADDRESS_W                (32),
+		.AV_DATA_W                   (32),
+		.AV_BURSTCOUNT_W             (1),
+		.AV_BYTEENABLE_W             (4),
+		.UAV_ADDRESS_W               (32),
+		.UAV_BURSTCOUNT_W            (3),
+		.USE_READ                    (1),
+		.USE_WRITE                   (0),
+		.USE_BEGINBURSTTRANSFER      (0),
+		.USE_BEGINTRANSFER           (0),
+		.USE_CHIPSELECT              (0),
+		.USE_BURSTCOUNT              (0),
+		.USE_READDATAVALID           (1),
+		.USE_WAITREQUEST             (1),
+		.USE_READRESPONSE            (0),
+		.USE_WRITERESPONSE           (0),
+		.AV_SYMBOLS_PER_WORD         (4),
+		.AV_ADDRESS_SYMBOLS          (1),
+		.AV_BURSTCOUNT_SYMBOLS       (0),
+		.AV_CONSTANT_BURST_BEHAVIOR  (0),
+		.UAV_CONSTANT_BURST_BEHAVIOR (0),
+		.AV_LINEWRAPBURSTS           (0),
+		.AV_REGISTERINCOMINGSIGNALS  (0)
+	) master_read_coeff_avalon_master_translator (
+		.clk                    (pcie_cv_hip_avmm_0_coreclkout_clk),                                                  //                       clk.clk
+		.reset                  (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                          //                     reset.reset
+		.uav_address            (master_read_coeff_avalon_master_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
+		.uav_burstcount         (master_read_coeff_avalon_master_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
+		.uav_read               (master_read_coeff_avalon_master_translator_avalon_universal_master_0_read),          //                          .read
+		.uav_write              (master_read_coeff_avalon_master_translator_avalon_universal_master_0_write),         //                          .write
+		.uav_waitrequest        (master_read_coeff_avalon_master_translator_avalon_universal_master_0_waitrequest),   //                          .waitrequest
+		.uav_readdatavalid      (master_read_coeff_avalon_master_translator_avalon_universal_master_0_readdatavalid), //                          .readdatavalid
+		.uav_byteenable         (master_read_coeff_avalon_master_translator_avalon_universal_master_0_byteenable),    //                          .byteenable
+		.uav_readdata           (master_read_coeff_avalon_master_translator_avalon_universal_master_0_readdata),      //                          .readdata
+		.uav_writedata          (master_read_coeff_avalon_master_translator_avalon_universal_master_0_writedata),     //                          .writedata
+		.uav_lock               (master_read_coeff_avalon_master_translator_avalon_universal_master_0_lock),          //                          .lock
+		.uav_debugaccess        (master_read_coeff_avalon_master_translator_avalon_universal_master_0_debugaccess),   //                          .debugaccess
+		.av_address             (master_read_coeff_avalon_master_address),                                            //      avalon_anti_master_0.address
+		.av_waitrequest         (master_read_coeff_avalon_master_waitrequest),                                        //                          .waitrequest
+		.av_byteenable          (master_read_coeff_avalon_master_byteenable),                                         //                          .byteenable
+		.av_read                (master_read_coeff_avalon_master_read),                                               //                          .read
+		.av_readdata            (master_read_coeff_avalon_master_readdata),                                           //                          .readdata
+		.av_readdatavalid       (master_read_coeff_avalon_master_readdatavalid),                                      //                          .readdatavalid
+		.av_burstcount          (1'b1),                                                                               //               (terminated)
+		.av_beginbursttransfer  (1'b0),                                                                               //               (terminated)
+		.av_begintransfer       (1'b0),                                                                               //               (terminated)
+		.av_chipselect          (1'b0),                                                                               //               (terminated)
+		.av_write               (1'b0),                                                                               //               (terminated)
+		.av_writedata           (32'b00000000000000000000000000000000),                                               //               (terminated)
+		.av_lock                (1'b0),                                                                               //               (terminated)
+		.av_debugaccess         (1'b0),                                                                               //               (terminated)
+		.uav_clken              (),                                                                                   //               (terminated)
+		.av_clken               (1'b1),                                                                               //               (terminated)
+		.uav_response           (2'b00),                                                                              //               (terminated)
+		.av_response            (),                                                                                   //               (terminated)
+		.uav_writeresponsevalid (1'b0),                                                                               //               (terminated)
+		.av_writeresponsevalid  ()                                                                                    //               (terminated)
+	);
+
+	altera_merlin_master_translator #(
 		.AV_ADDRESS_W                (27),
 		.AV_DATA_W                   (128),
 		.AV_BURSTCOUNT_W             (7),
@@ -883,7 +1001,7 @@ module q_sys_mm_interconnect_0 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (8),
+		.AV_ADDRESS_W                   (9),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (1),
@@ -1053,10 +1171,10 @@ module q_sys_mm_interconnect_0 (
 		.PKT_DEST_ID_H             (137),
 		.PKT_DEST_ID_L             (135),
 		.ST_DATA_W                 (151),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.AV_BURSTCOUNT_W           (10),
 		.SUPPRESS_0_BYTEEN_RSP     (0),
-		.ID                        (4),
+		.ID                        (5),
 		.BURSTWRAP_VALUE           (1),
 		.CACHE_VALUE               (0),
 		.SECURE_ACCESS_BIT         (1),
@@ -1134,7 +1252,7 @@ module q_sys_mm_interconnect_0 (
 		.PKT_DEST_ID_H             (101),
 		.PKT_DEST_ID_L             (99),
 		.ST_DATA_W                 (115),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.AV_BURSTCOUNT_W           (3),
 		.SUPPRESS_0_BYTEEN_RSP     (1),
 		.ID                        (2),
@@ -1215,10 +1333,10 @@ module q_sys_mm_interconnect_0 (
 		.PKT_DEST_ID_H             (101),
 		.PKT_DEST_ID_L             (99),
 		.ST_DATA_W                 (115),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.AV_BURSTCOUNT_W           (3),
 		.SUPPRESS_0_BYTEEN_RSP     (1),
-		.ID                        (3),
+		.ID                        (4),
 		.BURSTWRAP_VALUE           (1),
 		.CACHE_VALUE               (0),
 		.SECURE_ACCESS_BIT         (1),
@@ -1251,6 +1369,87 @@ module q_sys_mm_interconnect_0 (
 		.rp_ready              (rsp_mux_002_src_ready),                                                         //          .ready
 		.av_response           (),                                                                              // (terminated)
 		.av_writeresponsevalid ()                                                                               // (terminated)
+	);
+
+	altera_merlin_master_agent #(
+		.PKT_ORI_BURST_SIZE_H      (114),
+		.PKT_ORI_BURST_SIZE_L      (112),
+		.PKT_RESPONSE_STATUS_H     (111),
+		.PKT_RESPONSE_STATUS_L     (110),
+		.PKT_QOS_H                 (95),
+		.PKT_QOS_L                 (95),
+		.PKT_DATA_SIDEBAND_H       (93),
+		.PKT_DATA_SIDEBAND_L       (93),
+		.PKT_ADDR_SIDEBAND_H       (92),
+		.PKT_ADDR_SIDEBAND_L       (92),
+		.PKT_BURST_TYPE_H          (91),
+		.PKT_BURST_TYPE_L          (90),
+		.PKT_CACHE_H               (109),
+		.PKT_CACHE_L               (106),
+		.PKT_THREAD_ID_H           (102),
+		.PKT_THREAD_ID_L           (102),
+		.PKT_BURST_SIZE_H          (89),
+		.PKT_BURST_SIZE_L          (87),
+		.PKT_TRANS_EXCLUSIVE       (73),
+		.PKT_TRANS_LOCK            (72),
+		.PKT_BEGIN_BURST           (94),
+		.PKT_PROTECTION_H          (105),
+		.PKT_PROTECTION_L          (103),
+		.PKT_BURSTWRAP_H           (86),
+		.PKT_BURSTWRAP_L           (86),
+		.PKT_BYTE_CNT_H            (85),
+		.PKT_BYTE_CNT_L            (74),
+		.PKT_ADDR_H                (67),
+		.PKT_ADDR_L                (36),
+		.PKT_TRANS_COMPRESSED_READ (68),
+		.PKT_TRANS_POSTED          (69),
+		.PKT_TRANS_WRITE           (70),
+		.PKT_TRANS_READ            (71),
+		.PKT_DATA_H                (31),
+		.PKT_DATA_L                (0),
+		.PKT_BYTEEN_H              (35),
+		.PKT_BYTEEN_L              (32),
+		.PKT_SRC_ID_H              (98),
+		.PKT_SRC_ID_L              (96),
+		.PKT_DEST_ID_H             (101),
+		.PKT_DEST_ID_L             (99),
+		.ST_DATA_W                 (115),
+		.ST_CHANNEL_W              (6),
+		.AV_BURSTCOUNT_W           (3),
+		.SUPPRESS_0_BYTEEN_RSP     (1),
+		.ID                        (3),
+		.BURSTWRAP_VALUE           (1),
+		.CACHE_VALUE               (0),
+		.SECURE_ACCESS_BIT         (1),
+		.USE_READRESPONSE          (0),
+		.USE_WRITERESPONSE         (0)
+	) master_read_coeff_avalon_master_agent (
+		.clk                   (pcie_cv_hip_avmm_0_coreclkout_clk),                                                  //       clk.clk
+		.reset                 (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                          // clk_reset.reset
+		.av_address            (master_read_coeff_avalon_master_translator_avalon_universal_master_0_address),       //        av.address
+		.av_write              (master_read_coeff_avalon_master_translator_avalon_universal_master_0_write),         //          .write
+		.av_read               (master_read_coeff_avalon_master_translator_avalon_universal_master_0_read),          //          .read
+		.av_writedata          (master_read_coeff_avalon_master_translator_avalon_universal_master_0_writedata),     //          .writedata
+		.av_readdata           (master_read_coeff_avalon_master_translator_avalon_universal_master_0_readdata),      //          .readdata
+		.av_waitrequest        (master_read_coeff_avalon_master_translator_avalon_universal_master_0_waitrequest),   //          .waitrequest
+		.av_readdatavalid      (master_read_coeff_avalon_master_translator_avalon_universal_master_0_readdatavalid), //          .readdatavalid
+		.av_byteenable         (master_read_coeff_avalon_master_translator_avalon_universal_master_0_byteenable),    //          .byteenable
+		.av_burstcount         (master_read_coeff_avalon_master_translator_avalon_universal_master_0_burstcount),    //          .burstcount
+		.av_debugaccess        (master_read_coeff_avalon_master_translator_avalon_universal_master_0_debugaccess),   //          .debugaccess
+		.av_lock               (master_read_coeff_avalon_master_translator_avalon_universal_master_0_lock),          //          .lock
+		.cp_valid              (master_read_coeff_avalon_master_agent_cp_valid),                                     //        cp.valid
+		.cp_data               (master_read_coeff_avalon_master_agent_cp_data),                                      //          .data
+		.cp_startofpacket      (master_read_coeff_avalon_master_agent_cp_startofpacket),                             //          .startofpacket
+		.cp_endofpacket        (master_read_coeff_avalon_master_agent_cp_endofpacket),                               //          .endofpacket
+		.cp_ready              (master_read_coeff_avalon_master_agent_cp_ready),                                     //          .ready
+		.rp_valid              (rsp_mux_003_src_valid),                                                              //        rp.valid
+		.rp_data               (rsp_mux_003_src_data),                                                               //          .data
+		.rp_channel            (rsp_mux_003_src_channel),                                                            //          .channel
+		.rp_startofpacket      (rsp_mux_003_src_startofpacket),                                                      //          .startofpacket
+		.rp_endofpacket        (rsp_mux_003_src_endofpacket),                                                        //          .endofpacket
+		.rp_ready              (rsp_mux_003_src_ready),                                                              //          .ready
+		.av_response           (),                                                                                   // (terminated)
+		.av_writeresponsevalid ()                                                                                    // (terminated)
 	);
 
 	altera_merlin_master_agent #(
@@ -1296,7 +1495,7 @@ module q_sys_mm_interconnect_0 (
 		.PKT_DEST_ID_H             (209),
 		.PKT_DEST_ID_L             (207),
 		.ST_DATA_W                 (223),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.AV_BURSTCOUNT_W           (11),
 		.SUPPRESS_0_BYTEEN_RSP     (0),
 		.ID                        (0),
@@ -1377,7 +1576,7 @@ module q_sys_mm_interconnect_0 (
 		.PKT_DEST_ID_H             (209),
 		.PKT_DEST_ID_L             (207),
 		.ST_DATA_W                 (223),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.AV_BURSTCOUNT_W           (12),
 		.SUPPRESS_0_BYTEEN_RSP     (0),
 		.ID                        (1),
@@ -1405,12 +1604,12 @@ module q_sys_mm_interconnect_0 (
 		.cp_startofpacket      (ctl_0_dma_write_master_0_data_write_master_agent_cp_startofpacket),                             //          .startofpacket
 		.cp_endofpacket        (ctl_0_dma_write_master_0_data_write_master_agent_cp_endofpacket),                               //          .endofpacket
 		.cp_ready              (ctl_0_dma_write_master_0_data_write_master_agent_cp_ready),                                     //          .ready
-		.rp_valid              (rsp_mux_004_src_valid),                                                                         //        rp.valid
-		.rp_data               (rsp_mux_004_src_data),                                                                          //          .data
-		.rp_channel            (rsp_mux_004_src_channel),                                                                       //          .channel
-		.rp_startofpacket      (rsp_mux_004_src_startofpacket),                                                                 //          .startofpacket
-		.rp_endofpacket        (rsp_mux_004_src_endofpacket),                                                                   //          .endofpacket
-		.rp_ready              (rsp_mux_004_src_ready),                                                                         //          .ready
+		.rp_valid              (rsp_mux_005_src_valid),                                                                         //        rp.valid
+		.rp_data               (rsp_mux_005_src_data),                                                                          //          .data
+		.rp_channel            (rsp_mux_005_src_channel),                                                                       //          .channel
+		.rp_startofpacket      (rsp_mux_005_src_startofpacket),                                                                 //          .startofpacket
+		.rp_endofpacket        (rsp_mux_005_src_endofpacket),                                                                   //          .endofpacket
+		.rp_ready              (rsp_mux_005_src_ready),                                                                         //          .ready
 		.av_response           (),                                                                                              // (terminated)
 		.av_writeresponsevalid ()                                                                                               // (terminated)
 	);
@@ -1445,7 +1644,7 @@ module q_sys_mm_interconnect_0 (
 		.PKT_DEST_ID_H             (101),
 		.PKT_DEST_ID_L             (99),
 		.PKT_SYMBOL_W              (8),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.ST_DATA_W                 (115),
 		.AVS_BURSTCOUNT_W          (3),
 		.SUPPRESS_0_BYTEEN_CMD     (1),
@@ -1570,7 +1769,7 @@ module q_sys_mm_interconnect_0 (
 		.PKT_DEST_ID_H             (137),
 		.PKT_DEST_ID_L             (135),
 		.PKT_SYMBOL_W              (8),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.ST_DATA_W                 (151),
 		.AVS_BURSTCOUNT_W          (10),
 		.SUPPRESS_0_BYTEEN_CMD     (1),
@@ -1754,7 +1953,23 @@ module q_sys_mm_interconnect_0 (
 		.src_endofpacket    (router_002_src_endofpacket)                                 //          .endofpacket
 	);
 
-	q_sys_mm_interconnect_0_router_003 router_003 (
+	q_sys_mm_interconnect_0_router_001 router_003 (
+		.sink_ready         (master_read_coeff_avalon_master_agent_cp_ready),            //      sink.ready
+		.sink_valid         (master_read_coeff_avalon_master_agent_cp_valid),            //          .valid
+		.sink_data          (master_read_coeff_avalon_master_agent_cp_data),             //          .data
+		.sink_startofpacket (master_read_coeff_avalon_master_agent_cp_startofpacket),    //          .startofpacket
+		.sink_endofpacket   (master_read_coeff_avalon_master_agent_cp_endofpacket),      //          .endofpacket
+		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
+		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.src_ready          (router_003_src_ready),                                      //       src.ready
+		.src_valid          (router_003_src_valid),                                      //          .valid
+		.src_data           (router_003_src_data),                                       //          .data
+		.src_channel        (router_003_src_channel),                                    //          .channel
+		.src_startofpacket  (router_003_src_startofpacket),                              //          .startofpacket
+		.src_endofpacket    (router_003_src_endofpacket)                                 //          .endofpacket
+	);
+
+	q_sys_mm_interconnect_0_router_004 router_004 (
 		.sink_ready         (ctl_0_dma_read_master_0_data_read_master_agent_cp_ready),         //      sink.ready
 		.sink_valid         (ctl_0_dma_read_master_0_data_read_master_agent_cp_valid),         //          .valid
 		.sink_data          (ctl_0_dma_read_master_0_data_read_master_agent_cp_data),          //          .data
@@ -1762,15 +1977,15 @@ module q_sys_mm_interconnect_0 (
 		.sink_endofpacket   (ctl_0_dma_read_master_0_data_read_master_agent_cp_endofpacket),   //          .endofpacket
 		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                               //       clk.clk
 		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset),       // clk_reset.reset
-		.src_ready          (router_003_src_ready),                                            //       src.ready
-		.src_valid          (router_003_src_valid),                                            //          .valid
-		.src_data           (router_003_src_data),                                             //          .data
-		.src_channel        (router_003_src_channel),                                          //          .channel
-		.src_startofpacket  (router_003_src_startofpacket),                                    //          .startofpacket
-		.src_endofpacket    (router_003_src_endofpacket)                                       //          .endofpacket
+		.src_ready          (router_004_src_ready),                                            //       src.ready
+		.src_valid          (router_004_src_valid),                                            //          .valid
+		.src_data           (router_004_src_data),                                             //          .data
+		.src_channel        (router_004_src_channel),                                          //          .channel
+		.src_startofpacket  (router_004_src_startofpacket),                                    //          .startofpacket
+		.src_endofpacket    (router_004_src_endofpacket)                                       //          .endofpacket
 	);
 
-	q_sys_mm_interconnect_0_router_003 router_004 (
+	q_sys_mm_interconnect_0_router_004 router_005 (
 		.sink_ready         (ctl_0_dma_write_master_0_data_write_master_agent_cp_ready),         //      sink.ready
 		.sink_valid         (ctl_0_dma_write_master_0_data_write_master_agent_cp_valid),         //          .valid
 		.sink_data          (ctl_0_dma_write_master_0_data_write_master_agent_cp_data),          //          .data
@@ -1778,36 +1993,20 @@ module q_sys_mm_interconnect_0 (
 		.sink_endofpacket   (ctl_0_dma_write_master_0_data_write_master_agent_cp_endofpacket),   //          .endofpacket
 		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                                 //       clk.clk
 		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset),         // clk_reset.reset
-		.src_ready          (router_004_src_ready),                                              //       src.ready
-		.src_valid          (router_004_src_valid),                                              //          .valid
-		.src_data           (router_004_src_data),                                               //          .data
-		.src_channel        (router_004_src_channel),                                            //          .channel
-		.src_startofpacket  (router_004_src_startofpacket),                                      //          .startofpacket
-		.src_endofpacket    (router_004_src_endofpacket)                                         //          .endofpacket
+		.src_ready          (router_005_src_ready),                                              //       src.ready
+		.src_valid          (router_005_src_valid),                                              //          .valid
+		.src_data           (router_005_src_data),                                               //          .data
+		.src_channel        (router_005_src_channel),                                            //          .channel
+		.src_startofpacket  (router_005_src_startofpacket),                                      //          .startofpacket
+		.src_endofpacket    (router_005_src_endofpacket)                                         //          .endofpacket
 	);
 
-	q_sys_mm_interconnect_0_router_005 router_005 (
+	q_sys_mm_interconnect_0_router_006 router_006 (
 		.sink_ready         (agent_pipeline_001_source0_ready),                          //      sink.ready
 		.sink_valid         (agent_pipeline_001_source0_valid),                          //          .valid
 		.sink_data          (agent_pipeline_001_source0_data),                           //          .data
 		.sink_startofpacket (agent_pipeline_001_source0_startofpacket),                  //          .startofpacket
 		.sink_endofpacket   (agent_pipeline_001_source0_endofpacket),                    //          .endofpacket
-		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
-		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready          (router_005_src_ready),                                      //       src.ready
-		.src_valid          (router_005_src_valid),                                      //          .valid
-		.src_data           (router_005_src_data),                                       //          .data
-		.src_channel        (router_005_src_channel),                                    //          .channel
-		.src_startofpacket  (router_005_src_startofpacket),                              //          .startofpacket
-		.src_endofpacket    (router_005_src_endofpacket)                                 //          .endofpacket
-	);
-
-	q_sys_mm_interconnect_0_router_006 router_006 (
-		.sink_ready         (agent_pipeline_003_source0_ready),                          //      sink.ready
-		.sink_valid         (agent_pipeline_003_source0_valid),                          //          .valid
-		.sink_data          (agent_pipeline_003_source0_data),                           //          .data
-		.sink_startofpacket (agent_pipeline_003_source0_startofpacket),                  //          .startofpacket
-		.sink_endofpacket   (agent_pipeline_003_source0_endofpacket),                    //          .endofpacket
 		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
 		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready          (router_006_src_ready),                                      //       src.ready
@@ -1816,6 +2015,22 @@ module q_sys_mm_interconnect_0 (
 		.src_channel        (router_006_src_channel),                                    //          .channel
 		.src_startofpacket  (router_006_src_startofpacket),                              //          .startofpacket
 		.src_endofpacket    (router_006_src_endofpacket)                                 //          .endofpacket
+	);
+
+	q_sys_mm_interconnect_0_router_007 router_007 (
+		.sink_ready         (agent_pipeline_003_source0_ready),                          //      sink.ready
+		.sink_valid         (agent_pipeline_003_source0_valid),                          //          .valid
+		.sink_data          (agent_pipeline_003_source0_data),                           //          .data
+		.sink_startofpacket (agent_pipeline_003_source0_startofpacket),                  //          .startofpacket
+		.sink_endofpacket   (agent_pipeline_003_source0_endofpacket),                    //          .endofpacket
+		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
+		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.src_ready          (router_007_src_ready),                                      //       src.ready
+		.src_valid          (router_007_src_valid),                                      //          .valid
+		.src_data           (router_007_src_data),                                       //          .data
+		.src_channel        (router_007_src_channel),                                    //          .channel
+		.src_startofpacket  (router_007_src_startofpacket),                              //          .startofpacket
+		.src_endofpacket    (router_007_src_endofpacket)                                 //          .endofpacket
 	);
 
 	altera_merlin_traffic_limiter #(
@@ -1832,7 +2047,7 @@ module q_sys_mm_interconnect_0 (
 		.MAX_OUTSTANDING_RESPONSES (22),
 		.PIPELINED                 (0),
 		.ST_DATA_W                 (223),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.VALID_WIDTH               (1),
 		.ENFORCE_ORDER             (1),
 		.PREVENT_HAZARDS           (0),
@@ -1842,12 +2057,12 @@ module q_sys_mm_interconnect_0 (
 	) ctl_0_dma_read_master_0_data_read_master_limiter (
 		.clk                    (pcie_cv_hip_avmm_0_coreclkout_clk),                                      //       clk.clk
 		.reset                  (master_read_clock_reset_reset_reset_bridge_in_reset_reset),              // clk_reset.reset
-		.cmd_sink_ready         (router_003_src_ready),                                                   //  cmd_sink.ready
-		.cmd_sink_valid         (router_003_src_valid),                                                   //          .valid
-		.cmd_sink_data          (router_003_src_data),                                                    //          .data
-		.cmd_sink_channel       (router_003_src_channel),                                                 //          .channel
-		.cmd_sink_startofpacket (router_003_src_startofpacket),                                           //          .startofpacket
-		.cmd_sink_endofpacket   (router_003_src_endofpacket),                                             //          .endofpacket
+		.cmd_sink_ready         (router_004_src_ready),                                                   //  cmd_sink.ready
+		.cmd_sink_valid         (router_004_src_valid),                                                   //          .valid
+		.cmd_sink_data          (router_004_src_data),                                                    //          .data
+		.cmd_sink_channel       (router_004_src_channel),                                                 //          .channel
+		.cmd_sink_startofpacket (router_004_src_startofpacket),                                           //          .startofpacket
+		.cmd_sink_endofpacket   (router_004_src_endofpacket),                                             //          .endofpacket
 		.cmd_src_ready          (ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_ready),         //   cmd_src.ready
 		.cmd_src_data           (ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_data),          //          .data
 		.cmd_src_channel        (ctl_0_dma_read_master_0_data_read_master_limiter_cmd_src_channel),       //          .channel
@@ -1890,7 +2105,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_FIXED                 (0),
 		.OUT_COMPLETE_WRAP         (0),
 		.ST_DATA_W                 (115),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.OUT_BYTE_CNT_H            (76),
 		.OUT_BURSTWRAP_H           (86),
 		.COMPRESSED_READ_SUPPORT   (1),
@@ -1940,7 +2155,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_FIXED                 (0),
 		.OUT_COMPLETE_WRAP         (0),
 		.ST_DATA_W                 (151),
-		.ST_CHANNEL_W              (5),
+		.ST_CHANNEL_W              (6),
 		.OUT_BYTE_CNT_H            (119),
 		.OUT_BURSTWRAP_H           (122),
 		.COMPRESSED_READ_SUPPORT   (1),
@@ -2019,7 +2234,24 @@ module q_sys_mm_interconnect_0 (
 		.src0_endofpacket   (cmd_demux_002_src0_endofpacket)                             //          .endofpacket
 	);
 
-	q_sys_mm_interconnect_0_cmd_demux_003 cmd_demux_003 (
+	q_sys_mm_interconnect_0_cmd_demux_001 cmd_demux_003 (
+		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
+		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.sink_ready         (router_003_src_ready),                                      //      sink.ready
+		.sink_channel       (router_003_src_channel),                                    //          .channel
+		.sink_data          (router_003_src_data),                                       //          .data
+		.sink_startofpacket (router_003_src_startofpacket),                              //          .startofpacket
+		.sink_endofpacket   (router_003_src_endofpacket),                                //          .endofpacket
+		.sink_valid         (router_003_src_valid),                                      //          .valid
+		.src0_ready         (cmd_demux_003_src0_ready),                                  //      src0.ready
+		.src0_valid         (cmd_demux_003_src0_valid),                                  //          .valid
+		.src0_data          (cmd_demux_003_src0_data),                                   //          .data
+		.src0_channel       (cmd_demux_003_src0_channel),                                //          .channel
+		.src0_startofpacket (cmd_demux_003_src0_startofpacket),                          //          .startofpacket
+		.src0_endofpacket   (cmd_demux_003_src0_endofpacket)                             //          .endofpacket
+	);
+
+	q_sys_mm_interconnect_0_cmd_demux_004 cmd_demux_004 (
 		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
 		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.sink_ready         (limiter_pipeline_source0_ready),                            //      sink.ready
@@ -2028,29 +2260,6 @@ module q_sys_mm_interconnect_0 (
 		.sink_startofpacket (limiter_pipeline_source0_startofpacket),                    //          .startofpacket
 		.sink_endofpacket   (limiter_pipeline_source0_endofpacket),                      //          .endofpacket
 		.sink_valid         (limiter_pipeline_source0_valid),                            //          .valid
-		.src0_ready         (cmd_demux_003_src0_ready),                                  //      src0.ready
-		.src0_valid         (cmd_demux_003_src0_valid),                                  //          .valid
-		.src0_data          (cmd_demux_003_src0_data),                                   //          .data
-		.src0_channel       (cmd_demux_003_src0_channel),                                //          .channel
-		.src0_startofpacket (cmd_demux_003_src0_startofpacket),                          //          .startofpacket
-		.src0_endofpacket   (cmd_demux_003_src0_endofpacket),                            //          .endofpacket
-		.src1_ready         (cmd_demux_003_src1_ready),                                  //      src1.ready
-		.src1_valid         (cmd_demux_003_src1_valid),                                  //          .valid
-		.src1_data          (cmd_demux_003_src1_data),                                   //          .data
-		.src1_channel       (cmd_demux_003_src1_channel),                                //          .channel
-		.src1_startofpacket (cmd_demux_003_src1_startofpacket),                          //          .startofpacket
-		.src1_endofpacket   (cmd_demux_003_src1_endofpacket)                             //          .endofpacket
-	);
-
-	q_sys_mm_interconnect_0_cmd_demux_003 cmd_demux_004 (
-		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
-		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.sink_ready         (router_004_src_ready),                                      //      sink.ready
-		.sink_channel       (router_004_src_channel),                                    //          .channel
-		.sink_data          (router_004_src_data),                                       //          .data
-		.sink_startofpacket (router_004_src_startofpacket),                              //          .startofpacket
-		.sink_endofpacket   (router_004_src_endofpacket),                                //          .endofpacket
-		.sink_valid         (router_004_src_valid),                                      //          .valid
 		.src0_ready         (cmd_demux_004_src0_ready),                                  //      src0.ready
 		.src0_valid         (cmd_demux_004_src0_valid),                                  //          .valid
 		.src0_data          (cmd_demux_004_src0_data),                                   //          .data
@@ -2063,6 +2272,29 @@ module q_sys_mm_interconnect_0 (
 		.src1_channel       (cmd_demux_004_src1_channel),                                //          .channel
 		.src1_startofpacket (cmd_demux_004_src1_startofpacket),                          //          .startofpacket
 		.src1_endofpacket   (cmd_demux_004_src1_endofpacket)                             //          .endofpacket
+	);
+
+	q_sys_mm_interconnect_0_cmd_demux_004 cmd_demux_005 (
+		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
+		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.sink_ready         (router_005_src_ready),                                      //      sink.ready
+		.sink_channel       (router_005_src_channel),                                    //          .channel
+		.sink_data          (router_005_src_data),                                       //          .data
+		.sink_startofpacket (router_005_src_startofpacket),                              //          .startofpacket
+		.sink_endofpacket   (router_005_src_endofpacket),                                //          .endofpacket
+		.sink_valid         (router_005_src_valid),                                      //          .valid
+		.src0_ready         (cmd_demux_005_src0_ready),                                  //      src0.ready
+		.src0_valid         (cmd_demux_005_src0_valid),                                  //          .valid
+		.src0_data          (cmd_demux_005_src0_data),                                   //          .data
+		.src0_channel       (cmd_demux_005_src0_channel),                                //          .channel
+		.src0_startofpacket (cmd_demux_005_src0_startofpacket),                          //          .startofpacket
+		.src0_endofpacket   (cmd_demux_005_src0_endofpacket),                            //          .endofpacket
+		.src1_ready         (cmd_demux_005_src1_ready),                                  //      src1.ready
+		.src1_valid         (cmd_demux_005_src1_valid),                                  //          .valid
+		.src1_data          (cmd_demux_005_src1_data),                                   //          .data
+		.src1_channel       (cmd_demux_005_src1_channel),                                //          .channel
+		.src1_startofpacket (cmd_demux_005_src1_startofpacket),                          //          .startofpacket
+		.src1_endofpacket   (cmd_demux_005_src1_endofpacket)                             //          .endofpacket
 	);
 
 	q_sys_mm_interconnect_0_cmd_mux cmd_mux (
@@ -2103,7 +2335,13 @@ module q_sys_mm_interconnect_0 (
 		.sink4_channel       (mux_pipeline_004_source0_channel),                          //          .channel
 		.sink4_data          (mux_pipeline_004_source0_data),                             //          .data
 		.sink4_startofpacket (mux_pipeline_004_source0_startofpacket),                    //          .startofpacket
-		.sink4_endofpacket   (mux_pipeline_004_source0_endofpacket)                       //          .endofpacket
+		.sink4_endofpacket   (mux_pipeline_004_source0_endofpacket),                      //          .endofpacket
+		.sink5_ready         (mux_pipeline_005_source0_ready),                            //     sink5.ready
+		.sink5_valid         (mux_pipeline_005_source0_valid),                            //          .valid
+		.sink5_channel       (mux_pipeline_005_source0_channel),                          //          .channel
+		.sink5_data          (mux_pipeline_005_source0_data),                             //          .data
+		.sink5_startofpacket (mux_pipeline_005_source0_startofpacket),                    //          .startofpacket
+		.sink5_endofpacket   (mux_pipeline_005_source0_endofpacket)                       //          .endofpacket
 	);
 
 	q_sys_mm_interconnect_0_cmd_mux_001 cmd_mux_001 (
@@ -2115,29 +2353,29 @@ module q_sys_mm_interconnect_0 (
 		.src_channel         (cmd_mux_001_src_channel),                                   //          .channel
 		.src_startofpacket   (cmd_mux_001_src_startofpacket),                             //          .startofpacket
 		.src_endofpacket     (cmd_mux_001_src_endofpacket),                               //          .endofpacket
-		.sink0_ready         (mux_pipeline_005_source0_ready),                            //     sink0.ready
-		.sink0_valid         (mux_pipeline_005_source0_valid),                            //          .valid
-		.sink0_channel       (mux_pipeline_005_source0_channel),                          //          .channel
-		.sink0_data          (mux_pipeline_005_source0_data),                             //          .data
-		.sink0_startofpacket (mux_pipeline_005_source0_startofpacket),                    //          .startofpacket
-		.sink0_endofpacket   (mux_pipeline_005_source0_endofpacket),                      //          .endofpacket
-		.sink1_ready         (mux_pipeline_006_source0_ready),                            //     sink1.ready
-		.sink1_valid         (mux_pipeline_006_source0_valid),                            //          .valid
-		.sink1_channel       (mux_pipeline_006_source0_channel),                          //          .channel
-		.sink1_data          (mux_pipeline_006_source0_data),                             //          .data
-		.sink1_startofpacket (mux_pipeline_006_source0_startofpacket),                    //          .startofpacket
-		.sink1_endofpacket   (mux_pipeline_006_source0_endofpacket)                       //          .endofpacket
+		.sink0_ready         (mux_pipeline_006_source0_ready),                            //     sink0.ready
+		.sink0_valid         (mux_pipeline_006_source0_valid),                            //          .valid
+		.sink0_channel       (mux_pipeline_006_source0_channel),                          //          .channel
+		.sink0_data          (mux_pipeline_006_source0_data),                             //          .data
+		.sink0_startofpacket (mux_pipeline_006_source0_startofpacket),                    //          .startofpacket
+		.sink0_endofpacket   (mux_pipeline_006_source0_endofpacket),                      //          .endofpacket
+		.sink1_ready         (mux_pipeline_007_source0_ready),                            //     sink1.ready
+		.sink1_valid         (mux_pipeline_007_source0_valid),                            //          .valid
+		.sink1_channel       (mux_pipeline_007_source0_channel),                          //          .channel
+		.sink1_data          (mux_pipeline_007_source0_data),                             //          .data
+		.sink1_startofpacket (mux_pipeline_007_source0_startofpacket),                    //          .startofpacket
+		.sink1_endofpacket   (mux_pipeline_007_source0_endofpacket)                       //          .endofpacket
 	);
 
 	q_sys_mm_interconnect_0_rsp_demux rsp_demux (
 		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
 		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.sink_ready         (router_005_src_ready),                                      //      sink.ready
-		.sink_channel       (router_005_src_channel),                                    //          .channel
-		.sink_data          (router_005_src_data),                                       //          .data
-		.sink_startofpacket (router_005_src_startofpacket),                              //          .startofpacket
-		.sink_endofpacket   (router_005_src_endofpacket),                                //          .endofpacket
-		.sink_valid         (router_005_src_valid),                                      //          .valid
+		.sink_ready         (router_006_src_ready),                                      //      sink.ready
+		.sink_channel       (router_006_src_channel),                                    //          .channel
+		.sink_data          (router_006_src_data),                                       //          .data
+		.sink_startofpacket (router_006_src_startofpacket),                              //          .startofpacket
+		.sink_endofpacket   (router_006_src_endofpacket),                                //          .endofpacket
+		.sink_valid         (router_006_src_valid),                                      //          .valid
 		.src0_ready         (rsp_demux_src0_ready),                                      //      src0.ready
 		.src0_valid         (rsp_demux_src0_valid),                                      //          .valid
 		.src0_data          (rsp_demux_src0_data),                                       //          .data
@@ -2167,18 +2405,24 @@ module q_sys_mm_interconnect_0 (
 		.src4_data          (rsp_demux_src4_data),                                       //          .data
 		.src4_channel       (rsp_demux_src4_channel),                                    //          .channel
 		.src4_startofpacket (rsp_demux_src4_startofpacket),                              //          .startofpacket
-		.src4_endofpacket   (rsp_demux_src4_endofpacket)                                 //          .endofpacket
+		.src4_endofpacket   (rsp_demux_src4_endofpacket),                                //          .endofpacket
+		.src5_ready         (rsp_demux_src5_ready),                                      //      src5.ready
+		.src5_valid         (rsp_demux_src5_valid),                                      //          .valid
+		.src5_data          (rsp_demux_src5_data),                                       //          .data
+		.src5_channel       (rsp_demux_src5_channel),                                    //          .channel
+		.src5_startofpacket (rsp_demux_src5_startofpacket),                              //          .startofpacket
+		.src5_endofpacket   (rsp_demux_src5_endofpacket)                                 //          .endofpacket
 	);
 
 	q_sys_mm_interconnect_0_rsp_demux_001 rsp_demux_001 (
 		.clk                (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
 		.reset              (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.sink_ready         (router_006_src_ready),                                      //      sink.ready
-		.sink_channel       (router_006_src_channel),                                    //          .channel
-		.sink_data          (router_006_src_data),                                       //          .data
-		.sink_startofpacket (router_006_src_startofpacket),                              //          .startofpacket
-		.sink_endofpacket   (router_006_src_endofpacket),                                //          .endofpacket
-		.sink_valid         (router_006_src_valid),                                      //          .valid
+		.sink_ready         (router_007_src_ready),                                      //      sink.ready
+		.sink_channel       (router_007_src_channel),                                    //          .channel
+		.sink_data          (router_007_src_data),                                       //          .data
+		.sink_startofpacket (router_007_src_startofpacket),                              //          .startofpacket
+		.sink_endofpacket   (router_007_src_endofpacket),                                //          .endofpacket
+		.sink_valid         (router_007_src_valid),                                      //          .valid
 		.src0_ready         (rsp_demux_001_src0_ready),                                  //      src0.ready
 		.src0_valid         (rsp_demux_001_src0_valid),                                  //          .valid
 		.src0_data          (rsp_demux_001_src0_data),                                   //          .data
@@ -2202,12 +2446,12 @@ module q_sys_mm_interconnect_0 (
 		.src_channel         (rsp_mux_src_channel),                                       //          .channel
 		.src_startofpacket   (rsp_mux_src_startofpacket),                                 //          .startofpacket
 		.src_endofpacket     (rsp_mux_src_endofpacket),                                   //          .endofpacket
-		.sink0_ready         (mux_pipeline_007_source0_ready),                            //     sink0.ready
-		.sink0_valid         (mux_pipeline_007_source0_valid),                            //          .valid
-		.sink0_channel       (mux_pipeline_007_source0_channel),                          //          .channel
-		.sink0_data          (mux_pipeline_007_source0_data),                             //          .data
-		.sink0_startofpacket (mux_pipeline_007_source0_startofpacket),                    //          .startofpacket
-		.sink0_endofpacket   (mux_pipeline_007_source0_endofpacket)                       //          .endofpacket
+		.sink0_ready         (mux_pipeline_008_source0_ready),                            //     sink0.ready
+		.sink0_valid         (mux_pipeline_008_source0_valid),                            //          .valid
+		.sink0_channel       (mux_pipeline_008_source0_channel),                          //          .channel
+		.sink0_data          (mux_pipeline_008_source0_data),                             //          .data
+		.sink0_startofpacket (mux_pipeline_008_source0_startofpacket),                    //          .startofpacket
+		.sink0_endofpacket   (mux_pipeline_008_source0_endofpacket)                       //          .endofpacket
 	);
 
 	q_sys_mm_interconnect_0_rsp_mux_001 rsp_mux_001 (
@@ -2219,12 +2463,12 @@ module q_sys_mm_interconnect_0 (
 		.src_channel         (rsp_mux_001_src_channel),                                   //          .channel
 		.src_startofpacket   (rsp_mux_001_src_startofpacket),                             //          .startofpacket
 		.src_endofpacket     (rsp_mux_001_src_endofpacket),                               //          .endofpacket
-		.sink0_ready         (mux_pipeline_008_source0_ready),                            //     sink0.ready
-		.sink0_valid         (mux_pipeline_008_source0_valid),                            //          .valid
-		.sink0_channel       (mux_pipeline_008_source0_channel),                          //          .channel
-		.sink0_data          (mux_pipeline_008_source0_data),                             //          .data
-		.sink0_startofpacket (mux_pipeline_008_source0_startofpacket),                    //          .startofpacket
-		.sink0_endofpacket   (mux_pipeline_008_source0_endofpacket)                       //          .endofpacket
+		.sink0_ready         (mux_pipeline_009_source0_ready),                            //     sink0.ready
+		.sink0_valid         (mux_pipeline_009_source0_valid),                            //          .valid
+		.sink0_channel       (mux_pipeline_009_source0_channel),                          //          .channel
+		.sink0_data          (mux_pipeline_009_source0_data),                             //          .data
+		.sink0_startofpacket (mux_pipeline_009_source0_startofpacket),                    //          .startofpacket
+		.sink0_endofpacket   (mux_pipeline_009_source0_endofpacket)                       //          .endofpacket
 	);
 
 	q_sys_mm_interconnect_0_rsp_mux_001 rsp_mux_002 (
@@ -2236,15 +2480,15 @@ module q_sys_mm_interconnect_0 (
 		.src_channel         (rsp_mux_002_src_channel),                                   //          .channel
 		.src_startofpacket   (rsp_mux_002_src_startofpacket),                             //          .startofpacket
 		.src_endofpacket     (rsp_mux_002_src_endofpacket),                               //          .endofpacket
-		.sink0_ready         (mux_pipeline_009_source0_ready),                            //     sink0.ready
-		.sink0_valid         (mux_pipeline_009_source0_valid),                            //          .valid
-		.sink0_channel       (mux_pipeline_009_source0_channel),                          //          .channel
-		.sink0_data          (mux_pipeline_009_source0_data),                             //          .data
-		.sink0_startofpacket (mux_pipeline_009_source0_startofpacket),                    //          .startofpacket
-		.sink0_endofpacket   (mux_pipeline_009_source0_endofpacket)                       //          .endofpacket
+		.sink0_ready         (mux_pipeline_010_source0_ready),                            //     sink0.ready
+		.sink0_valid         (mux_pipeline_010_source0_valid),                            //          .valid
+		.sink0_channel       (mux_pipeline_010_source0_channel),                          //          .channel
+		.sink0_data          (mux_pipeline_010_source0_data),                             //          .data
+		.sink0_startofpacket (mux_pipeline_010_source0_startofpacket),                    //          .startofpacket
+		.sink0_endofpacket   (mux_pipeline_010_source0_endofpacket)                       //          .endofpacket
 	);
 
-	q_sys_mm_interconnect_0_rsp_mux_003 rsp_mux_003 (
+	q_sys_mm_interconnect_0_rsp_mux_001 rsp_mux_003 (
 		.clk                 (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
 		.reset               (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready           (rsp_mux_003_src_ready),                                     //       src.ready
@@ -2253,21 +2497,15 @@ module q_sys_mm_interconnect_0 (
 		.src_channel         (rsp_mux_003_src_channel),                                   //          .channel
 		.src_startofpacket   (rsp_mux_003_src_startofpacket),                             //          .startofpacket
 		.src_endofpacket     (rsp_mux_003_src_endofpacket),                               //          .endofpacket
-		.sink0_ready         (mux_pipeline_010_source0_ready),                            //     sink0.ready
-		.sink0_valid         (mux_pipeline_010_source0_valid),                            //          .valid
-		.sink0_channel       (mux_pipeline_010_source0_channel),                          //          .channel
-		.sink0_data          (mux_pipeline_010_source0_data),                             //          .data
-		.sink0_startofpacket (mux_pipeline_010_source0_startofpacket),                    //          .startofpacket
-		.sink0_endofpacket   (mux_pipeline_010_source0_endofpacket),                      //          .endofpacket
-		.sink1_ready         (mux_pipeline_011_source0_ready),                            //     sink1.ready
-		.sink1_valid         (mux_pipeline_011_source0_valid),                            //          .valid
-		.sink1_channel       (mux_pipeline_011_source0_channel),                          //          .channel
-		.sink1_data          (mux_pipeline_011_source0_data),                             //          .data
-		.sink1_startofpacket (mux_pipeline_011_source0_startofpacket),                    //          .startofpacket
-		.sink1_endofpacket   (mux_pipeline_011_source0_endofpacket)                       //          .endofpacket
+		.sink0_ready         (mux_pipeline_011_source0_ready),                            //     sink0.ready
+		.sink0_valid         (mux_pipeline_011_source0_valid),                            //          .valid
+		.sink0_channel       (mux_pipeline_011_source0_channel),                          //          .channel
+		.sink0_data          (mux_pipeline_011_source0_data),                             //          .data
+		.sink0_startofpacket (mux_pipeline_011_source0_startofpacket),                    //          .startofpacket
+		.sink0_endofpacket   (mux_pipeline_011_source0_endofpacket)                       //          .endofpacket
 	);
 
-	q_sys_mm_interconnect_0_rsp_mux_003 rsp_mux_004 (
+	q_sys_mm_interconnect_0_rsp_mux_004 rsp_mux_004 (
 		.clk                 (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
 		.reset               (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
 		.src_ready           (rsp_mux_004_src_ready),                                     //       src.ready
@@ -2288,6 +2526,29 @@ module q_sys_mm_interconnect_0 (
 		.sink1_data          (mux_pipeline_013_source0_data),                             //          .data
 		.sink1_startofpacket (mux_pipeline_013_source0_startofpacket),                    //          .startofpacket
 		.sink1_endofpacket   (mux_pipeline_013_source0_endofpacket)                       //          .endofpacket
+	);
+
+	q_sys_mm_interconnect_0_rsp_mux_004 rsp_mux_005 (
+		.clk                 (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       clk.clk
+		.reset               (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.src_ready           (rsp_mux_005_src_ready),                                     //       src.ready
+		.src_valid           (rsp_mux_005_src_valid),                                     //          .valid
+		.src_data            (rsp_mux_005_src_data),                                      //          .data
+		.src_channel         (rsp_mux_005_src_channel),                                   //          .channel
+		.src_startofpacket   (rsp_mux_005_src_startofpacket),                             //          .startofpacket
+		.src_endofpacket     (rsp_mux_005_src_endofpacket),                               //          .endofpacket
+		.sink0_ready         (mux_pipeline_014_source0_ready),                            //     sink0.ready
+		.sink0_valid         (mux_pipeline_014_source0_valid),                            //          .valid
+		.sink0_channel       (mux_pipeline_014_source0_channel),                          //          .channel
+		.sink0_data          (mux_pipeline_014_source0_data),                             //          .data
+		.sink0_startofpacket (mux_pipeline_014_source0_startofpacket),                    //          .startofpacket
+		.sink0_endofpacket   (mux_pipeline_014_source0_endofpacket),                      //          .endofpacket
+		.sink1_ready         (mux_pipeline_015_source0_ready),                            //     sink1.ready
+		.sink1_valid         (mux_pipeline_015_source0_valid),                            //          .valid
+		.sink1_channel       (mux_pipeline_015_source0_channel),                          //          .channel
+		.sink1_data          (mux_pipeline_015_source0_data),                             //          .data
+		.sink1_startofpacket (mux_pipeline_015_source0_startofpacket),                    //          .startofpacket
+		.sink1_endofpacket   (mux_pipeline_015_source0_endofpacket)                       //          .endofpacket
 	);
 
 	altera_merlin_width_adapter #(
@@ -2332,7 +2593,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (112),
 		.OUT_PKT_ORI_BURST_SIZE_H      (114),
 		.OUT_ST_DATA_W                 (115),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (0),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2398,7 +2659,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (112),
 		.OUT_PKT_ORI_BURST_SIZE_H      (114),
 		.OUT_ST_DATA_W                 (115),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (0),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2407,12 +2668,12 @@ module q_sys_mm_interconnect_0 (
 	) ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter (
 		.clk                  (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                   //       clk.clk
 		.reset                (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                           // clk_reset.reset
-		.in_valid             (cmd_demux_003_src0_valid),                                                                            //      sink.valid
-		.in_channel           (cmd_demux_003_src0_channel),                                                                          //          .channel
-		.in_startofpacket     (cmd_demux_003_src0_startofpacket),                                                                    //          .startofpacket
-		.in_endofpacket       (cmd_demux_003_src0_endofpacket),                                                                      //          .endofpacket
-		.in_ready             (cmd_demux_003_src0_ready),                                                                            //          .ready
-		.in_data              (cmd_demux_003_src0_data),                                                                             //          .data
+		.in_valid             (cmd_demux_004_src0_valid),                                                                            //      sink.valid
+		.in_channel           (cmd_demux_004_src0_channel),                                                                          //          .channel
+		.in_startofpacket     (cmd_demux_004_src0_startofpacket),                                                                    //          .startofpacket
+		.in_endofpacket       (cmd_demux_004_src0_endofpacket),                                                                      //          .endofpacket
+		.in_ready             (cmd_demux_004_src0_ready),                                                                            //          .ready
+		.in_data              (cmd_demux_004_src0_data),                                                                             //          .data
 		.out_endofpacket      (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket),   //       src.endofpacket
 		.out_data             (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data),          //          .data
 		.out_channel          (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel),       //          .channel
@@ -2464,7 +2725,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (148),
 		.OUT_PKT_ORI_BURST_SIZE_H      (150),
 		.OUT_ST_DATA_W                 (151),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (0),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2473,12 +2734,12 @@ module q_sys_mm_interconnect_0 (
 	) ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter (
 		.clk                  (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                      //       clk.clk
 		.reset                (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                              // clk_reset.reset
-		.in_valid             (cmd_demux_003_src1_valid),                                                                               //      sink.valid
-		.in_channel           (cmd_demux_003_src1_channel),                                                                             //          .channel
-		.in_startofpacket     (cmd_demux_003_src1_startofpacket),                                                                       //          .startofpacket
-		.in_endofpacket       (cmd_demux_003_src1_endofpacket),                                                                         //          .endofpacket
-		.in_ready             (cmd_demux_003_src1_ready),                                                                               //          .ready
-		.in_data              (cmd_demux_003_src1_data),                                                                                //          .data
+		.in_valid             (cmd_demux_004_src1_valid),                                                                               //      sink.valid
+		.in_channel           (cmd_demux_004_src1_channel),                                                                             //          .channel
+		.in_startofpacket     (cmd_demux_004_src1_startofpacket),                                                                       //          .startofpacket
+		.in_endofpacket       (cmd_demux_004_src1_endofpacket),                                                                         //          .endofpacket
+		.in_ready             (cmd_demux_004_src1_ready),                                                                               //          .ready
+		.in_data              (cmd_demux_004_src1_data),                                                                                //          .data
 		.out_endofpacket      (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket),   //       src.endofpacket
 		.out_data             (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data),          //          .data
 		.out_channel          (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel),       //          .channel
@@ -2530,7 +2791,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (112),
 		.OUT_PKT_ORI_BURST_SIZE_H      (114),
 		.OUT_ST_DATA_W                 (115),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (0),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2539,12 +2800,12 @@ module q_sys_mm_interconnect_0 (
 	) ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter (
 		.clk                  (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                     //       clk.clk
 		.reset                (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                             // clk_reset.reset
-		.in_valid             (cmd_demux_004_src0_valid),                                                                              //      sink.valid
-		.in_channel           (cmd_demux_004_src0_channel),                                                                            //          .channel
-		.in_startofpacket     (cmd_demux_004_src0_startofpacket),                                                                      //          .startofpacket
-		.in_endofpacket       (cmd_demux_004_src0_endofpacket),                                                                        //          .endofpacket
-		.in_ready             (cmd_demux_004_src0_ready),                                                                              //          .ready
-		.in_data              (cmd_demux_004_src0_data),                                                                               //          .data
+		.in_valid             (cmd_demux_005_src0_valid),                                                                              //      sink.valid
+		.in_channel           (cmd_demux_005_src0_channel),                                                                            //          .channel
+		.in_startofpacket     (cmd_demux_005_src0_startofpacket),                                                                      //          .startofpacket
+		.in_endofpacket       (cmd_demux_005_src0_endofpacket),                                                                        //          .endofpacket
+		.in_ready             (cmd_demux_005_src0_ready),                                                                              //          .ready
+		.in_data              (cmd_demux_005_src0_data),                                                                               //          .data
 		.out_endofpacket      (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket),   //       src.endofpacket
 		.out_data             (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data),          //          .data
 		.out_channel          (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel),       //          .channel
@@ -2596,7 +2857,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (148),
 		.OUT_PKT_ORI_BURST_SIZE_H      (150),
 		.OUT_ST_DATA_W                 (151),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (0),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2605,12 +2866,12 @@ module q_sys_mm_interconnect_0 (
 	) ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter (
 		.clk                  (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                        //       clk.clk
 		.reset                (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                                // clk_reset.reset
-		.in_valid             (cmd_demux_004_src1_valid),                                                                                 //      sink.valid
-		.in_channel           (cmd_demux_004_src1_channel),                                                                               //          .channel
-		.in_startofpacket     (cmd_demux_004_src1_startofpacket),                                                                         //          .startofpacket
-		.in_endofpacket       (cmd_demux_004_src1_endofpacket),                                                                           //          .endofpacket
-		.in_ready             (cmd_demux_004_src1_ready),                                                                                 //          .ready
-		.in_data              (cmd_demux_004_src1_data),                                                                                  //          .data
+		.in_valid             (cmd_demux_005_src1_valid),                                                                                 //      sink.valid
+		.in_channel           (cmd_demux_005_src1_channel),                                                                               //          .channel
+		.in_startofpacket     (cmd_demux_005_src1_startofpacket),                                                                         //          .startofpacket
+		.in_endofpacket       (cmd_demux_005_src1_endofpacket),                                                                           //          .endofpacket
+		.in_ready             (cmd_demux_005_src1_ready),                                                                                 //          .ready
+		.in_data              (cmd_demux_005_src1_data),                                                                                  //          .data
 		.out_endofpacket      (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket),   //       src.endofpacket
 		.out_data             (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data),          //          .data
 		.out_channel          (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel),       //          .channel
@@ -2662,7 +2923,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (148),
 		.OUT_PKT_ORI_BURST_SIZE_H      (150),
 		.OUT_ST_DATA_W                 (151),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (1),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2728,7 +2989,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (220),
 		.OUT_PKT_ORI_BURST_SIZE_H      (222),
 		.OUT_ST_DATA_W                 (223),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (1),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2737,12 +2998,12 @@ module q_sys_mm_interconnect_0 (
 	) onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter (
 		.clk                  (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                   //       clk.clk
 		.reset                (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                           // clk_reset.reset
-		.in_valid             (rsp_demux_src3_valid),                                                                                //      sink.valid
-		.in_channel           (rsp_demux_src3_channel),                                                                              //          .channel
-		.in_startofpacket     (rsp_demux_src3_startofpacket),                                                                        //          .startofpacket
-		.in_endofpacket       (rsp_demux_src3_endofpacket),                                                                          //          .endofpacket
-		.in_ready             (rsp_demux_src3_ready),                                                                                //          .ready
-		.in_data              (rsp_demux_src3_data),                                                                                 //          .data
+		.in_valid             (rsp_demux_src4_valid),                                                                                //      sink.valid
+		.in_channel           (rsp_demux_src4_channel),                                                                              //          .channel
+		.in_startofpacket     (rsp_demux_src4_startofpacket),                                                                        //          .startofpacket
+		.in_endofpacket       (rsp_demux_src4_endofpacket),                                                                          //          .endofpacket
+		.in_ready             (rsp_demux_src4_ready),                                                                                //          .ready
+		.in_data              (rsp_demux_src4_data),                                                                                 //          .data
 		.out_endofpacket      (onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_endofpacket),   //       src.endofpacket
 		.out_data             (onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_data),          //          .data
 		.out_channel          (onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_channel),       //          .channel
@@ -2794,7 +3055,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (220),
 		.OUT_PKT_ORI_BURST_SIZE_H      (222),
 		.OUT_ST_DATA_W                 (223),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (1),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2803,12 +3064,12 @@ module q_sys_mm_interconnect_0 (
 	) onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter (
 		.clk                  (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                     //       clk.clk
 		.reset                (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                             // clk_reset.reset
-		.in_valid             (rsp_demux_src4_valid),                                                                                  //      sink.valid
-		.in_channel           (rsp_demux_src4_channel),                                                                                //          .channel
-		.in_startofpacket     (rsp_demux_src4_startofpacket),                                                                          //          .startofpacket
-		.in_endofpacket       (rsp_demux_src4_endofpacket),                                                                            //          .endofpacket
-		.in_ready             (rsp_demux_src4_ready),                                                                                  //          .ready
-		.in_data              (rsp_demux_src4_data),                                                                                   //          .data
+		.in_valid             (rsp_demux_src5_valid),                                                                                  //      sink.valid
+		.in_channel           (rsp_demux_src5_channel),                                                                                //          .channel
+		.in_startofpacket     (rsp_demux_src5_startofpacket),                                                                          //          .startofpacket
+		.in_endofpacket       (rsp_demux_src5_endofpacket),                                                                            //          .endofpacket
+		.in_ready             (rsp_demux_src5_ready),                                                                                  //          .ready
+		.in_data              (rsp_demux_src5_data),                                                                                   //          .data
 		.out_endofpacket      (onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_endofpacket),   //       src.endofpacket
 		.out_data             (onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_data),          //          .data
 		.out_channel          (onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_channel),       //          .channel
@@ -2860,7 +3121,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (220),
 		.OUT_PKT_ORI_BURST_SIZE_H      (222),
 		.OUT_ST_DATA_W                 (223),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (1),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2926,7 +3187,7 @@ module q_sys_mm_interconnect_0 (
 		.OUT_PKT_ORI_BURST_SIZE_L      (220),
 		.OUT_PKT_ORI_BURST_SIZE_H      (222),
 		.OUT_ST_DATA_W                 (223),
-		.ST_CHANNEL_W                  (5),
+		.ST_CHANNEL_W                  (6),
 		.OPTIMIZE_FOR_RSP              (0),
 		.RESPONSE_PATH                 (1),
 		.CONSTANT_BURST_SIZE           (1),
@@ -2956,7 +3217,7 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
@@ -2987,19 +3248,19 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
 	) limiter_pipeline_001 (
 		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       cr0.clk
 		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // cr0_reset.reset
-		.in_ready          (rsp_mux_003_src_ready),                                     //     sink0.ready
-		.in_valid          (rsp_mux_003_src_valid),                                     //          .valid
-		.in_startofpacket  (rsp_mux_003_src_startofpacket),                             //          .startofpacket
-		.in_endofpacket    (rsp_mux_003_src_endofpacket),                               //          .endofpacket
-		.in_data           (rsp_mux_003_src_data),                                      //          .data
-		.in_channel        (rsp_mux_003_src_channel),                                   //          .channel
+		.in_ready          (rsp_mux_004_src_ready),                                     //     sink0.ready
+		.in_valid          (rsp_mux_004_src_valid),                                     //          .valid
+		.in_startofpacket  (rsp_mux_004_src_startofpacket),                             //          .startofpacket
+		.in_endofpacket    (rsp_mux_004_src_endofpacket),                               //          .endofpacket
+		.in_data           (rsp_mux_004_src_data),                                      //          .data
+		.in_channel        (rsp_mux_004_src_channel),                                   //          .channel
 		.out_ready         (limiter_pipeline_001_source0_ready),                        //   source0.ready
 		.out_valid         (limiter_pipeline_001_source0_valid),                        //          .valid
 		.out_startofpacket (limiter_pipeline_001_source0_startofpacket),                //          .startofpacket
@@ -3018,7 +3279,7 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
@@ -3080,7 +3341,7 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
@@ -3142,7 +3403,7 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
@@ -3173,7 +3434,7 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
@@ -3204,7 +3465,7 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
@@ -3235,180 +3496,25 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
 	) mux_pipeline_003 (
-		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                   //       cr0.clk
-		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                           // cr0_reset.reset
-		.in_ready          (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready),         //     sink0.ready
-		.in_valid          (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid),         //          .valid
-		.in_startofpacket  (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket), //          .startofpacket
-		.in_endofpacket    (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket),   //          .endofpacket
-		.in_data           (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data),          //          .data
-		.in_channel        (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_003_source0_ready),                                                                      //   source0.ready
-		.out_valid         (mux_pipeline_003_source0_valid),                                                                      //          .valid
-		.out_startofpacket (mux_pipeline_003_source0_startofpacket),                                                              //          .startofpacket
-		.out_endofpacket   (mux_pipeline_003_source0_endofpacket),                                                                //          .endofpacket
-		.out_data          (mux_pipeline_003_source0_data),                                                                       //          .data
-		.out_channel       (mux_pipeline_003_source0_channel),                                                                    //          .channel
-		.in_empty          (1'b0),                                                                                                // (terminated)
-		.out_empty         (),                                                                                                    // (terminated)
-		.out_error         (),                                                                                                    // (terminated)
-		.in_error          (1'b0)                                                                                                 // (terminated)
-	);
-
-	altera_avalon_st_pipeline_stage #(
-		.SYMBOLS_PER_BEAT (1),
-		.BITS_PER_SYMBOL  (115),
-		.USE_PACKETS      (1),
-		.USE_EMPTY        (0),
-		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
-		.PACKET_WIDTH     (2),
-		.ERROR_WIDTH      (0),
-		.PIPELINE_READY   (1)
-	) mux_pipeline_004 (
-		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                     //       cr0.clk
-		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                             // cr0_reset.reset
-		.in_ready          (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready),         //     sink0.ready
-		.in_valid          (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid),         //          .valid
-		.in_startofpacket  (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket), //          .startofpacket
-		.in_endofpacket    (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket),   //          .endofpacket
-		.in_data           (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data),          //          .data
-		.in_channel        (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_004_source0_ready),                                                                        //   source0.ready
-		.out_valid         (mux_pipeline_004_source0_valid),                                                                        //          .valid
-		.out_startofpacket (mux_pipeline_004_source0_startofpacket),                                                                //          .startofpacket
-		.out_endofpacket   (mux_pipeline_004_source0_endofpacket),                                                                  //          .endofpacket
-		.out_data          (mux_pipeline_004_source0_data),                                                                         //          .data
-		.out_channel       (mux_pipeline_004_source0_channel),                                                                      //          .channel
-		.in_empty          (1'b0),                                                                                                  // (terminated)
-		.out_empty         (),                                                                                                      // (terminated)
-		.out_error         (),                                                                                                      // (terminated)
-		.in_error          (1'b0)                                                                                                   // (terminated)
-	);
-
-	altera_avalon_st_pipeline_stage #(
-		.SYMBOLS_PER_BEAT (1),
-		.BITS_PER_SYMBOL  (151),
-		.USE_PACKETS      (1),
-		.USE_EMPTY        (0),
-		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
-		.PACKET_WIDTH     (2),
-		.ERROR_WIDTH      (0),
-		.PIPELINE_READY   (1)
-	) mux_pipeline_005 (
-		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                      //       cr0.clk
-		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                              // cr0_reset.reset
-		.in_ready          (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready),         //     sink0.ready
-		.in_valid          (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid),         //          .valid
-		.in_startofpacket  (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket), //          .startofpacket
-		.in_endofpacket    (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket),   //          .endofpacket
-		.in_data           (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data),          //          .data
-		.in_channel        (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_005_source0_ready),                                                                         //   source0.ready
-		.out_valid         (mux_pipeline_005_source0_valid),                                                                         //          .valid
-		.out_startofpacket (mux_pipeline_005_source0_startofpacket),                                                                 //          .startofpacket
-		.out_endofpacket   (mux_pipeline_005_source0_endofpacket),                                                                   //          .endofpacket
-		.out_data          (mux_pipeline_005_source0_data),                                                                          //          .data
-		.out_channel       (mux_pipeline_005_source0_channel),                                                                       //          .channel
-		.in_empty          (1'b0),                                                                                                   // (terminated)
-		.out_empty         (),                                                                                                       // (terminated)
-		.out_error         (),                                                                                                       // (terminated)
-		.in_error          (1'b0)                                                                                                    // (terminated)
-	);
-
-	altera_avalon_st_pipeline_stage #(
-		.SYMBOLS_PER_BEAT (1),
-		.BITS_PER_SYMBOL  (151),
-		.USE_PACKETS      (1),
-		.USE_EMPTY        (0),
-		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
-		.PACKET_WIDTH     (2),
-		.ERROR_WIDTH      (0),
-		.PIPELINE_READY   (1)
-	) mux_pipeline_006 (
-		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                        //       cr0.clk
-		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                                // cr0_reset.reset
-		.in_ready          (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready),         //     sink0.ready
-		.in_valid          (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid),         //          .valid
-		.in_startofpacket  (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket), //          .startofpacket
-		.in_endofpacket    (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket),   //          .endofpacket
-		.in_data           (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data),          //          .data
-		.in_channel        (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_006_source0_ready),                                                                           //   source0.ready
-		.out_valid         (mux_pipeline_006_source0_valid),                                                                           //          .valid
-		.out_startofpacket (mux_pipeline_006_source0_startofpacket),                                                                   //          .startofpacket
-		.out_endofpacket   (mux_pipeline_006_source0_endofpacket),                                                                     //          .endofpacket
-		.out_data          (mux_pipeline_006_source0_data),                                                                            //          .data
-		.out_channel       (mux_pipeline_006_source0_channel),                                                                         //          .channel
-		.in_empty          (1'b0),                                                                                                     // (terminated)
-		.out_empty         (),                                                                                                         // (terminated)
-		.out_error         (),                                                                                                         // (terminated)
-		.in_error          (1'b0)                                                                                                      // (terminated)
-	);
-
-	altera_avalon_st_pipeline_stage #(
-		.SYMBOLS_PER_BEAT (1),
-		.BITS_PER_SYMBOL  (151),
-		.USE_PACKETS      (1),
-		.USE_EMPTY        (0),
-		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
-		.PACKET_WIDTH     (2),
-		.ERROR_WIDTH      (0),
-		.PIPELINE_READY   (1)
-	) mux_pipeline_007 (
-		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                      //       cr0.clk
-		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                              // cr0_reset.reset
-		.in_ready          (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_ready),         //     sink0.ready
-		.in_valid          (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_valid),         //          .valid
-		.in_startofpacket  (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_startofpacket), //          .startofpacket
-		.in_endofpacket    (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_endofpacket),   //          .endofpacket
-		.in_data           (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_data),          //          .data
-		.in_channel        (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_007_source0_ready),                                                         //   source0.ready
-		.out_valid         (mux_pipeline_007_source0_valid),                                                         //          .valid
-		.out_startofpacket (mux_pipeline_007_source0_startofpacket),                                                 //          .startofpacket
-		.out_endofpacket   (mux_pipeline_007_source0_endofpacket),                                                   //          .endofpacket
-		.out_data          (mux_pipeline_007_source0_data),                                                          //          .data
-		.out_channel       (mux_pipeline_007_source0_channel),                                                       //          .channel
-		.in_empty          (1'b0),                                                                                   // (terminated)
-		.out_empty         (),                                                                                       // (terminated)
-		.out_error         (),                                                                                       // (terminated)
-		.in_error          (1'b0)                                                                                    // (terminated)
-	);
-
-	altera_avalon_st_pipeline_stage #(
-		.SYMBOLS_PER_BEAT (1),
-		.BITS_PER_SYMBOL  (115),
-		.USE_PACKETS      (1),
-		.USE_EMPTY        (0),
-		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
-		.PACKET_WIDTH     (2),
-		.ERROR_WIDTH      (0),
-		.PIPELINE_READY   (1)
-	) mux_pipeline_008 (
 		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       cr0.clk
 		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // cr0_reset.reset
-		.in_ready          (rsp_demux_src1_ready),                                      //     sink0.ready
-		.in_valid          (rsp_demux_src1_valid),                                      //          .valid
-		.in_startofpacket  (rsp_demux_src1_startofpacket),                              //          .startofpacket
-		.in_endofpacket    (rsp_demux_src1_endofpacket),                                //          .endofpacket
-		.in_data           (rsp_demux_src1_data),                                       //          .data
-		.in_channel        (rsp_demux_src1_channel),                                    //          .channel
-		.out_ready         (mux_pipeline_008_source0_ready),                            //   source0.ready
-		.out_valid         (mux_pipeline_008_source0_valid),                            //          .valid
-		.out_startofpacket (mux_pipeline_008_source0_startofpacket),                    //          .startofpacket
-		.out_endofpacket   (mux_pipeline_008_source0_endofpacket),                      //          .endofpacket
-		.out_data          (mux_pipeline_008_source0_data),                             //          .data
-		.out_channel       (mux_pipeline_008_source0_channel),                          //          .channel
+		.in_ready          (cmd_demux_003_src0_ready),                                  //     sink0.ready
+		.in_valid          (cmd_demux_003_src0_valid),                                  //          .valid
+		.in_startofpacket  (cmd_demux_003_src0_startofpacket),                          //          .startofpacket
+		.in_endofpacket    (cmd_demux_003_src0_endofpacket),                            //          .endofpacket
+		.in_data           (cmd_demux_003_src0_data),                                   //          .data
+		.in_channel        (cmd_demux_003_src0_channel),                                //          .channel
+		.out_ready         (mux_pipeline_003_source0_ready),                            //   source0.ready
+		.out_valid         (mux_pipeline_003_source0_valid),                            //          .valid
+		.out_startofpacket (mux_pipeline_003_source0_startofpacket),                    //          .startofpacket
+		.out_endofpacket   (mux_pipeline_003_source0_endofpacket),                      //          .endofpacket
+		.out_data          (mux_pipeline_003_source0_data),                             //          .data
+		.out_channel       (mux_pipeline_003_source0_channel),                          //          .channel
 		.in_empty          (1'b0),                                                      // (terminated)
 		.out_empty         (),                                                          // (terminated)
 		.out_error         (),                                                          // (terminated)
@@ -3421,19 +3527,174 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) mux_pipeline_004 (
+		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                   //       cr0.clk
+		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                           // cr0_reset.reset
+		.in_ready          (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready),         //     sink0.ready
+		.in_valid          (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid),         //          .valid
+		.in_startofpacket  (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket), //          .startofpacket
+		.in_endofpacket    (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket),   //          .endofpacket
+		.in_data           (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data),          //          .data
+		.in_channel        (ctl_0_dma_read_master_0_data_read_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel),       //          .channel
+		.out_ready         (mux_pipeline_004_source0_ready),                                                                      //   source0.ready
+		.out_valid         (mux_pipeline_004_source0_valid),                                                                      //          .valid
+		.out_startofpacket (mux_pipeline_004_source0_startofpacket),                                                              //          .startofpacket
+		.out_endofpacket   (mux_pipeline_004_source0_endofpacket),                                                                //          .endofpacket
+		.out_data          (mux_pipeline_004_source0_data),                                                                       //          .data
+		.out_channel       (mux_pipeline_004_source0_channel),                                                                    //          .channel
+		.in_empty          (1'b0),                                                                                                // (terminated)
+		.out_empty         (),                                                                                                    // (terminated)
+		.out_error         (),                                                                                                    // (terminated)
+		.in_error          (1'b0)                                                                                                 // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (115),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (6),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) mux_pipeline_005 (
+		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                     //       cr0.clk
+		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                             // cr0_reset.reset
+		.in_ready          (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_ready),         //     sink0.ready
+		.in_valid          (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_valid),         //          .valid
+		.in_startofpacket  (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_startofpacket), //          .startofpacket
+		.in_endofpacket    (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_endofpacket),   //          .endofpacket
+		.in_data           (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_data),          //          .data
+		.in_channel        (ctl_0_dma_write_master_0_data_write_master_to_onchip_memory2_0_s1_cmd_width_adapter_src_channel),       //          .channel
+		.out_ready         (mux_pipeline_005_source0_ready),                                                                        //   source0.ready
+		.out_valid         (mux_pipeline_005_source0_valid),                                                                        //          .valid
+		.out_startofpacket (mux_pipeline_005_source0_startofpacket),                                                                //          .startofpacket
+		.out_endofpacket   (mux_pipeline_005_source0_endofpacket),                                                                  //          .endofpacket
+		.out_data          (mux_pipeline_005_source0_data),                                                                         //          .data
+		.out_channel       (mux_pipeline_005_source0_channel),                                                                      //          .channel
+		.in_empty          (1'b0),                                                                                                  // (terminated)
+		.out_empty         (),                                                                                                      // (terminated)
+		.out_error         (),                                                                                                      // (terminated)
+		.in_error          (1'b0)                                                                                                   // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (151),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (6),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) mux_pipeline_006 (
+		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                      //       cr0.clk
+		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                              // cr0_reset.reset
+		.in_ready          (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready),         //     sink0.ready
+		.in_valid          (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid),         //          .valid
+		.in_startofpacket  (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket), //          .startofpacket
+		.in_endofpacket    (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket),   //          .endofpacket
+		.in_data           (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data),          //          .data
+		.in_channel        (ctl_0_dma_read_master_0_data_read_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel),       //          .channel
+		.out_ready         (mux_pipeline_006_source0_ready),                                                                         //   source0.ready
+		.out_valid         (mux_pipeline_006_source0_valid),                                                                         //          .valid
+		.out_startofpacket (mux_pipeline_006_source0_startofpacket),                                                                 //          .startofpacket
+		.out_endofpacket   (mux_pipeline_006_source0_endofpacket),                                                                   //          .endofpacket
+		.out_data          (mux_pipeline_006_source0_data),                                                                          //          .data
+		.out_channel       (mux_pipeline_006_source0_channel),                                                                       //          .channel
+		.in_empty          (1'b0),                                                                                                   // (terminated)
+		.out_empty         (),                                                                                                       // (terminated)
+		.out_error         (),                                                                                                       // (terminated)
+		.in_error          (1'b0)                                                                                                    // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (151),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (6),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) mux_pipeline_007 (
+		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                        //       cr0.clk
+		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                                // cr0_reset.reset
+		.in_ready          (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_ready),         //     sink0.ready
+		.in_valid          (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_valid),         //          .valid
+		.in_startofpacket  (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_startofpacket), //          .startofpacket
+		.in_endofpacket    (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_endofpacket),   //          .endofpacket
+		.in_data           (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_data),          //          .data
+		.in_channel        (ctl_0_dma_write_master_0_data_write_master_to_pcie_cv_hip_avmm_0_txs_cmd_width_adapter_src_channel),       //          .channel
+		.out_ready         (mux_pipeline_007_source0_ready),                                                                           //   source0.ready
+		.out_valid         (mux_pipeline_007_source0_valid),                                                                           //          .valid
+		.out_startofpacket (mux_pipeline_007_source0_startofpacket),                                                                   //          .startofpacket
+		.out_endofpacket   (mux_pipeline_007_source0_endofpacket),                                                                     //          .endofpacket
+		.out_data          (mux_pipeline_007_source0_data),                                                                            //          .data
+		.out_channel       (mux_pipeline_007_source0_channel),                                                                         //          .channel
+		.in_empty          (1'b0),                                                                                                     // (terminated)
+		.out_empty         (),                                                                                                         // (terminated)
+		.out_error         (),                                                                                                         // (terminated)
+		.in_error          (1'b0)                                                                                                      // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (151),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (6),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) mux_pipeline_008 (
+		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                      //       cr0.clk
+		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                              // cr0_reset.reset
+		.in_ready          (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_ready),         //     sink0.ready
+		.in_valid          (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_valid),         //          .valid
+		.in_startofpacket  (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_startofpacket), //          .startofpacket
+		.in_endofpacket    (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_endofpacket),   //          .endofpacket
+		.in_data           (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_data),          //          .data
+		.in_channel        (onchip_memory2_0_s1_to_pcie_cv_hip_avmm_0_rxm_bar0_rsp_width_adapter_src_channel),       //          .channel
+		.out_ready         (mux_pipeline_008_source0_ready),                                                         //   source0.ready
+		.out_valid         (mux_pipeline_008_source0_valid),                                                         //          .valid
+		.out_startofpacket (mux_pipeline_008_source0_startofpacket),                                                 //          .startofpacket
+		.out_endofpacket   (mux_pipeline_008_source0_endofpacket),                                                   //          .endofpacket
+		.out_data          (mux_pipeline_008_source0_data),                                                          //          .data
+		.out_channel       (mux_pipeline_008_source0_channel),                                                       //          .channel
+		.in_empty          (1'b0),                                                                                   // (terminated)
+		.out_empty         (),                                                                                       // (terminated)
+		.out_error         (),                                                                                       // (terminated)
+		.in_error          (1'b0)                                                                                    // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (115),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
 	) mux_pipeline_009 (
 		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       cr0.clk
 		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // cr0_reset.reset
-		.in_ready          (rsp_demux_src2_ready),                                      //     sink0.ready
-		.in_valid          (rsp_demux_src2_valid),                                      //          .valid
-		.in_startofpacket  (rsp_demux_src2_startofpacket),                              //          .startofpacket
-		.in_endofpacket    (rsp_demux_src2_endofpacket),                                //          .endofpacket
-		.in_data           (rsp_demux_src2_data),                                       //          .data
-		.in_channel        (rsp_demux_src2_channel),                                    //          .channel
+		.in_ready          (rsp_demux_src1_ready),                                      //     sink0.ready
+		.in_valid          (rsp_demux_src1_valid),                                      //          .valid
+		.in_startofpacket  (rsp_demux_src1_startofpacket),                              //          .startofpacket
+		.in_endofpacket    (rsp_demux_src1_endofpacket),                                //          .endofpacket
+		.in_data           (rsp_demux_src1_data),                                       //          .data
+		.in_channel        (rsp_demux_src1_channel),                                    //          .channel
 		.out_ready         (mux_pipeline_009_source0_ready),                            //   source0.ready
 		.out_valid         (mux_pipeline_009_source0_valid),                            //          .valid
 		.out_startofpacket (mux_pipeline_009_source0_startofpacket),                    //          .startofpacket
@@ -3448,15 +3709,77 @@ module q_sys_mm_interconnect_0 (
 
 	altera_avalon_st_pipeline_stage #(
 		.SYMBOLS_PER_BEAT (1),
-		.BITS_PER_SYMBOL  (223),
+		.BITS_PER_SYMBOL  (115),
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
 	) mux_pipeline_010 (
+		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       cr0.clk
+		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // cr0_reset.reset
+		.in_ready          (rsp_demux_src2_ready),                                      //     sink0.ready
+		.in_valid          (rsp_demux_src2_valid),                                      //          .valid
+		.in_startofpacket  (rsp_demux_src2_startofpacket),                              //          .startofpacket
+		.in_endofpacket    (rsp_demux_src2_endofpacket),                                //          .endofpacket
+		.in_data           (rsp_demux_src2_data),                                       //          .data
+		.in_channel        (rsp_demux_src2_channel),                                    //          .channel
+		.out_ready         (mux_pipeline_010_source0_ready),                            //   source0.ready
+		.out_valid         (mux_pipeline_010_source0_valid),                            //          .valid
+		.out_startofpacket (mux_pipeline_010_source0_startofpacket),                    //          .startofpacket
+		.out_endofpacket   (mux_pipeline_010_source0_endofpacket),                      //          .endofpacket
+		.out_data          (mux_pipeline_010_source0_data),                             //          .data
+		.out_channel       (mux_pipeline_010_source0_channel),                          //          .channel
+		.in_empty          (1'b0),                                                      // (terminated)
+		.out_empty         (),                                                          // (terminated)
+		.out_error         (),                                                          // (terminated)
+		.in_error          (1'b0)                                                       // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (115),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (6),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) mux_pipeline_011 (
+		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                         //       cr0.clk
+		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset), // cr0_reset.reset
+		.in_ready          (rsp_demux_src3_ready),                                      //     sink0.ready
+		.in_valid          (rsp_demux_src3_valid),                                      //          .valid
+		.in_startofpacket  (rsp_demux_src3_startofpacket),                              //          .startofpacket
+		.in_endofpacket    (rsp_demux_src3_endofpacket),                                //          .endofpacket
+		.in_data           (rsp_demux_src3_data),                                       //          .data
+		.in_channel        (rsp_demux_src3_channel),                                    //          .channel
+		.out_ready         (mux_pipeline_011_source0_ready),                            //   source0.ready
+		.out_valid         (mux_pipeline_011_source0_valid),                            //          .valid
+		.out_startofpacket (mux_pipeline_011_source0_startofpacket),                    //          .startofpacket
+		.out_endofpacket   (mux_pipeline_011_source0_endofpacket),                      //          .endofpacket
+		.out_data          (mux_pipeline_011_source0_data),                             //          .data
+		.out_channel       (mux_pipeline_011_source0_channel),                          //          .channel
+		.in_empty          (1'b0),                                                      // (terminated)
+		.out_empty         (),                                                          // (terminated)
+		.out_error         (),                                                          // (terminated)
+		.in_error          (1'b0)                                                       // (terminated)
+	);
+
+	altera_avalon_st_pipeline_stage #(
+		.SYMBOLS_PER_BEAT (1),
+		.BITS_PER_SYMBOL  (223),
+		.USE_PACKETS      (1),
+		.USE_EMPTY        (0),
+		.EMPTY_WIDTH      (0),
+		.CHANNEL_WIDTH    (6),
+		.PACKET_WIDTH     (2),
+		.ERROR_WIDTH      (0),
+		.PIPELINE_READY   (1)
+	) mux_pipeline_012 (
 		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                   //       cr0.clk
 		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                           // cr0_reset.reset
 		.in_ready          (onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_ready),         //     sink0.ready
@@ -3465,12 +3788,12 @@ module q_sys_mm_interconnect_0 (
 		.in_endofpacket    (onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_endofpacket),   //          .endofpacket
 		.in_data           (onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_data),          //          .data
 		.in_channel        (onchip_memory2_0_s1_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_010_source0_ready),                                                                      //   source0.ready
-		.out_valid         (mux_pipeline_010_source0_valid),                                                                      //          .valid
-		.out_startofpacket (mux_pipeline_010_source0_startofpacket),                                                              //          .startofpacket
-		.out_endofpacket   (mux_pipeline_010_source0_endofpacket),                                                                //          .endofpacket
-		.out_data          (mux_pipeline_010_source0_data),                                                                       //          .data
-		.out_channel       (mux_pipeline_010_source0_channel),                                                                    //          .channel
+		.out_ready         (mux_pipeline_012_source0_ready),                                                                      //   source0.ready
+		.out_valid         (mux_pipeline_012_source0_valid),                                                                      //          .valid
+		.out_startofpacket (mux_pipeline_012_source0_startofpacket),                                                              //          .startofpacket
+		.out_endofpacket   (mux_pipeline_012_source0_endofpacket),                                                                //          .endofpacket
+		.out_data          (mux_pipeline_012_source0_data),                                                                       //          .data
+		.out_channel       (mux_pipeline_012_source0_channel),                                                                    //          .channel
 		.in_empty          (1'b0),                                                                                                // (terminated)
 		.out_empty         (),                                                                                                    // (terminated)
 		.out_error         (),                                                                                                    // (terminated)
@@ -3483,11 +3806,11 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
-	) mux_pipeline_011 (
+	) mux_pipeline_013 (
 		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                      //       cr0.clk
 		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                              // cr0_reset.reset
 		.in_ready          (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_ready),         //     sink0.ready
@@ -3496,12 +3819,12 @@ module q_sys_mm_interconnect_0 (
 		.in_endofpacket    (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_endofpacket),   //          .endofpacket
 		.in_data           (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_data),          //          .data
 		.in_channel        (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_read_master_0_data_read_master_rsp_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_011_source0_ready),                                                                         //   source0.ready
-		.out_valid         (mux_pipeline_011_source0_valid),                                                                         //          .valid
-		.out_startofpacket (mux_pipeline_011_source0_startofpacket),                                                                 //          .startofpacket
-		.out_endofpacket   (mux_pipeline_011_source0_endofpacket),                                                                   //          .endofpacket
-		.out_data          (mux_pipeline_011_source0_data),                                                                          //          .data
-		.out_channel       (mux_pipeline_011_source0_channel),                                                                       //          .channel
+		.out_ready         (mux_pipeline_013_source0_ready),                                                                         //   source0.ready
+		.out_valid         (mux_pipeline_013_source0_valid),                                                                         //          .valid
+		.out_startofpacket (mux_pipeline_013_source0_startofpacket),                                                                 //          .startofpacket
+		.out_endofpacket   (mux_pipeline_013_source0_endofpacket),                                                                   //          .endofpacket
+		.out_data          (mux_pipeline_013_source0_data),                                                                          //          .data
+		.out_channel       (mux_pipeline_013_source0_channel),                                                                       //          .channel
 		.in_empty          (1'b0),                                                                                                   // (terminated)
 		.out_empty         (),                                                                                                       // (terminated)
 		.out_error         (),                                                                                                       // (terminated)
@@ -3514,11 +3837,11 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
-	) mux_pipeline_012 (
+	) mux_pipeline_014 (
 		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                     //       cr0.clk
 		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                             // cr0_reset.reset
 		.in_ready          (onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_ready),         //     sink0.ready
@@ -3527,12 +3850,12 @@ module q_sys_mm_interconnect_0 (
 		.in_endofpacket    (onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_endofpacket),   //          .endofpacket
 		.in_data           (onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_data),          //          .data
 		.in_channel        (onchip_memory2_0_s1_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_012_source0_ready),                                                                        //   source0.ready
-		.out_valid         (mux_pipeline_012_source0_valid),                                                                        //          .valid
-		.out_startofpacket (mux_pipeline_012_source0_startofpacket),                                                                //          .startofpacket
-		.out_endofpacket   (mux_pipeline_012_source0_endofpacket),                                                                  //          .endofpacket
-		.out_data          (mux_pipeline_012_source0_data),                                                                         //          .data
-		.out_channel       (mux_pipeline_012_source0_channel),                                                                      //          .channel
+		.out_ready         (mux_pipeline_014_source0_ready),                                                                        //   source0.ready
+		.out_valid         (mux_pipeline_014_source0_valid),                                                                        //          .valid
+		.out_startofpacket (mux_pipeline_014_source0_startofpacket),                                                                //          .startofpacket
+		.out_endofpacket   (mux_pipeline_014_source0_endofpacket),                                                                  //          .endofpacket
+		.out_data          (mux_pipeline_014_source0_data),                                                                         //          .data
+		.out_channel       (mux_pipeline_014_source0_channel),                                                                      //          .channel
 		.in_empty          (1'b0),                                                                                                  // (terminated)
 		.out_empty         (),                                                                                                      // (terminated)
 		.out_error         (),                                                                                                      // (terminated)
@@ -3545,11 +3868,11 @@ module q_sys_mm_interconnect_0 (
 		.USE_PACKETS      (1),
 		.USE_EMPTY        (0),
 		.EMPTY_WIDTH      (0),
-		.CHANNEL_WIDTH    (5),
+		.CHANNEL_WIDTH    (6),
 		.PACKET_WIDTH     (2),
 		.ERROR_WIDTH      (0),
 		.PIPELINE_READY   (1)
-	) mux_pipeline_013 (
+	) mux_pipeline_015 (
 		.clk               (pcie_cv_hip_avmm_0_coreclkout_clk),                                                                        //       cr0.clk
 		.reset             (master_read_clock_reset_reset_reset_bridge_in_reset_reset),                                                // cr0_reset.reset
 		.in_ready          (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_ready),         //     sink0.ready
@@ -3558,12 +3881,12 @@ module q_sys_mm_interconnect_0 (
 		.in_endofpacket    (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_endofpacket),   //          .endofpacket
 		.in_data           (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_data),          //          .data
 		.in_channel        (pcie_cv_hip_avmm_0_txs_to_ctl_0_dma_write_master_0_data_write_master_rsp_width_adapter_src_channel),       //          .channel
-		.out_ready         (mux_pipeline_013_source0_ready),                                                                           //   source0.ready
-		.out_valid         (mux_pipeline_013_source0_valid),                                                                           //          .valid
-		.out_startofpacket (mux_pipeline_013_source0_startofpacket),                                                                   //          .startofpacket
-		.out_endofpacket   (mux_pipeline_013_source0_endofpacket),                                                                     //          .endofpacket
-		.out_data          (mux_pipeline_013_source0_data),                                                                            //          .data
-		.out_channel       (mux_pipeline_013_source0_channel),                                                                         //          .channel
+		.out_ready         (mux_pipeline_015_source0_ready),                                                                           //   source0.ready
+		.out_valid         (mux_pipeline_015_source0_valid),                                                                           //          .valid
+		.out_startofpacket (mux_pipeline_015_source0_startofpacket),                                                                   //          .startofpacket
+		.out_endofpacket   (mux_pipeline_015_source0_endofpacket),                                                                     //          .endofpacket
+		.out_data          (mux_pipeline_015_source0_data),                                                                            //          .data
+		.out_channel       (mux_pipeline_015_source0_channel),                                                                         //          .channel
 		.in_empty          (1'b0),                                                                                                     // (terminated)
 		.out_empty         (),                                                                                                         // (terminated)
 		.out_error         (),                                                                                                         // (terminated)

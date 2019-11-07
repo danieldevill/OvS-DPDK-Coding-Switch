@@ -80,6 +80,14 @@
          type = "int";
       }
    }
+   element master_read_coeff
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
    element master_write
    {
       datum _sortIndex
@@ -222,6 +230,16 @@
    type="reset"
    dir="start" />
  <interface
+   name="master_read_coeff_control"
+   internal="master_read_coeff.control"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="master_read_coeff_user"
+   internal="master_read_coeff.user"
+   type="conduit"
+   dir="end" />
+ <interface
    name="master_read_control"
    internal="master_read.control"
    type="conduit"
@@ -309,11 +327,11 @@
   <parameter name="AUTO_DEVICE" value="5CGXFC9D6F27C7" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7_H6" />
-  <parameter name="AUTO_DMA_READ_MASTER_0_DATA_READ_MASTER_ADDRESS_MAP"><![CDATA[<address-map><slave name='pcie_cv_hip_avmm_0.Txs' start='0x0' end='0x2000000' /><slave name='onchip_memory2_0.s1' start='0x7000000' end='0x7000400' /></address-map>]]></parameter>
+  <parameter name="AUTO_DMA_READ_MASTER_0_DATA_READ_MASTER_ADDRESS_MAP"><![CDATA[<address-map><slave name='pcie_cv_hip_avmm_0.Txs' start='0x0' end='0x2000000' /><slave name='onchip_memory2_0.s1' start='0x7000000' end='0x7000800' /></address-map>]]></parameter>
   <parameter
      name="AUTO_DMA_READ_MASTER_0_DATA_READ_MASTER_ADDRESS_WIDTH"
      value="AddressWidth = 27" />
-  <parameter name="AUTO_DMA_WRITE_MASTER_0_DATA_WRITE_MASTER_ADDRESS_MAP"><![CDATA[<address-map><slave name='pcie_cv_hip_avmm_0.Txs' start='0x0' end='0x2000000' /><slave name='onchip_memory2_0.s1' start='0x7000000' end='0x7000400' /></address-map>]]></parameter>
+  <parameter name="AUTO_DMA_WRITE_MASTER_0_DATA_WRITE_MASTER_ADDRESS_MAP"><![CDATA[<address-map><slave name='pcie_cv_hip_avmm_0.Txs' start='0x0' end='0x2000000' /><slave name='onchip_memory2_0.s1' start='0x7000000' end='0x7000800' /></address-map>]]></parameter>
   <parameter
      name="AUTO_DMA_WRITE_MASTER_0_DATA_WRITE_MASTER_ADDRESS_WIDTH"
      value="AddressWidth = 27" />
@@ -321,6 +339,23 @@
   <parameter name="AUTO_UNIQUE_ID" value="$${FILENAME}_ctl_0" />
  </module>
  <module name="master_read" kind="master_template" version="1.0" enabled="1">
+  <parameter name="ADDRESS_WIDTH" value="32" />
+  <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="125000000" />
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="BURST_CAPABLE" value="0" />
+  <parameter name="BURST_COUNT_WIDTH" value="2" />
+  <parameter name="DATA_WIDTH" value="32" />
+  <parameter name="FIFO_DEPTH" value="256" />
+  <parameter name="FIFO_DEPTH_LOG2" value="8" />
+  <parameter name="MASTER_DIRECTION" value="0" />
+  <parameter name="MAXIMUM_BURST_COUNT" value="2" />
+  <parameter name="MEMORY_BASED_FIFO" value="1" />
+ </module>
+ <module
+   name="master_read_coeff"
+   kind="master_template"
+   version="1.0"
+   enabled="1">
   <parameter name="ADDRESS_WIDTH" value="32" />
   <parameter name="AUTO_CLOCK_RESET_CLOCK_RATE" value="125000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
@@ -366,7 +401,7 @@
   <parameter name="initMemContent" value="false" />
   <parameter name="initializationFileName">/home/daniel/Working/OvS-DPDK-Coding-Switch/fpga/ip/pcie/net_encoder_pci/packets_in.hex</parameter>
   <parameter name="instanceID" value="1234" />
-  <parameter name="memorySize" value="1024" />
+  <parameter name="memorySize" value="2048" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
   <parameter name="resetrequest_enabled" value="true" />
   <parameter name="simAllowMRAMContentsFile" value="false" />
@@ -694,6 +729,15 @@
  <connection
    kind="avalon"
    version="18.1"
+   start="master_read_coeff.avalon_master"
+   end="onchip_memory2_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x07000000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
    start="ctl_0.dma_read_master_0_data_read_master"
    end="pcie_cv_hip_avmm_0.Txs">
   <parameter name="arbitrationPriority" value="1" />
@@ -758,6 +802,11 @@
    start="pcie_cv_hip_avmm_0.coreclkout"
    end="master_write.clock_reset" />
  <connection
+   kind="clock"
+   version="18.1"
+   start="pcie_cv_hip_avmm_0.coreclkout"
+   end="master_read_coeff.clock_reset" />
+ <connection
    kind="conduit"
    version="18.1"
    start="pcie_cv_hip_avmm_0.reconfig_busy"
@@ -805,6 +854,11 @@
    version="18.1"
    start="pcie_cv_hip_avmm_0.nreset_status"
    end="master_write.clock_reset_reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="pcie_cv_hip_avmm_0.nreset_status"
+   end="master_read_coeff.clock_reset_reset" />
  <connection
    kind="reset"
    version="18.1"
