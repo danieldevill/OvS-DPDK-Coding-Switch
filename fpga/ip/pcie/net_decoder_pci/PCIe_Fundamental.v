@@ -104,6 +104,15 @@ wire [31:0] decoder_pkt_out;
 wire 			decoder_done;
 assign read_ram_en = pio_coder_rst;
 
+//Coeff data
+reg [55:0] coeff0 = 56'h9D_B5_D6_FC_99_31_CF;
+reg [55:0] coeff1 = 56'h13_6D_B9_15_FF_54_69;
+reg [55:0] coeff2 = 56'H14_AA_13_45_07_53_83;
+reg [55:0] coeff3 = 56'hD5_2F_CF_8B_E2_0E_6B;
+reg [55:0] coeff4 = 56'hF4_5F_F7_24_74_9A_21;
+reg [55:0] coeff5 = 56'h5C_B7_EB_73_0B_47_F1;
+reg [55:0] coeff6 = 56'hC9_E0_9B_D9_29_71_97;
+
 //////////////////////
 // PCIE RESET
 wire        any_rstn;
@@ -248,7 +257,7 @@ begin
             //Begin reading FIFO output.
             if(mr_data_avali == 1)
 					begin
-						if(start_delay == 4'h3)
+						if(start_delay == 4'h4)
 							begin
 								decoder_rst <= 1'b1;
 							end

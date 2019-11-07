@@ -112,16 +112,7 @@ module q_sys (
 	pcie_cv_hip_avmm_0_npor_pin_perst,
 	pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked,
 	pcie_cv_hip_avmm_0_refclk_clk,
-	pio_coder_rst_external_connection_export,
-	master_read_coeff_user_read_buffer,
-	master_read_coeff_user_buffer_output_data,
-	master_read_coeff_user_data_available,
-	master_read_coeff_control_fixed_location,
-	master_read_coeff_control_read_base,
-	master_read_coeff_control_read_length,
-	master_read_coeff_control_go,
-	master_read_coeff_control_done,
-	master_read_coeff_control_early_done);	
+	pio_coder_rst_external_connection_export);	
 
 	input		alt_xcvr_reconfig_0_mgmt_clk_clk_clk;
 	input		alt_xcvr_reconfig_0_mgmt_rst_reset_reset;
@@ -236,13 +227,4 @@ module q_sys (
 	output		pcie_cv_hip_avmm_0_reconfig_clk_locked_fixedclk_locked;
 	input		pcie_cv_hip_avmm_0_refclk_clk;
 	output		pio_coder_rst_external_connection_export;
-	input		master_read_coeff_user_read_buffer;
-	output	[31:0]	master_read_coeff_user_buffer_output_data;
-	output		master_read_coeff_user_data_available;
-	input		master_read_coeff_control_fixed_location;
-	input	[31:0]	master_read_coeff_control_read_base;
-	input	[31:0]	master_read_coeff_control_read_length;
-	input		master_read_coeff_control_go;
-	output		master_read_coeff_control_done;
-	output		master_read_coeff_control_early_done;
 endmodule

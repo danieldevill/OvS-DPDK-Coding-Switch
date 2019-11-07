@@ -44,13 +44,13 @@ architecture rtl of net_decoder is
 	signal net_decoder_state : state := load;
 	signal load_count : integer := 0;
 	signal complete_count : integer := 0;
-	signal load_done : std_logic;
-	signal complete_done : std_logic;
+	signal load_done : std_logic := '0';
+	signal complete_done : std_logic := '0';
 
 	signal clk_gj_elim : std_logic := '0';
 	signal clk_gj_elim_en : std_logic := '0';
 	signal packet_count : integer := 0;
-	signal complete_packet : std_logic;
+	signal complete_packet : std_logic := '0';
 	signal complete_packet_count : integer := 0;
 
 	signal en_gj : std_logic := '0';

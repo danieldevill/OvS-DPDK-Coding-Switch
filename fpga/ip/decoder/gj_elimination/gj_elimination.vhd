@@ -92,7 +92,7 @@ architecture rtl of gj_elimination is
 	signal pkt_data_in_rowDiv : std_logic_vector(511 downto 0);
 	signal pkt_coef_out_rowDiv : std_logic_vector(55 downto 0);
 	signal pkt_data_out_rowDiv : std_logic_vector(511 downto 0);
-	signal done_o_rowDiv : std_logic;
+	signal done_o_rowDiv : std_logic := '0';
 	signal rst_rowDiv : std_logic := '0';
 	signal divRow_count : integer := 0;
 

@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 18.1 625 linux 2019.11.07.15:01:13
+# ACDS 18.1 625 linux 2019.11.07.18:07:13
 
 # ----------------------------------------
 # ncsim - auto-generated simulation script
@@ -106,7 +106,7 @@
 # within the Quartus project, and generate a unified
 # script which supports all the Altera IP within the design.
 # ----------------------------------------
-# ACDS 18.1 625 linux 2019.11.07.15:01:13
+# ACDS 18.1 625 linux 2019.11.07.18:07:13
 # ----------------------------------------
 # initialize variables
 TOP_LEVEL_NAME="q_sys"
@@ -159,17 +159,16 @@ mkdir -p ./libraries/avalon_st_adapter_001/
 mkdir -p ./libraries/avalon_st_adapter/
 mkdir -p ./libraries/limiter_pipeline/
 mkdir -p ./libraries/pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter/
-mkdir -p ./libraries/rsp_mux_004/
+mkdir -p ./libraries/rsp_mux_003/
 mkdir -p ./libraries/rsp_mux_001/
 mkdir -p ./libraries/rsp_demux_001/
 mkdir -p ./libraries/cmd_mux_001/
-mkdir -p ./libraries/cmd_demux_004/
+mkdir -p ./libraries/cmd_demux_003/
 mkdir -p ./libraries/cmd_demux_001/
 mkdir -p ./libraries/onchip_memory2_0_s1_burst_adapter/
 mkdir -p ./libraries/ctl_0_dma_read_master_0_data_read_master_limiter/
-mkdir -p ./libraries/router_007/
 mkdir -p ./libraries/router_006/
-mkdir -p ./libraries/router_004/
+mkdir -p ./libraries/router_005/
 mkdir -p ./libraries/onchip_memory2_0_s1_agent_rsp_fifo/
 mkdir -p ./libraries/onchip_memory2_0_s1_agent/
 mkdir -p ./libraries/pcie_cv_hip_avmm_0_Rxm_BAR0_agent/
@@ -248,8 +247,8 @@ if [ $SKIP_COM -eq 0 ]; then
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_width_adapter.sv"                                               -work pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter -cdslib ./cds_libs/pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter.cds.lib
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_address_alignment.sv"                                           -work pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter -cdslib ./cds_libs/pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter.cds.lib
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_burst_uncompressor.sv"                                          -work pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter -cdslib ./cds_libs/pcie_cv_hip_avmm_0_Rxm_BAR0_to_onchip_memory2_0_s1_cmd_width_adapter.cds.lib
-  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_rsp_mux_004.sv"                                       -work rsp_mux_004                                                          -cdslib ./cds_libs/rsp_mux_004.cds.lib                                                         
-  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                                  -work rsp_mux_004                                                          -cdslib ./cds_libs/rsp_mux_004.cds.lib                                                         
+  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_rsp_mux_003.sv"                                       -work rsp_mux_003                                                          -cdslib ./cds_libs/rsp_mux_003.cds.lib                                                         
+  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                                  -work rsp_mux_003                                                          -cdslib ./cds_libs/rsp_mux_003.cds.lib                                                         
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_rsp_mux_001.sv"                                       -work rsp_mux_001                                                          -cdslib ./cds_libs/rsp_mux_001.cds.lib                                                         
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                                  -work rsp_mux_001                                                          -cdslib ./cds_libs/rsp_mux_001.cds.lib                                                         
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_rsp_mux.sv"                                           -work rsp_mux                                                              -cdslib ./cds_libs/rsp_mux.cds.lib                                                             
@@ -260,7 +259,7 @@ if [ $SKIP_COM -eq 0 ]; then
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                                  -work cmd_mux_001                                                          -cdslib ./cds_libs/cmd_mux_001.cds.lib                                                         
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_cmd_mux.sv"                                           -work cmd_mux                                                              -cdslib ./cds_libs/cmd_mux.cds.lib                                                             
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                                  -work cmd_mux                                                              -cdslib ./cds_libs/cmd_mux.cds.lib                                                             
-  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_cmd_demux_004.sv"                                     -work cmd_demux_004                                                        -cdslib ./cds_libs/cmd_demux_004.cds.lib                                                       
+  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_cmd_demux_003.sv"                                     -work cmd_demux_003                                                        -cdslib ./cds_libs/cmd_demux_003.cds.lib                                                       
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_cmd_demux_001.sv"                                     -work cmd_demux_001                                                        -cdslib ./cds_libs/cmd_demux_001.cds.lib                                                       
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_cmd_demux.sv"                                         -work cmd_demux                                                            -cdslib ./cds_libs/cmd_demux.cds.lib                                                           
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_burst_adapter.sv"                                               -work onchip_memory2_0_s1_burst_adapter                                    -cdslib ./cds_libs/onchip_memory2_0_s1_burst_adapter.cds.lib                                   
@@ -277,9 +276,9 @@ if [ $SKIP_COM -eq 0 ]; then
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_merlin_reorder_memory.sv"                                              -work ctl_0_dma_read_master_0_data_read_master_limiter                     -cdslib ./cds_libs/ctl_0_dma_read_master_0_data_read_master_limiter.cds.lib                    
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_avalon_sc_fifo.v"                                                      -work ctl_0_dma_read_master_0_data_read_master_limiter                     -cdslib ./cds_libs/ctl_0_dma_read_master_0_data_read_master_limiter.cds.lib                    
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_avalon_st_pipeline_base.v"                                             -work ctl_0_dma_read_master_0_data_read_master_limiter                     -cdslib ./cds_libs/ctl_0_dma_read_master_0_data_read_master_limiter.cds.lib                    
-  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_router_007.sv"                                        -work router_007                                                           -cdslib ./cds_libs/router_007.cds.lib                                                          
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_router_006.sv"                                        -work router_006                                                           -cdslib ./cds_libs/router_006.cds.lib                                                          
-  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_router_004.sv"                                        -work router_004                                                           -cdslib ./cds_libs/router_004.cds.lib                                                          
+  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_router_005.sv"                                        -work router_005                                                           -cdslib ./cds_libs/router_005.cds.lib                                                          
+  ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_router_003.sv"                                        -work router_003                                                           -cdslib ./cds_libs/router_003.cds.lib                                                          
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_router_001.sv"                                        -work router_001                                                           -cdslib ./cds_libs/router_001.cds.lib                                                          
   ncvlog -sv $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/q_sys_mm_interconnect_0_router.sv"                                            -work router                                                               -cdslib ./cds_libs/router.cds.lib                                                              
   ncvlog $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS     "$QSYS_SIMDIR/submodules/altera_avalon_sc_fifo.v"                                                      -work onchip_memory2_0_s1_agent_rsp_fifo                                   -cdslib ./cds_libs/onchip_memory2_0_s1_agent_rsp_fifo.cds.lib                                  
