@@ -99,7 +99,7 @@ parameter idle=0, read=1;
 //Net Decoder Wires;
 reg			decoder_rst;
 reg [31:0]  decoder_pkt_in;
-wire [31:0] decoder_coeff_in;
+reg [31:0] decoder_coeff_in;
 wire [31:0] decoder_pkt_out;
 wire 			decoder_done;
 assign read_ram_en = pio_coder_rst;
@@ -112,6 +112,7 @@ reg [55:0] coeff3 = 56'hD5_2F_CF_8B_E2_0E_6B;
 reg [55:0] coeff4 = 56'hF4_5F_F7_24_74_9A_21;
 reg [55:0] coeff5 = 56'h5C_B7_EB_73_0B_47_F1;
 reg [55:0] coeff6 = 56'hC9_E0_9B_D9_29_71_97;
+reg [7:0] coef_packet_count;
 
 //////////////////////
 // PCIE RESET
@@ -291,6 +292,123 @@ begin
     end
 end
 
+//Load coeffs
+always @(posedge reconfig_xcvr_clk or negedge pio_coder_rst)
+begin
+  if(~pio_coder_rst)
+	begin
+		decoder_coeff_in = 32'b0;
+		coef_packet_count = 0;
+	end
+  else
+    begin
+		if(coef_packet_count == 8'd9)
+			begin
+				decoder_coeff_in[7:0]   = coeff0[31:24];
+				decoder_coeff_in[15:8]  = coeff0[23:16];
+				decoder_coeff_in[23:16] = coeff0[15:8];
+				decoder_coeff_in[31:24] = coeff0[7:0];
+			end
+		else if(coef_packet_count == 8'd10)
+			begin
+				decoder_coeff_in[7:0]   = coeff0[55:48];
+				decoder_coeff_in[15:8]  = coeff0[47:40];
+				decoder_coeff_in[23:16] = coeff0[39:32];
+				decoder_coeff_in[31:24] = 8'h0;
+			end
+		else if(coef_packet_count == 8'd25)
+			begin
+				decoder_coeff_in[7:0]   = coeff1[31:24];
+				decoder_coeff_in[15:8]  = coeff1[23:16];
+				decoder_coeff_in[23:16] = coeff1[15:8];
+				decoder_coeff_in[31:24] = coeff1[7:0];
+			end
+		else if(coef_packet_count == 8'd26)
+			begin
+				decoder_coeff_in[7:0]   = coeff1[55:48];
+				decoder_coeff_in[15:8]  = coeff1[47:40];
+				decoder_coeff_in[23:16] = coeff1[39:32];
+				decoder_coeff_in[31:24] = 8'h0;
+			end
+		else if(coef_packet_count == 8'd41)
+			begin
+				decoder_coeff_in[7:0]   = coeff2[31:24];
+				decoder_coeff_in[15:8]  = coeff2[23:16];
+				decoder_coeff_in[23:16] = coeff2[15:8];
+				decoder_coeff_in[31:24] = coeff2[7:0];
+			end
+		else if(coef_packet_count == 8'd42)
+			begin
+				decoder_coeff_in[7:0]   = coeff2[55:48];
+				decoder_coeff_in[15:8]  = coeff2[47:40];
+				decoder_coeff_in[23:16] = coeff2[39:32];
+				decoder_coeff_in[31:24] = 8'h0;
+			end
+		else if(coef_packet_count == 8'd57)
+			begin
+				decoder_coeff_in[7:0]   = coeff3[31:24];
+				decoder_coeff_in[15:8]  = coeff3[23:16];
+				decoder_coeff_in[23:16] = coeff3[15:8];
+				decoder_coeff_in[31:24] = coeff3[7:0];
+			end
+		else if(coef_packet_count == 8'd58)
+			begin
+				decoder_coeff_in[7:0]   = coeff3[55:48];
+				decoder_coeff_in[15:8]  = coeff3[47:40];
+				decoder_coeff_in[23:16] = coeff3[39:32];
+				decoder_coeff_in[31:24] = 8'h0;
+			end
+		else if(coef_packet_count == 8'd73)
+			begin
+				decoder_coeff_in[7:0]   = coeff4[31:24];
+				decoder_coeff_in[15:8]  = coeff4[23:16];
+				decoder_coeff_in[23:16] = coeff4[15:8];
+				decoder_coeff_in[31:24] = coeff4[7:0];
+			end
+		else if(coef_packet_count == 8'd74)
+			begin
+				decoder_coeff_in[7:0]   = coeff4[55:48];
+				decoder_coeff_in[15:8]  = coeff4[47:40];
+				decoder_coeff_in[23:16] = coeff4[39:32];
+				decoder_coeff_in[31:24] = 8'h0;
+			end
+		else if(coef_packet_count == 8'd89)
+			begin
+				decoder_coeff_in[7:0]   = coeff5[31:24];
+				decoder_coeff_in[15:8]  = coeff5[23:16];
+				decoder_coeff_in[23:16] = coeff5[15:8];
+				decoder_coeff_in[31:24] = coeff5[7:0];
+			end
+		else if(coef_packet_count == 8'd90)
+			begin
+				decoder_coeff_in[7:0]   = coeff5[55:48];
+				decoder_coeff_in[15:8]  = coeff5[47:40];
+				decoder_coeff_in[23:16] = coeff5[39:32];
+				decoder_coeff_in[31:24] = 8'h0;
+			end
+		else if(coef_packet_count == 8'd105)
+			begin
+				decoder_coeff_in[7:0]   = coeff6[31:24];
+				decoder_coeff_in[15:8]  = coeff6[23:16];
+				decoder_coeff_in[23:16] = coeff6[15:8];
+				decoder_coeff_in[31:24] = coeff6[7:0];
+			end
+		else if(coef_packet_count == 8'd106)
+			begin
+				decoder_coeff_in[7:0]   = coeff6[55:48];
+				decoder_coeff_in[15:8]  = coeff6[47:40];
+				decoder_coeff_in[23:16] = coeff6[39:32];
+				decoder_coeff_in[31:24] = 8'h0;
+			end
+		else
+			begin
+				decoder_coeff_in   =  32'd0;
+			end
 
+		if(coef_packet_count < 8'd108)
+			coef_packet_count = coef_packet_count + 8'h1;
 	
+
+	end
+end
 endmodule
