@@ -55,16 +55,13 @@ architecture rtl of net_decoder is
 
 	signal en_gj : std_logic := '0';
 
-	signal r0 : std_logic;
-	signal r1 : std_logic;
-
 	--gj_elimination Signals
 	signal pkt_coef_in : std_logic_vector(55 downto 0);
 	signal pkt_data_in : std_logic_vector(511 downto 0);
 
 	signal pkt_data_out : std_logic_vector(511 downto 0);
 
-	signal gj_elimination_done : std_logic;
+	signal gj_elimination_done : std_logic := '0';
 
 begin
 
@@ -211,7 +208,7 @@ begin
 	end process;
 
 	--Enable Gauss-Jordan Elmination at Specific Intervals.
-	en_gj <= '1' when ((clk_gj_elim_en = '1') and (gj_elimination_done = 'U' or ( (complete_packet = '1') ))) else '0';
+	en_gj <= '1' when ((clk_gj_elim_en = '1') and (gj_elimination_done = '0' or ( (complete_packet = '1') ))) else '0';
 
 
 end architecture ; -- rtl

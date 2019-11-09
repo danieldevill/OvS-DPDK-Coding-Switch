@@ -76,7 +76,10 @@ architecture rtl of gj_elimination is
 
 	signal gj_elimination_state : state := idle;
 
-	signal load_done, mulsub_done, div_done, complete_done : std_logic;
+	signal load_done : std_logic := '0'; 
+	signal mulsub_done : std_logic := '0';
+	signal div_done : std_logic := '0'; 
+	signal complete_done : std_logic := '0';
 
 	signal load_count : integer := 0;
 	signal complete_count : integer := 0;
@@ -222,6 +225,7 @@ begin
 			end loop;
 			load_count <= 0;
 			complete_count <= 0;
+			done_o <= '0';
 		elsif clk'event and clk = '1' and en = '1' then
 			if gj_elimination_state = load then
 				if(load_count = h) then
