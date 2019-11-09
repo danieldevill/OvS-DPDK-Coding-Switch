@@ -1,5 +1,5 @@
 Timing Analyzer report for PCIe_Fundamental
-Sat Nov  9 10:12:23 2019
+Sat Nov  9 21:18:57 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -102,26 +102,26 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 32          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 4.90        ;
+; Average used               ; 5.48        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  33.0%      ;
-;     Processor 3            ;  32.5%      ;
-;     Processor 4            ;  31.7%      ;
-;     Processor 5            ;  24.4%      ;
-;     Processor 6            ;  24.4%      ;
-;     Processor 7            ;  24.4%      ;
-;     Processor 8            ;  24.4%      ;
-;     Processor 9            ;  24.4%      ;
-;     Processor 10           ;  24.4%      ;
-;     Processor 11           ;  24.4%      ;
-;     Processor 12           ;  24.4%      ;
-;     Processor 13           ;  24.4%      ;
-;     Processor 14           ;  24.4%      ;
-;     Processor 15           ;  24.4%      ;
-;     Processor 16           ;  24.4%      ;
+;     Processor 2            ;  38.7%      ;
+;     Processor 3            ;  37.7%      ;
+;     Processor 4            ;  37.5%      ;
+;     Processor 5            ;  27.8%      ;
+;     Processor 6            ;  27.8%      ;
+;     Processor 7            ;  27.8%      ;
+;     Processor 8            ;  27.8%      ;
+;     Processor 9            ;  27.8%      ;
+;     Processor 10           ;  27.8%      ;
+;     Processor 11           ;  27.8%      ;
+;     Processor 12           ;  27.8%      ;
+;     Processor 13           ;  27.8%      ;
+;     Processor 14           ;  27.8%      ;
+;     Processor 15           ;  27.8%      ;
+;     Processor 16           ;  27.8%      ;
 +----------------------------+-------------+
 
 
@@ -130,10 +130,10 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                          ; Status ; Read at                  ;
 +--------------------------------------------------------+--------+--------------------------+
-; q_sys/synthesis/submodules/altera_reset_controller.sdc ; OK     ; Sat Nov  9 10:10:32 2019 ;
-; q_sys/synthesis/submodules/altera_pci_express.sdc      ; OK     ; Sat Nov  9 10:10:32 2019 ;
-; q_sys/synthesis/submodules/av_xcvr_reconfig.sdc        ; OK     ; Sat Nov  9 10:10:32 2019 ;
-; PCIe_Fundamental.sdc                                   ; OK     ; Sat Nov  9 10:10:32 2019 ;
+; q_sys/synthesis/submodules/altera_reset_controller.sdc ; OK     ; Sat Nov  9 21:17:38 2019 ;
+; q_sys/synthesis/submodules/altera_pci_express.sdc      ; OK     ; Sat Nov  9 21:17:38 2019 ;
+; q_sys/synthesis/submodules/av_xcvr_reconfig.sdc        ; OK     ; Sat Nov  9 21:17:38 2019 ;
+; PCIe_Fundamental.sdc                                   ; OK     ; Sat Nov  9 21:17:38 2019 ;
 +--------------------------------------------------------+--------+--------------------------+
 
 
@@ -205,9 +205,9 @@ refer to the applicable agreement for further details.
 +------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                                                                                        ; Note ;
 +------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
-; 69.91 MHz  ; 69.91 MHz       ; altera_reserved_tck                                                                                                               ;      ;
-; 70.3 MHz   ; 70.3 MHz        ; CLOCK_50_B3B                                                                                                                      ;      ;
-; 141.76 MHz ; 141.76 MHz      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ;      ;
+; 62.41 MHz  ; 62.41 MHz       ; altera_reserved_tck                                                                                                               ;      ;
+; 73.13 MHz  ; 73.13 MHz       ; CLOCK_50_B3B                                                                                                                      ;      ;
+; 137.02 MHz ; 137.02 MHz      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ;      ;
 +------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -223,10 +223,10 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; CLOCK_50_B3B                                                                                                                      ; -2.349 ; -118.276      ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -0.875 ; -43.487       ;
-; altera_reserved_tck                                                                                                               ; 9.514  ; 0.000         ;
-; n/a                                                                                                                               ; 10.007 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; -2.458 ; -434.141      ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -1.639 ; -152.503      ;
+; n/a                                                                                                                               ; 9.137  ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 10.280 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -235,10 +235,10 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.254  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 0.267  ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 0.451  ; 0.000         ;
-; n/a                                                                                                                               ; 15.950 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.246  ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 0.254  ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.442  ; 0.000         ;
+; n/a                                                                                                                               ; 15.431 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -247,9 +247,9 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; CLOCK_50_B3B                                                                                                                      ; -1.094 ; -43.889       ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -0.230 ; -4.771        ;
-; altera_reserved_tck                                                                                                               ; 29.442 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; -1.367 ; -49.668       ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -0.167 ; -6.116        ;
+; altera_reserved_tck                                                                                                               ; 25.156 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -258,9 +258,9 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                             ; Slack ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.527 ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 0.800 ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 1.015 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.650 ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.896 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 1.028 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
 
@@ -292,14 +292,14 @@ HTML report is unavailable in plain text report export.
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_pma_deser|clk90b                        ; 2.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|cpulseout ; 2.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout ; 2.000  ; 0.000         ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; 2.785  ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; 2.784  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout   ; 4.000  ; 0.000         ;
-; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.333  ; 0.000         ;
+; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.329  ; 0.000         ;
 ; PCIE_REFCLK_p                                                                                                                                                                                                                   ; 5.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout                            ; 5.000  ; 0.000         ;
-; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 7.691  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.436  ; 0.000         ;
-; altera_reserved_tck                                                                                                                                                                                                             ; 14.745 ; 0.000         ;
+; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 7.843  ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.433  ; 0.000         ;
+; altera_reserved_tck                                                                                                                                                                                                             ; 15.459 ; 0.000         ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -307,23 +307,23 @@ HTML report is unavailable in plain text report export.
 ; Slow 1100mV 85C Model Metastability Summary ;
 -----------------------------------------------
 The design MTBF is not calculated because there are no specified synchronizers in the design.
-Number of Synchronizer Chains Found: 34
+Number of Synchronizer Chains Found: 199
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 14.023 ns
+Worst Case Available Settling Time: 13.951 ns
 
 
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow 1100mV 0C Model Fmax Summary                                                                                                                                       ;
-+------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
-; Fmax       ; Restricted Fmax ; Clock Name                                                                                                                        ; Note ;
-+------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
-; 72.87 MHz  ; 72.87 MHz       ; CLOCK_50_B3B                                                                                                                      ;      ;
-; 72.92 MHz  ; 72.92 MHz       ; altera_reserved_tck                                                                                                               ;      ;
-; 144.07 MHz ; 144.07 MHz      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ;      ;
-+------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow 1100mV 0C Model Fmax Summary                                                                                                                                      ;
++-----------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
+; Fmax      ; Restricted Fmax ; Clock Name                                                                                                                        ; Note ;
++-----------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
+; 65.15 MHz ; 65.15 MHz       ; altera_reserved_tck                                                                                                               ;      ;
+; 74.93 MHz ; 74.93 MHz       ; CLOCK_50_B3B                                                                                                                      ;      ;
+; 132.0 MHz ; 132.0 MHz       ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ;      ;
++-----------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
@@ -332,10 +332,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; CLOCK_50_B3B                                                                                                                      ; -2.206 ; -95.870       ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -0.878 ; -47.262       ;
-; altera_reserved_tck                                                                                                               ; 9.810  ; 0.000         ;
-; n/a                                                                                                                               ; 10.082 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; -2.235 ; -337.174      ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -1.706 ; -163.940      ;
+; n/a                                                                                                                               ; 9.258  ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 10.583 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -344,10 +344,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.238  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 0.245  ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 0.433  ; 0.000         ;
-; n/a                                                                                                                               ; 16.054 ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.195  ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 0.239  ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.242  ; 0.000         ;
+; n/a                                                                                                                               ; 15.544 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -356,9 +356,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; CLOCK_50_B3B                                                                                                                      ; -0.683 ; -25.187       ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -0.218 ; -5.685        ;
-; altera_reserved_tck                                                                                                               ; 29.589 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; -0.923 ; -30.580       ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; -0.216 ; -7.764        ;
+; altera_reserved_tck                                                                                                               ; 25.520 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -367,8 +367,8 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                             ; Slack ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.543 ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 0.757 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.606 ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.852 ; 0.000         ;
 ; CLOCK_50_B3B                                                                                                                      ; 0.945 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
@@ -401,14 +401,14 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_pma_deser|clk90b                        ; 2.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|cpulseout ; 2.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout ; 2.000  ; 0.000         ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; 2.813  ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; 2.812  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout   ; 4.000  ; 0.000         ;
-; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.294  ; 0.000         ;
+; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.288  ; 0.000         ;
 ; PCIE_REFCLK_p                                                                                                                                                                                                                   ; 5.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout                            ; 5.000  ; 0.000         ;
-; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 7.594  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.401  ; 0.000         ;
-; altera_reserved_tck                                                                                                                                                                                                             ; 14.682 ; 0.000         ;
+; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 7.859  ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.395  ; 0.000         ;
+; altera_reserved_tck                                                                                                                                                                                                             ; 15.385 ; 0.000         ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -416,10 +416,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 ; Slow 1100mV 0C Model Metastability Summary ;
 ----------------------------------------------
 The design MTBF is not calculated because there are no specified synchronizers in the design.
-Number of Synchronizer Chains Found: 34
+Number of Synchronizer Chains Found: 199
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 13.991 ns
+Worst Case Available Settling Time: 13.897 ns
 
 
 
@@ -429,10 +429,10 @@ Worst Case Available Settling Time: 13.991 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.962  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 0.965  ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 13.258 ; 0.000         ;
-; n/a                                                                                                                               ; 14.392 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.453  ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 0.886  ; 0.000         ;
+; n/a                                                                                                                               ; 13.732 ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 13.752 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -441,10 +441,10 @@ Worst Case Available Settling Time: 13.991 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.130  ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 0.141  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 0.150  ; 0.000         ;
-; n/a                                                                                                                               ; 13.069 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 0.134  ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.134  ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.176  ; 0.000         ;
+; n/a                                                                                                                               ; 12.808 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -453,9 +453,9 @@ Worst Case Available Settling Time: 13.991 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 1.457  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 1.607  ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 30.801 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 1.414  ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 1.527  ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 28.425 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -464,9 +464,9 @@ Worst Case Available Settling Time: 13.991 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                             ; Slack ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.288 ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 0.297 ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 0.499 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.293 ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.434 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 0.487 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
 
@@ -500,12 +500,12 @@ Worst Case Available Settling Time: 13.991 ns
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout ; 2.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; 2.862  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout   ; 4.000  ; 0.000         ;
-; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.644  ; 0.000         ;
+; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.642  ; 0.000         ;
 ; PCIE_REFCLK_p                                                                                                                                                                                                                   ; 5.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout                            ; 5.000  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.795  ; 0.000         ;
-; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 8.944  ; 0.000         ;
-; altera_reserved_tck                                                                                                                                                                                                             ; 14.562 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.792  ; 0.000         ;
+; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 9.024  ; 0.000         ;
+; altera_reserved_tck                                                                                                                                                                                                             ; 14.931 ; 0.000         ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -513,10 +513,10 @@ Worst Case Available Settling Time: 13.991 ns
 ; Fast 1100mV 85C Model Metastability Summary ;
 -----------------------------------------------
 The design MTBF is not calculated because there are no specified synchronizers in the design.
-Number of Synchronizer Chains Found: 34
+Number of Synchronizer Chains Found: 199
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 15.035 ns
+Worst Case Available Settling Time: 15.008 ns
 
 
 
@@ -526,10 +526,10 @@ Worst Case Available Settling Time: 15.035 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 1.178  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 1.184  ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 13.820 ; 0.000         ;
-; n/a                                                                                                                               ; 14.874 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.770  ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 1.189  ; 0.000         ;
+; n/a                                                                                                                               ; 14.255 ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 14.298 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -538,10 +538,10 @@ Worst Case Available Settling Time: 15.035 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; altera_reserved_tck                                                                                                               ; 0.114  ; 0.000         ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.121  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 0.128  ; 0.000         ;
-; n/a                                                                                                                               ; 12.947 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 0.092  ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.103  ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.168  ; 0.000         ;
+; n/a                                                                                                                               ; 12.728 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -550,9 +550,9 @@ Worst Case Available Settling Time: 15.035 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                                                                             ; Slack  ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 1.602  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 1.933  ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 31.046 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 1.680  ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 1.770  ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 29.083 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -561,9 +561,9 @@ Worst Case Available Settling Time: 15.035 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                                                                             ; Slack ; End Point TNS ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.260 ; 0.000         ;
-; altera_reserved_tck                                                                                                               ; 0.267 ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                      ; 0.310 ; 0.000         ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 0.263 ; 0.000         ;
+; altera_reserved_tck                                                                                                               ; 0.390 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                      ; 0.408 ; 0.000         ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-------+---------------+
 
 
@@ -597,12 +597,12 @@ Worst Case Available Settling Time: 15.035 ns
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout ; 2.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; 2.877  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout   ; 4.000  ; 0.000         ;
-; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.643  ; 0.000         ;
+; alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; 4.639  ; 0.000         ;
 ; PCIE_REFCLK_p                                                                                                                                                                                                                   ; 5.000  ; 0.000         ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout                            ; 5.000  ; 0.000         ;
-; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.801  ; 0.000         ;
-; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 8.972  ; 0.000         ;
-; altera_reserved_tck                                                                                                                                                                                                             ; 14.550 ; 0.000         ;
+; CLOCK_50_B3B                                                                                                                                                                                                                    ; 8.799  ; 0.000         ;
+; sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; 9.050  ; 0.000         ;
+; altera_reserved_tck                                                                                                                                                                                                             ; 14.862 ; 0.000         ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -610,10 +610,10 @@ Worst Case Available Settling Time: 15.035 ns
 ; Fast 1100mV 0C Model Metastability Summary ;
 ----------------------------------------------
 The design MTBF is not calculated because there are no specified synchronizers in the design.
-Number of Synchronizer Chains Found: 34
+Number of Synchronizer Chains Found: 199
 Shortest Synchronizer Chain: 2 Registers
 Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-Worst Case Available Settling Time: 15.081 ns
+Worst Case Available Settling Time: 15.056 ns
 
 
 
@@ -623,14 +623,14 @@ Worst Case Available Settling Time: 15.081 ns
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
 ; Clock                                                                                                                                                                                                                            ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+--------+----------+---------+---------------------+
-; Worst-case Slack                                                                                                                                                                                                                 ; -2.349   ; 0.114  ; -1.094   ; 0.260   ; 0.400               ;
-;  CLOCK_50_B3B                                                                                                                                                                                                                    ; -2.349   ; 0.128  ; -1.094   ; 0.310   ; 8.401               ;
+; Worst-case Slack                                                                                                                                                                                                                 ; -2.458   ; 0.092  ; -1.367   ; 0.263   ; 0.400               ;
+;  CLOCK_50_B3B                                                                                                                                                                                                                    ; -2.458   ; 0.092  ; -1.367   ; 0.408   ; 8.395               ;
 ;  PCIE_REFCLK_p                                                                                                                                                                                                                   ; N/A      ; N/A    ; N/A      ; N/A     ; 5.000               ;
-;  alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; N/A      ; N/A    ; N/A      ; N/A     ; 4.294               ;
-;  altera_reserved_tck                                                                                                                                                                                                             ; 9.514    ; 0.114  ; 29.442   ; 0.267   ; 14.550              ;
-;  n/a                                                                                                                                                                                                                             ; 10.007   ; 12.947 ; N/A      ; N/A     ; N/A                 ;
-;  sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; N/A      ; N/A    ; N/A      ; N/A     ; 7.594               ;
-;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; -0.878   ; 0.121  ; -0.230   ; 0.260   ; 2.785               ;
+;  alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; N/A      ; N/A    ; N/A      ; N/A     ; 4.288               ;
+;  altera_reserved_tck                                                                                                                                                                                                             ; 10.280   ; 0.168  ; 25.156   ; 0.390   ; 14.862              ;
+;  n/a                                                                                                                                                                                                                             ; 9.137    ; 12.728 ; N/A      ; N/A     ; N/A                 ;
+;  sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; N/A      ; N/A    ; N/A      ; N/A     ; 7.843               ;
+;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; -1.706   ; 0.103  ; -0.216   ; 0.263   ; 2.784               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout                            ; N/A      ; N/A    ; N/A      ; N/A     ; 5.000               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr                                                   ; N/A      ; N/A    ; N/A      ; N/A     ; 0.400               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pcs|ch[0].inst_av_pcs_ch|inst_av_hssi_8g_rx_pcs|wys|txpmaclk               ; N/A      ; N/A    ; N/A      ; N/A     ; 2.000               ;
@@ -656,14 +656,14 @@ Worst Case Available Settling Time: 15.081 ns
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout   ; N/A      ; N/A    ; N/A      ; N/A     ; 4.000               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[2].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkp    ; N/A      ; N/A    ; N/A      ; N/A     ; 1.996               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkp    ; N/A      ; N/A    ; N/A      ; N/A     ; 1.996               ;
-; Design-wide TNS                                                                                                                                                                                                                  ; -161.763 ; 0.0    ; -48.66   ; 0.0     ; 0.0                 ;
-;  CLOCK_50_B3B                                                                                                                                                                                                                    ; -118.276 ; 0.000  ; -43.889  ; 0.000   ; 0.000               ;
+; Design-wide TNS                                                                                                                                                                                                                  ; -586.644 ; 0.0    ; -55.784  ; 0.0     ; 0.0                 ;
+;  CLOCK_50_B3B                                                                                                                                                                                                                    ; -434.141 ; 0.000  ; -49.668  ; 0.000   ; 0.000               ;
 ;  PCIE_REFCLK_p                                                                                                                                                                                                                   ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
 ;  alt_cal_av_edge_detect_clk                                                                                                                                                                                                      ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
 ;  altera_reserved_tck                                                                                                                                                                                                             ; 0.000    ; 0.000  ; 0.000    ; 0.000   ; 0.000               ;
 ;  n/a                                                                                                                                                                                                                             ; 0.000    ; 0.000  ; N/A      ; N/A     ; N/A                 ;
 ;  sv_reconfig_pma_testbus_clk_0                                                                                                                                                                                                   ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
-;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; -47.262  ; 0.000  ; -5.685   ; 0.000   ; 0.000               ;
+;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout                                                                                               ; -163.940 ; 0.000  ; -7.764   ; 0.000   ; 0.000               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout                            ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr                                                   ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
 ;  u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pcs|ch[0].inst_av_pcs_ch|inst_av_hssi_8g_rx_pcs|wys|txpmaclk               ; N/A      ; N/A    ; N/A      ; N/A     ; 0.000               ;
@@ -789,16 +789,16 @@ Worst Case Available Settling Time: 15.081 ns
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+----------+
 ; From Clock                                                                                                                        ; To Clock                                                                                                                          ; RR Paths   ; FR Paths   ; RF Paths   ; FF Paths ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+----------+
-; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 27443      ; 0          ; 71         ; 0        ;
+; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 32638      ; 0          ; 71         ; 0        ;
 ; CLOCK_50_B3B                                                                                                                      ; altera_reserved_tck                                                                                                               ; false path ; 0          ; 0          ; 0        ;
 ; alt_cal_av_edge_detect_clk                                                                                                        ; CLOCK_50_B3B                                                                                                                      ; false path ; 0          ; 0          ; 0        ;
 ; altera_reserved_tck                                                                                                               ; CLOCK_50_B3B                                                                                                                      ; false path ; 0          ; 0          ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 1968900    ; 0          ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 1962980    ; 0          ; 0          ; 0        ;
 ; sv_reconfig_pma_testbus_clk_0                                                                                                     ; CLOCK_50_B3B                                                                                                                      ; false path ; false path ; 0          ; 0        ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; CLOCK_50_B3B                                                                                                                      ; 173        ; 0          ; 0          ; 0        ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; CLOCK_50_B3B                                                                                                                      ; 594        ; 0          ; 0          ; 0        ;
 ; CLOCK_50_B3B                                                                                                                      ; sv_reconfig_pma_testbus_clk_0                                                                                                     ; false path ; 0          ; false path ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 124        ; 0          ; 0          ; 0        ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 471573     ; 0          ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 358        ; 0          ; 0          ; 0        ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 463988     ; 0          ; 0          ; 0        ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -808,16 +808,16 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+----------+
 ; From Clock                                                                                                                        ; To Clock                                                                                                                          ; RR Paths   ; FR Paths   ; RF Paths   ; FF Paths ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+----------+
-; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 27443      ; 0          ; 71         ; 0        ;
+; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 32638      ; 0          ; 71         ; 0        ;
 ; CLOCK_50_B3B                                                                                                                      ; altera_reserved_tck                                                                                                               ; false path ; 0          ; 0          ; 0        ;
 ; alt_cal_av_edge_detect_clk                                                                                                        ; CLOCK_50_B3B                                                                                                                      ; false path ; 0          ; 0          ; 0        ;
 ; altera_reserved_tck                                                                                                               ; CLOCK_50_B3B                                                                                                                      ; false path ; 0          ; 0          ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 1968900    ; 0          ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 1962980    ; 0          ; 0          ; 0        ;
 ; sv_reconfig_pma_testbus_clk_0                                                                                                     ; CLOCK_50_B3B                                                                                                                      ; false path ; false path ; 0          ; 0        ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; CLOCK_50_B3B                                                                                                                      ; 173        ; 0          ; 0          ; 0        ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; CLOCK_50_B3B                                                                                                                      ; 594        ; 0          ; 0          ; 0        ;
 ; CLOCK_50_B3B                                                                                                                      ; sv_reconfig_pma_testbus_clk_0                                                                                                     ; false path ; 0          ; false path ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 124        ; 0          ; 0          ; 0        ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 471573     ; 0          ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 358        ; 0          ; 0          ; 0        ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 463988     ; 0          ; 0          ; 0        ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -828,13 +828,13 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; From Clock                                                                                                                        ; To Clock                                                                                                                          ; RR Paths   ; FR Paths ; RF Paths   ; FF Paths ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+----------+------------+----------+
 ; CLOCK_50_B3B                                                                                                                      ; alt_cal_av_edge_detect_clk                                                                                                        ; false path ; 0        ; false path ; 0        ;
-; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 1229       ; 0        ; 0          ; 0        ;
+; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 1492       ; 0        ; 0          ; 0        ;
 ; altera_reserved_tck                                                                                                               ; CLOCK_50_B3B                                                                                                                      ; false path ; 0        ; 0          ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 28920      ; 0        ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 28807      ; 0        ; 0          ; 0        ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; CLOCK_50_B3B                                                                                                                      ; 45         ; 0        ; 0          ; 0        ;
 ; CLOCK_50_B3B                                                                                                                      ; sv_reconfig_pma_testbus_clk_0                                                                                                     ; 0          ; 0        ; false path ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 42         ; 0        ; 0          ; 0        ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 8877       ; 0        ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 41         ; 0        ; 0          ; 0        ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 8901       ; 0        ; 0          ; 0        ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+----------+------------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -845,13 +845,13 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; From Clock                                                                                                                        ; To Clock                                                                                                                          ; RR Paths   ; FR Paths ; RF Paths   ; FF Paths ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+----------+------------+----------+
 ; CLOCK_50_B3B                                                                                                                      ; alt_cal_av_edge_detect_clk                                                                                                        ; false path ; 0        ; false path ; 0        ;
-; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 1229       ; 0        ; 0          ; 0        ;
+; altera_reserved_tck                                                                                                               ; altera_reserved_tck                                                                                                               ; 1492       ; 0        ; 0          ; 0        ;
 ; altera_reserved_tck                                                                                                               ; CLOCK_50_B3B                                                                                                                      ; false path ; 0        ; 0          ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 28920      ; 0        ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; CLOCK_50_B3B                                                                                                                      ; 28807      ; 0        ; 0          ; 0        ;
 ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; CLOCK_50_B3B                                                                                                                      ; 45         ; 0        ; 0          ; 0        ;
 ; CLOCK_50_B3B                                                                                                                      ; sv_reconfig_pma_testbus_clk_0                                                                                                     ; 0          ; 0        ; false path ; 0        ;
-; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 42         ; 0        ; 0          ; 0        ;
-; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 8877       ; 0        ; 0          ; 0        ;
+; CLOCK_50_B3B                                                                                                                      ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 41         ; 0        ; 0          ; 0        ;
+; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout ; 8901       ; 0        ; 0          ; 0        ;
 +-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+------------+----------+------------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -994,7 +994,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sat Nov  9 10:10:14 2019
+    Info: Processing started: Sat Nov  9 21:17:19 2019
 Info: Command: quartus_sta PCIe_Fundamental -c PCIe_Fundamental
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -1020,10 +1020,10 @@ Info (332110): Deriving PLL clocks
     Info (332110): create_clock -period 10.000 -waveform {0.000 5.000} -name PCIE_REFCLK_p PCIE_REFCLK_p
     Info (332110): create_generated_clock -source {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|refclk} -divide_by 2 -multiply_by 25 -duty_cycle 50.00 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.tx_pll|clkcdr}
     Info (332110): create_generated_clock -source {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|refiqclk3} -duty_cycle 50.00 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout}
-    Info (332110): create_clock -period 0.800 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_cdr|clk90bdes} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_cdr|clk90bdes}
-    Info (332110): create_clock -period 0.800 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[2].rx_pma.rx_cdr|clk90bdes} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[2].rx_pma.rx_cdr|clk90bdes}
     Info (332110): create_clock -period 0.800 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[1].rx_pma.rx_cdr|clk90bdes} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[1].rx_pma.rx_cdr|clk90bdes}
     Info (332110): create_clock -period 0.800 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[0].rx_pma.rx_cdr|clk90bdes} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[0].rx_pma.rx_cdr|clk90bdes}
+    Info (332110): create_clock -period 0.800 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[2].rx_pma.rx_cdr|clk90bdes} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[2].rx_pma.rx_cdr|clk90bdes}
+    Info (332110): create_clock -period 0.800 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_cdr|clk90bdes} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_cdr|clk90bdes}
     Info (332110): create_generated_clock -source {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|cpulsex6up} -duty_cycle 50.00 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|cpulse} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|cpulse}
     Info (332110): create_generated_clock -source {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|hfclkpx6up} -duty_cycle 50.00 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|hfclkp} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|hfclkp}
     Info (332110): create_generated_clock -source {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpx6up} -duty_cycle 50.00 -name {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkp} {u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[3].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkp}
@@ -1175,32 +1175,32 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.349
+Info (332146): Worst-case setup slack is -2.458
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.349            -118.276 CLOCK_50_B3B 
-    Info (332119):    -0.875             -43.487 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     9.514               0.000 altera_reserved_tck 
-    Info (332119):    10.007               0.000 n/a 
-Info (332146): Worst-case hold slack is 0.254
+    Info (332119):    -2.458            -434.141 CLOCK_50_B3B 
+    Info (332119):    -1.639            -152.503 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     9.137               0.000 n/a 
+    Info (332119):    10.280               0.000 altera_reserved_tck 
+Info (332146): Worst-case hold slack is 0.246
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.254               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.267               0.000 CLOCK_50_B3B 
-    Info (332119):     0.451               0.000 altera_reserved_tck 
-    Info (332119):    15.950               0.000 n/a 
-Info (332146): Worst-case recovery slack is -1.094
+    Info (332119):     0.246               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.254               0.000 CLOCK_50_B3B 
+    Info (332119):     0.442               0.000 altera_reserved_tck 
+    Info (332119):    15.431               0.000 n/a 
+Info (332146): Worst-case recovery slack is -1.367
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.094             -43.889 CLOCK_50_B3B 
-    Info (332119):    -0.230              -4.771 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):    29.442               0.000 altera_reserved_tck 
-Info (332146): Worst-case removal slack is 0.527
+    Info (332119):    -1.367             -49.668 CLOCK_50_B3B 
+    Info (332119):    -0.167              -6.116 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):    25.156               0.000 altera_reserved_tck 
+Info (332146): Worst-case removal slack is 0.650
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.527               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.800               0.000 altera_reserved_tck 
-    Info (332119):     1.015               0.000 CLOCK_50_B3B 
+    Info (332119):     0.650               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.896               0.000 altera_reserved_tck 
+    Info (332119):     1.028               0.000 CLOCK_50_B3B 
 Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
@@ -1227,20 +1227,20 @@ Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_pma_deser|clk90b 
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|cpulseout 
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout 
-    Info (332119):     2.785               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     2.784               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
     Info (332119):     4.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout 
-    Info (332119):     4.333               0.000 alt_cal_av_edge_detect_clk 
+    Info (332119):     4.329               0.000 alt_cal_av_edge_detect_clk 
     Info (332119):     5.000               0.000 PCIE_REFCLK_p 
     Info (332119):     5.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout 
-    Info (332119):     7.691               0.000 sv_reconfig_pma_testbus_clk_0 
-    Info (332119):     8.436               0.000 CLOCK_50_B3B 
-    Info (332119):    14.745               0.000 altera_reserved_tck 
-Info (332114): Report Metastability: Found 34 synchronizer chains.
+    Info (332119):     7.843               0.000 sv_reconfig_pma_testbus_clk_0 
+    Info (332119):     8.433               0.000 CLOCK_50_B3B 
+    Info (332119):    15.459               0.000 altera_reserved_tck 
+Info (332114): Report Metastability: Found 199 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
-    Info (332114): Number of Synchronizer Chains Found: 34
+    Info (332114): Number of Synchronizer Chains Found: 199
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 14.023 ns
+    Info (332114): Worst Case Available Settling Time: 13.951 ns
     Info (332114): 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
@@ -1313,31 +1313,31 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.206
+Info (332146): Worst-case setup slack is -2.235
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.206             -95.870 CLOCK_50_B3B 
-    Info (332119):    -0.878             -47.262 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     9.810               0.000 altera_reserved_tck 
-    Info (332119):    10.082               0.000 n/a 
-Info (332146): Worst-case hold slack is 0.238
+    Info (332119):    -2.235            -337.174 CLOCK_50_B3B 
+    Info (332119):    -1.706            -163.940 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     9.258               0.000 n/a 
+    Info (332119):    10.583               0.000 altera_reserved_tck 
+Info (332146): Worst-case hold slack is 0.195
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.238               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.245               0.000 CLOCK_50_B3B 
-    Info (332119):     0.433               0.000 altera_reserved_tck 
-    Info (332119):    16.054               0.000 n/a 
-Info (332146): Worst-case recovery slack is -0.683
+    Info (332119):     0.195               0.000 altera_reserved_tck 
+    Info (332119):     0.239               0.000 CLOCK_50_B3B 
+    Info (332119):     0.242               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):    15.544               0.000 n/a 
+Info (332146): Worst-case recovery slack is -0.923
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.683             -25.187 CLOCK_50_B3B 
-    Info (332119):    -0.218              -5.685 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):    29.589               0.000 altera_reserved_tck 
-Info (332146): Worst-case removal slack is 0.543
+    Info (332119):    -0.923             -30.580 CLOCK_50_B3B 
+    Info (332119):    -0.216              -7.764 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):    25.520               0.000 altera_reserved_tck 
+Info (332146): Worst-case removal slack is 0.606
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.543               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.757               0.000 altera_reserved_tck 
+    Info (332119):     0.606               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.852               0.000 altera_reserved_tck 
     Info (332119):     0.945               0.000 CLOCK_50_B3B 
 Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     Slack       End Point TNS Clock 
@@ -1365,20 +1365,20 @@ Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_rx_pma|rx_pmas[3].rx_pma.rx_pma_deser|clk90b 
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|cpulseout 
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout 
-    Info (332119):     2.813               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     2.812               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
     Info (332119):     4.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout 
-    Info (332119):     4.294               0.000 alt_cal_av_edge_detect_clk 
+    Info (332119):     4.288               0.000 alt_cal_av_edge_detect_clk 
     Info (332119):     5.000               0.000 PCIE_REFCLK_p 
     Info (332119):     5.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout 
-    Info (332119):     7.594               0.000 sv_reconfig_pma_testbus_clk_0 
-    Info (332119):     8.401               0.000 CLOCK_50_B3B 
-    Info (332119):    14.682               0.000 altera_reserved_tck 
-Info (332114): Report Metastability: Found 34 synchronizer chains.
+    Info (332119):     7.859               0.000 sv_reconfig_pma_testbus_clk_0 
+    Info (332119):     8.395               0.000 CLOCK_50_B3B 
+    Info (332119):    15.385               0.000 altera_reserved_tck 
+Info (332114): Report Metastability: Found 199 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
-    Info (332114): Number of Synchronizer Chains Found: 34
+    Info (332114): Number of Synchronizer Chains Found: 199
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 13.991 ns
+    Info (332114): Worst Case Available Settling Time: 13.897 ns
     Info (332114): 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
@@ -1449,32 +1449,32 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): From: u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_xcvr_avmm|avmm_interface_insts[0].av_hssi_avmm_interface_inst|avmmclk  to: q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpcie_cv_hip_ast_hwtcl:c5_hip_ast|altpcie_av_hip_ast_hwtcl:altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom:altpcie_av_hip_128bit_atom|av_xcvr_pipe_native_hip:g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_native:inst_av_xcvr_native|av_xcvr_avmm:inst_av_xcvr_avmm|avmm_interface_insts[0].av_hssi_avmm_interface_inst~BURIED_SYNC_DATA44
     Info (332098): From: u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_xcvr_avmm|avmm_interface_insts[3].av_hssi_avmm_interface_inst|avmmclk  to: q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpcie_cv_hip_ast_hwtcl:c5_hip_ast|altpcie_av_hip_ast_hwtcl:altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom:altpcie_av_hip_128bit_atom|av_xcvr_pipe_native_hip:g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_native:inst_av_xcvr_native|av_xcvr_avmm:inst_av_xcvr_avmm|avmm_interface_insts[3].av_hssi_avmm_interface_inst~BURIED_SYNC_DATA44
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 0.962
+Info (332146): Worst-case setup slack is 0.453
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.962               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.965               0.000 CLOCK_50_B3B 
-    Info (332119):    13.258               0.000 altera_reserved_tck 
-    Info (332119):    14.392               0.000 n/a 
-Info (332146): Worst-case hold slack is 0.130
+    Info (332119):     0.453               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.886               0.000 CLOCK_50_B3B 
+    Info (332119):    13.732               0.000 n/a 
+    Info (332119):    13.752               0.000 altera_reserved_tck 
+Info (332146): Worst-case hold slack is 0.134
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.130               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.141               0.000 altera_reserved_tck 
-    Info (332119):     0.150               0.000 CLOCK_50_B3B 
-    Info (332119):    13.069               0.000 n/a 
-Info (332146): Worst-case recovery slack is 1.457
+    Info (332119):     0.134               0.000 CLOCK_50_B3B 
+    Info (332119):     0.134               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.176               0.000 altera_reserved_tck 
+    Info (332119):    12.808               0.000 n/a 
+Info (332146): Worst-case recovery slack is 1.414
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.457               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     1.607               0.000 CLOCK_50_B3B 
-    Info (332119):    30.801               0.000 altera_reserved_tck 
-Info (332146): Worst-case removal slack is 0.288
+    Info (332119):     1.414               0.000 CLOCK_50_B3B 
+    Info (332119):     1.527               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):    28.425               0.000 altera_reserved_tck 
+Info (332146): Worst-case removal slack is 0.293
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.288               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.297               0.000 altera_reserved_tck 
-    Info (332119):     0.499               0.000 CLOCK_50_B3B 
+    Info (332119):     0.293               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.434               0.000 altera_reserved_tck 
+    Info (332119):     0.487               0.000 CLOCK_50_B3B 
 Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
@@ -1503,18 +1503,18 @@ Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout 
     Info (332119):     2.862               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
     Info (332119):     4.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout 
-    Info (332119):     4.644               0.000 alt_cal_av_edge_detect_clk 
+    Info (332119):     4.642               0.000 alt_cal_av_edge_detect_clk 
     Info (332119):     5.000               0.000 PCIE_REFCLK_p 
     Info (332119):     5.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout 
-    Info (332119):     8.795               0.000 CLOCK_50_B3B 
-    Info (332119):     8.944               0.000 sv_reconfig_pma_testbus_clk_0 
-    Info (332119):    14.562               0.000 altera_reserved_tck 
-Info (332114): Report Metastability: Found 34 synchronizer chains.
+    Info (332119):     8.792               0.000 CLOCK_50_B3B 
+    Info (332119):     9.024               0.000 sv_reconfig_pma_testbus_clk_0 
+    Info (332119):    14.931               0.000 altera_reserved_tck 
+Info (332114): Report Metastability: Found 199 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
-    Info (332114): Number of Synchronizer Chains Found: 34
+    Info (332114): Number of Synchronizer Chains Found: 199
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 15.035 ns
+    Info (332114): Worst Case Available Settling Time: 15.008 ns
     Info (332114): 
 Info: Analyzing Fast 1100mV 0C Model
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
@@ -1583,32 +1583,32 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
     Info (332098): From: u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_xcvr_avmm|avmm_interface_insts[0].av_hssi_avmm_interface_inst|avmmclk  to: q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpcie_cv_hip_ast_hwtcl:c5_hip_ast|altpcie_av_hip_ast_hwtcl:altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom:altpcie_av_hip_128bit_atom|av_xcvr_pipe_native_hip:g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_native:inst_av_xcvr_native|av_xcvr_avmm:inst_av_xcvr_avmm|avmm_interface_insts[0].av_hssi_avmm_interface_inst~BURIED_SYNC_DATA44
     Info (332098): From: u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_xcvr_avmm|avmm_interface_insts[3].av_hssi_avmm_interface_inst|avmmclk  to: q_sys:u0|altpcie_cv_hip_avmm_hwtcl:pcie_cv_hip_avmm_0|altpcie_cv_hip_ast_hwtcl:c5_hip_ast|altpcie_av_hip_ast_hwtcl:altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom:altpcie_av_hip_128bit_atom|av_xcvr_pipe_native_hip:g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_native:inst_av_xcvr_native|av_xcvr_avmm:inst_av_xcvr_avmm|avmm_interface_insts[3].av_hssi_avmm_interface_inst~BURIED_SYNC_DATA44
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 1.178
+Info (332146): Worst-case setup slack is 0.770
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.178               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     1.184               0.000 CLOCK_50_B3B 
-    Info (332119):    13.820               0.000 altera_reserved_tck 
-    Info (332119):    14.874               0.000 n/a 
-Info (332146): Worst-case hold slack is 0.114
+    Info (332119):     0.770               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     1.189               0.000 CLOCK_50_B3B 
+    Info (332119):    14.255               0.000 n/a 
+    Info (332119):    14.298               0.000 altera_reserved_tck 
+Info (332146): Worst-case hold slack is 0.092
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.114               0.000 altera_reserved_tck 
-    Info (332119):     0.121               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.128               0.000 CLOCK_50_B3B 
-    Info (332119):    12.947               0.000 n/a 
-Info (332146): Worst-case recovery slack is 1.602
+    Info (332119):     0.092               0.000 CLOCK_50_B3B 
+    Info (332119):     0.103               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.168               0.000 altera_reserved_tck 
+    Info (332119):    12.728               0.000 n/a 
+Info (332146): Worst-case recovery slack is 1.680
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.602               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     1.933               0.000 CLOCK_50_B3B 
-    Info (332119):    31.046               0.000 altera_reserved_tck 
-Info (332146): Worst-case removal slack is 0.260
+    Info (332119):     1.680               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     1.770               0.000 CLOCK_50_B3B 
+    Info (332119):    29.083               0.000 altera_reserved_tck 
+Info (332146): Worst-case removal slack is 0.263
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.260               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
-    Info (332119):     0.267               0.000 altera_reserved_tck 
-    Info (332119):     0.310               0.000 CLOCK_50_B3B 
+    Info (332119):     0.263               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
+    Info (332119):     0.390               0.000 altera_reserved_tck 
+    Info (332119):     0.408               0.000 CLOCK_50_B3B 
 Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
@@ -1637,25 +1637,25 @@ Info (332146): Worst-case minimum pulse width slack is 0.400
     Info (332119):     2.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|lfclkpout 
     Info (332119):     2.877               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_cavhip.arriav_hd_altpe2_hip_top|coreclkout 
     Info (332119):     4.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|inst_av_xcvr_native|inst_av_pma|av_tx_pma|tx_pma_insts[1].av_tx_pma_ch_inst|tx_pma_ch.tx_cgb|pclkout 
-    Info (332119):     4.643               0.000 alt_cal_av_edge_detect_clk 
+    Info (332119):     4.639               0.000 alt_cal_av_edge_detect_clk 
     Info (332119):     5.000               0.000 PCIE_REFCLK_p 
     Info (332119):     5.000               0.000 u0|pcie_cv_hip_avmm_0|c5_hip_ast|altpcie_av_hip_ast_hwtcl|altpcie_av_hip_128bit_atom|g_pcie_xcvr.av_xcvr_pipe_native_hip|av_xcvr_tx_pll_inst|pll[0].pll.cmu_pll.pll_mux.pll_refclk_select_mux|clkout 
-    Info (332119):     8.801               0.000 CLOCK_50_B3B 
-    Info (332119):     8.972               0.000 sv_reconfig_pma_testbus_clk_0 
-    Info (332119):    14.550               0.000 altera_reserved_tck 
-Info (332114): Report Metastability: Found 34 synchronizer chains.
+    Info (332119):     8.799               0.000 CLOCK_50_B3B 
+    Info (332119):     9.050               0.000 sv_reconfig_pma_testbus_clk_0 
+    Info (332119):    14.862               0.000 altera_reserved_tck 
+Info (332114): Report Metastability: Found 199 synchronizer chains.
     Info (332114): The design MTBF is not calculated because there are no specified synchronizers in the design.
-    Info (332114): Number of Synchronizer Chains Found: 34
+    Info (332114): Number of Synchronizer Chains Found: 199
     Info (332114): Shortest Synchronizer Chain: 2 Registers
     Info (332114): Fraction of Chains for which MTBFs Could Not be Calculated: 1.000
-    Info (332114): Worst Case Available Settling Time: 15.081 ns
+    Info (332114): Worst Case Available Settling Time: 15.056 ns
     Info (332114): 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 2976 megabytes
-    Info: Processing ended: Sat Nov  9 10:12:23 2019
-    Info: Elapsed time: 00:02:09
-    Info: Total CPU time (on all processors): 00:09:00
+    Info: Peak virtual memory: 3007 megabytes
+    Info: Processing ended: Sat Nov  9 21:18:57 2019
+    Info: Elapsed time: 00:01:38
+    Info: Total CPU time (on all processors): 00:07:27
 
 
