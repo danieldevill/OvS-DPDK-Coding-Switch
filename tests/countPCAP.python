@@ -1,0 +1,5 @@
+from scapy.all import *
+
+packets = rdpcap('vm2vmtcpdumpEncoderVNF.pcap')
+
+for packet in packets:
