@@ -148,8 +148,7 @@ main(int argc, char *argv[]) {
 				free(pRead);
 
 			//Set encoder to 0.
-			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
-				(uint32_t) 0);
+			//bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,(uint32_t) 0);
 
 			PCIE_Close(hPCIe);
 		}
@@ -244,8 +243,7 @@ main(int argc, char *argv[]) {
 				free(pRead);
 
 			//Set encoder to 0.
-			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
-				(uint32_t) 0);
+			//bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,(uint32_t) 0);
 
 			PCIE_Close(hPCIe);
 		}

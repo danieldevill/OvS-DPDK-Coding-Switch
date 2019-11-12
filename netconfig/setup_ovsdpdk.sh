@@ -32,7 +32,7 @@ sudo /usr/local/bin/ovs-vsctl add-br br0 -- set bridge br0 datapath_type=netdev
 sudo ifconfig br0 10.0.0.100 netmask 255.255.255.0 up
 
 #Set Controller to Ryu
-sudo /usr/local/bin/ovs-vsctl set-controller br0 tcp:10.10.11.117:6633
+#sudo /usr/local/bin/ovs-vsctl set-controller br0 tcp:10.10.11.117:6633
 
 #Print outputs of dpdk drivers and ovs-vsctl/ovs-ofctl to confirm.
 sudo $RTE_SDK/usertools/dpdk-devbind.py -s

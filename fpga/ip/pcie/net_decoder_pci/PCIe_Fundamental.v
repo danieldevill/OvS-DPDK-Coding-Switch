@@ -304,7 +304,7 @@ begin
 	end
   else
     begin
-		if(coef_packet_count == 8'd9)
+		if(coef_packet_count == 8'd8)
 			begin
 				decoder_coeff_in[7:0]   = coeff0[31:24];
 				decoder_coeff_in[15:8]  = coeff0[23:16];
@@ -325,7 +325,7 @@ begin
 				decoder_coeff_in[23:16] = coeff1[15:8];
 				decoder_coeff_in[31:24] = coeff1[7:0];
 			end
-		else if(coef_packet_count == 8'd26)
+		else if(coef_packet_count == 8'd27)
 			begin
 				decoder_coeff_in[7:0]   = coeff1[55:48];
 				decoder_coeff_in[15:8]  = coeff1[47:40];
@@ -445,7 +445,7 @@ begin
                 //Only Write when buffer is not full
                 if(mw_buffer_full == 0)
 					 begin
-						if(mw_control_base != 32'h0700_0590)  
+						if(mw_control_base != 32'h0700_039C)  
 							begin
 								mw_write_buffer = 1'b1;
 								mw_control_base = mw_control_base + 32'h4;

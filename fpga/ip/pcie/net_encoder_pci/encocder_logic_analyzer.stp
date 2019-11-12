@@ -5533,7 +5533,7 @@
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="E0AC0DF0" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2019/11/06 20:36:24  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="512" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="E0AC0DF0" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2019/11/06 20:36:24  #1" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="512" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">'encoder_rst' == high
@@ -5578,15 +5578,15 @@ trigger;]]>
     </signal_set>
     <position_info>
       <single attribute="active tab" value="0"/>
-      <single attribute="data horizontal scroll position" value="255"/>
+      <single attribute="data horizontal scroll position" value="0"/>
       <single attribute="data vertical scroll position" value="0"/>
       <single attribute="setup horizontal scroll position" value="0"/>
-      <single attribute="setup vertical scroll position" value="4"/>
+      <single attribute="setup vertical scroll position" value="0"/>
       <single attribute="zoom level denominator" value="1"/>
-      <single attribute="zoom level numerator" value="8192"/>
+      <single attribute="zoom level numerator" value="64"/>
       <single attribute="zoom offset denominator" value="1"/>
       <single attribute="zoom offset numerator" value="0"/>
-      <multi attribute="timebars" size="5" value="505,368,487,497,257"/>
+      <multi attribute="timebars" size="5" value="711,368,561,497,257"/>
     </position_info>
   </instance>
   <mnemonics/>

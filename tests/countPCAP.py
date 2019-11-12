@@ -10,7 +10,7 @@ rx_times = []
 
 print("Reading pcap file..")
 #packets = rdpcap('vm2vmtcpdumpEncoderVNF.pcap')
-packets = sniff(offline="nocodeVNF_e2e.pcap")
+packets = sniff(offline=str(sys.argv[1]))
 
 print("Reading done.\nAnalyzing captured packets..")
 gencount = 0

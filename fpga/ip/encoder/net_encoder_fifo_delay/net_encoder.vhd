@@ -181,12 +181,12 @@ begin
 			elsif clk'event and clk = '1' then
 
 				--begin_q_use_count
-				if begin_q_use_count = 0 then
+				if begin_q_use_count = 8 then
 					begin_q_use <=  '1';
 				else
 					begin_q_use_count <= begin_q_use_count + 1;
 				end if;
-			
+				
 				--Add incoming packet to FIFO
 				data_datain <= pkt32bseg_i;
 

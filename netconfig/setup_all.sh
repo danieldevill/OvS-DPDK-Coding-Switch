@@ -2,8 +2,10 @@
 
 #Bash script to setup all other scripts.
 
-~/netconfig/setup_ovsdpdk.sh
-~/netconfig/setup_vmhosts.sh 4
-~/netconfig/setup_coding.sh
+sudo ./setup_ovsdpdk.sh ;
+sudo ./setup_fpga.sh ;
+
+sudo ./setup_vmhosts.sh ;
+sudo ./setup_nichosts.sh ;
 
 sudo ovs-vsctl show
