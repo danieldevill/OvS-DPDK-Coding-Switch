@@ -162,11 +162,6 @@ main(int argc, char *argv[]) {
 		strcpy(tap_name,"tapDecoder");
 		int tapfd = tap_alloc(tap_name);
 		
-		//Get packets until pkt count is = h
-		while(RXDone == 0) {
-			tap_decoder_receive(tapfd,tapRXBuffer);
-		}
-
 		//Load PCIe driver.
 		void *lib_handle;
 		PCIE_HANDLE hPCIe;
@@ -189,58 +184,67 @@ main(int argc, char *argv[]) {
 			const PCIE_LOCAL_ADDRESS LocalAddr = PCIE_MEM_ADDR_RX;
 			const PCIE_LOCAL_ADDRESS LocalAddr_coeff = PCIE_MEM_ADDR_COEFF;
 
-			unsigned char *pRead;
-			char szError[256];
-
-			pRead = (char *) malloc(2048);
-
-			//Write RX Packet Generation block via DMA.
-			printf("Write to DMA.\n");
-			//Write to shared memory
-			PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
-
-			//Write RX Packet Coefficients via DMA.
-			PCIE_DmaWrite(hPCIe, LocalAddr_coeff, coeffBufferQueue_decoder, MEM_SIZE_COEF);
-
-			//Reset coder entity on FPGA. This will begin the coding process.
-			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
-				(uint32_t) 0);
-			bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
-				(uint32_t) 1);
-			if (bPass)
-				printf("Reset Coder\n");
-
-			// Read DMA results.
-			if (bPass) {
-				bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, MEM_SIZE*4);
-
-				if (!bPass) {
-					sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
-				} else {
-					int lnbr = 0;
-					printf("Read from DMA:\n0000: ");
-					for (i = 0; i < 2048 && bPass; i++) {
-						printf("%02X ",*(pRead + i));
-						lnbr++;
-						if(lnbr==4)
-						{
-							lnbr = 0;
-							printf("\n%04d: ",i);
-						}
-
-					}
+			while(1){
+				//Get packets until pkt count is = h
+				while(RXDone == 0) {
+					tap_decoder_receive(tapfd,tapRXBuffer);
 				}
 
-				//Cpy RESULTS read to tapTXBufferQueue
-				memcpy(tapTXBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
+				RXDone = 0;
 
-				//Transmit encoded packets
-				tap_decoder_transmit(tapfd,tapTXBufferQueue);
+				unsigned char *pRead;
+				char szError[256];
+
+				pRead = (char *) malloc(2048);
+
+				//Write RX Packet Generation block via DMA.
+				printf("Write to DMA.\n");
+				//Write to shared memory
+				PCIE_DmaWrite(hPCIe, LocalAddr, tapRXBufferQueue, MEM_SIZE);
+
+				//Write RX Packet Coefficients via DMA.
+				PCIE_DmaWrite(hPCIe, LocalAddr_coeff, coeffBufferQueue_decoder, MEM_SIZE_COEF);
+
+				//Reset coder entity on FPGA. This will begin the coding process.
+				bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+					(uint32_t) 0);
+				bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,
+					(uint32_t) 1);
+				if (bPass)
+					printf("Reset Coder\n");
+
+				// Read DMA results.
+				if (bPass) {
+					bPass = PCIE_DmaRead(hPCIe, LocalAddr, pRead, MEM_SIZE*4);
+
+					if (!bPass) {
+						sprintf(szError, "DMA Memory:PCIE_DmaRead failed\r\n");
+					} else {
+						int lnbr = 0;
+						printf("Read from DMA:\n0000: ");
+						for (i = 0; i < 2048 && bPass; i++) {
+							printf("%02X ",*(pRead + i));
+							lnbr++;
+							if(lnbr==4)
+							{
+								lnbr = 0;
+								printf("\n%04d: ",i);
+							}
+
+						}
+					}
+
+					//Cpy RESULTS read to tapTXBufferQueue
+					memcpy(tapTXBufferQueue,pRead+MEM_SIZE,MEM_SIZE);
+
+					//Transmit encoded packets
+					tap_decoder_transmit(tapfd,tapTXBufferQueue);
+				}
+
+				// free resource
+				if (pRead)
+					free(pRead);
 			}
-
-			// free resource
-			if (pRead)
-				free(pRead);
 
 			//Set encoder to 0.
 			//bPass = PCIE_Write32(hPCIe, PCIE_BAR, CODER_RST,(uint32_t) 0);
@@ -394,11 +398,11 @@ int tap_encoder_transmit(int tapfd, unsigned char* tapTXBufferQueue)
 	
 		unsigned char *tapBuffer = (unsigned char *) malloc(1024); //Buffer to store packet encoded packet with generation.
 
-		memcpy(tapBuffer,src_mac,MAC_ADDR_LEN); //Add dst_addr
-		memcpy(tapBuffer+MAC_ADDR_LEN,if_mac,MAC_ADDR_LEN); //Add src_addr
-		memcpy(tapBuffer+(2*MAC_ADDR_LEN),nc_type,ETH_TYPE_LEN); //Add eth_type
-		memcpy(tapBuffer+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN,coeffBufferQueue+(h*COEFF_BUFFER),COEFF_BUFFER); //Add coef_vector
-		memcpy(tapBuffer+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN+COEFF_BUFFER,tapTXBufferQueue+(h*TX_BUFFER),TX_BUFFER); //Add encoded_data
+		memcpy(tapBuffer+4,src_mac,MAC_ADDR_LEN); //Add dst_addr
+		memcpy(tapBuffer+4+MAC_ADDR_LEN,if_mac,MAC_ADDR_LEN); //Add src_addr
+		memcpy(tapBuffer+4+(2*MAC_ADDR_LEN),nc_type,ETH_TYPE_LEN); //Add eth_type
+		memcpy(tapBuffer+4+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN,coeffBufferQueue+(h*COEFF_BUFFER),COEFF_BUFFER); //Add coef_vector
+		memcpy(tapBuffer+4+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN+COEFF_BUFFER,tapTXBufferQueue+(h*TX_BUFFER),TX_BUFFER); //Add encoded_data
 
 		//Transmit packets
 		int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
@@ -529,11 +533,11 @@ int tap_decoder_transmit(int tapfd, unsigned char* tapTXBufferQueue)
 	
 		unsigned char *tapBuffer = (unsigned char *) malloc(1024); //Buffer to store packet encoded packet with generation.
 
-		memcpy(tapBuffer,src_mac,MAC_ADDR_LEN); //Add dst_addr
-		memcpy(tapBuffer+MAC_ADDR_LEN,if_mac,MAC_ADDR_LEN); //Add src_addr
-		memcpy(tapBuffer+(2*MAC_ADDR_LEN),nc_type,ETH_TYPE_LEN); //Add eth_type
-		memcpy(tapBuffer+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN,coeffBufferQueue+(h*COEFF_BUFFER),COEFF_BUFFER); //Add coef_vector
-		memcpy(tapBuffer+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN+COEFF_BUFFER,tapTXBufferQueue+(h*TX_BUFFER),TX_BUFFER); //Add encoded_data
+		memcpy(tapBuffer+4,src_mac,MAC_ADDR_LEN); //Add dst_addr
+		memcpy(tapBuffer+4+MAC_ADDR_LEN,if_mac,MAC_ADDR_LEN); //Add src_addr
+		memcpy(tapBuffer+4+(2*MAC_ADDR_LEN),nc_type,ETH_TYPE_LEN); //Add eth_type
+		memcpy(tapBuffer+4+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN,coeffBufferQueue+(h*COEFF_BUFFER),COEFF_BUFFER); //Add coef_vector
+		memcpy(tapBuffer+4+(2*MAC_ADDR_LEN)+ETH_TYPE_LEN+COEFF_BUFFER,tapTXBufferQueue+(h*TX_BUFFER),TX_BUFFER); //Add encoded_data
 
 		//Transmit packets
 		int nwrite = write(tapfd,tapBuffer,TX_BUFFER);
