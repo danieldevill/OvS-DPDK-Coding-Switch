@@ -21,11 +21,13 @@ l2packet4 = scapy.Ether(type=eth_type,src=eth_src,dst=eth_dst)/scapy.Raw(load=p4
 l2packet5 = scapy.Ether(type=eth_type,src=eth_src,dst=eth_dst)/scapy.Raw(load=p5)
 l2packet6 = scapy.Ether(type=eth_type,src=eth_src,dst=eth_dst)/scapy.Raw(load=p6)
 
-for i in range(0,1):
-	scapy.sendp(l2packet0,count=1,iface="br0")
-	scapy.sendp(l2packet1,count=1,iface="br0")
-	scapy.sendp(l2packet2,count=1,iface="br0")
-	scapy.sendp(l2packet3,count=1,iface="br0")
-	scapy.sendp(l2packet4,count=1,iface="br0")
-	scapy.sendp(l2packet5,count=1,iface="br0")
-	scapy.sendp(l2packet6,count=1,iface="br0")
+s = scapy.conf.L2socket(iface="br0")
+
+for i in range(0,20000):
+	s.send(l2packet0)
+	s.send(l2packet1)
+	s.send(l2packet2)
+	s.send(l2packet3)
+	s.send(l2packet4)
+	s.send(l2packet5)
+	s.send(l2packet6)
